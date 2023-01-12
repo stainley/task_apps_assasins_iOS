@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70CB35C02970585A005612E0 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB35BF2970585A005612E0 /* CategoryCell.swift */; };
+		70CB35C229706B6B005612E0 /* NoteTaskSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB35C129706B6B005612E0 /* NoteTaskSearchViewController.swift */; };
 		ADCDD667296F752300B30328 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD666296F752300B30328 /* AppDelegate.swift */; };
 		ADCDD669296F752300B30328 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD668296F752300B30328 /* SceneDelegate.swift */; };
 		ADCDD66B296F752300B30328 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD66A296F752300B30328 /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70CB35BF2970585A005612E0 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		70CB35C129706B6B005612E0 /* NoteTaskSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTaskSearchViewController.swift; sourceTree = "<group>"; };
 		ADCDD663296F752300B30328 /* TaskAppsAssasinsIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskAppsAssasinsIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADCDD666296F752300B30328 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADCDD668296F752300B30328 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				ADCDD66A296F752300B30328 /* ViewController.swift */,
+				70CB35BF2970585A005612E0 /* CategoryCell.swift */,
+				70CB35C129706B6B005612E0 /* NoteTaskSearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -165,6 +171,8 @@
 				ADCDD66B296F752300B30328 /* ViewController.swift in Sources */,
 				ADCDD667296F752300B30328 /* AppDelegate.swift in Sources */,
 				ADCDD669296F752300B30328 /* SceneDelegate.swift in Sources */,
+				70CB35C02970585A005612E0 /* CategoryCell.swift in Sources */,
+				70CB35C229706B6B005612E0 /* NoteTaskSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
