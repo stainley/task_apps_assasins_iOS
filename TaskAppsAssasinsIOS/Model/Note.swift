@@ -14,6 +14,8 @@ struct Note {
     private var creationDate: NSDate
     private var pictures: [UIImage?]
     private var audios: [String?]
+    private var latitude: Double?
+    private var longitude: Double?
     
     
     init(title: String, description: String, creationDate: NSDate, pictures: [UIImage?], audios: [String?]) {
@@ -43,6 +45,11 @@ struct Note {
     
     func getAudios() -> [String?] {
         return self.audios
+    }
+    
+    mutating func setCoordinate(latitude: Double?, longitude: Double?) {
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
 }
