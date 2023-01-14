@@ -33,8 +33,29 @@ class NoteViewControler: UIViewController {
     
     @IBAction func selectCatagory(_ sender: UIButton) {
         
+        if sender.currentTitle == "Work" {
+            schoolBtn.isHidden = true
+            shoppingBtn.isHidden = true
+            groceryBtn.isHidden = true
+            print(sender)
+        } else if sender.currentTitle == "School" {
+            workBtn.isHidden = true
+            shoppingBtn.isHidden = true
+            groceryBtn.isHidden = true
+            print(sender)
+        } else if sender.currentTitle == "Shopping" {
+            workBtn.isHidden = true
+            schoolBtn.isHidden = true
+            groceryBtn.isHidden = true
+            print(sender)
+        } else if sender.currentTitle == "Grocery" {
+            workBtn.isHidden = true
+            schoolBtn.isHidden = true
+            shoppingBtn.isHidden = true
+            print(sender)
+        }
         
-        
+       
     }
     
     
