@@ -15,6 +15,7 @@
 		ADCDD66E296F752300B30328 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADCDD66C296F752300B30328 /* Main.storyboard */; };
 		ADCDD670296F752400B30328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADCDD66F296F752400B30328 /* Assets.xcassets */; };
 		ADCDD673296F752400B30328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADCDD671296F752400B30328 /* LaunchScreen.storyboard */; };
+		F0D3026D29720940005DC42D /* NoteViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D3026C29720940005DC42D /* NoteViewControler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		ADCDD66F296F752400B30328 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADCDD672296F752400B30328 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADCDD674296F752400B30328 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0D3026C29720940005DC42D /* NoteViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewControler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				ADCDD66A296F752300B30328 /* ViewController.swift */,
 				70CB35BF2970585A005612E0 /* CategoryCell.swift */,
 				70CB35C129706B6B005612E0 /* NoteTaskSearchViewController.swift */,
+				F0D3026C29720940005DC42D /* NoteViewControler.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				ADCDD669296F752300B30328 /* SceneDelegate.swift in Sources */,
 				70CB35C02970585A005612E0 /* CategoryCell.swift in Sources */,
 				70CB35C229706B6B005612E0 /* NoteTaskSearchViewController.swift in Sources */,
+				F0D3026D29720940005DC42D /* NoteViewControler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
