@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let categories = ["Work", "School"]
+    let categories = ["Work", "School", "Grocery", "GYM", "Work", "School", "Grocery", "GYM", "Work", "School", "Grocery", "GYM"]
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
@@ -29,6 +29,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
         
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowRadius = 6.0
+        cell.layer.shadowOpacity = 0.5
+        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cell.layer.borderWidth = 1.0
+        cell.layer.cornerRadius = 30.0
+        cell.layer.masksToBounds = false
         cell.categoryLabel.text = categories[indexPath.row]
         return cell
     }
