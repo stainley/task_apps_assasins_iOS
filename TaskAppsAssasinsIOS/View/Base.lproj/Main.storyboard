@@ -220,10 +220,10 @@
             </objects>
             <point key="canvasLocation" x="-1063.0769230769231" y="-515.40284360189571"/>
         </scene>
-        <!--Note View Controler-->
+        <!--Note Detail View Controller-->
         <scene sceneID="ynE-zH-FBM">
             <objects>
-                <viewController id="Qj5-0p-n9h" customClass="NoteViewControler" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NoteDetailViewController" id="Qj5-0p-n9h" customClass="NoteDetailViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JYh-66-NOq">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

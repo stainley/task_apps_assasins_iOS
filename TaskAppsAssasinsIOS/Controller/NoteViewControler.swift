@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoteViewControler: UIViewController {
+class NoteDetailViewController: UIViewController {
     
     @IBOutlet weak var titleLbl: UITextField!
     
@@ -20,6 +20,8 @@ class NoteViewControler: UIViewController {
     @IBOutlet weak var shoppingBtn: UIButton!
     
     @IBOutlet weak var groceryBtn: UIButton!
+    
+    var note: Note?
     
     override func viewDidLoad() {
         super.viewDidLoad()

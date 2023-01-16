@@ -35,7 +35,7 @@ class NoteTaskSearchViewController: UIViewController {
     }
 }
 
-extension NoteTaskSearchViewController : UITableViewDataSource {
+extension NoteTaskSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
@@ -49,6 +49,25 @@ extension NoteTaskSearchViewController : UITableViewDataSource {
         cell?.creationDateLabel?.text = items[indexPath.row].getCreationDate().toString(dateFormat: "MM/DD/YYY")
         
         return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let action = UIContextualAction(style: .destructive, title: "Delete") {
+            (action, view, completionHandler) in
+            print("a")
+        }
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let note = self.items[indexPath.row]
+        
+        if let noteDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteDetailViewController") as? NoteDetailViewController {
+            noteDetailViewController.note = note
+            self.navigationController?.pushViewController(noteDetailViewController, animated: true)
+        }
     }
 }
 
