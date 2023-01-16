@@ -391,12 +391,9 @@
         </scene>
     </scenes>
     <resources>
-<<<<<<< HEAD
         <image name="trash" catalog="system" width="117" height="128"/>
-=======
         <image name="plus_icon" width="16" height="16"/>
         <image name="search_icon" width="16" height="16"/>
->>>>>>> dev
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
