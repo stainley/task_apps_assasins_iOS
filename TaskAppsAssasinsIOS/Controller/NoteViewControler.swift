@@ -21,6 +21,14 @@ class NoteViewControler: UIViewController {
     
     @IBOutlet weak var groceryBtn: UIButton!
     
+    @IBOutlet weak var addFilesBtn:UIButton!
+    
+    @IBOutlet weak var addPhotoBtn:UIButton!
+    
+    @IBOutlet weak var addVideoBtn:UIButton!
+    
+    @IBOutlet weak var addaudioBtn:UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,6 +64,23 @@ class NoteViewControler: UIViewController {
         }
         
        
+    }
+    
+    @IBAction func addFIle(_ sender: UIButton) {
+        
+        
+        
+        
+        if sender.currentTitle == "Add Photo" {
+            addVideoBtn.isHidden == true
+            addaudioBtn.isHidden == true
+        } else if sender.currentTitle == "Add Video" {
+            addPhotoBtn.isHidden == true
+            addaudioBtn.isHidden == true
+        } else if sender.currentTitle == "Add Recordings" {
+            addPhotoBtn.isHidden == true
+            addVideoBtn.isHidden == true
+        }
     }
     
     
