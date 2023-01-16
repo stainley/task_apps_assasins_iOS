@@ -16,7 +16,7 @@ class CategoryCell: UICollectionViewCell {
             self.deleteCategoryButton.isEnabled = false
         }
     }
-    
+     
     override class func awakeFromNib() {
        
     }
