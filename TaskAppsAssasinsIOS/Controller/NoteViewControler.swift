@@ -9,7 +9,9 @@ import UIKit
 
 class NoteDetailViewController: UIViewController {
     
-    @IBOutlet weak var titleLbl: UITextField!
+    
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var catagoryBtn: UIButton!
     
