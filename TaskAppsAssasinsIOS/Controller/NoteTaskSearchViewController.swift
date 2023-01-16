@@ -9,8 +9,57 @@ import UIKit
 
 class NoteTaskSearchViewController: UIViewController {
 
+    @IBOutlet weak var buttonStackView: UIStackView!
+    @IBOutlet weak var noteTaskTableView: UITableView!
+    
+    var items = [Note]()
+    var noteReferenceCell: NoteNibTableViewCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //TO BE REMOVE - DUMMY DATA
+        items.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
+        items.append(Note(title: "2023W CPS 1001", description: "Co-op Preparation and Success", creationDate: NSDate(), pictures: [], audios: []))
+        items.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
+        items.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
+        items.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
+        items.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
+        
+        buttonStackView.layer.cornerRadius = 8
+        
+        let cellNib = UINib(nibName: "NoteNibTableViewCell", bundle: Bundle.main)
+        noteTaskTableView.register(cellNib, forCellReuseIdentifier: "NoteNibTableViewCell")
+        
+        print(items)
+    }
+}
+
+extension NoteTaskSearchViewController : UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = noteTaskTableView.dequeueReusableCell(withIdentifier: "NoteNibTableViewCell", for: indexPath) as? NoteNibTableViewCell
+
+        cell?.titleLabel?.text = items[indexPath.row].getTitle()
+        cell?.descriptionLabel?.text = items[indexPath.row].getDescription()
+        cell?.creationDateLabel?.text = items[indexPath.row].getCreationDate().toString(dateFormat: "MM/DD/YYY")
+        
+        return cell ?? UITableViewCell()
+    }
+}
+
+extension NSDate
+{
+    func toString( dateFormat format  : String ) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self as Date)
     }
 
 }
+
