@@ -75,10 +75,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        
-        if let noteTaskSearchViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteTaskSearchViewController") as? NoteTaskSearchViewController {
-            self.navigationController?.pushViewController(noteTaskSearchViewController, animated: true)
+
+        if let noteTaskTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "NoteTaskTabBarController") as? NoteTaskTabBarController {
+            self.navigationController?.pushViewController(noteTaskTabBarController, animated: true)
         }
     }
     
