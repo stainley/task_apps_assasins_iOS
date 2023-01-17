@@ -7,10 +7,9 @@
 
 import UIKit
 
-class NoteTaskSearchViewController: UIViewController {
+class NoteSearchViewController: UIViewController {
 
-    @IBOutlet weak var buttonStackView: UIStackView!
-    @IBOutlet weak var noteTaskTableView: UITableView!
+    @IBOutlet weak var noteTableView: UITableView!
     
     var items = [Note]()
     var noteReferenceCell: NoteNibTableViewCell!
@@ -26,23 +25,21 @@ class NoteTaskSearchViewController: UIViewController {
         items.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
         items.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
         
-        buttonStackView.layer.cornerRadius = 8
+        //buttonStackView.layer.cornerRadius = 8
         
         let cellNib = UINib(nibName: "NoteNibTableViewCell", bundle: Bundle.main)
-        noteTaskTableView.register(cellNib, forCellReuseIdentifier: "NoteNibTableViewCell")
-        
-        print(items)
+        noteTableView.register(cellNib, forCellReuseIdentifier: "NoteNibTableViewCell")
     }
 }
 
-extension NoteTaskSearchViewController: UITableViewDelegate, UITableViewDataSource {
+extension NoteSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = noteTaskTableView.dequeueReusableCell(withIdentifier: "NoteNibTableViewCell", for: indexPath) as? NoteNibTableViewCell
+        let cell = noteTableView.dequeueReusableCell(withIdentifier: "NoteNibTableViewCell", for: indexPath) as? NoteNibTableViewCell
 
         cell?.titleLabel?.text = items[indexPath.row].getTitle()
         cell?.descriptionLabel?.text = items[indexPath.row].getDescription()
