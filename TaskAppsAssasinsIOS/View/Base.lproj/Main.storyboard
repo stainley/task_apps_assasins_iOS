@@ -161,17 +161,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Qg4-F1-TbL">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <rect key="frame" x="-1" y="-1" width="391" height="845"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Name Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1E0-hI-Zfv">
-                                        <rect key="frame" x="95.000000000000014" y="47" width="200.33333333333337" height="26.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="r14-Yh-AYs">
-                                        <rect key="frame" x="20" y="113" width="350" height="648"/>
+                                        <rect key="frame" x="20" y="113" width="351" height="649"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <connections>
                                             <outlet property="dataSource" destination="20G-No-hh8" id="8yI-IF-3FK"/>
@@ -182,18 +176,17 @@
                                 <viewLayoutGuide key="safeArea" id="ZqS-Fy-pzo"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="1E0-hI-Zfv" firstAttribute="top" secondItem="ZqS-Fy-pzo" secondAttribute="top" id="1Hk-6p-CLa"/>
                                     <constraint firstItem="r14-Yh-AYs" firstAttribute="leading" secondItem="ZqS-Fy-pzo" secondAttribute="leading" constant="20" id="2Pn-8H-Xai"/>
-                                    <constraint firstItem="1E0-hI-Zfv" firstAttribute="leading" secondItem="ZqS-Fy-pzo" secondAttribute="leading" constant="95" id="5ez-bH-3Sg"/>
                                     <constraint firstItem="ZqS-Fy-pzo" firstAttribute="bottom" secondItem="r14-Yh-AYs" secondAttribute="bottom" id="TXR-uv-6Cg"/>
                                     <constraint firstItem="ZqS-Fy-pzo" firstAttribute="trailing" secondItem="r14-Yh-AYs" secondAttribute="trailing" constant="20" id="e9b-vc-P34"/>
-                                    <constraint firstItem="ZqS-Fy-pzo" firstAttribute="trailing" secondItem="1E0-hI-Zfv" secondAttribute="trailing" constant="94.666666666666629" id="eIb-gY-wHc"/>
-                                    <constraint firstItem="r14-Yh-AYs" firstAttribute="top" secondItem="1E0-hI-Zfv" secondAttribute="bottom" constant="39.666666666666671" id="sAp-vX-6Dg"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aLU-uN-Dmj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="r14-Yh-AYs" firstAttribute="top" secondItem="aLU-uN-Dmj" secondAttribute="top" constant="65" id="hff-nG-Gvy"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Task" id="jFm-w7-bPp"/>
                     <connections>
@@ -213,17 +206,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="J1m-8v-6ce">
-                                <rect key="frame" x="-1" y="-1" width="390" height="844"/>
+                                <rect key="frame" x="-2" y="-1" width="391" height="843"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Name Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDW-u2-01S">
-                                        <rect key="frame" x="95.000000000000014" y="47" width="200.33333333333337" height="26.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LZD-5h-EgJ">
-                                        <rect key="frame" x="20" y="113" width="350" height="649"/>
+                                        <rect key="frame" x="20" y="113" width="351" height="649"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <connections>
                                             <outlet property="dataSource" destination="S3Q-D4-rXV" id="ZsN-eT-23f"/>
@@ -235,17 +222,16 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="WNJ-do-EJY" firstAttribute="bottom" secondItem="LZD-5h-EgJ" secondAttribute="bottom" id="6ma-Kp-HM0"/>
-                                    <constraint firstItem="fDW-u2-01S" firstAttribute="top" secondItem="WNJ-do-EJY" secondAttribute="top" id="A3Y-7e-aky"/>
                                     <constraint firstItem="WNJ-do-EJY" firstAttribute="trailing" secondItem="LZD-5h-EgJ" secondAttribute="trailing" constant="20" id="k06-fx-c25"/>
-                                    <constraint firstItem="LZD-5h-EgJ" firstAttribute="top" secondItem="fDW-u2-01S" secondAttribute="bottom" constant="39.666666666666671" id="pCF-9V-S4T"/>
-                                    <constraint firstItem="fDW-u2-01S" firstAttribute="leading" secondItem="WNJ-do-EJY" secondAttribute="leading" constant="95" id="rmw-VR-uz6"/>
                                     <constraint firstItem="LZD-5h-EgJ" firstAttribute="leading" secondItem="WNJ-do-EJY" secondAttribute="leading" constant="20" id="xT5-nW-2vG"/>
-                                    <constraint firstItem="WNJ-do-EJY" firstAttribute="trailing" secondItem="fDW-u2-01S" secondAttribute="trailing" constant="94.666666666666629" id="xzb-9Z-FZE"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Rd6-I3-AlV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LZD-5h-EgJ" firstAttribute="top" secondItem="Rd6-I3-AlV" secondAttribute="top" constant="65" id="ZQg-5U-4fV"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Note" id="BiY-i1-LLb"/>
                     <connections>
@@ -409,8 +395,6 @@
     </scenes>
     <resources>
         <image name="file-and-folder" width="512" height="512"/>
-        <image name="plus_icon" width="16" height="16"/>
-        <image name="search_icon" width="16" height="16"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
