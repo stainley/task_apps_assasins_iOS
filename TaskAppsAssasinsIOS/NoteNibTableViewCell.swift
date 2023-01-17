@@ -21,18 +21,10 @@ class NoteNibTableViewCell: UITableViewCell {
         cardView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         cardView.layer.shadowOpacity = 1.0
         cardView.layer.masksToBounds = false
-        cardView.layer.cornerRadius = 4.0
-        cardView.layer.borderWidth = 1.0
-        cardView.layer.borderColor = UIColor.gray.cgColor
+        cardView.layer.cornerRadius = 8.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
     }
 }
