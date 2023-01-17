@@ -11,6 +11,7 @@
 		70CB35C229706B6B005612E0 /* NoteTaskSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB35C129706B6B005612E0 /* NoteTaskSearchViewController.swift */; };
 		70F2B1862975302D00239EAC /* NoteNibTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F2B1842975302D00239EAC /* NoteNibTableViewCell.swift */; };
 		70F2B1872975302D00239EAC /* NoteNibTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70F2B1852975302D00239EAC /* NoteNibTableViewCell.xib */; };
+		728FFBC629761AC0006748FD /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728FFBC529761AC0006748FD /* Task.swift */; };
 		ADCDD667296F752300B30328 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD666296F752300B30328 /* AppDelegate.swift */; };
 		ADCDD669296F752300B30328 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD668296F752300B30328 /* SceneDelegate.swift */; };
 		ADCDD66B296F752300B30328 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD66A296F752300B30328 /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 		70CB35C129706B6B005612E0 /* NoteTaskSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTaskSearchViewController.swift; sourceTree = "<group>"; };
 		70F2B1842975302D00239EAC /* NoteNibTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteNibTableViewCell.swift; sourceTree = "<group>"; };
 		70F2B1852975302D00239EAC /* NoteNibTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteNibTableViewCell.xib; sourceTree = "<group>"; };
+		728FFBC529761AC0006748FD /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		ADCDD663296F752300B30328 /* TaskAppsAssasinsIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskAppsAssasinsIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADCDD666296F752300B30328 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADCDD668296F752300B30328 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				ADCDD67B2970D2A400B30328 /* Note.swift */,
+				728FFBC529761AC0006748FD /* Task.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				70CB35C229706B6B005612E0 /* NoteTaskSearchViewController.swift in Sources */,
 				F0D3026D29720940005DC42D /* NoteViewControler.swift in Sources */,
 				ADCDD67C2970D2A400B30328 /* Note.swift in Sources */,
+				728FFBC629761AC0006748FD /* Task.swift in Sources */,
 				70F2B1862975302D00239EAC /* NoteNibTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
