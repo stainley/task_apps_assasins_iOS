@@ -12,6 +12,8 @@ class NoteTaskTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        UITabBarItem.appearance().setTitleTextAttributes(
+            [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 14)], for: .normal)
     }
 
 }

@@ -161,11 +161,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Qg4-F1-TbL">
-                                <rect key="frame" x="-1" y="-1" width="391" height="845"/>
+                                <rect key="frame" x="-1" y="-2" width="391" height="846"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="r14-Yh-AYs">
-                                        <rect key="frame" x="20" y="113" width="351" height="649"/>
+                                        <rect key="frame" x="20" y="114" width="351" height="649"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <connections>
                                             <outlet property="dataSource" destination="20G-No-hh8" id="8yI-IF-3FK"/>
@@ -188,7 +188,7 @@
                             <constraint firstItem="r14-Yh-AYs" firstAttribute="top" secondItem="aLU-uN-Dmj" secondAttribute="top" constant="65" id="hff-nG-Gvy"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Task" id="jFm-w7-bPp"/>
+                    <tabBarItem key="tabBarItem" title="Task" image="task_icon" id="jFm-w7-bPp"/>
                     <connections>
                         <outlet property="taskTableView" destination="r14-Yh-AYs" id="CAB-ap-wzn"/>
                     </connections>
@@ -233,7 +233,16 @@
                             <constraint firstItem="LZD-5h-EgJ" firstAttribute="top" secondItem="Rd6-I3-AlV" secondAttribute="top" constant="65" id="ZQg-5U-4fV"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Note" id="BiY-i1-LLb"/>
+                    <tabBarItem key="tabBarItem" title="Note" image="note_icon" id="BiY-i1-LLb">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" systemColor="systemOrangeColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <connections>
                         <outlet property="noteTableView" destination="LZD-5h-EgJ" id="7cI-NR-aVV"/>
                     </connections>
@@ -395,6 +404,8 @@
     </scenes>
     <resources>
         <image name="file-and-folder" width="512" height="512"/>
+        <image name="note_icon" width="32" height="32"/>
+        <image name="task_icon" width="32" height="32"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -404,6 +415,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
