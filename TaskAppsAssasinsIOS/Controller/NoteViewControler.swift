@@ -68,18 +68,15 @@ class NoteViewControler: UIViewController {
     
     @IBAction func addFIle(_ sender: UIButton) {
         
-        
-        
-        
         if sender.currentTitle == "Add Photo" {
-            addVideoBtn.isHidden == true
-            addaudioBtn.isHidden == true
+            addVideoBtn.isHidden = true
+            addaudioBtn.isHidden = true
         } else if sender.currentTitle == "Add Video" {
-            addPhotoBtn.isHidden == true
-            addaudioBtn.isHidden == true
-        } else if sender.currentTitle == "Add Recordings" {
-            addPhotoBtn.isHidden == true
-            addVideoBtn.isHidden == true
+            addPhotoBtn.isHidden = true
+            addaudioBtn.isHidden = true
+        } else {
+            addPhotoBtn.isHidden = true
+            addVideoBtn.isHidden = true
         }
     }
     
