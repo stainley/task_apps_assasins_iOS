@@ -15,9 +15,7 @@ class NoteSearchViewController: UIViewController {
     var noteReferenceCell: NoteNibTableViewCell!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //TO BE REMOVE - DUMMY DATA
+        super.viewDidLoad()        //TO BE REMOVE - DUMMY DATA
         items.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
         items.append(Note(title: "2023W CPS 1001", description: "Co-op Preparation and Success", creationDate: NSDate(), pictures: [], audios: []))
         items.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
@@ -29,6 +27,7 @@ class NoteSearchViewController: UIViewController {
         
         let cellNib = UINib(nibName: "NoteNibTableViewCell", bundle: Bundle.main)
         noteTableView.register(cellNib, forCellReuseIdentifier: "NoteNibTableViewCell")
+        self.navigationController?.navigationBar.prefersLargeTitles = false
     }
 }
 
