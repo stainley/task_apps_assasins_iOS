@@ -177,7 +177,7 @@
                                             <outlet property="delegate" destination="20G-No-hh8" id="QFM-hp-inf"/>
                                         </connections>
                                     </tableView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="gxf-wM-Od3">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="gxf-wM-Od3">
                                         <rect key="frame" x="10" y="90" width="410" height="21"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Sort By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFN-vi-JKc">
@@ -366,7 +366,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Title here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0o-do-4j5">
-                                <rect key="frame" x="139" y="47" width="112.33333333333331" height="20.333333333333329"/>
+                                <rect key="frame" x="139" y="47" width="112" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -381,62 +381,89 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="l0x-2A-otX">
-                                <rect key="frame" x="202" y="591" width="146.33333333333337" height="199.66666666666663"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CDi-UV-Dw1">
+                                <rect key="frame" x="20" y="219" width="350" height="591"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1g-s2-qVH">
-                                        <rect key="frame" x="0.0" y="0.0" width="146.33333333333334" height="34.333333333333336"/>
-                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Select Catagory">
-                                            <color key="baseForegroundColor" systemColor="labelColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="selectCatagory:" destination="Qj5-0p-n9h" eventType="touchUpInside" id="aoA-1M-b7v"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T10-EP-Kan">
-                                        <rect key="frame" x="0.0" y="41.333333333333371" width="146.33333333333334" height="34.333333333333343"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Work">
-                                            <color key="baseForegroundColor" systemColor="labelColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="selectCatagory:" destination="Qj5-0p-n9h" eventType="touchUpInside" id="6Vo-qs-3ri"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2T-N3-GTX">
-                                        <rect key="frame" x="0.0" y="82.666666666666629" width="146.33333333333334" height="34.333333333333343"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="School">
-                                            <color key="baseForegroundColor" systemColor="labelColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="selectCatagory:" destination="Qj5-0p-n9h" eventType="touchUpInside" id="y8v-io-dP0"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Te-9a-6mH">
-                                        <rect key="frame" x="0.0" y="123.99999999999999" width="146.33333333333334" height="34.333333333333329"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Shopping">
-                                            <color key="baseForegroundColor" systemColor="labelColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="selectCatagory:" destination="Qj5-0p-n9h" eventType="touchUpInside" id="pe4-8k-YnR"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvC-ea-BAa">
-                                        <rect key="frame" x="0.0" y="165.33333333333337" width="146.33333333333334" height="34.333333333333343"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Grocery">
-                                            <color key="baseForegroundColor" systemColor="labelColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="selectCatagory:" destination="Qj5-0p-n9h" eventType="touchUpInside" id="s1f-U8-qco"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="5Yd-4h-ERC">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="228"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYA-Wa-m7i">
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="40"/>
+                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="7G8-ae-6Xw"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Tap Me">
+                                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="CatagaryDropDown:" destination="Qj5-0p-n9h" eventType="touchUpInside" id="t4b-dZ-jka"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hei-5h-fRj">
+                                                <rect key="frame" x="0.0" y="47" width="350" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="TXq-zG-msI"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="School">
+                                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="Catagary:" destination="Qj5-0p-n9h" eventType="touchUpInside" id="EJI-DT-hHG"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQJ-W7-dUy">
+                                                <rect key="frame" x="0.0" y="94" width="350" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="etb-mr-zyn"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Work">
+                                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="Catagary:" destination="Qj5-0p-n9h" eventType="touchUpInside" id="fDd-7R-JJu"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYw-0e-1XA">
+                                                <rect key="frame" x="0.0" y="141" width="350" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="K7s-m8-KYW"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Shopping">
+                                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="Catagary:" destination="Qj5-0p-n9h" eventType="touchUpInside" id="Bt8-tm-D0Q"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gL1-Gj-QP5">
+                                                <rect key="frame" x="0.0" y="188" width="350" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="2ky-R4-TZt"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Groccery">
+                                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="Catagary:" destination="Qj5-0p-n9h" eventType="touchUpInside" id="VdC-4f-dEI"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.68608089439999997" green="1" blue="0.98363640880000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5Yd-4h-ERC" secondAttribute="trailing" id="5SM-26-4Mi"/>
+                                    <constraint firstItem="5Yd-4h-ERC" firstAttribute="top" secondItem="CDi-UV-Dw1" secondAttribute="top" id="MT4-TF-Lna"/>
+                                    <constraint firstItem="5Yd-4h-ERC" firstAttribute="leading" secondItem="CDi-UV-Dw1" secondAttribute="leading" id="Ytf-Re-igM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0zN-Bc-sNy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -445,24 +472,31 @@
                             <constraint firstItem="0zN-Bc-sNy" firstAttribute="trailing" secondItem="vwP-DH-SIZ" secondAttribute="trailing" constant="20" id="997-ea-ZTu"/>
                             <constraint firstItem="vwP-DH-SIZ" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" constant="20" id="Ka5-3x-Mky"/>
                             <constraint firstItem="h0J-gP-LRB" firstAttribute="top" secondItem="F0o-do-4j5" secondAttribute="bottom" constant="34" id="M1v-hN-daf"/>
-                            <constraint firstItem="l0x-2A-otX" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" constant="202" id="TyN-W4-0bm"/>
+                            <constraint firstItem="0zN-Bc-sNy" firstAttribute="trailing" secondItem="CDi-UV-Dw1" secondAttribute="trailing" constant="20" id="PWj-b3-CFw"/>
                             <constraint firstItem="h0J-gP-LRB" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" constant="20" id="WhG-Iy-rVH"/>
+                            <constraint firstItem="CDi-UV-Dw1" firstAttribute="centerX" secondItem="F0o-do-4j5" secondAttribute="centerX" id="crX-Om-Ne3"/>
                             <constraint firstItem="vwP-DH-SIZ" firstAttribute="top" secondItem="h0J-gP-LRB" secondAttribute="bottom" constant="19.666666666666686" id="d54-SM-4Xc"/>
+                            <constraint firstItem="CDi-UV-Dw1" firstAttribute="top" secondItem="vwP-DH-SIZ" secondAttribute="bottom" constant="30" id="oGL-fZ-NAm"/>
+                            <constraint firstItem="CDi-UV-Dw1" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" constant="20" id="ozZ-IO-n2B"/>
                             <constraint firstItem="0zN-Bc-sNy" firstAttribute="trailing" secondItem="h0J-gP-LRB" secondAttribute="trailing" constant="20" id="q8V-lm-mPh"/>
                             <constraint firstItem="F0o-do-4j5" firstAttribute="top" secondItem="0zN-Bc-sNy" secondAttribute="top" id="uDY-GV-EQz"/>
-                            <constraint firstItem="0zN-Bc-sNy" firstAttribute="bottom" secondItem="l0x-2A-otX" secondAttribute="bottom" constant="19.333333333333371" id="wzQ-Ae-Mwo"/>
-                            <constraint firstItem="0zN-Bc-sNy" firstAttribute="trailing" secondItem="l0x-2A-otX" secondAttribute="trailing" constant="41.666666666666629" id="xeh-ql-NAC"/>
+                            <constraint firstItem="CDi-UV-Dw1" firstAttribute="bottom" secondItem="0zN-Bc-sNy" secondAttribute="bottom" id="ubF-Ht-DRS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KYo-KM-JO9"/>
                     <connections>
+                        <outlet property="catagory" destination="TYA-Wa-m7i" id="x9y-oh-lKs"/>
                         <outlet property="titleLbl" destination="F0o-do-4j5" id="ec2-gk-kb1"/>
                         <outlet property="titleTextField" destination="h0J-gP-LRB" id="Tfj-As-nfU"/>
+                        <outletCollection property="catagoryCollection" destination="hei-5h-fRj" collectionClass="NSMutableArray" id="CdA-mU-FTZ"/>
+                        <outletCollection property="catagoryCollection" destination="mQJ-W7-dUy" collectionClass="NSMutableArray" id="nj7-pA-Uml"/>
+                        <outletCollection property="catagoryCollection" destination="rYw-0e-1XA" collectionClass="NSMutableArray" id="mTG-6i-psj"/>
+                        <outletCollection property="catagoryCollection" destination="gL1-Gj-QP5" collectionClass="NSMutableArray" id="zFy-F0-mHH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RfS-Mv-pCw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1020" y="-515"/>
+            <point key="canvasLocation" x="-1020" y="-515.40284360189571"/>
         </scene>
         <!--Task Detail View Controller-->
         <scene sceneID="8FK-fp-PQy">

@@ -13,54 +13,42 @@ class NoteDetailViewController: UIViewController {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     
-    @IBOutlet weak var catagoryBtn: UIButton!
+    @IBOutlet weak var catagory: UIButton!
     
-    @IBOutlet weak var workBtn: UIButton!
-    
-    @IBOutlet weak var schoolBtn: UIButton!
-    
-    @IBOutlet weak var shoppingBtn: UIButton!
-    
-    @IBOutlet weak var groceryBtn: UIButton!
+    @IBOutlet var catagoryCollection: [UIButton]!
+ 
     
     var note: Note?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
-    }
-    
-    
-    
-    @IBAction func selectCatagory(_ sender: UIButton) {
-        
-        if sender.currentTitle == "Work" {
-            schoolBtn.isHidden = true
-            shoppingBtn.isHidden = true
-            groceryBtn.isHidden = true
-            print(sender)
-        } else if sender.currentTitle == "School" {
-            workBtn.isHidden = true
-            shoppingBtn.isHidden = true
-            groceryBtn.isHidden = true
-            print(sender)
-        } else if sender.currentTitle == "Shopping" {
-            workBtn.isHidden = true
-            schoolBtn.isHidden = true
-            groceryBtn.isHidden = true
-            print(sender)
-        } else if sender.currentTitle == "Grocery" {
-            workBtn.isHidden = true
-            schoolBtn.isHidden = true
-            shoppingBtn.isHidden = true
-            print(sender)
+        catagoryCollection.forEach{ (btn) in
+            btn.isHidden = true
+            btn.alpha = 0
+                        
         }
         
-       
+        
+        
     }
+    
+    
+    
+    @IBAction func CatagaryDropDown(_ sender: Any) {
+        catagoryCollection.forEach{ (btn) in
+            UIView.animate(withDuration: 0.7, animations: loadViewIfNeeded) {_ in
+                btn.isHidden = !btn.isHidden
+                btn.alpha = btn.alpha == 0 ? 1 : 0
+                btn.layoutIfNeeded()
+            }
+        }
+    }
+        
+    @IBAction func Catagary(_ sender: Any) {
+        
+        
+        }
     
     
     
