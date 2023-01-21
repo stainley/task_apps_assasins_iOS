@@ -91,16 +91,40 @@
 		70CB3572296FE6FB005612E0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				ADCDD66A296F752300B30328 /* ViewController.swift */,
-				70CB35BF2970585A005612E0 /* CategoryCell.swift */,
-				F0D3026C29720940005DC42D /* NoteViewControler.swift */,
-				70B7AE4F297697E100698260 /* NoteSearchViewController.swift */,
-				70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */,
-				70B7AE5329769B4200698260 /* TaskSearchViewController.swift */,
-				7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */,
-				70F2B1842975302D00239EAC /* NoteNibTableViewCell.swift */,
+				ADB0D196297C3FAB00A9AF78 /* Note */,
+				ADB0D195297C3FA400A9AF78 /* Task */,
+				ADB0D194297C3F9C00A9AF78 /* Category */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		ADB0D194297C3F9C00A9AF78 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				ADCDD66A296F752300B30328 /* ViewController.swift */,
+				70CB35BF2970585A005612E0 /* CategoryCell.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		ADB0D195297C3FA400A9AF78 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				70B7AE5329769B4200698260 /* TaskSearchViewController.swift */,
+				7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		ADB0D196297C3FAB00A9AF78 /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				70F2B1842975302D00239EAC /* NoteNibTableViewCell.swift */,
+				70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */,
+				F0D3026C29720940005DC42D /* NoteViewControler.swift */,
+				70B7AE4F297697E100698260 /* NoteSearchViewController.swift */,
+			);
+			path = Note;
 			sourceTree = "<group>";
 		};
 		ADCDD65A296F752300B30328 = {

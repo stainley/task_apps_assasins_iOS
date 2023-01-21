@@ -37,7 +37,6 @@
         <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="picture" optional="YES" attributeType="Binary"/>
         <attribute name="taskDescription" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="audios" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AudioEntity" inverseName="task_parent" inverseEntity="AudioEntity"/>
