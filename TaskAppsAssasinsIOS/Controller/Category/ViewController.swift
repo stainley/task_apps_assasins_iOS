@@ -9,6 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // create a context to work with core data
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     var categories = ["Work", "School", "Grocery", "GYM", "Housework", "College", "Grocery", "GYM", "Work", "School", "Grocery", "GYM"]
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
