@@ -128,7 +128,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Category" id="gu7-JR-5fi">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="IRu-HH-a2C"/>
+                            <barButtonItem systemItem="add" id="IRu-HH-a2C">
+                                <connections>
+                                    <action selector="createNewCategoryButton:" destination="BYZ-38-t0r" id="I2b-Fr-ND4"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem systemItem="search" id="gLQ-na-BCb"/>
                         </rightBarButtonItems>
                     </navigationItem>

@@ -14,12 +14,57 @@ class CategoryViewController: UIViewController {
     
     var categories = ["Work", "School", "Grocery", "GYM", "Housework", "College", "Grocery", "GYM", "Work", "School", "Grocery", "GYM"]
     
+    var categoriesEntity: [CategoryEntity]!
+    
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     static var categorySelected: IndexPath?
     
-    @IBAction
-    func deleteCategory(_ sender: UIButton) {
+    
+    // MARK: Create new category
+    @IBAction func createNewCategoryButton(_ sender: UIBarButtonItem) {
+        var textField = UITextField()
+        
+        print("Create a new category")
+        let alert = UIAlertController(title: "New Category", message: "Please give a new category", preferredStyle: .alert)
+        
+        let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
+            let categoryNames = self.categoriesEntity.map {$0.name?.lowercased()}
+            
+            guard !categoryNames.contains(textField.text?.lowercased()) else {
+                self.showAlert()
+                return
+            }
+            
+            let newCategory = CategoryEntity(context: self.context)
+            newCategory.name = textField.text!
+            self.categoriesEntity.append(newCategory)
+            self.saveCategory()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        // change the color of the cancel button action
+        cancelAction.setValue(UIColor.orange, forKey: "titleTextColor")
+        
+        alert.addAction(addAction)
+        alert.addAction(cancelAction)
+        alert.addTextField { (field) in
+            textField = field
+            textField.placeholder = "Category Name"
+        }
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    /// show alert when the name of the folder is taken
+    private func showAlert() {
+        let alert = UIAlertController(title: "Name Taken", message: "Please choose another name", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func deleteCategory(_ sender: UIButton) {
         
         let index: Int = sender.layer.value(forKey: "index") as! Int
         print("DELETED \(index)")
