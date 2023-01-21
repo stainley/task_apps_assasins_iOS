@@ -21,6 +21,7 @@
 		AD7B431A29749C52008D1164 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7B431929749C52008D1164 /* CustomImageView.swift */; };
 		ADB0D193297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D191297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld */; };
 		ADB0D198297C40FE00A9AF78 /* CategoryVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D197297C40FE00A9AF78 /* CategoryVCDao.swift */; };
+		ADB0D19A297C569200A9AF78 /* CategorySearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D199297C569200A9AF78 /* CategorySearchController.swift */; };
 		ADCDD667296F752300B30328 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD666296F752300B30328 /* AppDelegate.swift */; };
 		ADCDD669296F752300B30328 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD668296F752300B30328 /* SceneDelegate.swift */; };
 		ADCDD66B296F752300B30328 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD66A296F752300B30328 /* CategoryViewController.swift */; };
@@ -46,6 +47,7 @@
 		AD7B431929749C52008D1164 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		ADB0D192297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskNoteDatabase.xcdatamodel; sourceTree = "<group>"; };
 		ADB0D197297C40FE00A9AF78 /* CategoryVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVCDao.swift; sourceTree = "<group>"; };
+		ADB0D199297C569200A9AF78 /* CategorySearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySearchController.swift; sourceTree = "<group>"; };
 		ADCDD663296F752300B30328 /* TaskAppsAssasinsIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskAppsAssasinsIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADCDD666296F752300B30328 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADCDD668296F752300B30328 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				ADCDD66A296F752300B30328 /* CategoryViewController.swift */,
 				70CB35BF2970585A005612E0 /* CategoryCell.swift */,
 				ADB0D197297C40FE00A9AF78 /* CategoryVCDao.swift */,
+				ADB0D199297C569200A9AF78 /* CategorySearchController.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				70CB35C02970585A005612E0 /* CategoryCell.swift in Sources */,
 				70B7AE5429769B4200698260 /* TaskSearchViewController.swift in Sources */,
 				F0D3026D29720940005DC42D /* NoteViewControler.swift in Sources */,
+				ADB0D19A297C569200A9AF78 /* CategorySearchController.swift in Sources */,
 				70B7AE5229769A3E00698260 /* NoteTaskTabBarController.swift in Sources */,
 				7005E73E2976A0C000410B83 /* TaskDetailViewController.swift in Sources */,
 				ADCDD67C2970D2A400B30328 /* Note.swift in Sources */,

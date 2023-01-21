@@ -15,6 +15,7 @@ class CategoryViewController: UIViewController {
     //var categories = ["Work", "School", "Grocery", "GYM", "Housework", "College", "Grocery", "GYM", "Work", "School", "Grocery", "GYM"]
     
     var categoriesEntity: [CategoryEntity] = [CategoryEntity]()
+    var filteredCategories: [CategoryEntity] = [CategoryEntity]()
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
@@ -59,10 +60,11 @@ class CategoryViewController: UIViewController {
     }
     
     @IBAction func searchCategoryButton(_ sender: UIBarButtonItem) {
-        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        present(searchController, animated: true, completion: nil)
     }
-    
-    
+        
     /// show alert when the name of the folder is taken
     private func showAlert() {
         let alert = UIAlertController(title: "Name Taken", message: "Please choose another name", preferredStyle: .alert)
@@ -70,8 +72,7 @@ class CategoryViewController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-    
-    
+        
     @IBAction func deleteCategory(_ sender: UIButton) {
         
         let index: Int = sender.layer.value(forKey: "index") as! Int
@@ -96,12 +97,13 @@ class CategoryViewController: UIViewController {
         self.categoryCollectionView.addGestureRecognizer(longPress)
         
         categoriesEntity  = self.fetchAllCategory();
+        filteredCategories = categoriesEntity
     }
 }
 
 extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categoriesEntity.count
+        return filteredCategories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -114,7 +116,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         cell.layer.borderWidth = 0.0
         cell.layer.cornerRadius = 30.0
         cell.layer.masksToBounds = false
-        cell.categoryLabel.text = categoriesEntity[indexPath.row].name
+        cell.categoryLabel.text = filteredCategories[indexPath.row].name
        
         cell.deleteCategoryButton.layer.setValue(indexPath.row, forKey: "index")
         cell.deleteCategoryButton.addTarget(self, action: #selector(removeCategory), for: .touchUpInside)
