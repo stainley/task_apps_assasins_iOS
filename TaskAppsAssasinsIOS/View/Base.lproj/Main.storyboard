@@ -133,7 +133,11 @@
                                     <action selector="createNewCategoryButton:" destination="BYZ-38-t0r" id="I2b-Fr-ND4"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="search" id="gLQ-na-BCb"/>
+                            <barButtonItem systemItem="search" id="gLQ-na-BCb">
+                                <connections>
+                                    <action selector="searchCategoryButton:" destination="BYZ-38-t0r" id="UcY-dA-RUx"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>

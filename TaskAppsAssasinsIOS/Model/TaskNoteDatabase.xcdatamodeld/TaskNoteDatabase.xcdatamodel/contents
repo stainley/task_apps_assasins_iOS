@@ -2,12 +2,14 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AudioEntity" representedClassName="AudioEntity" syncable="YES" codeGenerationType="class">
         <attribute name="audio" optional="YES" attributeType="Binary"/>
+        <attribute name="audioCreation" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="note_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteEntity" inverseName="audios" inverseEntity="NoteEntity"/>
         <relationship name="task_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="audios" inverseEntity="TaskEntity"/>
     </entity>
     <entity name="CategoryEntity" representedClassName="CategoryEntity" parentEntity="TaskEntity" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NoteEntity" inverseName="category_parent" inverseEntity="NoteEntity"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TaskEntity" inverseName="category_parent" inverseEntity="TaskEntity"/>
     </entity>

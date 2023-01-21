@@ -23,6 +23,7 @@ extension CategoryViewController {
     
     // Delete category from Database
     func deleteCategory(category: CategoryEntity) {
+        print(category.name!)
         context.delete(category)
     }
     

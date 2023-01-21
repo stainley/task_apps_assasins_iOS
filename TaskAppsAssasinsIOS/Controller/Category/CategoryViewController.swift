@@ -12,9 +12,9 @@ class CategoryViewController: UIViewController {
     // create a context to work with core data
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var categories = ["Work", "School", "Grocery", "GYM", "Housework", "College", "Grocery", "GYM", "Work", "School", "Grocery", "GYM"]
+    //var categories = ["Work", "School", "Grocery", "GYM", "Housework", "College", "Grocery", "GYM", "Work", "School", "Grocery", "GYM"]
     
-    var categoriesEntity: [CategoryEntity]!
+    var categoriesEntity: [CategoryEntity] = [CategoryEntity]()
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
@@ -38,8 +38,11 @@ class CategoryViewController: UIViewController {
             
             let newCategory = CategoryEntity(context: self.context)
             newCategory.name = textField.text!
+            newCategory.updatedDate = Date()
             self.categoriesEntity.append(newCategory)
             self.saveCategory()
+            
+            self.categoryCollectionView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         // change the color of the cancel button action
@@ -55,6 +58,11 @@ class CategoryViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func searchCategoryButton(_ sender: UIBarButtonItem) {
+        
+    }
+    
+    
     /// show alert when the name of the folder is taken
     private func showAlert() {
         let alert = UIAlertController(title: "Name Taken", message: "Please choose another name", preferredStyle: .alert)
@@ -68,10 +76,11 @@ class CategoryViewController: UIViewController {
         
         let index: Int = sender.layer.value(forKey: "index") as! Int
         print("DELETED \(index)")
-        categories.remove(at: index)
+        deleteCategory(category: categoriesEntity[index])
+        saveCategory()
+        categoriesEntity.remove(at: index)
         
         //let cell = categoryCollectionView.cellForItem(at: ViewController.categorySelected!)
-    
         categoryCollectionView.reloadData()
     }
     
@@ -85,12 +94,14 @@ class CategoryViewController: UIViewController {
         longPress.minimumPressDuration = 0.5
         longPress.delaysTouchesBegan = true
         self.categoryCollectionView.addGestureRecognizer(longPress)
+        
+        categoriesEntity  = self.fetchAllCategory();
     }
 }
 
 extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categories.count
+        return categoriesEntity.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -103,7 +114,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         cell.layer.borderWidth = 0.0
         cell.layer.cornerRadius = 30.0
         cell.layer.masksToBounds = false
-        cell.categoryLabel.text = categories[indexPath.row]
+        cell.categoryLabel.text = categoriesEntity[indexPath.row].name
        
         cell.deleteCategoryButton.layer.setValue(indexPath.row, forKey: "index")
         cell.deleteCategoryButton.addTarget(self, action: #selector(removeCategory), for: .touchUpInside)
@@ -144,7 +155,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
             
             //cell.layer.backgroundColor = UIColor.red.cgColor
             //cell.backgroundColor = UIColor.red
-            print(categories[indexPath.row])
+            print(categoriesEntity[indexPath.row])
             // SHOW DELETE ICON
             cell.deleteCategoryButton.isEnabled = true
             cell.deleteCategoryButton.isHidden = false
