@@ -70,6 +70,7 @@
 		70CB3570296FE6ED005612E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ADB0D191297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld */,
 				ADCDD67B2970D2A400B30328 /* Note.swift */,
 				728FFBC529761AC0006748FD /* Task.swift */,
 			);
@@ -131,7 +132,6 @@
 				ADCDD674296F752400B30328 /* Info.plist */,
 				7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */,
 				7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */,
-				ADB0D191297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld */,
 			);
 			path = TaskAppsAssasinsIOS;
 			sourceTree = "<group>";
