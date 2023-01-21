@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CategoryViewController: UIViewController {
     
     // create a context to work with core data
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categories.count
     }
@@ -93,7 +93,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         let point = gesture.location(in: self.categoryCollectionView)
         if let indexPath = self.categoryCollectionView.indexPathForItem(at: point) {
-            ViewController.categorySelected = indexPath
+            CategoryViewController.categorySelected = indexPath
             // get the cell at indexPath
             let cell = self.categoryCollectionView.cellForItem(at: indexPath) as! CategoryCell
             

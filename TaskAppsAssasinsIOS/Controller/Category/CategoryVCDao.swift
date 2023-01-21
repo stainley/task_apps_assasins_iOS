@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-extension ViewController {
+extension CategoryViewController {
     
     // Save category into Database
     func saveCategory() {
