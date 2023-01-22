@@ -10,7 +10,7 @@ import UIKit
 class NoteViewController: UIViewController {
 
     @IBOutlet weak var noteTableView: UITableView!
-    
+  
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var notes = [Note]()
@@ -20,6 +20,8 @@ class NoteViewController: UIViewController {
     var passingData: String?
     
     @IBAction func addNewNoteButton(_ sender: UIBarButtonItem) {
+        
+
         
     }
     

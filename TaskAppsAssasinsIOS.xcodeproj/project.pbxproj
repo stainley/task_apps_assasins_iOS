@@ -32,6 +32,7 @@
 		ADCDD670296F752400B30328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADCDD66F296F752400B30328 /* Assets.xcassets */; };
 		ADCDD673296F752400B30328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADCDD671296F752400B30328 /* LaunchScreen.storyboard */; };
 		ADCDD67C2970D2A400B30328 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD67B2970D2A400B30328 /* Note.swift */; };
+		ADF2F2FC297DF24700B78D81 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */; };
 		F0D06978297DD4A6008D15CD /* NoteVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D06977297DD4A6008D15CD /* NoteVCDao.swift */; };
 		F0D3026D29720940005DC42D /* NoteDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		ADCDD672296F752400B30328 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADCDD674296F752400B30328 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADCDD67B2970D2A400B30328 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		F0D06977297DD4A6008D15CD /* NoteVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteVCDao.swift; sourceTree = "<group>"; };
 		F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailViewControler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +106,7 @@
 		70CB3572296FE6FB005612E0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ADF2F2FA297DF22200B78D81 /* Helper */,
 				ADB0D196297C3FAB00A9AF78 /* Note */,
 				ADB0D195297C3FA400A9AF78 /* Task */,
 				ADB0D194297C3F9C00A9AF78 /* Category */,
@@ -176,6 +179,14 @@
 				7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */,
 			);
 			path = TaskAppsAssasinsIOS;
+			sourceTree = "<group>";
+		};
+		ADF2F2FA297DF22200B78D81 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +264,7 @@
 			files = (
 				70576B73297DD80E00511F08 /* TaskSearchController.swift in Sources */,
 				7005E73B29769DFF00410B83 /* TaskNibTableViewCell.swift in Sources */,
+				ADF2F2FC297DF24700B78D81 /* PhotoViewController.swift in Sources */,
 				ADB0D1A2297DB0A800A9AF78 /* NoteSearchController.swift in Sources */,
 				70B7AE50297697E100698260 /* NoteViewController.swift in Sources */,
 				ADB0D1A0297DA1A600A9AF78 /* Category.swift in Sources */,
