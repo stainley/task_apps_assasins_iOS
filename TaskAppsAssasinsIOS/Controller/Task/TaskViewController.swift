@@ -7,16 +7,17 @@
 
 import UIKit
 
-class TaskSearchViewController: UIViewController {
+class TaskViewController: UIViewController {
 
     @IBOutlet weak var taskTableView: UITableView!
     
     var items = [Task]()
     var taskReferenceCell: TaskNibTableViewCell!
+    var passingData: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+             
         //TO BE REMOVE - DUMMY DATA
         items.append(Task(title: "Do Grocery", description: "Buy fruits, veggies, and meat", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: false))
         items.append(Task(title: "Visit Parents", description: "Spend sunday with parents", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: true))
@@ -30,7 +31,7 @@ class TaskSearchViewController: UIViewController {
 
 }
 
-extension TaskSearchViewController: UITableViewDelegate, UITableViewDataSource {
+extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count

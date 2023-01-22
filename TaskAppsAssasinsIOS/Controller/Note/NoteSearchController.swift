@@ -1,34 +1,33 @@
 //
-//  CategorySearchController.swift
+//  NoteSearchController.swift
 //  TaskAppsAssasinsIOS
 //
-//  Created by Stainley A Lebron R on 2023-01-21.
+//  Created by Stainley A Lebron R on 2023-01-22.
 //
 
 import Foundation
 import UIKit
 
-extension CategoryViewController: UISearchBarDelegate {
+extension NoteViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredCategories = []
+        filteredNotes = []
         
         if searchText.contains(" ") {
-            filteredCategories = categoriesEntity
+            filteredNotes = notes
         } else if searchText.isEmpty {
-            filteredCategories = categoriesEntity
+            filteredNotes = notes
         } else {
-            for category in categoriesEntity {
+            for note in notes {
                
-                let cateroyName = ( category.name ?? "")
-                if cateroyName.lowercased().contains(searchText.lowercased()) {
-                    
-                    filteredCategories.append(category)
+                if note.title.lowercased().contains(searchText.lowercased()) {
+                    filteredNotes.append(note)
                     view.isUserInteractionEnabled = false
                 }
             }
         }
-        categoryCollectionView.reloadData()
+        noteTableView.reloadData()
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -54,7 +53,7 @@ extension CategoryViewController: UISearchBarDelegate {
         searchBar.text = nil
         searchBar.showsCancelButton = false
 
-        filteredCategories = categoriesEntity
-        categoryCollectionView.reloadData()
+        filteredNotes = notes
+        noteTableView.reloadData()
     }
 }
