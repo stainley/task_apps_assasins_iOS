@@ -12,7 +12,7 @@
         <!--Category-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CategoryViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -126,7 +126,20 @@
                             <constraint firstItem="UwK-tH-Sgt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="121" id="mmE-Yc-iVK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Category" id="gu7-JR-5fi"/>
+                    <navigationItem key="navigationItem" title="Category" id="gu7-JR-5fi">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="IRu-HH-a2C">
+                                <connections>
+                                    <action selector="createNewCategoryButton:" destination="BYZ-38-t0r" id="I2b-Fr-ND4"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="search" id="gLQ-na-BCb">
+                                <connections>
+                                    <action selector="searchCategoryButton:" destination="BYZ-38-t0r" id="UcY-dA-RUx"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="categoryCollectionView" destination="rtx-ve-0dN" id="Qsg-2N-8bF"/>
                     </connections>
