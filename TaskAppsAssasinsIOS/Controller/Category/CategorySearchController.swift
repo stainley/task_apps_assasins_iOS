@@ -50,6 +50,10 @@ extension CategoryViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        searchBar.text = nil
+        searchBar.showsCancelButton = false
+
         filteredCategories = categoriesEntity
         categoryCollectionView.reloadData()
     }

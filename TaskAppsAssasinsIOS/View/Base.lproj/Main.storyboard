@@ -366,13 +366,14 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" id="J0n-3y-k3p"/>
                     <connections>
                         <outlet property="noteTableView" destination="F6P-ie-yaJ" id="n2a-Zk-KC1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iTX-Lc-dzu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1492" y="154"/>
+            <point key="canvasLocation" x="-1457" y="108"/>
         </scene>
         <!--Note Task Tab Bar Controller-->
         <scene sceneID="fgQ-xT-xkW">
@@ -533,7 +534,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RfS-Mv-pCw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="3MN-u8-kiL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1242" y="-515"/>
+            <point key="canvasLocation" x="300" y="139"/>
         </scene>
         <!--Task Detail View Controller-->
         <scene sceneID="8FK-fp-PQy">

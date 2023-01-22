@@ -87,7 +87,7 @@ class CategoryViewController: UIViewController {
     }
     
     @IBAction func unwindToCategory(_ unwindSegue: UIStoryboardSegue) {
-        let sourceViewController = unwindSegue.source
+        // let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
     }
     
@@ -128,31 +128,13 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+       
         if let noteTaskTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "NoteTaskTabBarController") as? NoteTaskTabBarController {
+            noteTaskTabBarController.categorySelected = filteredCategories[indexPath.row].name
             self.navigationController?.pushViewController(noteTaskTabBarController, animated: true)
-    
-            
         }
-    
-        /*
-        let noteViewController = storyboard?.instantiateViewController(withIdentifier: "NoteTaskTabBarController") as? NoteSearchViewController
-        noteViewController.passingData = filteredCategories[indexPath.row].name
-        show(noteViewController, sender: self)
-         */
+
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "" {
-            if let navController = segue.destination as? UINavigationController {
-                if let chidVC = navController.topViewController as? NoteSearchViewController {
-                    //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
-                    chidVC.passingData = "TEST"
-                }
-            }
-        }
-    }
-    
     
     //MARK: Long Press category card
     @objc func handleLongPress(gesture: UILongPressGestureRecognizer!) {

@@ -13,9 +13,15 @@ class TaskSearchViewController: UIViewController {
     
     var items = [Task]()
     var taskReferenceCell: TaskNibTableViewCell!
-    
+    var passingData: String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let data = passingData else {
+            return
+        }
+        print(data)
+        
         
         //TO BE REMOVE - DUMMY DATA
         items.append(Task(title: "Do Grocery", description: "Buy fruits, veggies, and meat", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: false))
