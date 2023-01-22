@@ -86,6 +86,7 @@ class CategoryViewController: UIViewController {
         
     }
     
+    // TODO: Implement reset category when return to this View
     @IBAction func unwindToCategory(_ unwindSegue: UIStoryboardSegue) {
         // let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
