@@ -11,6 +11,8 @@ class NoteViewController: UIViewController {
 
     @IBOutlet weak var noteTableView: UITableView!
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     var notes = [Note]()
     var filteredNotes = [Note]()
     var noteReferenceCell: NoteNibTableViewCell!
