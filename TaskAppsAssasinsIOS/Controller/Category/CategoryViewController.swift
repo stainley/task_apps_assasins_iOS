@@ -109,7 +109,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCollectionViewCell
+        let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
 
         cell.categoryLabel.text = filteredCategories[indexPath.row].name
         cell.deleteCategoryButton.layer.setValue(indexPath.row, forKey: "index")
@@ -140,7 +140,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         if let indexPath = self.categoryCollectionView.indexPathForItem(at: point) {
             CategoryViewController.categorySelected = indexPath
             // get the cell at indexPath
-            let cell = self.categoryCollectionView.cellForItem(at: indexPath) as! CategoryCollectionViewCell
+            let cell = self.categoryCollectionView.cellForItem(at: indexPath) as! CategoryCell
             // SHOW DELETE ICON
             cell.deleteCategoryButton.isEnabled = true
             cell.deleteCategoryButton.isHidden = false
