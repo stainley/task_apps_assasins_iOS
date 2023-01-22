@@ -255,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JSA-Sz-8ut" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1549.2307692307693" y="833.88625592417054"/>
+            <point key="canvasLocation" x="-1480" y="797"/>
         </scene>
         <!--Note-->
         <scene sceneID="BGv-7A-UCV">
@@ -372,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iTX-Lc-dzu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1549" y="178"/>
+            <point key="canvasLocation" x="-1492" y="154"/>
         </scene>
         <!--Note Task Tab Bar Controller-->
         <scene sceneID="fgQ-xT-xkW">
@@ -390,7 +390,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="skT-aq-Mx9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2628" y="476"/>
+            <point key="canvasLocation" x="-2383" y="331"/>
         </scene>
         <!--Note Detail View Controller-->
         <scene sceneID="ynE-zH-FBM">
@@ -527,11 +527,13 @@
                         <outletCollection property="catagoryCollection" destination="mQJ-W7-dUy" collectionClass="NSMutableArray" id="nj7-pA-Uml"/>
                         <outletCollection property="catagoryCollection" destination="rYw-0e-1XA" collectionClass="NSMutableArray" id="mTG-6i-psj"/>
                         <outletCollection property="catagoryCollection" destination="gL1-Gj-QP5" collectionClass="NSMutableArray" id="zFy-F0-mHH"/>
+                        <segue destination="3MN-u8-kiL" kind="unwind" identifier="backCategory" unwindAction="unwindToCategory:" id="wSJ-Y5-AGw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RfS-Mv-pCw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="3MN-u8-kiL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1020" y="-515.40284360189571"/>
+            <point key="canvasLocation" x="-1242" y="-515"/>
         </scene>
         <!--Task Detail View Controller-->
         <scene sceneID="8FK-fp-PQy">

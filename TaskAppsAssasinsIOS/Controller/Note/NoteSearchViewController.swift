@@ -14,7 +14,12 @@ class NoteSearchViewController: UIViewController {
     var items = [Note]()
     var noteReferenceCell: NoteNibTableViewCell!
     
+    var passingData: String!
+    
     override func viewDidLoad() {
+        
+        print(passingData!)
+        
         super.viewDidLoad()        //TO BE REMOVE - DUMMY DATA
         items.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
         items.append(Note(title: "2023W CPS 1001", description: "Co-op Preparation and Success", creationDate: NSDate(), pictures: [], audios: []))

@@ -12,8 +12,10 @@ extension CategoryViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredCategories = []
-
-        if searchText == "" {
+        
+        if searchText.contains(" ") {
+            filteredCategories = categoriesEntity
+        } else if searchText.isEmpty {
             filteredCategories = categoriesEntity
         } else {
             for category in categoriesEntity {
@@ -23,11 +25,10 @@ extension CategoryViewController: UISearchBarDelegate {
                     
                     filteredCategories.append(category)
                     view.isUserInteractionEnabled = false
-                   
                 }
             }
         }
-        self.categoryCollectionView.reloadData()
+        categoryCollectionView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -46,6 +47,10 @@ extension CategoryViewController: UISearchBarDelegate {
         dismiss(animated: true, completion: nil)
                 
         activityIndicator.stopAnimating()
-
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        filteredCategories = categoriesEntity
+        categoryCollectionView.reloadData()
     }
 }
