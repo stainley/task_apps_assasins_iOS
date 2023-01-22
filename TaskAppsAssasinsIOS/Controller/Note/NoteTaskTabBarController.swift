@@ -21,7 +21,7 @@ class NoteTaskTabBarController: UITabBarController {
         }
         self.title = categoryTitle
         
-        let vc = viewControllers?[Category.note.rawValue] as! NoteSearchViewController
+        let vc = viewControllers?[Category.note.rawValue] as! NoteViewController
         vc.passingData = self.categorySelected
     }
     
@@ -45,11 +45,11 @@ class NoteTaskTabBarController: UITabBarController {
     func selectTabItem(category: Category) {
         switch category {
             case .note:
-            let vc = viewControllers?[category.rawValue] as! NoteSearchViewController
+            let vc = viewControllers?[category.rawValue] as! NoteViewController
                 vc.passingData = self.categorySelected
             
             case .task:
-                let vc = viewControllers?[category.rawValue] as!  TaskSearchViewController
+                let vc = viewControllers?[category.rawValue] as!  TaskViewController
                 vc.passingData = self.categorySelected
         }
     }

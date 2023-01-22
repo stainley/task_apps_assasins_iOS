@@ -9,7 +9,7 @@ import UIKit
 
 struct Note {
     
-    private var title: String?
+    var title: String
     private var description: String?
     private var creationDate: NSDate
     private var pictures: [UIImage?]
@@ -25,11 +25,7 @@ struct Note {
         self.pictures = pictures
         self.audios = audios
     }
-    
-    
-    func getTitle() -> String? {
-        return self.title
-    }
+
     
     func getDescription() -> String? {
         return self.description
