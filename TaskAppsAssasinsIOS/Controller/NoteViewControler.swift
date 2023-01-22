@@ -16,6 +16,10 @@ class NoteDetailViewController: UIViewController {
     @IBOutlet weak var catagory: UIButton!
     
     @IBOutlet var catagoryCollection: [UIButton]!
+    
+    @IBOutlet weak var upload: UIButton!
+    
+    @IBOutlet var uploadCatagory: [UIButton]!
  
     
     var note: Note?
@@ -29,7 +33,11 @@ class NoteDetailViewController: UIViewController {
                         
         }
         
-        
+        uploadCatagory.forEach{ (btn) in
+            btn.isHidden = true
+            btn.alpha = 0
+            
+        }
         
     }
     
@@ -37,7 +45,7 @@ class NoteDetailViewController: UIViewController {
     
     @IBAction func CatagaryDropDown(_ sender: Any) {
         catagoryCollection.forEach{ (btn) in
-            UIView.animate(withDuration: 0.7, animations: loadViewIfNeeded) {_ in
+            UIView.animate(withDuration: 1, animations: loadViewIfNeeded) {_ in
                 btn.isHidden = !btn.isHidden
                 btn.alpha = btn.alpha == 0 ? 1 : 0
                 btn.layoutIfNeeded()
@@ -48,15 +56,24 @@ class NoteDetailViewController: UIViewController {
     @IBAction func Catagary(_ sender: Any) {
         
         
+    }
+    
+    @IBAction func uploadDropDown(_ sender: Any) {
+        uploadCatagory.forEach{ (btn) in
+            UIView.animate(withDuration: 1, animations: loadViewIfNeeded) {_ in
+                btn.isHidden = !btn.isHidden
+                btn.alpha = btn.alpha == 0 ? 1 : 0
+                btn.layoutIfNeeded()
+            }
         }
+    }
     
     
     
-    
-    
-    
-    
-    
+    @IBAction func addCaragory(_ sender: Any) {
+        
+
+    }
     
     
 }
