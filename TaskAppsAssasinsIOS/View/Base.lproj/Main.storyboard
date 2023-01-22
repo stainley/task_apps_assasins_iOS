@@ -169,6 +169,7 @@
                                                     <barButtonItem systemItem="add" id="zoI-gH-edf">
                                                         <connections>
                                                             <action selector="addNewTaskButton:" destination="20G-No-hh8" id="xop-Ck-eGL"/>
+                                                            <segue destination="mr2-OP-gsH" kind="show" id="YpZ-Cr-xeR"/>
                                                         </connections>
                                                     </barButtonItem>
                                                     <barButtonItem systemItem="search" id="MWk-mc-pyy">
@@ -560,7 +561,7 @@
             <objects>
                 <viewController storyboardIdentifier="TaskDetailViewController" id="mr2-OP-gsH" customClass="TaskDetailViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i08-wx-aBv">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Task Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWW-oo-5hT">
