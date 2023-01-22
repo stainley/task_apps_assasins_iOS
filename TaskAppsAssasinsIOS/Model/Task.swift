@@ -9,7 +9,7 @@ import UIKit
 
 struct Task {
     
-    private var title: String?
+    var title: String
     private var description: String?
     private var creationDate: NSDate
     private var dueDate: NSDate
