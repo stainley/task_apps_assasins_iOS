@@ -12,16 +12,13 @@ class CategoryViewController: UIViewController {
     // create a context to work with core data
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    //var categories = ["Work", "School", "Grocery", "GYM", "Housework", "College", "Grocery", "GYM", "Work", "School", "Grocery", "GYM"]
-    
     var categoriesEntity: [CategoryEntity] = [CategoryEntity]()
     var filteredCategories: [CategoryEntity] = [CategoryEntity]()
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     static var categorySelected: IndexPath?
-    
-    
+        
     // MARK: Create new category
     @IBAction func createNewCategoryButton(_ sender: UIBarButtonItem) {
         var textField = UITextField()
@@ -41,6 +38,7 @@ class CategoryViewController: UIViewController {
             newCategory.name = textField.text!
             newCategory.updatedDate = Date()
             self.categoriesEntity.append(newCategory)
+            self.filteredCategories = self.categoriesEntity
             self.saveCategory()
             
             self.categoryCollectionView.reloadData()
@@ -77,12 +75,15 @@ class CategoryViewController: UIViewController {
         
         let index: Int = sender.layer.value(forKey: "index") as! Int
         print("DELETED \(index)")
-        deleteCategory(category: categoriesEntity[index])
+        deleteCategory(category: filteredCategories[index])
         saveCategory()
         categoriesEntity.remove(at: index)
-        
-        //let cell = categoryCollectionView.cellForItem(at: ViewController.categorySelected!)
+        //filteredCategories.remove(at: index)
+        filteredCategories = categoriesEntity
         categoryCollectionView.reloadData()
+        sender.isHidden = true
+        sender.isEnabled = false
+        
     }
     
     override func viewDidLoad() {
@@ -90,7 +91,7 @@ class CategoryViewController: UIViewController {
         
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
-        
+ 
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gesture: )))
         longPress.minimumPressDuration = 0.5
         longPress.delaysTouchesBegan = true
@@ -99,6 +100,7 @@ class CategoryViewController: UIViewController {
         categoriesEntity  = self.fetchAllCategory();
         filteredCategories = categoriesEntity
     }
+  
 }
 
 extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -107,29 +109,14 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
+        let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCollectionViewCell
 
-        //cell.layer.shadowColor = UIColor.black.cgColor
-        //cell.layer.shadowRadius = 6.0
-        cell.layer.shadowOpacity = 0.50
-        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
-        cell.layer.borderWidth = 0.0
-        cell.layer.cornerRadius = 30.0
-        cell.layer.masksToBounds = false
         cell.categoryLabel.text = filteredCategories[indexPath.row].name
-       
         cell.deleteCategoryButton.layer.setValue(indexPath.row, forKey: "index")
-        cell.deleteCategoryButton.addTarget(self, action: #selector(removeCategory), for: .touchUpInside)
-        
-        if indexPath.row == 0 {
-        }
                 
         return cell
     }
-    
-    @objc func removeCategory() {
-    
-    }
+  
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -153,11 +140,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         if let indexPath = self.categoryCollectionView.indexPathForItem(at: point) {
             CategoryViewController.categorySelected = indexPath
             // get the cell at indexPath
-            let cell = self.categoryCollectionView.cellForItem(at: indexPath) as! CategoryCell
-            
-            //cell.layer.backgroundColor = UIColor.red.cgColor
-            //cell.backgroundColor = UIColor.red
-            print(categoriesEntity[indexPath.row])
+            let cell = self.categoryCollectionView.cellForItem(at: indexPath) as! CategoryCollectionViewCell
             // SHOW DELETE ICON
             cell.deleteCategoryButton.isEnabled = true
             cell.deleteCategoryButton.isHidden = false

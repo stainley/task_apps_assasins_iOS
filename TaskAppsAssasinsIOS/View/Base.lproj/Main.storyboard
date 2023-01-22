@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,34 +19,29 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8SB-Og-E7V">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtx-ve-0dN">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtx-ve-0dN">
                                         <rect key="frame" x="0.0" y="102" width="390" height="557"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="lfo-mW-vyM">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="16" id="lfo-mW-vyM">
                                             <size key="itemSize" width="160" height="160"/>
                                             <size key="estimatedItemSize" width="160" height="160"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                            <inset key="sectionInset" minX="24" minY="16" maxX="24" maxY="16"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCell" id="t8a-Na-2l6" customClass="CategoryCell" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="10" width="160" height="160"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="categoryCell" id="t8a-Na-2l6" customClass="CategoryCollectionViewCell" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
+                                                <rect key="frame" x="24" y="16" width="160" height="160"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9S6-EV-TLN">
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="file-and-folder" translatesAutoresizingMaskIntoConstraints="NO" id="3fI-Vy-0Lr">
+                                                        <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="3fI-Vy-0Lr">
                                                             <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfM-BL-QgS">
-                                                            <rect key="frame" x="13" y="92" width="59.666666666666657" height="20.666666666666671"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bz-O2-y8l">
                                                             <rect key="frame" x="100" y="58" width="52" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -59,34 +53,22 @@
                                                                 <action selector="deleteCategory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o42-8q-G7c"/>
                                                             </connections>
                                                         </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfM-BL-QgS">
+                                                            <rect key="frame" x="20" y="108" width="60" height="22"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstItem="vfM-BL-QgS" firstAttribute="top" secondItem="9S6-EV-TLN" secondAttribute="top" constant="69.666666666666671" id="8G8-82-VeX"/>
-                                                        <constraint firstItem="vfM-BL-QgS" firstAttribute="centerY" secondItem="9S6-EV-TLN" secondAttribute="centerY" id="D5N-JQ-RBC"/>
-                                                        <constraint firstItem="vfM-BL-QgS" firstAttribute="centerX" secondItem="9S6-EV-TLN" secondAttribute="centerX" id="DFC-7N-1R7"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="30"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                            <real key="value" value="0.5"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffset">
-                                                            <integer key="value" value="10"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                            <color key="value" red="0.4262831372" green="0.3057059647" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                            <real key="value" value="20"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </collectionViewCellContentView>
+                                                </view>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottomMargin" secondItem="vfM-BL-QgS" secondAttribute="bottom" constant="22" id="Auc-FD-5Yx"/>
+                                                    <constraint firstItem="vfM-BL-QgS" firstAttribute="leading" secondItem="t8a-Na-2l6" secondAttribute="leadingMargin" constant="8" id="IeB-ky-eHH"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vfM-BL-QgS" secondAttribute="trailing" symbolic="YES" id="qDY-0Z-ylI"/>
+                                                    <constraint firstItem="vfM-BL-QgS" firstAttribute="top" secondItem="t8a-Na-2l6" secondAttribute="topMargin" constant="100" id="vcH-Mk-6g9"/>
+                                                </constraints>
                                                 <size key="customSize" width="160" height="160"/>
                                                 <connections>
                                                     <outlet property="categoryLabel" destination="vfM-BL-QgS" id="PBH-Wo-Z3R"/>
@@ -146,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2020" y="-515"/>
+            <point key="canvasLocation" x="-2020" y="-515.40284360189571"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tNn-oR-X7q">
@@ -576,7 +558,7 @@
     </scenes>
     <resources>
         <image name="arrow.down" catalog="system" width="118" height="128"/>
-        <image name="file-and-folder" width="512" height="512"/>
+        <image name="folder" width="508" height="411"/>
         <image name="note_icon" width="32" height="32"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
         <image name="task_icon" width="32" height="32"/>
