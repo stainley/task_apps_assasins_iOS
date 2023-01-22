@@ -11,22 +11,35 @@ class TaskViewController: UIViewController {
 
     @IBOutlet weak var taskTableView: UITableView!
     
-    var items = [Task]()
+    var tasks = [Task]()
+    var filteredTasks = [Task]()
     var taskReferenceCell: TaskNibTableViewCell!
     var passingData: String?
+    
+    @IBAction func addNewTaskButton(_ sender: UIBarButtonItem) {
+        
+    }
+    
+    @IBAction func taskFilterButton(_ sender: UIBarButtonItem) {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        present(searchController, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
              
         //TO BE REMOVE - DUMMY DATA
-        items.append(Task(title: "Do Grocery", description: "Buy fruits, veggies, and meat", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: false))
-        items.append(Task(title: "Visit Parents", description: "Spend sunday with parents", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: true))
-        items.append(Task(title: "Play with the cats", description: "Play for 1 hour with the cat", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: false))
-        items.append(Task(title: "Visit Bank", description: "Get February rent cheque", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: true))
+        tasks.append(Task(title: "Do Grocery", description: "Buy fruits, veggies, and meat", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: false))
+        tasks.append(Task(title: "Visit Parents", description: "Spend sunday with parents", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: true))
+        tasks.append(Task(title: "Play with the cats", description: "Play for 1 hour with the cat", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: false))
+        tasks.append(Task(title: "Visit Bank", description: "Get February rent cheque", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: true))
         
         let cellNib = UINib(nibName: "TaskNibTableViewCell", bundle: Bundle.main)
         taskTableView.register(cellNib, forCellReuseIdentifier: "TaskNibTableViewCell")
         
+        filteredTasks = tasks
+
     }
 
 }
@@ -34,17 +47,17 @@ class TaskViewController: UIViewController {
 extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return filteredTasks.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = taskTableView.dequeueReusableCell(withIdentifier: "TaskNibTableViewCell", for: indexPath) as? TaskNibTableViewCell
 
-        cell?.titleLabel?.text = items[indexPath.row].getTitle()
-        cell?.descriptionLabel?.text = items[indexPath.row].getDescription()
-        cell?.creationDateLabel?.text = items[indexPath.row].getCreationDate().toString(dateFormat: "MM/DD/YYY")
-        print(items[indexPath.row].getCreationDate())
-        if items[indexPath.row].getIsComplete() == true {
+        cell?.titleLabel?.text = tasks[indexPath.row].getTitle()
+        cell?.descriptionLabel?.text = tasks[indexPath.row].getDescription()
+        cell?.creationDateLabel?.text = tasks[indexPath.row].getCreationDate().toString(dateFormat: "MM/DD/YYY")
+        print(tasks[indexPath.row].getCreationDate())
+        if tasks[indexPath.row].getIsComplete() == true {
             cell?.taskColorIndicatorView?.backgroundColor = .systemGreen
         }
         else {
@@ -70,7 +83,7 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let task = self.items[indexPath.row]
+        let task = self.filteredTasks[indexPath.row]
         
         if let taskDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "TaskDetailViewController") as? TaskDetailViewController {
             taskDetailViewController.task = task

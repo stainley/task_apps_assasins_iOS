@@ -10,6 +10,7 @@
 		7005E73B29769DFF00410B83 /* TaskNibTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */; };
 		7005E73C29769DFF00410B83 /* TaskNibTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */; };
 		7005E73E2976A0C000410B83 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */; };
+		70576B73297DD80E00511F08 /* TaskSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70576B72297DD80E00511F08 /* TaskSearchController.swift */; };
 		70B7AE50297697E100698260 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7AE4F297697E100698260 /* NoteViewController.swift */; };
 		70B7AE5229769A3E00698260 /* NoteTaskTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */; };
 		70B7AE5429769B4200698260 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7AE5329769B4200698260 /* TaskViewController.swift */; };
@@ -39,6 +40,7 @@
 		7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNibTableViewCell.swift; sourceTree = "<group>"; };
 		7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskNibTableViewCell.xib; sourceTree = "<group>"; };
 		7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		70576B72297DD80E00511F08 /* TaskSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSearchController.swift; sourceTree = "<group>"; };
 		70B7AE4F297697E100698260 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTaskTabBarController.swift; sourceTree = "<group>"; };
 		70B7AE5329769B4200698260 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				70B7AE5329769B4200698260 /* TaskViewController.swift */,
 				7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */,
+				70576B72297DD80E00511F08 /* TaskSearchController.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70576B73297DD80E00511F08 /* TaskSearchController.swift in Sources */,
 				7005E73B29769DFF00410B83 /* TaskNibTableViewCell.swift in Sources */,
 				ADB0D1A2297DB0A800A9AF78 /* NoteSearchController.swift in Sources */,
 				70B7AE50297697E100698260 /* NoteViewController.swift in Sources */,
