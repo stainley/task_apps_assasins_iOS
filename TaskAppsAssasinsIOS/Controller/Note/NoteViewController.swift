@@ -18,6 +18,7 @@ class NoteViewController: UIViewController {
     var noteReferenceCell: NoteNibTableViewCell!
     
     var passingData: String?
+    var categorySelected: CategoryEntity?
     
     @IBAction func addNewNoteButton(_ sender: UIBarButtonItem) {
         
@@ -47,8 +48,15 @@ class NoteViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = false
         
         filteredNotes = notes
-    }    
-   
+    }
+    
+    
+    @IBAction func addNoteButtonTapped(_ sender: UIBarButtonItem) {
+        if let noteDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteDetailViewController") as? NoteDetailViewController {
+            noteDetailViewController.categorySelected = passingData ?? ""
+            self.navigationController?.pushViewController(noteDetailViewController, animated: true)
+        }
+    }
 }
 
 extension NoteViewController: UITableViewDelegate, UITableViewDataSource {

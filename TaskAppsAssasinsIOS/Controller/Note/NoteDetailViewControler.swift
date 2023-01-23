@@ -6,29 +6,45 @@
 //
 
 import UIKit
+import CoreData
 
 class NoteDetailViewController: UIViewController {
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextView!
-    @IBOutlet weak var catagory: UIButton!
+    @IBOutlet weak var categoryButton: UIButton!
     
-    @IBOutlet var catagoryCollection: [UIButton]!
- 
+    @IBOutlet var catagoryCollection: [UIButton] = []
     
     var note: Note?
     var placeholderLabel : UILabel!
+    var categorySelected: String = ""
+    var categories: [CategoryEntity] = [CategoryEntity]()
+    
+    // create a context to work with core data
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        categories  = self.fetchAllCategory()
+        for category in categories {
+            var categoryItemButton = UIButton(frame: CGRect(x: 0, y: 0, width: categoryButton.frame.width, height: 40))
+            categoryItemButton.setTitle("\(category.name ?? "")", for: .normal)
+            categoryItemButton.setTitleColor(.black, for: .normal)
+            catagoryCollection.append(categoryItemButton)
+            if let stackView = categoryButton.superview as? UIStackView{
+                stackView.addArrangedSubview(categoryItemButton)
+            }
+        }
+        
         catagoryCollection.forEach{ (btn) in
             btn.isHidden = true
             btn.alpha = 0
-                        
+
         }
         
-        descriptionTextField.layer.cornerRadius = 8
+        descriptionTextField.layer.cornerRadius = 6
         descriptionTextField.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextField.layer.borderWidth = 0.25
 
@@ -42,24 +58,43 @@ class NoteDetailViewController: UIViewController {
         placeholderLabel.frame.origin = CGPoint(x: 5, y: (descriptionTextField.font?.pointSize)! / 2)
         placeholderLabel.textColor = .tertiaryLabel
         placeholderLabel.isHidden = !descriptionTextField.text.isEmpty
+        
+        categoryButton.backgroundColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
+        categoryButton.layer.cornerRadius = 6
+        categoryButton.contentHorizontalAlignment = .left
+        categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
+        
+        
     }
     
-    
-    
-    @IBAction func CatagaryDropDown(_ sender: Any) {
+    @IBAction func categoryButtonTapped(_ sender: Any) {
         catagoryCollection.forEach{ (btn) in
             UIView.animate(withDuration: 0.7, animations: loadViewIfNeeded) {_ in
+                btn.layer.borderColor = UIColor.lightGray.cgColor
+                btn.layer.borderWidth = 0.25
                 btn.isHidden = !btn.isHidden
                 btn.alpha = btn.alpha == 0 ? 1 : 0
                 btn.layoutIfNeeded()
             }
         }
+        //categoryButton.layer.cornerRadius = 6
     }
         
-    @IBAction func Catagary(_ sender: Any) {
+    @IBAction func categoryItemTapped(_ sender: Any) {
         
+    }
+    
+    func fetchAllCategory() -> Array<CategoryEntity> {
+        let request: NSFetchRequest<CategoryEntity> = CategoryEntity.fetchRequest()
         
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error loading categories \(error.localizedDescription)")
         }
+        
+        return Array<CategoryEntity>()
+    }
 }
     
 extension NoteDetailViewController : UITextViewDelegate {
