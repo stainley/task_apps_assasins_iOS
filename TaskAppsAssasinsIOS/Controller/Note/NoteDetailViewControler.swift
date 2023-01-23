@@ -6,10 +6,19 @@
 //
 
 import UIKit
+import AVFoundation
 
 class NoteDetailViewController: UIViewController {
     
+    var recordingSession: AVAudioSession!
+    var audioRecorder: AVAudioRecorder!
     
+    weak var recordButton: UIButton!
+    
+    @IBAction func takePhotoButton(_ sender: UIBarButtonItem) {
+        //takePhotoOrUpload()
+        takePhotoOrUpload()
+    }
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     
@@ -17,6 +26,7 @@ class NoteDetailViewController: UIViewController {
     
     @IBOutlet var catagoryCollection: [UIButton]!
  
+    @IBOutlet weak var photoImageView: UIImageView!
     
     var note: Note?
     

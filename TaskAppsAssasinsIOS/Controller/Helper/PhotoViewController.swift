@@ -55,9 +55,11 @@ extension NoteDetailViewController: UIImagePickerControllerDelegate {
         
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             // Add image
-            //photoImageView.image = selectedImage
-            //photoImageView.contentMode = .scaleAspectFit
-            //photoImageView.clipsToBounds = true
+            photoImageView.image = selectedImage
+            photoImageView.contentMode = .scaleAspectFit
+            photoImageView.clipsToBounds = true
+            
+            print(photoImageView.image)
         }
         dismiss(animated: true, completion: nil)
 
