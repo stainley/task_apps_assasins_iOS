@@ -10,11 +10,13 @@ import UIKit
 extension NoteDetailViewController {
     
     func takePhotoOrUpload() {
+    
                 
         let photoSourceRequestController = UIAlertController(title: "", message: "Choose your photo source", preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {(action) in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
                 imagePicker.allowsEditing = false
                 imagePicker.sourceType = .camera
                 self.present(imagePicker, animated: true)
@@ -25,6 +27,7 @@ extension NoteDetailViewController {
             
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
                 imagePicker.allowsEditing = false
                 imagePicker.sourceType = .photoLibrary
                 self.present(imagePicker, animated: true)
@@ -34,9 +37,9 @@ extension NoteDetailViewController {
         photoSourceRequestController.addAction(cameraAction)
         photoSourceRequestController.addAction(photoLibraryAction)
         
+        present(photoSourceRequestController, animated: true)
     }
-    
-   
+       
     
 }
 
@@ -52,7 +55,9 @@ extension NoteDetailViewController: UIImagePickerControllerDelegate {
         
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             // Add image
-            
+            photoImageView.image = selectedImage
+            photoImageView.contentMode = .scaleAspectFit
+            photoImageView.clipsToBounds = true
         }
         dismiss(animated: true, completion: nil)
 
