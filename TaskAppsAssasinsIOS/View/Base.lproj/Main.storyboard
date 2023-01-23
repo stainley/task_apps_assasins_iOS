@@ -448,7 +448,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="e4I-Ka-qIB"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -631,6 +630,7 @@
                     <navigationItem key="navigationItem" id="KYo-KM-JO9"/>
                     <connections>
                         <outlet property="catagory" destination="TYA-Wa-m7i" id="x9y-oh-lKs"/>
+                        <outlet property="descriptionTextField" destination="V0L-aI-MKS" id="klI-fB-qtd"/>
                         <outlet property="titleTextField" destination="h0J-gP-LRB" id="Tfj-As-nfU"/>
                         <outletCollection property="catagoryCollection" destination="rYw-0e-1XA" collectionClass="NSMutableArray" id="mTG-6i-psj"/>
                         <outletCollection property="catagoryCollection" destination="mQJ-W7-dUy" collectionClass="NSMutableArray" id="nj7-pA-Uml"/>
