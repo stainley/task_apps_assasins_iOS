@@ -41,8 +41,6 @@ class NoteViewController: UIViewController {
         notes.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
         notes.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
         
-        //buttonStackView.layer.cornerRadius = 8
-        
         let cellNib = UINib(nibName: "NoteNibTableViewCell", bundle: Bundle.main)
         noteTableView.register(cellNib, forCellReuseIdentifier: "NoteNibTableViewCell")
         self.navigationController?.navigationBar.prefersLargeTitles = false
@@ -50,13 +48,13 @@ class NoteViewController: UIViewController {
         filteredNotes = notes
     }
     
-    
     @IBAction func addNoteButtonTapped(_ sender: UIBarButtonItem) {
         if let noteDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteDetailViewController") as? NoteDetailViewController {
             noteDetailViewController.categorySelected = passingData ?? ""
             self.navigationController?.pushViewController(noteDetailViewController, animated: true)
         }
     }
+    
 }
 
 extension NoteViewController: UITableViewDelegate, UITableViewDataSource {

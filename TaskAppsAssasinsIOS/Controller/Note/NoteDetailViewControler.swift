@@ -13,7 +13,7 @@ class NoteDetailViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextView!
     @IBOutlet weak var categoryButton: UIButton!
-    
+    @IBOutlet weak var audioView: UIView!
     @IBOutlet var catagoryCollection: [UIButton] = []
     
     var note: Note?
@@ -67,6 +67,7 @@ class NoteDetailViewController: UIViewController {
         categoryButton.layer.cornerRadius = 6
         categoryButton.contentHorizontalAlignment = .left
         categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
+
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {
