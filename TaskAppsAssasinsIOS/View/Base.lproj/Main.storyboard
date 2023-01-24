@@ -317,7 +317,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEq-vL-khm">
-                                                        <rect key="frame" x="63.666666666666664" y="0.0" width="90.666666666666686" height="21"/>
+                                                        <rect key="frame" x="63.666666666666664" y="0.0" width="90.666666666666714" height="21"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="arrow.down" catalog="system" title="Name"/>
                                                     </button>
@@ -596,6 +596,7 @@
                         <outlet property="audioView" destination="CYh-JL-b6M" id="IY4-PB-wTV"/>
                         <outlet property="categoryButton" destination="TYA-Wa-m7i" id="P4Z-Ab-62i"/>
                         <outlet property="descriptionTextField" destination="V0L-aI-MKS" id="klI-fB-qtd"/>
+                        <outlet property="imageView" destination="JP9-yw-4kr" id="gtu-Vg-SY4"/>
                         <outlet property="titleTextField" destination="h0J-gP-LRB" id="Tfj-As-nfU"/>
                         <segue destination="3MN-u8-kiL" kind="unwind" identifier="backCategory" unwindAction="unwindToCategory:" id="wSJ-Y5-AGw"/>
                     </connections>
@@ -631,7 +632,7 @@
                                 </subviews>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9z8-yD-XGl">
-                                <rect key="frame" x="20" y="87.333333333333329" width="350" height="34.000000000000014"/>
+                                <rect key="frame" x="20" y="87.333333333333329" width="350" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="1cb-Qg-htY"/>
                                 </constraints>
