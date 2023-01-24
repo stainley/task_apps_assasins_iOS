@@ -16,6 +16,12 @@ class TaskViewController: UIViewController {
     var taskReferenceCell: TaskNibTableViewCell!
     var passingData: String?
     
+    var selectedCategory: CategoryEntity? {
+        didSet {
+            
+        }
+    }
+    
     @IBAction func addNewTaskButton(_ sender: UIBarButtonItem) {
         
     }

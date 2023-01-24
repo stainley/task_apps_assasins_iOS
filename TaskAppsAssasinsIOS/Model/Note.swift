@@ -6,41 +6,22 @@
 //
 
 import UIKit
+import AVFAudio
 
 struct Note {
     
     var title: String
-    private var description: String?
-    private var creationDate: NSDate
-    private var pictures: [UIImage?]
-    private var audios: [String?]
-    private var latitude: Double?
-    private var longitude: Double?
+    var noteDescription: String?
+    var image: Data!
+    var audios: [AVAudioRecorder]
+    var latitude: Double?
+    var longitude: Double?
     
     
-    init(title: String, description: String, creationDate: NSDate, pictures: [UIImage?], audios: [String?]) {
+    init(title: String, description: String,  audios: [AVAudioRecorder]) {
         self.title = title
-        self.description = description
-        self.creationDate = creationDate
-        self.pictures = pictures
+        self.noteDescription = description
         self.audios = audios
-    }
-
-    
-    func getDescription() -> String? {
-        return self.description
-    }
-    
-    func getCreationDate() -> NSDate {
-        return self.creationDate
-    }
-    
-    func getPictures() -> [UIImage?] {
-        return self.pictures
-    }
-    
-    func getAudios() -> [String?] {
-        return self.audios
     }
     
     mutating func setCoordinate(latitude: Double?, longitude: Double?) {

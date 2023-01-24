@@ -15,11 +15,14 @@ class NoteDetailViewController: UIViewController {
     
     weak var recordButton: UIButton!
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+    
+    @IBOutlet weak var noteTexxtField: UITextView!
+    
     @IBAction func takePhotoButton(_ sender: UIBarButtonItem) {
-        //takePhotoOrUpload()
         takePhotoOrUpload()
     }
-    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var catagory: UIButton!
@@ -28,22 +31,37 @@ class NoteDetailViewController: UIViewController {
  
     @IBOutlet weak var photoImageView: UIImageView!
     
-    var note: Note?
+    weak var delegate: NoteViewController?
+    
+    var note: NoteEntity?
+    var pictureEntity: PictureEntity?
+    
+    var imageNote: UIImage?
+    var pictures: [UIImage] = []
+    var audios: [AVAudioRecorder] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
         catagoryCollection.forEach{ (btn) in
             btn.isHidden = true
             btn.alpha = 0
-                        
+        }*/
+        
+        guard let note = note else {
+            return
         }
         
-        
+        titleTextField.text = note.title
+        noteTexxtField.text = note.noteDescription
+       
+        if pictures.count > 0 {
+            photoImageView.image =  pictures[0]
+
+        }
         
     }
-    
-    
     
     @IBAction func CatagaryDropDown(_ sender: Any) {
         catagoryCollection.forEach{ (btn) in
@@ -57,18 +75,18 @@ class NoteDetailViewController: UIViewController {
         
     @IBAction func Catagary(_ sender: Any) {
         
+    }
+     
+    override func viewWillDisappear(_ animated: Bool) {
+       
+        var note = Note(title: titleTextField.text ?? "", description: noteTexxtField.text, audios: audios)
         
+        if let imageData = photoImageView.image?.pngData() {
+            note.image = imageData
         }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
+        delegate?.saveNote(note: note)
+    }
 }
     
     

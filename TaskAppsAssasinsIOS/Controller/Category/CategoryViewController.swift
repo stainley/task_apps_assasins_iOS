@@ -131,7 +131,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
         if let noteTaskTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "NoteTaskTabBarController") as? NoteTaskTabBarController {
-            noteTaskTabBarController.categorySelected = filteredCategories[indexPath.row].name
+            noteTaskTabBarController.categorySelected = filteredCategories[indexPath.row]
             self.navigationController?.pushViewController(noteTaskTabBarController, animated: true)
         }
 

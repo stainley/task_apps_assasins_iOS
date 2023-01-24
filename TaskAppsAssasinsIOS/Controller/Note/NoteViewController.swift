@@ -13,16 +13,29 @@ class NoteViewController: UIViewController {
   
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var notes = [Note]()
-    var filteredNotes = [Note]()
+    var notes = [NoteEntity]()
+    
+    var picturesEntity = [PictureEntity]()
+    var filteredNotes = [NoteEntity]()
+    
     var noteReferenceCell: NoteNibTableViewCell!
     
-    var passingData: String?
+    var pictures: [UIImage]?
+    
+    var selectedCategory: CategoryEntity? {
+        didSet {
+            loadNotesByCategory()
+        }
+    }
     
     @IBAction func addNewNoteButton(_ sender: UIBarButtonItem) {
         
-
-        
+    }
+    
+    @IBAction func unwindToNote(_ unwindSegue: UIStoryboardSegue) {
+        _ = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
+        saveNote()
     }
     
     @IBAction func noteFilterButton(_ sender: UIBarButtonItem) {
@@ -31,26 +44,48 @@ class NoteViewController: UIViewController {
         present(searchController, animated: true, completion: nil)
     }
     
+    func saveNote(note: Note) {
+        let newNote = NoteEntity(context: context)
+        newNote.title = note.title
+        newNote.noteDescription = note.noteDescription!
+        newNote.creationDate = Date()
+        
+        let pictures = PictureEntity(context: context)
+        
+        pictures.picture = note.image
+        pictures.latitude = -71.666999
+        pictures.longitude = -66.4443344
+        pictures.note_parent = newNote
+        
+        newNote.category_parent = selectedCategory
+        newNote.addToPictures(pictures)
+     
+        saveNote()
+        loadNotesByCategory()
+        noteTableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        
+        if let destination = segue.destination as? NoteDetailViewController {
+            destination.delegate = self
+            loadImagesByNote()
+        }
+    }
+    
     override func viewDidLoad() {
-      
-        
         super.viewDidLoad()        //TO BE REMOVE - DUMMY DATA
-        notes.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
-        notes.append(Note(title: "2023W CPS 1001", description: "Co-op Preparation and Success", creationDate: NSDate(), pictures: [], audios: []))
-        notes.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
-        notes.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
-        notes.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
-        notes.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
-        
-        //buttonStackView.layer.cornerRadius = 8
+        title = selectedCategory?.title
         
         let cellNib = UINib(nibName: "NoteNibTableViewCell", bundle: Bundle.main)
         noteTableView.register(cellNib, forCellReuseIdentifier: "NoteNibTableViewCell")
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        
+        //notes = fetchAllNotes()
         filteredNotes = notes
-    }    
-   
+       
+    }
 }
 
 extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
@@ -63,17 +98,24 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = noteTableView.dequeueReusableCell(withIdentifier: "NoteNibTableViewCell", for: indexPath) as? NoteNibTableViewCell
 
         cell?.titleLabel?.text = filteredNotes[indexPath.row].title
-        cell?.descriptionLabel?.text = filteredNotes[indexPath.row].getDescription()
-        cell?.creationDateLabel?.text = filteredNotes[indexPath.row].getCreationDate().toString(dateFormat: "MM/DD/YYY")
+        cell?.descriptionLabel?.text = filteredNotes[indexPath.row].noteDescription
+        
+        if let creation = filteredNotes[indexPath.row].creationDate {
+            cell?.creationDateLabel?.text = "\(creation)"
+        }
         
         return cell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let action = UIContextualAction(style: .destructive, title: "Delete") {
-            (action, view, completionHandler) in
-            print("a")
+        // Delete note by swipping
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            self.deleteNote(noteEntity: self.filteredNotes[indexPath.row])
+            self.saveNote()
+
+            self.loadNotesByCategory()
+            self.noteTableView.reloadData()
         }
         
         return UISwipeActionsConfiguration(actions: [action])
@@ -84,19 +126,28 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let noteDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteDetailViewController") as? NoteDetailViewController {
             noteDetailViewController.note = note
+            
+            guard let noteTitle = note.title else {
+                return
+            }
+            let byParent  =  NSPredicate(format: "note_parent.title == %@", noteTitle)
+            loadImagesByNote(predicate: byParent)
+            //
+            
+            for pic in picturesEntity {
+                noteDetailViewController.pictures.append(UIImage(data: pic.picture!)!)
+            }
+            // =
             self.navigationController?.pushViewController(noteDetailViewController, animated: true)
         }
     }
 }
 
-extension NSDate
-{
-    func toString( dateFormat format  : String ) -> String
-    {
+extension NSDate {
+    func toString( dateFormat format  : String ) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         return dateFormatter.string(from: self as Date)
     }
-
 }
 

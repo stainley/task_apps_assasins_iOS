@@ -40,7 +40,22 @@ extension NoteDetailViewController {
         present(photoSourceRequestController, animated: true)
     }
        
+    /*
+    func convertDataToImages(imageDataArray: [Data]) -> [UIImage] {
+      var myImagesArray = [UIImage]()
+      imageDataArray.forEach { (imageData) in
+          myImagesArray.append(UIImage(data: selectedImage))
+      }
+      return myImagesArray
+    } */
     
+    func convertImageToData(myImagesArray: [UIImage]) -> [Data] {
+      var myImagesDataArray = [Data]()
+      myImagesArray.forEach({ (image) in
+          myImagesDataArray.append(image.jpegData(compressionQuality: 1)!)
+      })
+      return myImagesDataArray
+    }
 }
 
 
@@ -58,8 +73,8 @@ extension NoteDetailViewController: UIImagePickerControllerDelegate {
             photoImageView.image = selectedImage
             photoImageView.contentMode = .scaleAspectFit
             photoImageView.clipsToBounds = true
-            
-            print(photoImageView.image)
+            pictures.append(selectedImage)
+            print(selectedImage)
         }
         dismiss(animated: true, completion: nil)
 
