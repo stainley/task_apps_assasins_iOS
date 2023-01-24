@@ -20,10 +20,6 @@ class NoteViewController: UIViewController {
     var passingData: String?
     var categorySelected: CategoryEntity?
     
-    @IBAction func addNewNoteButton(_ sender: UIBarButtonItem) {
-        
-    }
-    
     @IBAction func noteFilterButton(_ sender: UIBarButtonItem) {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self

@@ -32,6 +32,16 @@
         <relationship name="note_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteEntity" inverseName="pictures" inverseEntity="NoteEntity"/>
         <relationship name="task_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="pictures" inverseEntity="TaskEntity"/>
     </entity>
+    <entity name="SubTaskEntity" representedClassName="SubTaskEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateCompleted" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="parentId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="task_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="parentId" inverseEntity="TaskEntity"/>
+    </entity>
     <entity name="TaskEntity" representedClassName="TaskEntity" syncable="YES" codeGenerationType="class">
         <attribute name="audio" optional="YES" attributeType="Binary"/>
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -43,6 +53,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="audios" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AudioEntity" inverseName="task_parent" inverseEntity="AudioEntity"/>
         <relationship name="category_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="tasks" inverseEntity="CategoryEntity"/>
+        <relationship name="parentId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubTaskEntity" inverseName="task_parent" inverseEntity="SubTaskEntity"/>
         <relationship name="pictures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PictureEntity" inverseName="task_parent" inverseEntity="PictureEntity"/>
     </entity>
 </model>

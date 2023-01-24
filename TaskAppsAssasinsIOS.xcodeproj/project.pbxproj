@@ -11,6 +11,11 @@
 		7005E73C29769DFF00410B83 /* TaskNibTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */; };
 		7005E73E2976A0C000410B83 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */; };
 		70576B73297DD80E00511F08 /* TaskSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70576B72297DD80E00511F08 /* TaskSearchController.swift */; };
+		70A8453C297F7C87007D1F7E /* SubTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8453B297F7C87007D1F7E /* SubTask.swift */; };
+		70A8453E297F81E4007D1F7E /* SubTaskVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8453D297F81E4007D1F7E /* SubTaskVCDao.swift */; };
+		70A84540297F81F7007D1F7E /* TaskVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8453F297F81F7007D1F7E /* TaskVCDao.swift */; };
+		70A92F96297F882B00F14490 /* SubTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A92F94297F882B00F14490 /* SubTaskTableViewCell.swift */; };
+		70A92F97297F882B00F14490 /* SubTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70A92F95297F882B00F14490 /* SubTaskTableViewCell.xib */; };
 		70B7AE50297697E100698260 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7AE4F297697E100698260 /* NoteViewController.swift */; };
 		70B7AE5229769A3E00698260 /* NoteTaskTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */; };
 		70B7AE5429769B4200698260 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7AE5329769B4200698260 /* TaskViewController.swift */; };
@@ -41,6 +46,11 @@
 		7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskNibTableViewCell.xib; sourceTree = "<group>"; };
 		7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		70576B72297DD80E00511F08 /* TaskSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSearchController.swift; sourceTree = "<group>"; };
+		70A8453B297F7C87007D1F7E /* SubTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTask.swift; sourceTree = "<group>"; };
+		70A8453D297F81E4007D1F7E /* SubTaskVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskVCDao.swift; sourceTree = "<group>"; };
+		70A8453F297F81F7007D1F7E /* TaskVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskVCDao.swift; sourceTree = "<group>"; };
+		70A92F94297F882B00F14490 /* SubTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskTableViewCell.swift; sourceTree = "<group>"; };
+		70A92F95297F882B00F14490 /* SubTaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubTaskTableViewCell.xib; sourceTree = "<group>"; };
 		70B7AE4F297697E100698260 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTaskTabBarController.swift; sourceTree = "<group>"; };
 		70B7AE5329769B4200698260 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +96,7 @@
 				ADCDD67B2970D2A400B30328 /* Note.swift */,
 				728FFBC529761AC0006748FD /* Task.swift */,
 				ADB0D19F297DA1A600A9AF78 /* Category.swift */,
+				70A8453B297F7C87007D1F7E /* SubTask.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -128,6 +139,8 @@
 				70B7AE5329769B4200698260 /* TaskViewController.swift */,
 				7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */,
 				70576B72297DD80E00511F08 /* TaskSearchController.swift */,
+				70A8453D297F81E4007D1F7E /* SubTaskVCDao.swift */,
+				70A8453F297F81F7007D1F7E /* TaskVCDao.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -174,6 +187,8 @@
 				ADCDD674296F752400B30328 /* Info.plist */,
 				7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */,
 				7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */,
+				70A92F94297F882B00F14490 /* SubTaskTableViewCell.swift */,
+				70A92F95297F882B00F14490 /* SubTaskTableViewCell.xib */,
 			);
 			path = TaskAppsAssasinsIOS;
 			sourceTree = "<group>";
@@ -239,6 +254,7 @@
 				7005E73C29769DFF00410B83 /* TaskNibTableViewCell.xib in Resources */,
 				ADCDD673296F752400B30328 /* LaunchScreen.storyboard in Resources */,
 				ADCDD670296F752400B30328 /* Assets.xcassets in Resources */,
+				70A92F97297F882B00F14490 /* SubTaskTableViewCell.xib in Resources */,
 				ADCDD66E296F752300B30328 /* Main.storyboard in Resources */,
 				70F2B1872975302D00239EAC /* NoteNibTableViewCell.xib in Resources */,
 			);
@@ -252,6 +268,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				70576B73297DD80E00511F08 /* TaskSearchController.swift in Sources */,
+				70A92F96297F882B00F14490 /* SubTaskTableViewCell.swift in Sources */,
+				70A84540297F81F7007D1F7E /* TaskVCDao.swift in Sources */,
 				7005E73B29769DFF00410B83 /* TaskNibTableViewCell.swift in Sources */,
 				ADB0D1A2297DB0A800A9AF78 /* NoteSearchController.swift in Sources */,
 				70B7AE50297697E100698260 /* NoteViewController.swift in Sources */,
@@ -268,11 +286,13 @@
 				ADB0D19A297C569200A9AF78 /* CategorySearchController.swift in Sources */,
 				70B7AE5229769A3E00698260 /* NoteTaskTabBarController.swift in Sources */,
 				7005E73E2976A0C000410B83 /* TaskDetailViewController.swift in Sources */,
+				70A8453C297F7C87007D1F7E /* SubTask.swift in Sources */,
 				ADCDD67C2970D2A400B30328 /* Note.swift in Sources */,
 				F0D06978297DD4A6008D15CD /* NoteVCDao.swift in Sources */,
 				AD7B431829747A1C008D1164 /* CategoryCustomView.swift in Sources */,
 				728FFBC629761AC0006748FD /* Task.swift in Sources */,
 				70F2B1862975302D00239EAC /* NoteNibTableViewCell.swift in Sources */,
+				70A8453E297F81E4007D1F7E /* SubTaskVCDao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
