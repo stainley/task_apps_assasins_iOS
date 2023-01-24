@@ -4,8 +4,12 @@
 <dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Provide access to the camera to take picture for notes</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Provide access location for the Task or Note</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
+		<key>UIApplicationSupportsTabbedSceneCollection</key>
+		<false/>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 		<key>UISceneConfigurations</key>

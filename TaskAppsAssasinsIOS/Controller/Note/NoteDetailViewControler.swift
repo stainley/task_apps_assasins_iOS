@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import CoreLocation
 
 class NoteDetailViewController: UIViewController {
     
@@ -22,6 +23,15 @@ class NoteDetailViewController: UIViewController {
     @IBAction func takePhotoButton(_ sender: UIBarButtonItem) {
         takePhotoOrUpload()
     }
+    
+    @IBAction func showNoteInMapButton(_ sender: UIBarButtonItem) {
+        
+        let mapViewController = storyboard?.instantiateViewController(withIdentifier: "mapStorryboardID") as! MapTaskNoteViewController
+        mapViewController.coordinate = coordinate
+        present(mapViewController, animated: true)
+        
+    }
+    
     @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var catagory: UIButton!
@@ -39,12 +49,19 @@ class NoteDetailViewController: UIViewController {
     var pictures: [UIImage] = []
     var audios: [AVAudioRecorder] = []
     
+    var locationManager: CLLocationManager = CLLocationManager()
+    var coordinate: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         pictureCollectionView.delegate = self
         pictureCollectionView.dataSource = self
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
         let nib = UINib(nibName: "PictureCollectionViewCell", bundle: nil)
         pictureCollectionView.register(nib, forCellWithReuseIdentifier: "pictureCell")
@@ -56,7 +73,6 @@ class NoteDetailViewController: UIViewController {
         }*/
         
         if pictures.count > 0 {
-            //photoImageView.image =  pictures[0]
             pictureCollectionView.reloadData()
         }
         
@@ -68,8 +84,7 @@ class NoteDetailViewController: UIViewController {
         noteTextField.text = note.noteDescription
   
     }
-    
-    
+        
     @IBAction func CatagaryDropDown(_ sender: Any) {
         catagoryCollection.forEach{ (btn) in
             UIView.animate(withDuration: 0.7, animations: loadViewIfNeeded) {_ in
@@ -89,16 +104,16 @@ class NoteDetailViewController: UIViewController {
        
         var note = Note(title: titleTextField.text ?? "", description: noteTextField.text, audios: audios)
         
-        //if let imageData = photoImageView.image?.pngData() {
-            //note.image = imageData
-            //note.pictures.append(imageData)
-        //}
-        
         if pictures.count > 0 {
             for imageData in pictures {
                 note.pictures.append(imageData.pngData()!)
             }
         }
+        
+        if coordinate != nil {
+            note.setCoordinate(latitude: coordinate?.latitude, longitude: coordinate?.longitude)
+        }
+        
         delegate?.saveNote(note: note)
     }
 }

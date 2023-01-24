@@ -35,6 +35,8 @@
 		ADEC1DBB2980218F00471AF9 /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DB92980218F00471AF9 /* PictureCollectionViewCell.swift */; };
 		ADEC1DBC2980218F00471AF9 /* PictureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEC1DBA2980218F00471AF9 /* PictureCollectionViewCell.xib */; };
 		ADEC1DBE298023D400471AF9 /* PictureViewCustomCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DBD298023D400471AF9 /* PictureViewCustomCollection.swift */; };
+		ADEC1DC1298040E700471AF9 /* MapTaskNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC0298040E700471AF9 /* MapTaskNoteViewController.swift */; };
+		ADEC1DC3298041B000471AF9 /* MyLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC2298041B000471AF9 /* MyLocationViewController.swift */; };
 		ADF2F2FC297DF24700B78D81 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */; };
 		F0D06978297DD4A6008D15CD /* NoteVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D06977297DD4A6008D15CD /* NoteVCDao.swift */; };
 		F0D3026D29720940005DC42D /* NoteDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */; };
@@ -71,6 +73,8 @@
 		ADEC1DB92980218F00471AF9 /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		ADEC1DBA2980218F00471AF9 /* PictureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureCollectionViewCell.xib; sourceTree = "<group>"; };
 		ADEC1DBD298023D400471AF9 /* PictureViewCustomCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewCustomCollection.swift; sourceTree = "<group>"; };
+		ADEC1DC0298040E700471AF9 /* MapTaskNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTaskNoteViewController.swift; sourceTree = "<group>"; };
+		ADEC1DC2298041B000471AF9 /* MyLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationViewController.swift; sourceTree = "<group>"; };
 		ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		F0D06977297DD4A6008D15CD /* NoteVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteVCDao.swift; sourceTree = "<group>"; };
 		F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailViewControler.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 		70CB3572296FE6FB005612E0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ADEC1DBF298040CD00471AF9 /* Map */,
 				ADF2F2FA297DF22200B78D81 /* Helper */,
 				ADB0D196297C3FAB00A9AF78 /* Note */,
 				ADB0D195297C3FA400A9AF78 /* Task */,
@@ -190,10 +195,19 @@
 			path = TaskAppsAssasinsIOS;
 			sourceTree = "<group>";
 		};
+		ADEC1DBF298040CD00471AF9 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				ADEC1DC0298040E700471AF9 /* MapTaskNoteViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		ADF2F2FA297DF22200B78D81 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */,
+				ADEC1DC2298041B000471AF9 /* MyLocationViewController.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -282,12 +296,14 @@
 				ADB0D193297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld in Sources */,
 				ADB0D198297C40FE00A9AF78 /* CategoryVCDao.swift in Sources */,
 				ADEC1DBE298023D400471AF9 /* PictureViewCustomCollection.swift in Sources */,
+				ADEC1DC1298040E700471AF9 /* MapTaskNoteViewController.swift in Sources */,
 				AD7B431A29749C52008D1164 /* CustomImageView.swift in Sources */,
 				ADCDD667296F752300B30328 /* AppDelegate.swift in Sources */,
 				ADCDD669296F752300B30328 /* SceneDelegate.swift in Sources */,
 				70CB35C02970585A005612E0 /* CategoryCell.swift in Sources */,
 				70B7AE5429769B4200698260 /* TaskViewController.swift in Sources */,
 				F0D3026D29720940005DC42D /* NoteDetailViewControler.swift in Sources */,
+				ADEC1DC3298041B000471AF9 /* MyLocationViewController.swift in Sources */,
 				ADB0D19A297C569200A9AF78 /* CategorySearchController.swift in Sources */,
 				70B7AE5229769A3E00698260 /* NoteTaskTabBarController.swift in Sources */,
 				7005E73E2976A0C000410B83 /* TaskDetailViewController.swift in Sources */,

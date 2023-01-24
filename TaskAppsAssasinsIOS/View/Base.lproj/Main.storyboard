@@ -3,6 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -425,8 +426,14 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qpa-Td-ns2">
                                 <rect key="frame" x="0.0" y="743" width="390" height="44"/>
                                 <items>
-                                    <barButtonItem image="mic" catalog="system" id="wOY-dK-q11"/>
+                                    <barButtonItem title="mic" image="mic" catalog="system" id="wOY-dK-q11"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Afp-lw-n9l"/>
+                                    <barButtonItem title="map" image="map" catalog="system" id="fGM-ML-WRe">
+                                        <connections>
+                                            <action selector="showNoteInMapButton:" destination="Qj5-0p-n9h" id="SIB-aG-KAF"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="eW1-f0-AOx"/>
                                     <barButtonItem systemItem="camera" id="RpT-X1-rwe">
                                         <connections>
                                             <action selector="takePhotoButton:" destination="Qj5-0p-n9h" id="7uR-ym-s7l"/>
@@ -435,7 +442,7 @@
                                 </items>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1wB-p7-A3f">
-                                <rect key="frame" x="0.0" y="405" width="390" height="145"/>
+                                <rect key="frame" x="0.0" y="405" width="390" height="116"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="q5c-4O-k8g">
                                     <size key="itemSize" width="100" height="100"/>
@@ -446,7 +453,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="acq-Ur-70k" customClass="PictureCollectionViewCell" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
-                                        <rect key="frame" x="5" y="22.666666666666668" width="100" height="100"/>
+                                        <rect key="frame" x="5" y="8" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ZDp-UX-FHp">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
@@ -478,7 +485,7 @@
                             <constraint firstItem="Qpa-Td-ns2" firstAttribute="leading" secondItem="1wB-p7-A3f" secondAttribute="leading" id="F9Y-2I-pqG"/>
                             <constraint firstItem="1wB-p7-A3f" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" id="WAZ-ef-EVF"/>
                             <constraint firstItem="1wB-p7-A3f" firstAttribute="top" secondItem="0zN-Bc-sNy" secondAttribute="top" constant="358" id="Y9W-lc-SmC"/>
-                            <constraint firstItem="Qpa-Td-ns2" firstAttribute="top" secondItem="1wB-p7-A3f" secondAttribute="bottom" constant="193" id="ch3-ho-9TO"/>
+                            <constraint firstItem="Qpa-Td-ns2" firstAttribute="top" secondItem="1wB-p7-A3f" secondAttribute="bottom" constant="222" id="ch3-ho-9TO"/>
                             <constraint firstItem="Qpa-Td-ns2" firstAttribute="trailing" secondItem="1wB-p7-A3f" secondAttribute="trailing" id="fUB-V8-kF0"/>
                             <constraint firstItem="0zN-Bc-sNy" firstAttribute="trailing" secondItem="1wB-p7-A3f" secondAttribute="trailing" id="yrc-Zk-cC2"/>
                         </constraints>
@@ -494,6 +501,31 @@
                 <exit id="3MN-u8-kiL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="50.769230769230766" y="-97.393364928909946"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="gik-NM-Ub3">
+            <objects>
+                <viewController storyboardIdentifier="mapStorryboardID" title="Map" id="BOr-FZ-IbQ" customClass="MapTaskNoteViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="06y-iB-gvC">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EhW-aL-rP4">
+                                <rect key="frame" x="0.0" y="121" width="390" height="660"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Jhg-Io-yqt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="map" destination="EhW-aL-rP4" id="MMN-9r-4Mf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rRg-FE-2SY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012" y="436"/>
         </scene>
         <!--Task Detail View Controller-->
         <scene sceneID="8FK-fp-PQy">
@@ -524,6 +556,7 @@
     <resources>
         <image name="arrow.down" catalog="system" width="118" height="128"/>
         <image name="folder" width="508" height="411"/>
+        <image name="map" catalog="system" width="128" height="112"/>
         <image name="mic" catalog="system" width="110" height="128"/>
         <image name="note_icon" width="32" height="32"/>
         <image name="task_icon" width="32" height="32"/>

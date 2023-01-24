@@ -14,6 +14,8 @@
     </entity>
     <entity name="NoteEntity" representedClassName="NoteEntity" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="noteDescription" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="audios" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AudioEntity" inverseName="note_parent" inverseEntity="AudioEntity"/>
@@ -21,8 +23,6 @@
         <relationship name="pictures" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PictureEntity" inverseName="note_parent" inverseEntity="PictureEntity"/>
     </entity>
     <entity name="PictureEntity" representedClassName="PictureEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="picture" optional="YES" attributeType="Binary"/>
         <relationship name="note_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteEntity" inverseName="pictures" inverseEntity="NoteEntity"/>
         <relationship name="task_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="pictures" inverseEntity="TaskEntity"/>

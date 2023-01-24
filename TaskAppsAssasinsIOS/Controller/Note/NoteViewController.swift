@@ -44,13 +44,17 @@ class NoteViewController: UIViewController {
         present(searchController, animated: true, completion: nil)
     }
     
+    /**
+     * Save note into the database
+     * @param: note Note
+     */
     func saveNote(note: Note) {
         let newNote = NoteEntity(context: context)
         newNote.title = note.title
         newNote.noteDescription = note.noteDescription!
         newNote.creationDate = Date()
         
-        
+        // Save image to the Database
         for picture in note.pictures {
             let pictureEntity = PictureEntity(context: context)
 
@@ -58,6 +62,13 @@ class NoteViewController: UIViewController {
             pictureEntity.note_parent = newNote
             newNote.addToPictures(pictureEntity)
         }
+        
+        // Save coordinate to the database
+        if let latitude = note.latitude, let longitude = note.longitude {
+            newNote.longitude = latitude
+            newNote.longitude = longitude
+        }
+        
         newNote.category_parent = selectedCategory
         saveNote()
         loadNotesByCategory()
