@@ -161,8 +161,12 @@ extension TaskDetailViewController: SubTaskTableViewCellDelegate {
 
         let selectAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
             subTaskEntity.dueDate = datePicker.date
-            self.subTasksEntity.append(subTaskEntity)
-            self.saveSubTask()
+            if let position = self.subTasksEntity.firstIndex(where: { subtask in
+                return subtask.id == subTaskEntity.id
+            }){
+                self.subTasksEntity[position] = subTaskEntity
+                self.saveSubTask()
+            }
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
