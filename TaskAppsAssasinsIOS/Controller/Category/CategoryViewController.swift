@@ -23,7 +23,6 @@ class CategoryViewController: UIViewController {
     @IBAction func createNewCategoryButton(_ sender: UIBarButtonItem) {
         var textField = UITextField()
         
-        print("Create a new category")
         let alert = UIAlertController(title: "New Category", message: "Please give a new category", preferredStyle: .alert)
         
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in

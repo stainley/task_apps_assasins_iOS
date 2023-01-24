@@ -49,6 +49,9 @@ class TaskDetailViewController: UIViewController {
         categoryButton.layer.cornerRadius = 6
         categoryButton.contentHorizontalAlignment = .left
         categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
+        
+        let subTaskTableViewCell = UINib(nibName: "SubTaskTableViewCell", bundle: Bundle.main)
+        subTaskTableView.register(subTaskTableViewCell, forCellReuseIdentifier: "SubTaskTableViewCell")
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {
@@ -64,7 +67,7 @@ class TaskDetailViewController: UIViewController {
     }
     
     @IBAction func addSubtaskButtonTapped(_ sender: UIButton) {
-        let textField = UITextField()
+        var textField = UITextField()
         
         let alert = UIAlertController(title: "New Subtask", message: "", preferredStyle: .alert)
         
@@ -83,6 +86,10 @@ class TaskDetailViewController: UIViewController {
         
         alert.addAction(addAction)
         alert.addAction(cancelAction)
+        alert.addTextField { (field) in
+            textField = field
+            textField.placeholder = "Subtask Name"
+        }
         
         present(alert, animated: true, completion: nil)
     }
@@ -111,3 +118,71 @@ class TaskDetailViewController: UIViewController {
     }
 
 }
+
+extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return subTasksEntity.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = subTaskTableView.dequeueReusableCell(withIdentifier: "SubTaskTableViewCell", for: indexPath) as? SubTaskTableViewCell
+        
+        cell?.subtask = subTasksEntity[indexPath.row]
+        cell?.subTaskTitleLabel?.text = subTasksEntity[indexPath.row].title
+        cell?.datePickerButton?.setTitle(subTasksEntity[indexPath.row].dueDate?.toString(dateFormat: "MM/DD/YYY"), for: .normal)
+        cell?.delegate = self
+        return cell ?? UITableViewCell()    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let action = UIContextualAction(style: .destructive, title: "Delete") {
+            (action, view, completionHandler) in
+        }
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let subtask = self.subTasksEntity[indexPath.row]
+    }
+}
+
+extension TaskDetailViewController: SubTaskTableViewCellDelegate {
+    func selectDate(subTaskEntity: SubTaskEntity) {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .inline
+        datePicker.minimumDate = Date()
+        
+        let alert = UIAlertController(title: "Due Date", message: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: .actionSheet)
+        datePicker.frame = CGRect(x: 0, y: 40, width: alert.view.frame.width, height: 320)
+        alert.view.addSubview(datePicker)
+
+        let selectAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
+            subTaskEntity.dueDate = datePicker.date
+            self.subTasksEntity.append(subTaskEntity)
+            self.saveSubTask()
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alert.addAction(selectAction)
+        alert.addAction(cancelAction)
+
+        present(alert, animated: true)
+    }
+}
+
+extension Date
+{
+    func toString( dateFormat format  : String ) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self as Date)
+    }
+
+}
+
+
+

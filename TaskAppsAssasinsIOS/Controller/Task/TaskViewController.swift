@@ -28,10 +28,10 @@ class TaskViewController: UIViewController {
         super.viewDidLoad()
              
         //TO BE REMOVE - DUMMY DATA
-        tasks.append(Task(title: "Do Grocery", description: "Buy fruits, veggies, and meat", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: false))
-        tasks.append(Task(title: "Visit Parents", description: "Spend sunday with parents", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: true))
-        tasks.append(Task(title: "Play with the cats", description: "Play for 1 hour with the cat", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: false))
-        tasks.append(Task(title: "Visit Bank", description: "Get February rent cheque", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: true))
+        tasks.append(Task(title: "Do Grocery", description: "Buy fruits, veggies, and meat", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: false, subtasks: []))
+        tasks.append(Task(title: "Visit Parents", description: "Spend sunday with parents", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: true, subtasks: []))
+        tasks.append(Task(title: "Play with the cats", description: "Play for 1 hour with the cat", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: false, subtasks: []))
+        tasks.append(Task(title: "Visit Bank", description: "Get February rent cheque", creationDate: NSDate(), dueDate: NSDate(), dateCompleted: NSDate(), pictures: [], audios: [], isComplete: true, subtasks: []))
         
         let cellNib = UINib(nibName: "TaskNibTableViewCell", bundle: Bundle.main)
         taskTableView.register(cellNib, forCellReuseIdentifier: "TaskNibTableViewCell")
