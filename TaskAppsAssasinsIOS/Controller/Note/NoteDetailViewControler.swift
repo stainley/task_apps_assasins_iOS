@@ -8,19 +8,25 @@
 import UIKit
 import CoreData
 
+protocol NoteDetailViewControllerDelegate {
+    func reloadTableview()
+}
+
 class NoteDetailViewController: UIViewController {
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextView!
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var audioView: UIView!
+    @IBOutlet weak var imageView: UIStackView!
     @IBOutlet var catagoryCollection: [UIButton] = []
     
-    var note: Note?
+    var note: NoteEntity?
     var placeholderLabel : UILabel!
-    var categorySelected: String = ""
+    var categorySelected: CategoryEntity?
     var categories: [CategoryEntity] = [CategoryEntity]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var delegate: NoteDetailViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +38,10 @@ class NoteDetailViewController: UIViewController {
             categoryItemButton.setTitleColor(.black, for: .normal)
             categoryItemButton.addTarget(self, action: #selector(categoryItemButtonTapped), for: .touchUpInside)
             
-            if categorySelected == category.name {
+            if categorySelected?.name == category.name {
                 categoryItemButton.backgroundColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
             }
+            
             catagoryCollection.append(categoryItemButton)
             if let stackView = categoryButton.superview as? UIStackView{
                 stackView.addArrangedSubview(categoryItemButton)
@@ -53,7 +60,6 @@ class NoteDetailViewController: UIViewController {
         descriptionTextField.delegate = self
 
         placeholderLabel = UILabel()
-        placeholderLabel.text = "Enter some text for desciption..."
         placeholderLabel.font = .italicSystemFont(ofSize: (descriptionTextField.font?.pointSize)!)
         placeholderLabel.sizeToFit()
         descriptionTextField.addSubview(placeholderLabel)
@@ -61,11 +67,35 @@ class NoteDetailViewController: UIViewController {
         placeholderLabel.textColor = .tertiaryLabel
         placeholderLabel.isHidden = !descriptionTextField.text.isEmpty
         
+        if note == nil {
+            placeholderLabel.text = "Enter some text for desciption..."
+        }
+        
         categoryButton.backgroundColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
         categoryButton.layer.cornerRadius = 6
         categoryButton.contentHorizontalAlignment = .left
-        categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
-
+        categoryButton.setTitle("Category: \(String(describing: categorySelected?.name))", for: .normal)
+        
+        if let note = note {
+            titleTextField.text = note.title
+            descriptionTextField.text = note.noteDescription
+        }
+    }
+    
+    deinit {
+        if note == nil {
+            let newNote = NoteEntity(context: self.context)
+            newNote.title = titleTextField.text ?? ""
+            newNote.noteDescription = descriptionTextField.text ?? ""
+            newNote.category_parent = categorySelected
+            newNote.creationDate = Date()
+        }
+        else {
+            note?.title = titleTextField.text ?? ""
+            note?.noteDescription = descriptionTextField.text ?? ""
+        }
+        self.saveNote()
+        delegate?.reloadTableview()
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {
@@ -90,8 +120,8 @@ class NoteDetailViewController: UIViewController {
             btn.backgroundColor = .none
         }
         sender.backgroundColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
-        categorySelected = sender.titleLabel?.text ?? ""
-        categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
+        //categorySelected = sender.titleLabel?.text ?? ""
+        categoryButton.setTitle("Category: \(categorySelected?.name)", for: .normal)
         categoryButtonTapped(sender!)
     }
     

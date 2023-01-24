@@ -60,7 +60,7 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
 
         cell?.titleLabel?.text = tasks[indexPath.row].getTitle()
         cell?.descriptionLabel?.text = tasks[indexPath.row].getDescription()
-        cell?.creationDateLabel?.text = tasks[indexPath.row].getCreationDate().toString(dateFormat: "MM/DD/YYY")
+        //cell?.creationDateLabel?.text = tasks[indexPath.row].getCreationDate().toString(dateFormat: "MM/DD/YYY")
         print(tasks[indexPath.row].getCreationDate())
         if tasks[indexPath.row].getIsComplete() == true {
             cell?.taskColorIndicatorView?.backgroundColor = .systemGreen

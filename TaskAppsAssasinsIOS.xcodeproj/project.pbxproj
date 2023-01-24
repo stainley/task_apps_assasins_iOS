@@ -20,6 +20,7 @@
 		70B7AE5229769A3E00698260 /* NoteTaskTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */; };
 		70B7AE5429769B4200698260 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7AE5329769B4200698260 /* TaskViewController.swift */; };
 		70CB35C02970585A005612E0 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB35BF2970585A005612E0 /* CategoryCell.swift */; };
+		70E8692329805084003472A6 /* NoteDeailVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E8692229805084003472A6 /* NoteDeailVCDao.swift */; };
 		70F2B1862975302D00239EAC /* NoteNibTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F2B1842975302D00239EAC /* NoteNibTableViewCell.swift */; };
 		70F2B1872975302D00239EAC /* NoteNibTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70F2B1852975302D00239EAC /* NoteNibTableViewCell.xib */; };
 		728FFBC629761AC0006748FD /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728FFBC529761AC0006748FD /* Task.swift */; };
@@ -55,6 +56,7 @@
 		70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTaskTabBarController.swift; sourceTree = "<group>"; };
 		70B7AE5329769B4200698260 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		70CB35BF2970585A005612E0 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		70E8692229805084003472A6 /* NoteDeailVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDeailVCDao.swift; sourceTree = "<group>"; };
 		70F2B1842975302D00239EAC /* NoteNibTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteNibTableViewCell.swift; sourceTree = "<group>"; };
 		70F2B1852975302D00239EAC /* NoteNibTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NoteNibTableViewCell.xib; path = ../NoteNibTableViewCell.xib; sourceTree = "<group>"; };
 		728FFBC529761AC0006748FD /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				70B7AE4F297697E100698260 /* NoteViewController.swift */,
 				ADB0D1A1297DB0A800A9AF78 /* NoteSearchController.swift */,
 				F0D06977297DD4A6008D15CD /* NoteVCDao.swift */,
+				70E8692229805084003472A6 /* NoteDeailVCDao.swift */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				ADCDD66B296F752300B30328 /* CategoryViewController.swift in Sources */,
 				ADB0D193297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld in Sources */,
 				ADB0D198297C40FE00A9AF78 /* CategoryVCDao.swift in Sources */,
+				70E8692329805084003472A6 /* NoteDeailVCDao.swift in Sources */,
 				AD7B431A29749C52008D1164 /* CustomImageView.swift in Sources */,
 				ADCDD667296F752300B30328 /* AppDelegate.swift in Sources */,
 				ADCDD669296F752300B30328 /* SceneDelegate.swift in Sources */,

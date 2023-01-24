@@ -13,12 +13,16 @@ class NoteViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var notes = [Note]()
-    var filteredNotes = [Note]()
+    var notes = [NoteEntity]()
+    var filteredNotes = [NoteEntity]()
     var noteReferenceCell: NoteNibTableViewCell!
     
     var passingData: String?
-    var categorySelected: CategoryEntity?
+    var categorySelected: CategoryEntity? {
+        didSet {
+            fetchAllNote()
+        }
+    }
     
     @IBAction func noteFilterButton(_ sender: UIBarButtonItem) {
         let searchController = UISearchController(searchResultsController: nil)
@@ -27,26 +31,18 @@ class NoteViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-      
         
-        super.viewDidLoad()        //TO BE REMOVE - DUMMY DATA
-        notes.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
-        notes.append(Note(title: "2023W CPS 1001", description: "Co-op Preparation and Success", creationDate: NSDate(), pictures: [], audios: []))
-        notes.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
-        notes.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
-        notes.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
-        notes.append(Note(title: "2023W MAD 4114", description: "Advanced iOS Application Development", creationDate: NSDate(), pictures: [], audios: []))
+        super.viewDidLoad()
         
         let cellNib = UINib(nibName: "NoteNibTableViewCell", bundle: Bundle.main)
         noteTableView.register(cellNib, forCellReuseIdentifier: "NoteNibTableViewCell")
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        
-        filteredNotes = notes
     }
     
     @IBAction func addNoteButtonTapped(_ sender: UIBarButtonItem) {
         if let noteDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteDetailViewController") as? NoteDetailViewController {
-            noteDetailViewController.categorySelected = passingData ?? ""
+            noteDetailViewController.categorySelected = categorySelected
+            noteDetailViewController.delegate = self
             self.navigationController?.pushViewController(noteDetailViewController, animated: true)
         }
     }
@@ -63,8 +59,8 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = noteTableView.dequeueReusableCell(withIdentifier: "NoteNibTableViewCell", for: indexPath) as? NoteNibTableViewCell
 
         cell?.titleLabel?.text = filteredNotes[indexPath.row].title
-        cell?.descriptionLabel?.text = filteredNotes[indexPath.row].getDescription()
-        cell?.creationDateLabel?.text = filteredNotes[indexPath.row].getCreationDate().toString(dateFormat: "MM/DD/YYY")
+        cell?.descriptionLabel?.text = filteredNotes[indexPath.row].noteDescription
+        cell?.creationDateLabel?.text = filteredNotes[indexPath.row].creationDate?.toString(dateFormat: "MM/DD/YYY")
         
         return cell ?? UITableViewCell()
     }
@@ -73,7 +69,20 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         
         let action = UIContextualAction(style: .destructive, title: "Delete") {
             (action, view, completionHandler) in
-            print("a")
+            let noteToRemove: NoteEntity?
+            noteToRemove = self.filteredNotes[indexPath.row]
+            
+            self.deleteNote(note: noteToRemove!)
+
+            do {
+                try self.context.save()
+            } catch  {
+                
+            }
+            
+            self.fetchAllNote()
+            //self.filteredNotes = fetchAllNote();
+            //self.noteTableView.reloadData()
         }
         
         return UISwipeActionsConfiguration(actions: [action])
@@ -84,19 +93,16 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let noteDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteDetailViewController") as? NoteDetailViewController {
             noteDetailViewController.note = note
+            noteDetailViewController.delegate = self
             self.navigationController?.pushViewController(noteDetailViewController, animated: true)
         }
     }
 }
 
-extension NSDate
-{
-    func toString( dateFormat format  : String ) -> String
-    {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        return dateFormatter.string(from: self as Date)
+extension NoteViewController: NoteDetailViewControllerDelegate {
+    func reloadTableview() {
+        fetchAllNote()
+        //self.filteredNotes = self.fetchAllNote();
+        //self.noteTableView.reloadData()
     }
-
 }
-
