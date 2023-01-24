@@ -10,14 +10,16 @@ import CoreData
 
 class TaskDetailViewController: UIViewController {
 
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var task: Task?
     var categorySelected: String = ""
     var categories: [CategoryEntity] = [CategoryEntity]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+    var subTasksEntity: [SubTaskEntity] = [SubTaskEntity]()
+
     @IBOutlet weak var completedTaskCounterLabel: UILabel!
     @IBOutlet var catagoryCollection: [UIButton] = []
     @IBOutlet weak var categoryButton: UIButton!
+    @IBOutlet weak var subTaskTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +61,30 @@ class TaskDetailViewController: UIViewController {
                 btn.layoutIfNeeded()
             }
         }
+    }
+    
+    @IBAction func addSubtaskButtonTapped(_ sender: UIButton) {
+        let textField = UITextField()
+        
+        let alert = UIAlertController(title: "New Subtask", message: "", preferredStyle: .alert)
+        
+        let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
+            let subtaskTitle = self.subTasksEntity.map {$0.title?.lowercased()}
+            
+            let newSubTask = SubTaskEntity(context: self.context)
+            newSubTask.title = textField.text!
+            newSubTask.creationDate = Date()
+            newSubTask.dueDate = Date()
+            self.subTasksEntity.append(newSubTask)
+            self.saveSubTask()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        cancelAction.setValue(UIColor.orange, forKey: "titleTextColor")
+        
+        alert.addAction(addAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     @objc func categoryItemButtonTapped(sender: UIButton!) {

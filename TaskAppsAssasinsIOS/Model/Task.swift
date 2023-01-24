@@ -17,8 +17,9 @@ struct Task {
     private var pictures: [UIImage?]
     private var audios: [String?]
     private var isComplete: Bool?
+    private var subTasks: [SubTask?]
     
-    init(title: String, description: String, creationDate: NSDate, dueDate: NSDate, dateCompleted: NSDate, pictures: [UIImage?], audios: [String?], isComplete: Bool) {
+    init(title: String, description: String, creationDate: NSDate, dueDate: NSDate, dateCompleted: NSDate, pictures: [UIImage?], audios: [String?], isComplete: Bool, subtasks: [SubTask?]) {
         self.title = title
         self.description = description
         self.creationDate = creationDate
@@ -27,6 +28,7 @@ struct Task {
         self.pictures = pictures
         self.audios = audios
         self.isComplete = isComplete
+        self.subTasks = subtasks
     }
     
     func getTitle() -> String? {
@@ -61,4 +63,7 @@ struct Task {
         return self.audios
     }
     
+    func getSubTasks() -> [SubTask?] {
+        return self.subTasks
+    }
 }

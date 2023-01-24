@@ -755,7 +755,14 @@
                                 <rect key="frame" x="336.33333333333331" y="358" width="53.666666666666686" height="34.333333333333314"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="plus.app" catalog="system" title=" "/>
+                                <connections>
+                                    <action selector="addSubtaskButtonTapped:" destination="mr2-OP-gsH" eventType="touchUpInside" id="PSO-mg-NX8"/>
+                                </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UvP-wf-hRf">
+                                <rect key="frame" x="20" y="397.33333333333326" width="350" height="412.66666666666674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8eg-Gt-6I4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -767,10 +774,15 @@
                             <constraint firstItem="9z8-yD-XGl" firstAttribute="top" secondItem="cy4-Ud-VkN" secondAttribute="bottom" constant="10" id="PSk-Yb-oYf"/>
                             <constraint firstItem="GdD-dJ-Eef" firstAttribute="top" secondItem="E4X-qX-Ist" secondAttribute="bottom" constant="7.3333333333333712" id="TaO-8k-YZk"/>
                             <constraint firstItem="9z8-yD-XGl" firstAttribute="leading" secondItem="8eg-Gt-6I4" secondAttribute="leading" constant="20" id="UK6-3O-EZL"/>
+                            <constraint firstItem="UvP-wf-hRf" firstAttribute="leading" secondItem="8eg-Gt-6I4" secondAttribute="leading" constant="20" id="hpj-XJ-FAS"/>
                             <constraint firstItem="E4X-qX-Ist" firstAttribute="leading" secondItem="8eg-Gt-6I4" secondAttribute="leading" constant="20" id="kMO-cA-7jk"/>
                             <constraint firstItem="E4X-qX-Ist" firstAttribute="top" secondItem="9z8-yD-XGl" secondAttribute="bottom" constant="20" id="msF-F8-wNh"/>
+                            <constraint firstItem="GdD-dJ-Eef" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8eg-Gt-6I4" secondAttribute="leading" symbolic="YES" id="oTd-tU-r4m"/>
+                            <constraint firstItem="8eg-Gt-6I4" firstAttribute="bottom" secondItem="UvP-wf-hRf" secondAttribute="bottom" id="qD3-uy-cmw"/>
                             <constraint firstItem="E4X-qX-Ist" firstAttribute="trailing" secondItem="8eg-Gt-6I4" secondAttribute="trailing" constant="-20" id="y1r-Vp-L7f"/>
+                            <constraint firstItem="8eg-Gt-6I4" firstAttribute="trailing" secondItem="UvP-wf-hRf" secondAttribute="trailing" constant="20" id="yC2-oa-2h2"/>
                             <constraint firstItem="8eg-Gt-6I4" firstAttribute="trailing" secondItem="GdD-dJ-Eef" secondAttribute="trailing" id="ydP-5h-uUG"/>
+                            <constraint firstItem="UvP-wf-hRf" firstAttribute="top" secondItem="GdD-dJ-Eef" secondAttribute="bottom" constant="5" id="zg2-NG-jgc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rAC-6i-JbE">
@@ -795,6 +807,7 @@
                     <connections>
                         <outlet property="categoryButton" destination="Hfg-W0-vcg" id="ryR-wU-t1l"/>
                         <outlet property="completedTaskCounterLabel" destination="ein-UL-cn9" id="p3m-JU-wfh"/>
+                        <outlet property="subTaskTableView" destination="UvP-wf-hRf" id="pA7-wb-NXN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jKy-Eg-SCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
