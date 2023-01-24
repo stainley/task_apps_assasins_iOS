@@ -20,8 +20,6 @@ class NoteDetailViewController: UIViewController {
     var placeholderLabel : UILabel!
     var categorySelected: String = ""
     var categories: [CategoryEntity] = [CategoryEntity]()
-    
-    // create a context to work with core data
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
@@ -29,7 +27,7 @@ class NoteDetailViewController: UIViewController {
         
         categories  = self.fetchAllCategory()
         for category in categories {
-            var categoryItemButton = UIButton(frame: CGRect(x: 0, y: 0, width: categoryButton.frame.width, height: 40))
+            let categoryItemButton = UIButton(frame: CGRect(x: 0, y: 0, width: categoryButton.frame.width, height: 40))
             categoryItemButton.setTitle("\(category.name ?? "")", for: .normal)
             categoryItemButton.setTitleColor(.black, for: .normal)
             categoryItemButton.addTarget(self, action: #selector(categoryItemButtonTapped), for: .touchUpInside)
@@ -80,6 +78,10 @@ class NoteDetailViewController: UIViewController {
                 btn.layoutIfNeeded()
             }
         }
+    }
+    
+    @IBAction func deleteTapped(_ sender: Any) {
+        print("sdfsdf")
     }
     
     @objc func categoryItemButtonTapped(sender: UIButton!) {

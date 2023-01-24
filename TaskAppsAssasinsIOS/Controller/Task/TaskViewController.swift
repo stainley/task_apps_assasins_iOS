@@ -14,11 +14,9 @@ class TaskViewController: UIViewController {
     var tasks = [Task]()
     var filteredTasks = [Task]()
     var taskReferenceCell: TaskNibTableViewCell!
-    var passingData: String?
     
-    @IBAction func addNewTaskButton(_ sender: UIBarButtonItem) {
-        
-    }
+    var passingData: String?
+    var categorySelected: CategoryEntity?
     
     @IBAction func taskFilterButton(_ sender: UIBarButtonItem) {
         let searchController = UISearchController(searchResultsController: nil)
@@ -40,6 +38,13 @@ class TaskViewController: UIViewController {
         
         filteredTasks = tasks
 
+    }
+    
+    @IBAction func addNewTaskButtonTapped(_ sender: UIBarButtonItem) {
+        if let taskDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "TaskDetailViewController") as? TaskDetailViewController {
+            taskDetailViewController.categorySelected = passingData ?? ""
+            self.navigationController?.pushViewController(taskDetailViewController, animated: true)
+        }
     }
 
 }
