@@ -55,9 +55,6 @@ extension NoteViewController {
         
         do {
             notes = try context.fetch(request)
-            for note in notes {
-                print("PICTURES: \(String(describing: note.pictures?.count)) in Note: \(note.entity)")
-            }
         } catch {
             print("Error loading notes \(error.localizedDescription)")
         }

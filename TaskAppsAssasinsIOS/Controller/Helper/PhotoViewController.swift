@@ -10,7 +10,6 @@ import UIKit
 extension NoteDetailViewController {
     
     func takePhotoOrUpload() {
-    
                 
         let photoSourceRequestController = UIAlertController(title: "", message: "Choose your photo source", preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {(action) in
@@ -38,16 +37,8 @@ extension NoteDetailViewController {
         photoSourceRequestController.addAction(photoLibraryAction)
         
         present(photoSourceRequestController, animated: true)
+        
     }
-       
-    /*
-    func convertDataToImages(imageDataArray: [Data]) -> [UIImage] {
-      var myImagesArray = [UIImage]()
-      imageDataArray.forEach { (imageData) in
-          myImagesArray.append(UIImage(data: selectedImage))
-      }
-      return myImagesArray
-    } */
     
     func convertImageToData(myImagesArray: [UIImage]) -> [Data] {
       var myImagesDataArray = [Data]()
@@ -70,11 +61,12 @@ extension NoteDetailViewController: UIImagePickerControllerDelegate {
         
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             // Add image
-            photoImageView.image = selectedImage
-            photoImageView.contentMode = .scaleAspectFit
-            photoImageView.clipsToBounds = true
+            //photoImageView.image = selectedImage
+            //photoImageView.contentMode = .scaleAspectFit
+            //photoImageView.clipsToBounds = true
+            
             pictures.append(selectedImage)
-            print(selectedImage)
+            pictureCollectionView.reloadData()
         }
         dismiss(animated: true, completion: nil)
 

@@ -32,6 +32,9 @@
 		ADCDD670296F752400B30328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADCDD66F296F752400B30328 /* Assets.xcassets */; };
 		ADCDD673296F752400B30328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADCDD671296F752400B30328 /* LaunchScreen.storyboard */; };
 		ADCDD67C2970D2A400B30328 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD67B2970D2A400B30328 /* Note.swift */; };
+		ADEC1DBB2980218F00471AF9 /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DB92980218F00471AF9 /* PictureCollectionViewCell.swift */; };
+		ADEC1DBC2980218F00471AF9 /* PictureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEC1DBA2980218F00471AF9 /* PictureCollectionViewCell.xib */; };
+		ADEC1DBE298023D400471AF9 /* PictureViewCustomCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DBD298023D400471AF9 /* PictureViewCustomCollection.swift */; };
 		ADF2F2FC297DF24700B78D81 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */; };
 		F0D06978297DD4A6008D15CD /* NoteVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D06977297DD4A6008D15CD /* NoteVCDao.swift */; };
 		F0D3026D29720940005DC42D /* NoteDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */; };
@@ -65,6 +68,9 @@
 		ADCDD672296F752400B30328 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADCDD674296F752400B30328 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADCDD67B2970D2A400B30328 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		ADEC1DB92980218F00471AF9 /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
+		ADEC1DBA2980218F00471AF9 /* PictureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureCollectionViewCell.xib; sourceTree = "<group>"; };
+		ADEC1DBD298023D400471AF9 /* PictureViewCustomCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewCustomCollection.swift; sourceTree = "<group>"; };
 		ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		F0D06977297DD4A6008D15CD /* NoteVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteVCDao.swift; sourceTree = "<group>"; };
 		F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailViewControler.swift; sourceTree = "<group>"; };
@@ -99,6 +105,8 @@
 				AD7B431729747A1C008D1164 /* CategoryCustomView.swift */,
 				AD7B431929749C52008D1164 /* CustomImageView.swift */,
 				70F2B1852975302D00239EAC /* NoteNibTableViewCell.xib */,
+				ADEC1DB92980218F00471AF9 /* PictureCollectionViewCell.swift */,
+				ADEC1DBA2980218F00471AF9 /* PictureCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -144,6 +152,7 @@
 				70B7AE4F297697E100698260 /* NoteViewController.swift */,
 				ADB0D1A1297DB0A800A9AF78 /* NoteSearchController.swift */,
 				F0D06977297DD4A6008D15CD /* NoteVCDao.swift */,
+				ADEC1DBD298023D400471AF9 /* PictureViewCustomCollection.swift */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -252,6 +261,7 @@
 				ADCDD670296F752400B30328 /* Assets.xcassets in Resources */,
 				ADCDD66E296F752300B30328 /* Main.storyboard in Resources */,
 				70F2B1872975302D00239EAC /* NoteNibTableViewCell.xib in Resources */,
+				ADEC1DBC2980218F00471AF9 /* PictureCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +281,7 @@
 				ADCDD66B296F752300B30328 /* CategoryViewController.swift in Sources */,
 				ADB0D193297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld in Sources */,
 				ADB0D198297C40FE00A9AF78 /* CategoryVCDao.swift in Sources */,
+				ADEC1DBE298023D400471AF9 /* PictureViewCustomCollection.swift in Sources */,
 				AD7B431A29749C52008D1164 /* CustomImageView.swift in Sources */,
 				ADCDD667296F752300B30328 /* AppDelegate.swift in Sources */,
 				ADCDD669296F752300B30328 /* SceneDelegate.swift in Sources */,
@@ -283,6 +294,7 @@
 				ADCDD67C2970D2A400B30328 /* Note.swift in Sources */,
 				F0D06978297DD4A6008D15CD /* NoteVCDao.swift in Sources */,
 				AD7B431829747A1C008D1164 /* CategoryCustomView.swift in Sources */,
+				ADEC1DBB2980218F00471AF9 /* PictureCollectionViewCell.swift in Sources */,
 				728FFBC629761AC0006748FD /* Task.swift in Sources */,
 				70F2B1862975302D00239EAC /* NoteNibTableViewCell.swift in Sources */,
 			);

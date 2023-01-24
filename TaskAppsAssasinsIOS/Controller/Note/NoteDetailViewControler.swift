@@ -10,15 +10,14 @@ import AVFoundation
 
 class NoteDetailViewController: UIViewController {
     
-    var recordingSession: AVAudioSession!
-    var audioRecorder: AVAudioRecorder!
-    
-    weak var recordButton: UIButton!
-    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
+    var recordingSession: AVAudioSession!
+    var audioRecorder: AVAudioRecorder!    
+    weak var recordButton: UIButton!
+  
     
-    @IBOutlet weak var noteTexxtField: UITextView!
+    @IBOutlet weak var noteTextField: UITextView!
     
     @IBAction func takePhotoButton(_ sender: UIBarButtonItem) {
         takePhotoOrUpload()
@@ -28,8 +27,8 @@ class NoteDetailViewController: UIViewController {
     @IBOutlet weak var catagory: UIButton!
     
     @IBOutlet var catagoryCollection: [UIButton]!
- 
-    @IBOutlet weak var photoImageView: UIImageView!
+     
+    @IBOutlet weak var pictureCollectionView: UICollectionView!
     
     weak var delegate: NoteViewController?
     
@@ -43,25 +42,33 @@ class NoteDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pictureCollectionView.delegate = self
+        pictureCollectionView.dataSource = self
+        
+        let nib = UINib(nibName: "PictureCollectionViewCell", bundle: nil)
+        pictureCollectionView.register(nib, forCellWithReuseIdentifier: "pictureCell")
+                
         /*
         catagoryCollection.forEach{ (btn) in
             btn.isHidden = true
             btn.alpha = 0
         }*/
         
+        if pictures.count > 0 {
+            //photoImageView.image =  pictures[0]
+            pictureCollectionView.reloadData()
+        }
+        
         guard let note = note else {
             return
         }
         
         titleTextField.text = note.title
-        noteTexxtField.text = note.noteDescription
-       
-        if pictures.count > 0 {
-            photoImageView.image =  pictures[0]
-
-        }
-        
+        noteTextField.text = note.noteDescription
+  
     }
+    
     
     @IBAction func CatagaryDropDown(_ sender: Any) {
         catagoryCollection.forEach{ (btn) in
@@ -77,14 +84,21 @@ class NoteDetailViewController: UIViewController {
         
     }
      
+    // Send to preview view and persist into Core Data
     override func viewWillDisappear(_ animated: Bool) {
        
-        var note = Note(title: titleTextField.text ?? "", description: noteTexxtField.text, audios: audios)
+        var note = Note(title: titleTextField.text ?? "", description: noteTextField.text, audios: audios)
         
-        if let imageData = photoImageView.image?.pngData() {
-            note.image = imageData
+        //if let imageData = photoImageView.image?.pngData() {
+            //note.image = imageData
+            //note.pictures.append(imageData)
+        //}
+        
+        if pictures.count > 0 {
+            for imageData in pictures {
+                note.pictures.append(imageData.pngData()!)
+            }
         }
-        
         delegate?.saveNote(note: note)
     }
 }

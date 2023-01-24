@@ -50,16 +50,15 @@ class NoteViewController: UIViewController {
         newNote.noteDescription = note.noteDescription!
         newNote.creationDate = Date()
         
-        let pictures = PictureEntity(context: context)
         
-        pictures.picture = note.image
-        pictures.latitude = -71.666999
-        pictures.longitude = -66.4443344
-        pictures.note_parent = newNote
-        
+        for picture in note.pictures {
+            let pictureEntity = PictureEntity(context: context)
+
+            pictureEntity.picture = picture
+            pictureEntity.note_parent = newNote
+            newNote.addToPictures(pictureEntity)
+        }
         newNote.category_parent = selectedCategory
-        newNote.addToPictures(pictures)
-     
         saveNote()
         loadNotesByCategory()
         noteTableView.reloadData()
@@ -76,13 +75,12 @@ class NoteViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()        //TO BE REMOVE - DUMMY DATA
+        super.viewDidLoad()
         title = selectedCategory?.title
         
         let cellNib = UINib(nibName: "NoteNibTableViewCell", bundle: Bundle.main)
         noteTableView.register(cellNib, forCellReuseIdentifier: "NoteNibTableViewCell")
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        //notes = fetchAllNotes()
         filteredNotes = notes
        
     }
@@ -137,7 +135,6 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
             for pic in picturesEntity {
                 noteDetailViewController.pictures.append(UIImage(data: pic.picture!)!)
             }
-            // =
             self.navigationController?.pushViewController(noteDetailViewController, animated: true)
         }
     }

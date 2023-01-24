@@ -13,9 +13,10 @@ struct Note {
     var title: String
     var noteDescription: String?
     var image: Data!
+    var pictures: [Data] = []
     var audios: [AVAudioRecorder]
-    var latitude: Double?
-    var longitude: Double?
+    private (set) var latitude: Double?
+    private (set) var longitude: Double?
     
     
     init(title: String, description: String,  audios: [AVAudioRecorder]) {
