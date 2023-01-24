@@ -37,6 +37,8 @@
 		ADEC1DBE298023D400471AF9 /* PictureViewCustomCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DBD298023D400471AF9 /* PictureViewCustomCollection.swift */; };
 		ADEC1DC1298040E700471AF9 /* MapTaskNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC0298040E700471AF9 /* MapTaskNoteViewController.swift */; };
 		ADEC1DC3298041B000471AF9 /* MyLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC2298041B000471AF9 /* MyLocationViewController.swift */; };
+		ADEC1DC529804D2400471AF9 /* NoteAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC429804D2400471AF9 /* NoteAnnotation.swift */; };
+		ADEC1DC729804D3100471AF9 /* TaskAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC629804D3100471AF9 /* TaskAnnotation.swift */; };
 		ADF2F2FC297DF24700B78D81 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */; };
 		F0D06978297DD4A6008D15CD /* NoteVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D06977297DD4A6008D15CD /* NoteVCDao.swift */; };
 		F0D3026D29720940005DC42D /* NoteDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */; };
@@ -75,6 +77,8 @@
 		ADEC1DBD298023D400471AF9 /* PictureViewCustomCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewCustomCollection.swift; sourceTree = "<group>"; };
 		ADEC1DC0298040E700471AF9 /* MapTaskNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTaskNoteViewController.swift; sourceTree = "<group>"; };
 		ADEC1DC2298041B000471AF9 /* MyLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationViewController.swift; sourceTree = "<group>"; };
+		ADEC1DC429804D2400471AF9 /* NoteAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAnnotation.swift; sourceTree = "<group>"; };
+		ADEC1DC629804D3100471AF9 /* TaskAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAnnotation.swift; sourceTree = "<group>"; };
 		ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		F0D06977297DD4A6008D15CD /* NoteVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteVCDao.swift; sourceTree = "<group>"; };
 		F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailViewControler.swift; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 			isa = PBXGroup;
 			children = (
 				ADEC1DC0298040E700471AF9 /* MapTaskNoteViewController.swift */,
+				ADEC1DC429804D2400471AF9 /* NoteAnnotation.swift */,
+				ADEC1DC629804D3100471AF9 /* TaskAnnotation.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -296,10 +302,12 @@
 				ADB0D193297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld in Sources */,
 				ADB0D198297C40FE00A9AF78 /* CategoryVCDao.swift in Sources */,
 				ADEC1DBE298023D400471AF9 /* PictureViewCustomCollection.swift in Sources */,
+				ADEC1DC529804D2400471AF9 /* NoteAnnotation.swift in Sources */,
 				ADEC1DC1298040E700471AF9 /* MapTaskNoteViewController.swift in Sources */,
 				AD7B431A29749C52008D1164 /* CustomImageView.swift in Sources */,
 				ADCDD667296F752300B30328 /* AppDelegate.swift in Sources */,
 				ADCDD669296F752300B30328 /* SceneDelegate.swift in Sources */,
+				ADEC1DC729804D3100471AF9 /* TaskAnnotation.swift in Sources */,
 				70CB35C02970585A005612E0 /* CategoryCell.swift in Sources */,
 				70B7AE5429769B4200698260 /* TaskViewController.swift in Sources */,
 				F0D3026D29720940005DC42D /* NoteDetailViewControler.swift in Sources */,

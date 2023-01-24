@@ -36,11 +36,40 @@ class MapTaskNoteViewController: UIViewController {
         let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let region = MKCoordinateRegion(center: location, span: span)
         
+        let noteAnnotation = NoteAnnotation(coordinate: location)
+        noteAnnotation.title = "Note"
+        map.addAnnotation(noteAnnotation)
+        
         map.setRegion(region, animated: true)
+        
     }
 }
 
-
 extension MapTaskNoteViewController: MKMapViewDelegate {
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKMarkerAnnotationView {
+            return nil
+        }
+                
+        var annotationView: MKAnnotationView?
+        if let annotation = annotation as? NoteAnnotation {
+            annotationView = setupCustomAnnotationView(for: annotation, on: map)
+        }
+
+        return annotationView
+    }
+    
+    private func setupCustomAnnotationView(for annotation: NoteAnnotation, on mapView: MKMapView) -> MKAnnotationView {
+
+        let flagAnnotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "custom")
+        //flagAnnotationView.glyphImage = UIImage(named: "notes")
+        flagAnnotationView.canShowCallout = true
+        flagAnnotationView.markerTintColor=UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0,alpha:0.5).withAlphaComponent(0)
+        // Provide the left image icon for the annotation.
+        flagAnnotationView.image = UIImage(named: "notes")
+        flagAnnotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        
+        return flagAnnotationView
+    }
 }
