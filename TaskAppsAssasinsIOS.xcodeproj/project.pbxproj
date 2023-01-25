@@ -39,6 +39,9 @@
 		ADEC1DC3298041B000471AF9 /* MyLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC2298041B000471AF9 /* MyLocationViewController.swift */; };
 		ADEC1DC529804D2400471AF9 /* NoteAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC429804D2400471AF9 /* NoteAnnotation.swift */; };
 		ADEC1DC729804D3100471AF9 /* TaskAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC629804D3100471AF9 /* TaskAnnotation.swift */; };
+		ADEC1DC929807CD800471AF9 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC829807CD800471AF9 /* AudioViewController.swift */; };
+		ADEC1DD02980876600471AF9 /* AudioCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DCE2980876600471AF9 /* AudioCustomTableViewCell.swift */; };
+		ADEC1DD12980876600471AF9 /* AudioCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEC1DCF2980876600471AF9 /* AudioCustomTableViewCell.xib */; };
 		ADF2F2FC297DF24700B78D81 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */; };
 		F0D06978297DD4A6008D15CD /* NoteVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D06977297DD4A6008D15CD /* NoteVCDao.swift */; };
 		F0D3026D29720940005DC42D /* NoteDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */; };
@@ -79,6 +82,9 @@
 		ADEC1DC2298041B000471AF9 /* MyLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationViewController.swift; sourceTree = "<group>"; };
 		ADEC1DC429804D2400471AF9 /* NoteAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAnnotation.swift; sourceTree = "<group>"; };
 		ADEC1DC629804D3100471AF9 /* TaskAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAnnotation.swift; sourceTree = "<group>"; };
+		ADEC1DC829807CD800471AF9 /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		ADEC1DCE2980876600471AF9 /* AudioCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCustomTableViewCell.swift; sourceTree = "<group>"; };
+		ADEC1DCF2980876600471AF9 /* AudioCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioCustomTableViewCell.xib; sourceTree = "<group>"; };
 		ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		F0D06977297DD4A6008D15CD /* NoteVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteVCDao.swift; sourceTree = "<group>"; };
 		F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailViewControler.swift; sourceTree = "<group>"; };
@@ -115,6 +121,8 @@
 				70F2B1852975302D00239EAC /* NoteNibTableViewCell.xib */,
 				ADEC1DB92980218F00471AF9 /* PictureCollectionViewCell.swift */,
 				ADEC1DBA2980218F00471AF9 /* PictureCollectionViewCell.xib */,
+				ADEC1DCE2980876600471AF9 /* AudioCustomTableViewCell.swift */,
+				ADEC1DCF2980876600471AF9 /* AudioCustomTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,6 +220,7 @@
 		ADF2F2FA297DF22200B78D81 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				ADEC1DC829807CD800471AF9 /* AudioViewController.swift */,
 				ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */,
 				ADEC1DC2298041B000471AF9 /* MyLocationViewController.swift */,
 			);
@@ -280,6 +289,7 @@
 				ADCDD673296F752400B30328 /* LaunchScreen.storyboard in Resources */,
 				ADCDD670296F752400B30328 /* Assets.xcassets in Resources */,
 				ADCDD66E296F752300B30328 /* Main.storyboard in Resources */,
+				ADEC1DD12980876600471AF9 /* AudioCustomTableViewCell.xib in Resources */,
 				70F2B1872975302D00239EAC /* NoteNibTableViewCell.xib in Resources */,
 				ADEC1DBC2980218F00471AF9 /* PictureCollectionViewCell.xib in Resources */,
 			);
@@ -317,10 +327,12 @@
 				7005E73E2976A0C000410B83 /* TaskDetailViewController.swift in Sources */,
 				ADCDD67C2970D2A400B30328 /* Note.swift in Sources */,
 				F0D06978297DD4A6008D15CD /* NoteVCDao.swift in Sources */,
+				ADEC1DD02980876600471AF9 /* AudioCustomTableViewCell.swift in Sources */,
 				AD7B431829747A1C008D1164 /* CategoryCustomView.swift in Sources */,
 				ADEC1DBB2980218F00471AF9 /* PictureCollectionViewCell.swift in Sources */,
 				728FFBC629761AC0006748FD /* Task.swift in Sources */,
 				70F2B1862975302D00239EAC /* NoteNibTableViewCell.swift in Sources */,
+				ADEC1DC929807CD800471AF9 /* AudioViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,7 +487,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -504,7 +516,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

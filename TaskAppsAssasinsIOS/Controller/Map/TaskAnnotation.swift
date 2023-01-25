@@ -8,3 +8,15 @@
 import Foundation
 import MapKit
 
+class TaskAnnotation: NSObject, MKAnnotation {
+    
+    var title: String?
+    var coordinate: CLLocationCoordinate2D
+    var image: UIImage?
+    
+    init(title: String? = nil, coordinate: CLLocationCoordinate2D, image: UIImage? = nil) {
+        self.title = title
+        self.coordinate = coordinate
+        self.image = image
+    }
+}

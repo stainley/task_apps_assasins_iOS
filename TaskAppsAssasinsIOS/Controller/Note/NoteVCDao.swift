@@ -54,11 +54,10 @@ extension NoteViewController {
         }
         
         do {
-            notes = try context.fetch(request)
+            return try context.fetch(request)
         } catch {
             print("Error loading notes \(error.localizedDescription)")
         }
-        // noteTableView.reloadData()
         return Array<NoteEntity>()
     }
 }

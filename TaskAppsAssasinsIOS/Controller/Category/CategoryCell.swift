@@ -10,19 +10,16 @@ import UIKit
 class CategoryCell: UICollectionViewCell {
     
     @IBOutlet weak var categoryLabel: UILabel!
+    
     @IBOutlet weak var deleteCategoryButton: UIButton! {
         didSet {
-            self.deleteCategoryButton.isHidden = true
-            self.deleteCategoryButton.isEnabled = false
+            // TODO: Aswin - Change toggle delete button icon
+            deleteCategoryButton.isEnabled.toggle()
+            deleteCategoryButton.isHidden.toggle()
         }
     }
      
     override class func awakeFromNib() {
-       
-    }
-    
-    
-    func showDeleteCategoryButton() {
        
     }
 }

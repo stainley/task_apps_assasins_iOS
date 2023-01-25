@@ -11,14 +11,29 @@ import CoreLocation
 
 class NoteDetailViewController: UIViewController {
     
+    
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var catagory: UIButton!
+    @IBOutlet var catagoryCollection: [UIButton]!
+    @IBOutlet weak var pictureCollectionView: UICollectionView!
+    @IBOutlet weak var recordAudioButton: UIBarButtonItem!
+    @IBOutlet weak var noteTextField: UITextView!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    weak var delegate: NoteViewController?
 
     var recordingSession: AVAudioSession!
-    var audioRecorder: AVAudioRecorder!    
-    weak var recordButton: UIButton!
-  
+    var audioRecorder: AVAudioRecorder!
     
-    @IBOutlet weak var noteTextField: UITextView!
+    var note: NoteEntity?
+    var pictureEntity: PictureEntity?
+    
+    var imageNote: UIImage?
+    var pictures: [UIImage] = []
+    var audios: [AVAudioRecorder] = []
+    
+    var locationManager: CLLocationManager = CLLocationManager()
+    var coordinate: CLLocationCoordinate2D?
     
     @IBAction func takePhotoButton(_ sender: UIBarButtonItem) {
         takePhotoOrUpload()
@@ -32,25 +47,12 @@ class NoteDetailViewController: UIViewController {
         
     }
     
-    @IBOutlet weak var titleTextField: UITextField!
+    @IBAction func recordAudioButton(_ sender: UIBarButtonItem) {
+        
+    }
+
     
-    @IBOutlet weak var catagory: UIButton!
-    
-    @IBOutlet var catagoryCollection: [UIButton]!
-     
-    @IBOutlet weak var pictureCollectionView: UICollectionView!
-    
-    weak var delegate: NoteViewController?
-    
-    var note: NoteEntity?
-    var pictureEntity: PictureEntity?
-    
-    var imageNote: UIImage?
-    var pictures: [UIImage] = []
-    var audios: [AVAudioRecorder] = []
-    
-    var locationManager: CLLocationManager = CLLocationManager()
-    var coordinate: CLLocationCoordinate2D?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

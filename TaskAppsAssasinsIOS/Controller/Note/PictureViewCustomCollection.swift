@@ -8,11 +8,8 @@
 import Foundation
 import UIKit
 
-extension NoteDetailViewController: UICollectionViewDelegate {
-        
-}
 
-extension NoteDetailViewController: UICollectionViewDataSource {
+extension NoteDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -28,6 +25,7 @@ extension NoteDetailViewController: UICollectionViewDataSource {
         return pictureCell
     }
     
+    // TODO: Remove picture (Aswin)
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }

@@ -24,7 +24,7 @@ class NoteViewController: UIViewController {
     
     var selectedCategory: CategoryEntity? {
         didSet {
-            loadNotesByCategory()
+            notes = loadNotesByCategory()
         }
     }
     
@@ -71,7 +71,8 @@ class NoteViewController: UIViewController {
         
         newNote.category_parent = selectedCategory
         saveNote()
-        loadNotesByCategory()
+        notes = loadNotesByCategory()
+        filteredNotes = notes
         noteTableView.reloadData()
     }
     
@@ -91,6 +92,7 @@ class NoteViewController: UIViewController {
         
         let cellNib = UINib(nibName: "NoteNibTableViewCell", bundle: Bundle.main)
         noteTableView.register(cellNib, forCellReuseIdentifier: "NoteNibTableViewCell")
+        
         self.navigationController?.navigationBar.prefersLargeTitles = false
         filteredNotes = notes
        
@@ -104,16 +106,17 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = noteTableView.dequeueReusableCell(withIdentifier: "NoteNibTableViewCell", for: indexPath) as? NoteNibTableViewCell
+        let cell = noteTableView.dequeueReusableCell(withIdentifier: "NoteNibTableViewCell", for: indexPath) as! NoteNibTableViewCell
 
-        cell?.titleLabel?.text = filteredNotes[indexPath.row].title
-        cell?.descriptionLabel?.text = filteredNotes[indexPath.row].noteDescription
+        cell.titleLabel?.text = filteredNotes[indexPath.row].title
+        cell.descriptionLabel?.text = filteredNotes[indexPath.row].noteDescription
+        
         
         if let creation = filteredNotes[indexPath.row].creationDate {
-            cell?.creationDateLabel?.text = "\(creation)"
+            cell.creationDateLabel?.text = "\(creation)"
         }
         
-        return cell ?? UITableViewCell()
+        return cell
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -123,7 +126,7 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
             self.deleteNote(noteEntity: self.filteredNotes[indexPath.row])
             self.saveNote()
 
-            self.loadNotesByCategory()
+            //self.loadNotesByCategory()
             self.noteTableView.reloadData()
         }
         

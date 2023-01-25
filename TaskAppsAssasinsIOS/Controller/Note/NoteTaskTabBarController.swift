@@ -10,6 +10,7 @@ import UIKit
 class NoteTaskTabBarController: UITabBarController {
 
     var categorySelected: CategoryEntity!
+    var delegateCategory: CategoryViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,12 @@ class NoteTaskTabBarController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
        
+    }
+    
+    // TODO: Aswin - Change toggle delete button icon
+    override func viewWillDisappear(_ animated: Bool) {
+        delegateCategory?.categoryCell?.deleteCategoryButton.isHidden = true
+        delegateCategory?.categoryCell?.deleteCategoryButton.isEnabled = false
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

@@ -20,4 +20,3 @@ class NoteAnnotation: NSObject, MKAnnotation {
         self.image = image
     }
 }
-
