@@ -9,7 +9,7 @@ import UIKit
 
 struct Task {
     
-    var title: String?
+    let title: String
     var description: String?
     var dueDate: NSDate?
     var dateCompleted: NSDate?
@@ -22,16 +22,14 @@ struct Task {
     private (set) var longitude: Double?
     
     
-    init(title: String? = nil, description: String? = nil, isComplete: Bool = false) {
-        self.title = title
+    init(title: String, description: String? = nil, isComplete: Bool = false) {
         self.description = description
         self.isComplete = isComplete
-        
+        self.title = title
     }
     
     mutating func setCoordinate(latitude: Double?, longitude: Double?) {
         self.latitude = latitude
         self.longitude = longitude
     }
-    
 }

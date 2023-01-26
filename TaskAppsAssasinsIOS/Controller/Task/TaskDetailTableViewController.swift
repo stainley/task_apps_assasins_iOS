@@ -14,13 +14,14 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = subTaskTableView.dequeueReusableCell(withIdentifier: "SubTaskTableViewCell", for: indexPath) as? SubTaskTableViewCell
+        let cell = subTaskTableView.dequeueReusableCell(withIdentifier: "subTaskTableViewCell", for: indexPath) as! SubTaskTableViewCell
         
-        cell?.subtask = subTasksEntity[indexPath.row]
-        cell?.subTaskTitleLabel?.text = subTasksEntity[indexPath.row].title
-        cell?.datePickerButton?.setTitle(subTasksEntity[indexPath.row].dueDate?.toString(dateFormat: "MM/DD/YYY"), for: .normal)
-        cell?.delegate = self
-        return cell ?? UITableViewCell()    }
+        cell.subtask = subTasksEntity[indexPath.row]
+        cell.subTaskTitleLabel?.text = subTasksEntity[indexPath.row].title
+        cell.datePickerButton?.setTitle(subTasksEntity[indexPath.row].dueDate?.toString(dateFormat: "MM/DD/YYY"), for: .normal)
+        //cell?.delegate = self
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -38,6 +39,7 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+/*
 extension TaskDetailViewController: SubTaskTableViewCellDelegate {
     func selectDate(subTaskEntity: SubTaskEntity) {
         let datePicker = UIDatePicker()
@@ -66,3 +68,4 @@ extension TaskDetailViewController: SubTaskTableViewCellDelegate {
         present(alert, animated: true)
     }
 }
+*/

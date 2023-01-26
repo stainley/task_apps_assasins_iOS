@@ -171,7 +171,7 @@
                                                 <rightBarButtonItems>
                                                     <barButtonItem systemItem="add" id="zoI-gH-edf">
                                                         <connections>
-                                                            <segue destination="6vy-jQ-Hgf" kind="show" id="rKh-J4-ZhI"/>
+                                                            <segue destination="6vy-jQ-Hgf" kind="show" identifier="taskDetailStoryboard" id="rKh-J4-ZhI"/>
                                                         </connections>
                                                     </barButtonItem>
                                                     <barButtonItem systemItem="search" id="MWk-mc-pyy">

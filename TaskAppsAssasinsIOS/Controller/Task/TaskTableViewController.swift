@@ -11,13 +11,14 @@ import UIKit
 extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(filteredTasks.count)
         return filteredTasks.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = taskTableView.dequeueReusableCell(withIdentifier: "taskViewCell", for: indexPath) as! TaskNibTableViewCell
 
-        print(filteredTasks[indexPath.row].title!)
+        //print(filteredTasks[indexPath.row].title!)
         
         cell.titleLabel.text = filteredTasks[indexPath.row].title
         cell.creationDateLabel.text = "\(filteredTasks[indexPath.row].creationDate!)"
@@ -43,7 +44,8 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
         
         let action = UIContextualAction(style: .destructive, title: "Delete") {
             (action, view, completionHandler) in
-            print("a")
+            // TODO: implement functionality t
+
         }
         
         return UISwipeActionsConfiguration(actions: [action])
@@ -52,9 +54,13 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let task = self.filteredTasks[indexPath.row]
         
-        if let taskDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "TaskDetailViewController") as? TaskDetailViewController {
+        if let taskDetailViewController = self.storyboard!.instantiateViewController(withIdentifier: "taskDetailStoryboardID") as? TaskDetailViewController {
+            taskDetailViewController.delegate = self
             taskDetailViewController.task = task
+            
+            //self.storyboard?.instantiateViewController(withIdentifier: "taskDetailStoryboardID")
             self.navigationController?.pushViewController(taskDetailViewController, animated: true)
+            //self.show(taskDetailViewController, sender: self)
         }
     }
 }

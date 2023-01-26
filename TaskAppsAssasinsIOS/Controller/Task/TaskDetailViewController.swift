@@ -13,6 +13,7 @@ class TaskDetailViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate: TaskViewController?
     var task: TaskEntity?
+    
     var categorySelected: String = ""
     var categories: [CategoryEntity] = [CategoryEntity]()
     var subTasksEntity: [SubTaskEntity] = [SubTaskEntity]()
@@ -21,27 +22,29 @@ class TaskDetailViewController: UIViewController {
     @IBOutlet var catagoryCollection: [UIButton] = []
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var subTaskTableView: UITableView!
+    
     @IBOutlet weak var titleTaskTxt: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /*
         //categories  = self.fetchAllCategory()
         for category in categories {
             //let categoryItemButton = UIButton(frame: CGRect(x: 0, y: 0, width: categoryButton.frame.width, height: 40))
             //categoryItemButton.setTitle("\(category.name ?? "")", for: .normal)
             //categoryItemButton.setTitleColor(.black, for: .normal)
             //categoryItemButton.addTarget(self, action: #selector(categoryItemButtonTapped), for: .touchUpInside)
-            /*
+           
             if categorySelected == category.name {
                 categoryItemButton.backgroundColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
             }
             catagoryCollection.append(categoryItemButton)
             if let stackView = categoryButton.superview as? UIStackView{
                 stackView.addArrangedSubview(categoryItemButton)
-            }*/
+            }
         }
-        
+             */
         /*
         catagoryCollection.forEach{ (btn) in
             btn.isHidden = true
@@ -53,8 +56,21 @@ class TaskDetailViewController: UIViewController {
         categoryButton.contentHorizontalAlignment = .left
         categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
         */
+        
+      
         let subTaskTableViewCell = UINib(nibName: "SubTaskTableViewCell", bundle: nil)
-        subTaskTableView.register(subTaskTableViewCell, forCellReuseIdentifier: "SubTaskTableViewCell")
+        self.subTaskTableView.register(subTaskTableViewCell, forCellReuseIdentifier: "subTaskTableViewCell")
+        
+        subTaskTableView.dataSource = self
+        subTaskTableView.delegate = self
+        
+        print(subTaskTableView!)
+       print("pass this point")
+        
+        guard let title = task?.title else {
+            return
+        }
+        titleTaskTxt.text = title
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {
@@ -70,13 +86,11 @@ class TaskDetailViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        var task = Task()
+        var isUpdating = false
         
-        if let title = titleTaskTxt.text {
-            task.title = title
-        }
+        var newTask = Task(title: titleTaskTxt.text ?? "")
         
-        self.delegate?.saveDBTask(task: task)
+        self.delegate?.saveDBTask(task: newTask, oldTaskEntity: task)
     }
   
     

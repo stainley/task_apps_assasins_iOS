@@ -47,43 +47,8 @@ class TaskViewController: UIViewController {
         taskTableView.reloadData()
     }
     
-    // TODO: Elvin
-    func saveDBTask(task: Task) {
-        let newTask = TaskEntity(context: context)
-        newTask.title = task.title
-        newTask.taskDescription = task.description
-        newTask.creationDate = Date()
-        
-        // Save image to the Database
-        for picture in task.pictures {
-            let pictureEntity = PictureEntity(context: context)
-
-            pictureEntity.picture = picture
-            pictureEntity.task_parent = newTask
-            newTask.addToPictures(pictureEntity)
-        }
-        
-        // Save audio into the Database
-        for audio in task.audios {
-            let audioEntity = AudioEntity(context: context)
-            audioEntity.audioPath = audio
-            audioEntity.task_parent = newTask
-            newTask.addToAudios(audioEntity)
-        }
-        
-        
-        // Save coordinate to the database
-        if let latitude = task.latitude, let longitude = task.longitude {
-            newTask.longitude = latitude
-            newTask.longitude = longitude
-        }
-        
-        newTask.category_parent = selectedCategory
-        saveTask()
-        tasks = loadTasksByCategory()
-        filteredTasks = tasks
-        taskTableView.reloadData()
-    }
+  
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.

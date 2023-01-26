@@ -105,4 +105,65 @@ extension TaskViewController {
         
         return Array<CategoryEntity>()
     }
+    
+    // TODO: Elvin
+    func saveDBTask(task: Task, oldTaskEntity: TaskEntity? = nil) {
+        
+        if let oldTaskEntity = oldTaskEntity {
+            // UPDATE NO SAVE
+            updateTask(updatedTask: task, oldTask: oldTaskEntity)
+            return
+        }
+        
+        let newTask = TaskEntity(context: context)
+        if task.title == "" {
+            return
+        }
+        newTask.title = task.title
+        newTask.taskDescription = task.description
+        newTask.creationDate = Date()
+        
+        // Save image to the Database
+        for picture in task.pictures {
+            let pictureEntity = PictureEntity(context: context)
+
+            pictureEntity.picture = picture
+            pictureEntity.task_parent = newTask
+            newTask.addToPictures(pictureEntity)
+        }
+        
+        // Save audio into the Database
+        for audio in task.audios {
+            let audioEntity = AudioEntity(context: context)
+            audioEntity.audioPath = audio
+            audioEntity.task_parent = newTask
+            newTask.addToAudios(audioEntity)
+        }
+        
+        
+        // Save coordinate to the database
+        if let latitude = task.latitude, let longitude = task.longitude {
+            newTask.longitude = latitude
+            newTask.longitude = longitude
+        }
+        
+        
+        newTask.category_parent = selectedCategory
+        saveTask()
+        tasks = loadTasksByCategory()
+        filteredTasks = tasks
+        taskTableView.reloadData()
+    }
+    
+    func updateTask(updatedTask: Task, oldTask: TaskEntity) {
+        oldTask.title = updatedTask.title
+        
+        if let dateCompleted = updatedTask.dateCompleted, let isCompleted = updatedTask.isComplete {
+            oldTask.dateCompleted = dateCompleted as Date
+            oldTask.isCompleted = isCompleted
+        }
+        saveTask()
+        taskTableView.reloadData()
+    }
+    
 }

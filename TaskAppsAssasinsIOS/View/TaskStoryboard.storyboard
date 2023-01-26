@@ -12,7 +12,7 @@
         <!--Task Detail View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="TaskDetailViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="taskDetailStoryboardID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="TaskDetailViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,12 +155,10 @@
                                 <rect key="frame" x="339" y="359" width="53.666666666666686" height="34.333333333333314"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="plus.app" catalog="system" title=" "/>
-                                <connections>
-                                    <action selector="addSubtaskButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="7g2-Be-Y1z"/>
-                                </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ANf-kK-Cla">
-                                <rect key="frame" x="23" y="399" width="350" height="412.66666666666674"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nTI-BA-o3C">
+                                <rect key="frame" x="0.0" y="414" width="393" height="388"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -170,13 +168,9 @@
                             <constraint firstItem="850-Nq-1ze" firstAttribute="trailing" secondItem="8ed-bk-CfL" secondAttribute="trailing" id="6PM-x3-duZ"/>
                             <constraint firstItem="VqW-w6-DXE" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="topMargin" constant="-7.1054273576010019e-15" id="8hb-wl-6eh"/>
                             <constraint firstItem="VqW-w6-DXE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="23" id="Coz-UN-HP1"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ANf-kK-Cla" secondAttribute="bottom" constant="6.3333333333332575" id="DKb-PD-YV3"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="850-Nq-1ze" secondAttribute="trailing" constant="20" id="EA3-wu-w5K"/>
-                            <constraint firstItem="8ed-bk-CfL" firstAttribute="leading" secondItem="ANf-kK-Cla" secondAttribute="leading" id="JdH-Q1-BuQ"/>
                             <constraint firstItem="850-Nq-1ze" firstAttribute="top" secondItem="VqW-w6-DXE" secondAttribute="bottom" constant="10" id="Keh-iE-rXB"/>
                             <constraint firstItem="Lae-0P-oi2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="339" id="XCv-FV-V6e"/>
-                            <constraint firstItem="8ed-bk-CfL" firstAttribute="trailing" secondItem="ANf-kK-Cla" secondAttribute="trailing" id="Yof-hx-bBd"/>
-                            <constraint firstItem="ANf-kK-Cla" firstAttribute="top" secondItem="Lae-0P-oi2" secondAttribute="bottom" constant="5.6666666666667425" id="aBd-Kf-T0G"/>
                             <constraint firstItem="850-Nq-1ze" firstAttribute="leading" secondItem="8ed-bk-CfL" secondAttribute="leading" id="aeB-9N-T2r"/>
                             <constraint firstItem="Lae-0P-oi2" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="359" id="anE-7T-8wf"/>
                             <constraint firstItem="VqW-w6-DXE" firstAttribute="leading" secondItem="850-Nq-1ze" secondAttribute="leading" id="bnM-G7-DdD"/>
@@ -186,13 +180,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="subTaskTableView" destination="ANf-kK-Cla" id="Qu5-mI-9gs"/>
+                        <outlet property="subTaskTableView" destination="nTI-BA-o3C" id="zdk-fD-8Ez"/>
                         <outlet property="titleTaskTxt" destination="850-Nq-1ze" id="fyh-E2-LYv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131" y="-28"/>
+            <point key="canvasLocation" x="130.53435114503816" y="-28.169014084507044"/>
         </scene>
     </scenes>
     <resources>
