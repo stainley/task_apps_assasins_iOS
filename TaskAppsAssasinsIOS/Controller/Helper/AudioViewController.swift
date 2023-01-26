@@ -93,6 +93,7 @@ extension NoteDetailViewController {
         }
         
         audioPath.append(soundURL!)
+        audioTableView.reloadData()
         print("Audio was successfully recorded!")
     }
     
