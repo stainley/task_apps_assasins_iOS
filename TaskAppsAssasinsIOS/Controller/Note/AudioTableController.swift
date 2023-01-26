@@ -17,15 +17,13 @@ extension NoteDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let audioPlayerCell = tableView.dequeueReusableCell(withIdentifier: "audioPlayerCell", for: indexPath) as! AudioCustomTableViewCell
     
+        let scrubble = audioPlayerCell.scrubber
         let play = audioPlayerCell.audioPlayButton
-        if play!.isSelected {
-            play!.setImage(UIImage(systemName: "stop.circle.fill"), for: .normal)
-        } else {
-            play!.setImage(UIImage(systemName: "play.circle"), for: .normal)
-        }
-        play!.tag = indexPath.row        
+     
+        play!.tag = indexPath.row
+        // pass the index clicked through the tag of the button
         play!.addTarget(self, action: #selector(playAudio(_ : )), for: .touchDown)
-        
+        scrubber = scrubble
         return audioPlayerCell
     }
     

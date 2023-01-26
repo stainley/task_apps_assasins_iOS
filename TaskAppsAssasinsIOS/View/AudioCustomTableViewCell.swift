@@ -12,7 +12,7 @@ class AudioCustomTableViewCell: UITableViewCell {
     
     @IBOutlet weak var audioPlayButton: UIButton!
     
-    @IBOutlet weak var audioSlider: UISlider!
+    @IBOutlet weak var scrubber: UISlider!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,9 +25,10 @@ class AudioCustomTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    
+    // TODO: change icon from stop to play
     @IBAction func playPauseAudioButton(_ sender: UIButton) {
-        print("CLICKED BUTTON")
+        var changeIcon: Bool = false
+        changeIcon.toggle()
     }
     
 }

@@ -20,8 +20,12 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     @IBOutlet weak var audioTableView: UITableView!
     
+    weak var scrubber: UISlider!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     weak var delegate: NoteViewController?
+    // timer to update my scrubber
+    var timer = Timer()
 
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder?
@@ -29,9 +33,9 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     var note: NoteEntity?
     var pictureEntity: PictureEntity?
     
-    var imageNote: UIImage?
+    //var imageNote: UIImage?
     var pictures: [UIImage] = []
-    var audios: [AVAudioRecorder] = []
+    //var audios: [AVAudioRecorder] = []
     
     var audioPath: [String] = []
     var soundURL: String?
@@ -59,27 +63,10 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         recordTapped()
     }
 
-    // MARK: Play audio button
-    @objc func playAudio(_ sender: UIButton) {
-        if audioRecorder == nil {
-            do {
-                var documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-                
-                // pass the index of record to play
-                print("Index passed: \(sender.tag)")
-                documentPath.append("/\(audioPath[sender.tag])")
-
-                let url = NSURL(fileURLWithPath: documentPath)
-                
-                try player = AVAudioPlayer(contentsOf: url as URL)
-                player?.volume = 1.0
-                player?.play()
-                print("Audio is playing \(String(describing: player?.isPlaying))")
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+    @objc func scrubleAction(_ sender: UISlider) {
+        sender.maximumValue = Float(player!.duration)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,7 +97,10 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         
         /// PREPARE FOR RECORDING AUDIO
         loadRecordingFuntionality()
-        
+        if let scrubber = scrubber {
+            scrubber.minimumValue = 0
+        }
+      
         if pictures.count > 0 {
             pictureCollectionView.reloadData()
         }
@@ -165,52 +155,14 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         delegate?.saveNote(note: note)
     }
     
-    func loadRecordingFuntionality() {
-
-        recordingSession = AVAudioSession.sharedInstance()
-
-        do {
-            try recordingSession.setCategory(.playAndRecord, mode: .default)
-            try recordingSession.setActive(true)
-            recordingSession.requestRecordPermission() { [unowned self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        self.recordAudioButton.isEnabled = true
-                    } else {
-                        self.recordAudioButton.isEnabled = false
-                    }
-                }
-            }
-        } catch {
-            print("An error had ocurred configuring the Audio Rec functionality \(error.localizedDescription)")
+    @objc func updateScrubber() {
+        scrubber.value = Float(player!.currentTime)
+        if scrubber.value == scrubber.minimumValue {
+            //  isPlaying = false
+            //playBtn.image = UIImage(systemName: "play.fill")
         }
     }
-    
-    // TODO: Aswin
-    func startRecording() {
-        
-        let directoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in:
-                    FileManager.SearchPathDomainMask.userDomainMask).first
-                
-        let audioFileName = UUID().uuidString + ".m4a"
-                let audioFileURL = directoryURL!.appendingPathComponent(audioFileName)
-                soundURL = audioFileName       // Sound URL to be stored in CoreData
 
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 44100,
-            AVNumberOfChannelsKey: 2,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
-
-        do {
-            audioRecorder = try AVAudioRecorder(url: audioFileURL, settings: settings)
-            audioRecorder?.delegate = self
-            audioRecorder?.record()
-            recordAudioButton.image = UIImage(systemName: "stop.circle.fill")
-        } catch {
-            finishRecording(success: false)
-        }
-    }
 }
     
     
