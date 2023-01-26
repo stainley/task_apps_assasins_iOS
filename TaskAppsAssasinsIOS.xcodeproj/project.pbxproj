@@ -22,6 +22,8 @@
 		AD2CC3ED2982D656008E8599 /* TaskStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2CC3EC2982D656008E8599 /* TaskStoryboard.storyboard */; };
 		AD2CC3F02982DB0C008E8599 /* SubTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2CC3EE2982DB0C008E8599 /* SubTaskTableViewCell.swift */; };
 		AD2CC3F12982DB0C008E8599 /* SubTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2CC3EF2982DB0C008E8599 /* SubTaskTableViewCell.xib */; };
+		AD2CC3F32982EC86008E8599 /* TaskDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2CC3F22982EC86008E8599 /* TaskDetailTableViewController.swift */; };
+		AD2CC3F52982EF96008E8599 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2CC3F42982EF96008E8599 /* TaskTableViewController.swift */; };
 		AD68C9652981E2E8001CEA9B /* AudioTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68C9642981E2E8001CEA9B /* AudioTableController.swift */; };
 		AD7B431829747A1C008D1164 /* CategoryCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7B431729747A1C008D1164 /* CategoryCustomView.swift */; };
 		AD7B431A29749C52008D1164 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7B431929749C52008D1164 /* CustomImageView.swift */; };
@@ -68,6 +70,8 @@
 		AD2CC3EC2982D656008E8599 /* TaskStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaskStoryboard.storyboard; sourceTree = "<group>"; };
 		AD2CC3EE2982DB0C008E8599 /* SubTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskTableViewCell.swift; sourceTree = "<group>"; };
 		AD2CC3EF2982DB0C008E8599 /* SubTaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubTaskTableViewCell.xib; sourceTree = "<group>"; };
+		AD2CC3F22982EC86008E8599 /* TaskDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailTableViewController.swift; sourceTree = "<group>"; };
+		AD2CC3F42982EF96008E8599 /* TaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
 		AD68C9642981E2E8001CEA9B /* AudioTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTableController.swift; sourceTree = "<group>"; };
 		AD7B431729747A1C008D1164 /* CategoryCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCustomView.swift; sourceTree = "<group>"; };
 		AD7B431929749C52008D1164 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 				70B7AE5329769B4200698260 /* TaskViewController.swift */,
 				7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */,
 				70576B72297DD80E00511F08 /* TaskSearchController.swift */,
+				AD2CC3F22982EC86008E8599 /* TaskDetailTableViewController.swift */,
+				AD2CC3F42982EF96008E8599 /* TaskTableViewController.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -332,6 +338,8 @@
 				ADF2F2FC297DF24700B78D81 /* PhotoViewController.swift in Sources */,
 				ADB0D1A2297DB0A800A9AF78 /* NoteSearchController.swift in Sources */,
 				70B7AE50297697E100698260 /* NoteViewController.swift in Sources */,
+				AD2CC3F32982EC86008E8599 /* TaskDetailTableViewController.swift in Sources */,
+				AD2CC3F52982EF96008E8599 /* TaskTableViewController.swift in Sources */,
 				ADB0D1A0297DA1A600A9AF78 /* Category.swift in Sources */,
 				ADCDD66B296F752300B30328 /* CategoryViewController.swift in Sources */,
 				ADB0D193297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld in Sources */,

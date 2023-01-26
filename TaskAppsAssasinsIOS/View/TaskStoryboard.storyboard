@@ -187,6 +187,7 @@
                     </view>
                     <connections>
                         <outlet property="subTaskTableView" destination="ANf-kK-Cla" id="Qu5-mI-9gs"/>
+                        <outlet property="titleTaskTxt" destination="850-Nq-1ze" id="fyh-E2-LYv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

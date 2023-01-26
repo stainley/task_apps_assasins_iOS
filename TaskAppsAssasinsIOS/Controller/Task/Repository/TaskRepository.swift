@@ -93,4 +93,16 @@ extension TaskViewController {
         
         return Array<SubTaskEntity>()
     }
+    
+    func fetchAllCategory() -> Array<CategoryEntity> {
+        let request: NSFetchRequest<CategoryEntity> = CategoryEntity.fetchRequest()
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error loading categories \(error.localizedDescription)")
+        }
+        
+        return Array<CategoryEntity>()
+    }
 }

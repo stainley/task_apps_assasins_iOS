@@ -11,6 +11,7 @@ import CoreData
 class TaskDetailViewController: UIViewController {
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var delegate: TaskViewController?
     var task: TaskEntity?
     var categorySelected: String = ""
     var categories: [CategoryEntity] = [CategoryEntity]()
@@ -20,11 +21,12 @@ class TaskDetailViewController: UIViewController {
     @IBOutlet var catagoryCollection: [UIButton] = []
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var subTaskTableView: UITableView!
+    @IBOutlet weak var titleTaskTxt: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        categories  = self.fetchAllCategory()
+        //categories  = self.fetchAllCategory()
         for category in categories {
             //let categoryItemButton = UIButton(frame: CGRect(x: 0, y: 0, width: categoryButton.frame.width, height: 40))
             //categoryItemButton.setTitle("\(category.name ?? "")", for: .normal)
@@ -66,6 +68,17 @@ class TaskDetailViewController: UIViewController {
             }
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        var task = Task()
+        
+        if let title = titleTaskTxt.text {
+            task.title = title
+        }
+        
+        self.delegate?.saveDBTask(task: task)
+    }
+  
     
     @IBAction func addSubtaskButtonTapped(_ sender: UIButton) {
         var textField = UITextField()
@@ -109,87 +122,16 @@ class TaskDetailViewController: UIViewController {
         categoryButtonTapped(sender!)
     }
     
-    func fetchAllCategory() -> Array<CategoryEntity> {
-        let request: NSFetchRequest<CategoryEntity> = CategoryEntity.fetchRequest()
-        
-        do {
-            return try context.fetch(request)
-        } catch {
-            print("Error loading categories \(error.localizedDescription)")
-        }
-        
-        return Array<CategoryEntity>()
-    }
-
 }
 
-extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subTasksEntity.count
-    }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = subTaskTableView.dequeueReusableCell(withIdentifier: "SubTaskTableViewCell", for: indexPath) as? SubTaskTableViewCell
-        
-        cell?.subtask = subTasksEntity[indexPath.row]
-        cell?.subTaskTitleLabel?.text = subTasksEntity[indexPath.row].title
-        cell?.datePickerButton?.setTitle(subTasksEntity[indexPath.row].dueDate?.toString(dateFormat: "MM/DD/YYY"), for: .normal)
-        cell?.delegate = self
-        return cell ?? UITableViewCell()    }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        let action = UIContextualAction(style: .destructive, title: "Delete") {
-            (action, view, completionHandler) in
-        }
-        
-        return UISwipeActionsConfiguration(actions: [action])
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let subtask = self.subTasksEntity[indexPath.row]
-    }
-}
 
-extension TaskDetailViewController: SubTaskTableViewCellDelegate {
-    func selectDate(subTaskEntity: SubTaskEntity) {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .inline
-        datePicker.minimumDate = Date()
-        
-        let alert = UIAlertController(title: "Due Date", message: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: .actionSheet)
-        datePicker.frame = CGRect(x: 0, y: 40, width: alert.view.frame.width, height: 320)
-        alert.view.addSubview(datePicker)
-
-        let selectAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
-            subTaskEntity.dueDate = datePicker.date
-            if let position = self.subTasksEntity.firstIndex(where: { subtask in
-                return subtask.id == subTaskEntity.id
-            }){
-                self.subTasksEntity[position] = subTaskEntity
-                //self.saveSubTask()
-            }
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-        alert.addAction(selectAction)
-        alert.addAction(cancelAction)
-
-        present(alert, animated: true)
-    }
-}
-
-extension Date
-{
-    func toString( dateFormat format  : String ) -> String
-    {
+extension Date {
+    func toString( dateFormat format  : String ) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         return dateFormatter.string(from: self as Date)
     }
-
 }
 
 

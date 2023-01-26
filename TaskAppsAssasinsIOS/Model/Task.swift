@@ -9,11 +9,10 @@ import UIKit
 
 struct Task {
     
-    private (set) var title: String
-    let description: String?
-    let creationDate: NSDate
-    let dueDate: NSDate
-    let dateCompleted: NSDate?
+    var title: String?
+    var description: String?
+    var dueDate: NSDate?
+    var dateCompleted: NSDate?
     var isComplete: Bool?
     var image: Data!
     var pictures: [Data] = []
@@ -23,13 +22,11 @@ struct Task {
     private (set) var longitude: Double?
     
     
-    init(title: String, description: String, creationDate: NSDate, dueDate: NSDate, dateCompleted: NSDate, pictures: [UIImage?], audios: [String?], isComplete: Bool) {
+    init(title: String? = nil, description: String? = nil, isComplete: Bool = false) {
         self.title = title
         self.description = description
-        self.creationDate = creationDate
-        self.dueDate = dueDate
-        self.dateCompleted = dateCompleted
         self.isComplete = isComplete
+        
     }
     
     mutating func setCoordinate(latitude: Double?, longitude: Double?) {
