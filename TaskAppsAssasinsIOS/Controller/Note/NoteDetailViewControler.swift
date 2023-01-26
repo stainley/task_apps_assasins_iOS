@@ -16,7 +16,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     @IBOutlet var catagoryCollection: [UIButton]!
     @IBOutlet weak var pictureCollectionView: UICollectionView!
     @IBOutlet weak var recordAudioButton: UIBarButtonItem!
-    @IBOutlet weak var noteTextField: UITextView!
+    @IBOutlet var noteTextField: UITextView!
     
     @IBOutlet weak var audioTableView: UITableView!
     
@@ -24,6 +24,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     weak var delegate: NoteViewController?
+    
     // timer to update my scrubber
     var timer = Timer()
 
@@ -44,6 +45,8 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     var coordinate: CLLocationCoordinate2D?
     
     var player: AVAudioPlayer?
+    
+    var placeholderLabel : UILabel!
     
     @IBAction func takePhotoButton(_ sender: UIBarButtonItem) {
         takePhotoOrUpload()
@@ -109,6 +112,21 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
             audioTableView.reloadData()
         }
         
+        noteTextField.layer.cornerRadius = 6
+        noteTextField.layer.borderWidth = 0.25
+        noteTextField.layer.borderColor = UIColor.lightGray.cgColor
+        noteTextField.contentInset = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
+        noteTextField.delegate = self
+  
+        placeholderLabel = UILabel()
+        placeholderLabel.text = "Enter some text for desciption..."
+        placeholderLabel.font = .italicSystemFont(ofSize: (noteTextField.font?.pointSize)!)
+        placeholderLabel.sizeToFit()
+        noteTextField.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPoint(x: 5, y: (noteTextField.font?.pointSize)! / 2)
+        placeholderLabel.textColor = .tertiaryLabel
+        placeholderLabel.isHidden = !noteTextField.text.isEmpty
+
         guard let note = note else {
             return
         }
@@ -152,7 +170,9 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
             note.setCoordinate(latitude: coordinate?.latitude, longitude: coordinate?.longitude)
         }
         
-        delegate?.saveNote(note: note)
+        if titleTextField.text != "" {
+            delegate?.saveNote(note: note)
+        }
     }
     
     @objc func updateScrubber() {
@@ -165,8 +185,9 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
 
 }
     
-    
-    
-    
-    
+extension NoteDetailViewController : UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel.isHidden = !textView.text.isEmpty
+    }
+}
 
