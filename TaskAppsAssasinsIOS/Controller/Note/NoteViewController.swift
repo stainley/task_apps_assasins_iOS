@@ -124,7 +124,7 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         if let creation = filteredNotes[indexPath.row].creationDate {
-            cell.creationDateLabel?.text = "\(creation)"
+            cell.creationDateLabel?.text = "\(creation.toString(dateFormat: "MMMM dd, yyyy 'on' h:mm a"))"
         }
         
         return cell
@@ -135,9 +135,9 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         // Delete note by swipping
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
             self.deleteNote(noteEntity: self.filteredNotes[indexPath.row])
-            self.saveNote()
 
-            //self.loadNotesByCategory()
+            self.notes = self.loadNotesByCategory()
+            self.filteredNotes = self.notes
             self.noteTableView.reloadData()
         }
         
@@ -173,8 +173,12 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
 extension NSDate {
     func toString( dateFormat format  : String ) -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
         dateFormatter.dateFormat = format
         return dateFormatter.string(from: self as Date)
     }
 }
+
 
