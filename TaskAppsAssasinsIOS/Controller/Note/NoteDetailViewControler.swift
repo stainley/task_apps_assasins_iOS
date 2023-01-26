@@ -133,6 +133,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         
         titleTextField.text = note.title
         noteTextField.text = note.noteDescription
+        placeholderLabel.text = ""
     }
         
     @IBAction func CatagaryDropDown(_ sender: Any) {
