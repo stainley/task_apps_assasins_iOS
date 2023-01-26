@@ -28,7 +28,9 @@
     </entity>
     <entity name="SubTaskEntity" representedClassName="SubTaskEntity" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="status" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="task_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="subtasks" inverseEntity="TaskEntity"/>
     </entity>
     <entity name="TaskEntity" representedClassName="TaskEntity" syncable="YES" codeGenerationType="class">

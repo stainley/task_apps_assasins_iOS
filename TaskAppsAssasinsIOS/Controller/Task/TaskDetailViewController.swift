@@ -11,7 +11,7 @@ import CoreData
 class TaskDetailViewController: UIViewController {
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var task: Task?
+    var task: TaskEntity?
     var categorySelected: String = ""
     var categories: [CategoryEntity] = [CategoryEntity]()
     var subTasksEntity: [SubTaskEntity] = [SubTaskEntity]()
@@ -26,20 +26,21 @@ class TaskDetailViewController: UIViewController {
         
         categories  = self.fetchAllCategory()
         for category in categories {
-            let categoryItemButton = UIButton(frame: CGRect(x: 0, y: 0, width: categoryButton.frame.width, height: 40))
-            categoryItemButton.setTitle("\(category.name ?? "")", for: .normal)
-            categoryItemButton.setTitleColor(.black, for: .normal)
-            categoryItemButton.addTarget(self, action: #selector(categoryItemButtonTapped), for: .touchUpInside)
-            
+            //let categoryItemButton = UIButton(frame: CGRect(x: 0, y: 0, width: categoryButton.frame.width, height: 40))
+            //categoryItemButton.setTitle("\(category.name ?? "")", for: .normal)
+            //categoryItemButton.setTitleColor(.black, for: .normal)
+            //categoryItemButton.addTarget(self, action: #selector(categoryItemButtonTapped), for: .touchUpInside)
+            /*
             if categorySelected == category.name {
                 categoryItemButton.backgroundColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
             }
             catagoryCollection.append(categoryItemButton)
             if let stackView = categoryButton.superview as? UIStackView{
                 stackView.addArrangedSubview(categoryItemButton)
-            }
+            }*/
         }
         
+        /*
         catagoryCollection.forEach{ (btn) in
             btn.isHidden = true
             btn.alpha = 0
@@ -49,8 +50,8 @@ class TaskDetailViewController: UIViewController {
         categoryButton.layer.cornerRadius = 6
         categoryButton.contentHorizontalAlignment = .left
         categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
-        
-        let subTaskTableViewCell = UINib(nibName: "SubTaskTableViewCell", bundle: Bundle.main)
+        */
+        let subTaskTableViewCell = UINib(nibName: "SubTaskTableViewCell", bundle: nil)
         subTaskTableView.register(subTaskTableViewCell, forCellReuseIdentifier: "SubTaskTableViewCell")
     }
     
@@ -68,20 +69,21 @@ class TaskDetailViewController: UIViewController {
     
     @IBAction func addSubtaskButtonTapped(_ sender: UIButton) {
         var textField = UITextField()
+        var dueDatePicker = UIDatePicker()
         
         let alert = UIAlertController(title: "New Subtask", message: "", preferredStyle: .alert)
         
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            /*
-            let subtaskTitle = self.subTasksEntity.map {$0. .lowercased()}
+            
+            let subtaskTitle = self.subTasksEntity.map {$0.title?.lowercased()}
             
             let newSubTask = SubTaskEntity(context: self.context)
             newSubTask.title = textField.text!
             newSubTask.creationDate = Date()
             newSubTask.dueDate = Date()
             self.subTasksEntity.append(newSubTask)
-            self.saveSubTask()
-            */
+            //self.saveSubTask()
+            
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         cancelAction.setValue(UIColor.orange, forKey: "titleTextColor")
@@ -167,7 +169,7 @@ extension TaskDetailViewController: SubTaskTableViewCellDelegate {
                 return subtask.id == subTaskEntity.id
             }){
                 self.subTasksEntity[position] = subTaskEntity
-                self.saveSubTask()
+                //self.saveSubTask()
             }
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
