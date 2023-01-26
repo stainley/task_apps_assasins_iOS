@@ -14,15 +14,15 @@ struct Note {
     var noteDescription: String?
     var image: Data!
     var pictures: [Data] = []
-    var audios: [AVAudioRecorder]
+    var audios: [String] = []
+    
     private (set) var latitude: Double?
     private (set) var longitude: Double?
     
     
-    init(title: String, description: String,  audios: [AVAudioRecorder]) {
+    init(title: String, description: String) {
         self.title = title
         self.noteDescription = description
-        self.audios = audios
     }
     
     mutating func setCoordinate(latitude: Double?, longitude: Double?) {

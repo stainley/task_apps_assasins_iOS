@@ -6,6 +6,10 @@
 	<string>Provide access to the camera to take picture for notes</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Provide access location for the Task or Note</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Provide access to the mic to record memo</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsTabbedSceneCollection</key>

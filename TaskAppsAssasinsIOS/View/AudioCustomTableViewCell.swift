@@ -27,8 +27,7 @@ class AudioCustomTableViewCell: UITableViewCell {
     
     
     @IBAction func playPauseAudioButton(_ sender: UIButton) {
-        
-        
+        print("CLICKED BUTTON")
     }
     
 }

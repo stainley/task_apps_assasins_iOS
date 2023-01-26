@@ -27,7 +27,6 @@ extension NoteViewController: UISearchBarDelegate {
             }
         }
         noteTableView.reloadData()
-        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

@@ -16,6 +16,7 @@ class NoteViewController: UIViewController {
     var notes = [NoteEntity]()
     
     var picturesEntity = [PictureEntity]()
+    var audiosEntity = [AudioEntity]()
     var filteredNotes = [NoteEntity]()
     
     var noteReferenceCell: NoteNibTableViewCell!
@@ -63,6 +64,15 @@ class NoteViewController: UIViewController {
             newNote.addToPictures(pictureEntity)
         }
         
+        // Save audio into the Database
+        for audio in note.audios {
+            let audioEntity = AudioEntity(context: context)
+            audioEntity.audioPath = audio
+            audioEntity.note_parent = newNote
+            newNote.addToAudios(audioEntity)
+        }
+        
+        
         // Save coordinate to the database
         if let latitude = note.latitude, let longitude = note.longitude {
             newNote.longitude = latitude
@@ -83,6 +93,7 @@ class NoteViewController: UIViewController {
         if let destination = segue.destination as? NoteDetailViewController {
             destination.delegate = self
             loadImagesByNote()
+            loadAudiosByNote()
         }
     }
     
@@ -144,11 +155,16 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
             }
             let byParent  =  NSPredicate(format: "note_parent.title == %@", noteTitle)
             loadImagesByNote(predicate: byParent)
-            //
+            loadAudiosByNote(predicate: byParent)
             
             for pic in picturesEntity {
                 noteDetailViewController.pictures.append(UIImage(data: pic.picture!)!)
             }
+            
+            for audio in audiosEntity {
+                noteDetailViewController.audioPath.append(audio.audioPath!)
+            }
+            
             self.navigationController?.pushViewController(noteDetailViewController, animated: true)
         }
     }

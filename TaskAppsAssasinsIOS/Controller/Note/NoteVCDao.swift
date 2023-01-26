@@ -41,6 +41,19 @@ extension NoteViewController {
         }
     }
     
+    // TODO: Elvin
+    func loadAudiosByNote(predicate: NSPredicate? = nil) {
+        let request: NSFetchRequest<AudioEntity> = AudioEntity.fetchRequest()
+
+        request.predicate = predicate
+        do {
+            audiosEntity = try context.fetch(request)
+            print("Search by AUDIOS \(audiosEntity.count)")
+        } catch {
+            print("An error had ocurred: \(error.localizedDescription)")
+        }
+    }
+    
     
     func loadNotesByCategory(predicate: NSPredicate? = nil) -> Array<NoteEntity> {
         let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()

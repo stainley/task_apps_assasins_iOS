@@ -9,9 +9,9 @@ import UIKit
 import AVFoundation
 import CoreLocation
 
-class NoteDetailViewController: UIViewController {
+class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudioRecorderDelegate {
     
-    
+
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var catagory: UIButton!
     @IBOutlet var catagoryCollection: [UIButton]!
@@ -19,26 +19,40 @@ class NoteDetailViewController: UIViewController {
     @IBOutlet weak var recordAudioButton: UIBarButtonItem!
     @IBOutlet weak var noteTextField: UITextView!
     
+    @IBOutlet weak var audioTableView: UITableView!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     weak var delegate: NoteViewController?
 
     var recordingSession: AVAudioSession!
-    var audioRecorder: AVAudioRecorder!
+    var audioRecorder: AVAudioRecorder?
     
     var note: NoteEntity?
     var pictureEntity: PictureEntity?
     
     var imageNote: UIImage?
     var pictures: [UIImage] = []
+    //var audioPlayer: [Data] = []
+    
     var audios: [AVAudioRecorder] = []
+    
+    //var audioPath: [Data] = []
+    var audioPath: [String] = []
+    var soundURL: String?
     
     var locationManager: CLLocationManager = CLLocationManager()
     var coordinate: CLLocationCoordinate2D?
+    
+    var player: AVAudioPlayer?
+    
+    let filename = URL(string: "out.m4a")!
+    let settings = [AVEncoderBitRatePerChannelKey: 96000]
     
     @IBAction func takePhotoButton(_ sender: UIBarButtonItem) {
         takePhotoOrUpload()
     }
     
+    // MARK: Show in the map the note
     @IBAction func showNoteInMapButton(_ sender: UIBarButtonItem) {
         
         let mapViewController = storyboard?.instantiateViewController(withIdentifier: "mapStorryboardID") as! MapTaskNoteViewController
@@ -47,12 +61,35 @@ class NoteDetailViewController: UIViewController {
         
     }
     
+    // MARK: Audio recording
     @IBAction func recordAudioButton(_ sender: UIBarButtonItem) {
-        
+        //recordTapped()
+        recordTapped()
+        //startRecording()
     }
 
-    
+    // MARK: Play audio button
+    @objc func playAudio() {
+        print("PLAAAAAAYING")
+        if audioRecorder == nil {
+            do {
+                var documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                documentPath.append("/\(audioPath[0])")
+                print("DOCUMENT DIRECTORY AND FILE \(documentPath)")
 
+                let url = NSURL(fileURLWithPath: documentPath)
+                
+                try player = AVAudioPlayer(contentsOf: url as URL)
+                player?.volume = 1.0
+                //player?.prepareToPlay()
+                player?.play()
+                //try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath.))
+                print("Audio is playing \(String(describing: player?.isPlaying))")
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,15 +104,29 @@ class NoteDetailViewController: UIViewController {
         
         let nib = UINib(nibName: "PictureCollectionViewCell", bundle: nil)
         pictureCollectionView.register(nib, forCellWithReuseIdentifier: "pictureCell")
-                
+
+        audioTableView.delegate = self
+        audioTableView.dataSource = self
+        
+       
+        let nibAudioTable = UINib(nibName: "AudioCustomTableViewCell", bundle: nil)
+        audioTableView.register(nibAudioTable, forCellReuseIdentifier: "audioPlayerCell")
+        
         /*
         catagoryCollection.forEach{ (btn) in
             btn.isHidden = true
             btn.alpha = 0
         }*/
         
+        /// PREPARE FOR RECORDING AUDIO
+        loadRecordingFuntionality()
+        
         if pictures.count > 0 {
             pictureCollectionView.reloadData()
+        }
+        
+        if audioPath.count > 0 {
+            audioTableView.reloadData()
         }
         
         guard let note = note else {
@@ -84,7 +135,8 @@ class NoteDetailViewController: UIViewController {
         
         titleTextField.text = note.title
         noteTextField.text = note.noteDescription
-  
+       
+        //startRecording()
     }
         
     @IBAction func CatagaryDropDown(_ sender: Any) {
@@ -104,11 +156,17 @@ class NoteDetailViewController: UIViewController {
     // Send to preview view and persist into Core Data
     override func viewWillDisappear(_ animated: Bool) {
        
-        var note = Note(title: titleTextField.text ?? "", description: noteTextField.text, audios: audios)
+        var note = Note(title: titleTextField.text ?? "", description: noteTextField.text)
         
         if pictures.count > 0 {
             for imageData in pictures {
                 note.pictures.append(imageData.pngData()!)
+            }
+        }
+        
+        if audioPath.count > 0 {
+            for audioData in audioPath {
+                note.audios.append(audioData)
             }
         }
         
@@ -117,6 +175,67 @@ class NoteDetailViewController: UIViewController {
         }
         
         delegate?.saveNote(note: note)
+    }
+    
+    
+    fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+        return input.rawValue
+    }
+
+    // Helper function inserted by Swift migrator.
+    fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+        return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    }
+    
+    func loadRecordingFuntionality() {
+
+        recordingSession = AVAudioSession.sharedInstance()
+
+        do {
+            try recordingSession.setCategory(.playAndRecord, mode: .default)
+            try recordingSession.setActive(true)
+            recordingSession.requestRecordPermission() { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        //self.loadRecordingUI()
+                        self.recordAudioButton.isEnabled = true
+                    } else {
+                        // failed to record!
+                    }
+                }
+            }
+        } catch {
+            // failed to record!
+        }
+    }
+    
+    
+    func startRecording() {
+        
+        let directoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in:
+                    FileManager.SearchPathDomainMask.userDomainMask).first
+                
+        let audioFileName = UUID().uuidString + ".m4a"
+                let audioFileURL = directoryURL!.appendingPathComponent(audioFileName)
+                soundURL = audioFileName       // Sound URL to be stored in CoreData
+        
+        
+        //let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 44100,
+            AVNumberOfChannelsKey: 2,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
+
+        do {
+            audioRecorder = try AVAudioRecorder(url: audioFileURL, settings: settings)
+            audioRecorder?.delegate = self
+            audioRecorder?.record()
+
+        } catch {
+            finishRecording(success: false)
+        }
     }
 }
     
