@@ -172,7 +172,7 @@
                                                     <barButtonItem systemItem="add" id="zoI-gH-edf">
                                                         <connections>
                                                             <action selector="addNewTaskButton:" destination="20G-No-hh8" id="xop-Ck-eGL"/>
-                                                            <segue destination="mr2-OP-gsH" kind="show" id="YpZ-Cr-xeR"/>
+                                                            <segue destination="6vy-jQ-Hgf" kind="show" id="rKh-J4-ZhI"/>
                                                         </connections>
                                                     </barButtonItem>
                                                     <barButtonItem systemItem="search" id="MWk-mc-pyy">
@@ -270,6 +270,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JSA-Sz-8ut" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-985" y="803"/>
+        </scene>
+        <!--TaskStoryboard-->
+        <scene sceneID="naY-uR-7hj">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="taskDetailStoryboardID" storyboardName="TaskStoryboard" id="6vy-jQ-Hgf" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="zmx-3w-ZQA"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wvy-j9-e8d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-258" y="803"/>
         </scene>
         <!--Note-->
         <scene sceneID="BGv-7A-UCV">
@@ -565,11 +575,11 @@
             <objects>
                 <viewController storyboardIdentifier="TaskDetailViewController" id="mr2-OP-gsH" customClass="TaskDetailViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i08-wx-aBv">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Task Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWW-oo-5hT">
-                                <rect key="frame" x="174" y="120" width="128" height="8"/>
+                                <rect key="frame" x="174" y="120" width="128" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -587,7 +597,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jKy-Eg-SCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="51" y="959"/>
+            <point key="canvasLocation" x="206" y="1226"/>
         </scene>
     </scenes>
     <resources>
