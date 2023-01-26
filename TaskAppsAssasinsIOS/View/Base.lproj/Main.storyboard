@@ -311,11 +311,17 @@
                                                         <rect key="frame" x="63.666666666666664" y="0.0" width="90.666666666666714" height="21"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="arrow.down" catalog="system" title="Name"/>
+                                                        <connections>
+                                                            <action selector="sortNameButton:" destination="S3Q-D4-rXV" eventType="touchUpInside" id="Kz5-Rw-l2D"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mwu-ja-9BJ">
                                                         <rect key="frame" x="154.33333333333337" y="0.0" width="146.66666666666663" height="21"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="arrow.down" catalog="system" title="Created Date"/>
+                                                        <connections>
+                                                            <action selector="sortDateButton:" destination="S3Q-D4-rXV" eventType="touchUpInside" id="0ek-JK-hYH"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
