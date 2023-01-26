@@ -11,45 +11,11 @@ import UIKit
 // TODO: Jay
 extension NoteDetailViewController {
     
-    // Call from ViewDidLoad
-    /*
-    func recordAudio() {
-        
-        recordingSession = AVAudioSession.sharedInstance()
-        
-        do {
-            try recordingSession.setCategory(.playAndRecord, mode: .default)
-            try recordingSession.setActive(true)
-            
-            recordingSession.requestRecordPermission() { [unowned self] allowed in
-                if allowed {
-                    self.loadRecordingUI()
-                } else {
-                    print("Failing to record")
-                }
-              
-            }
-        } catch {
-            print("Error recording audio \(error.localizedDescription)")
-        }
-    }
-    */
     func loadRecordingUI() {
         //recordTapped()
         prepareForRecording()
 
     }
-    
-
-    /*
-    @objc func recordTapped() {
-        if audioRecorder == nil {
-            audioRecorder.record()
-            recordAudioButton.image = UIImage(systemName: "stop.circle.fill")
-        } else {
-            finishRecording(success: true)
-        }
-    }*/
     
     @objc func recordTapped() {
         if audioRecorder == nil {
@@ -58,30 +24,7 @@ extension NoteDetailViewController {
             finishRecording(success: true)
         }
     }
-    
-    /*
-    func recordTapped() {
-        if let recorder = audioRecorder {
-          if !recorder.isRecording {
-              let audioSession = AVAudioSession.sharedInstance()
-              
-              do {
-                  try audioSession.setActive(true)
-                  recorder.record()
-
-              } catch {
-                  print(error.localizedDescription)
-              }
-              // Start recording
-
-          } else {
-              // Pause recording
-              recorder.stop()
-          }
-      }
-        
-    }*/
-    
+ 
     func stopRecording() {
         if let recorder = audioRecorder {
            if recorder.isRecording {
@@ -135,8 +78,7 @@ extension NoteDetailViewController {
             recordAudioButton.image = UIImage(systemName: "mic")
             finishRecording(success: false)
         }
-    }
-    
+    }    
     
     func getDocumentDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -158,18 +100,16 @@ extension NoteDetailViewController {
             print("Tap to record, for: .normal")
         }
     }
-    
+
+    // TODO: Elvin - When audio is completed save the path to the DB
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
             // Show in UI the audio recording has stopped
-           
             finishRecording(success: false)
         }
         
-       // guard let data = try? Data(contentsOf: recorder.url) else { return }
         audioPath.append(soundURL!)
-        print(recorder.url.absoluteString)
-        print("SUCCESS RECORDED")
+        print("Audio was successfully recorded!")
     }
     
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
@@ -178,48 +118,14 @@ extension NoteDetailViewController {
         if error != nil {
             print("Recording audio error \(error!.localizedDescription)")
         }
-        
     }
      
-    func startRecordi() {
-        // This needs to decide where to save the audio, configure the recording settings, then start recording.
-     
-        do {
-            // See Apple API reference for details of settings
-            audioRecorder = try AVAudioRecorder(url: filename, settings: settings)
-            audioRecorder?.delegate = self
-            audioRecorder?.record()
-        } catch {
-            finishRecording()
-        }
-    }
       
     func finishRecording() {
         audioRecorder?.stop()
         audioRecorder = nil
     }
     
-    class func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
-
-    class func getWhistleURL() -> URL {
-        return getDocumentsDirectory().appendingPathComponent("whistle.m4a")
-    }
-}
 
 
-extension URL    {
-    func checkFileExist() -> Bool {
-        let path = self.path
-        if (FileManager.default.fileExists(atPath: path))   {
-            print("FILE AVAILABLE")
-            return true
-        }else        {
-            print("FILE NOT AVAILABLE")
-            return false;
-        }
-    }
 }

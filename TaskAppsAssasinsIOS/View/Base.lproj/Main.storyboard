@@ -407,11 +407,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1wB-p7-A3f">
-                                <rect key="frame" x="0.0" y="359" width="390" height="116"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1wB-p7-A3f">
+                                <rect key="frame" x="0.0" y="386" width="390" height="116"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="116" id="M65-xl-rZX"/>
+                                    <constraint firstAttribute="height" constant="116" id="Tzn-8F-q3n"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="q5c-4O-k8g">
                                     <size key="itemSize" width="100" height="100"/>
@@ -431,21 +431,16 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zLP-aq-fix">
-                                <rect key="frame" x="8" y="170" width="374" height="227"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zLP-aq-fix">
+                                <rect key="frame" x="8" y="177" width="374" height="185"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="227" id="tz4-YQ-lNN"/>
+                                    <constraint firstAttribute="height" constant="185" id="2Gw-2I-u41"/>
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ied-aY-44U">
-                                <rect key="frame" x="8" y="117" width="374" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qpa-Td-ns2">
                                 <rect key="frame" x="0.0" y="729" width="390" height="44"/>
                                 <items>
@@ -468,34 +463,45 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="V54-yG-tJr">
-                                <rect key="frame" x="0.0" y="483" width="398" height="246"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="V54-yG-tJr">
+                                <rect key="frame" x="0.0" y="519" width="390" height="204"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="audioPlayerCell" id="hSL-bm-FYS" customClass="AudioCustomTableViewCell" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="398" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hSL-bm-FYS" id="PcE-9Z-A7h">
-                                            <rect key="frame" x="0.0" y="0.0" width="398" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ied-aY-44U">
+                                <rect key="frame" x="8" y="83" width="366" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0zN-Bc-sNy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ied-aY-44U" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" constant="8" id="5NW-sO-vIS"/>
-                            <constraint firstItem="Ied-aY-44U" firstAttribute="top" secondItem="0zN-Bc-sNy" secondAttribute="top" constant="117" id="Dsf-xK-wvB"/>
-                            <constraint firstItem="zLP-aq-fix" firstAttribute="centerX" secondItem="1wB-p7-A3f" secondAttribute="centerX" id="OaD-X4-Ruz"/>
-                            <constraint firstItem="Ied-aY-44U" firstAttribute="trailing" secondItem="zLP-aq-fix" secondAttribute="trailing" id="QvC-Vz-HJS"/>
+                            <constraint firstItem="V54-yG-tJr" firstAttribute="top" secondItem="1wB-p7-A3f" secondAttribute="bottom" constant="17" id="4yW-VK-t79"/>
+                            <constraint firstItem="Ied-aY-44U" firstAttribute="top" secondItem="0zN-Bc-sNy" secondAttribute="top" constant="36" id="9Wi-f8-44j"/>
+                            <constraint firstItem="zLP-aq-fix" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" constant="8" id="ECb-Mp-rqU"/>
+                            <constraint firstItem="V54-yG-tJr" firstAttribute="leading" secondItem="1wB-p7-A3f" secondAttribute="leading" id="GpN-L0-K0L"/>
+                            <constraint firstItem="1wB-p7-A3f" firstAttribute="trailing" secondItem="V54-yG-tJr" secondAttribute="trailing" id="IKm-pm-tVW"/>
+                            <constraint firstAttribute="trailing" secondItem="V54-yG-tJr" secondAttribute="trailing" id="P4u-ra-zjj"/>
+                            <constraint firstItem="Ied-aY-44U" firstAttribute="trailing" secondItem="JYh-66-NOq" secondAttribute="trailingMargin" id="PDo-xb-UoL"/>
                             <constraint firstItem="Qpa-Td-ns2" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" id="T48-S0-5Jp"/>
-                            <constraint firstItem="zLP-aq-fix" firstAttribute="top" secondItem="Ied-aY-44U" secondAttribute="bottom" constant="19" id="WYx-FP-mHK"/>
+                            <constraint firstItem="1wB-p7-A3f" firstAttribute="centerX" secondItem="zLP-aq-fix" secondAttribute="centerX" id="Y2m-SP-epY"/>
+                            <constraint firstItem="1wB-p7-A3f" firstAttribute="top" secondItem="zLP-aq-fix" secondAttribute="bottom" constant="24" id="Zqn-S6-dB7"/>
+                            <constraint firstItem="V54-yG-tJr" firstAttribute="leading" secondItem="JYh-66-NOq" secondAttribute="leading" id="aye-mm-QlK"/>
                             <constraint firstItem="Qpa-Td-ns2" firstAttribute="trailing" secondItem="0zN-Bc-sNy" secondAttribute="trailing" id="dOI-dA-M8U"/>
                             <constraint firstItem="0zN-Bc-sNy" firstAttribute="bottom" secondItem="Qpa-Td-ns2" secondAttribute="bottom" constant="14" id="iWQ-hl-mKy"/>
-                            <constraint firstItem="Ied-aY-44U" firstAttribute="leading" secondItem="zLP-aq-fix" secondAttribute="leading" id="prw-b8-AVh"/>
+                            <constraint firstItem="Qpa-Td-ns2" firstAttribute="top" secondItem="V54-yG-tJr" secondAttribute="bottom" constant="6" id="kDc-82-ghG"/>
+                            <constraint firstItem="zLP-aq-fix" firstAttribute="top" secondItem="Ied-aY-44U" secondAttribute="bottom" constant="60" id="sPv-o9-OQk"/>
+                            <constraint firstItem="Ied-aY-44U" firstAttribute="leading" secondItem="zLP-aq-fix" secondAttribute="leading" id="y7W-8z-Moz"/>
                         </constraints>
                     </view>
                     <connections>

@@ -48,7 +48,6 @@ extension NoteViewController {
         request.predicate = predicate
         do {
             audiosEntity = try context.fetch(request)
-            print("Search by AUDIOS \(audiosEntity.count)")
         } catch {
             print("An error had ocurred: \(error.localizedDescription)")
         }
