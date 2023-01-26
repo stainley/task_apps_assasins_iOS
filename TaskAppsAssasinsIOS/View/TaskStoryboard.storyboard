@@ -155,9 +155,6 @@
                                 <rect key="frame" x="339" y="359" width="53.666666666666686" height="34.333333333333314"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="plus.app" catalog="system" title=" "/>
-                                <connections>
-                                    <action selector="addSubTaskButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="bpI-YD-h1R"/>
-                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ANf-kK-Cla">
                                 <rect key="frame" x="23" y="399" width="350" height="412.66666666666674"/>
@@ -185,9 +182,6 @@
                             <constraint firstItem="850-Nq-1ze" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="89" id="fCJ-7j-o10"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="taskTitle" destination="850-Nq-1ze" id="9eA-SZ-GDY"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
