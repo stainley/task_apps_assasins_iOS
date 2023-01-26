@@ -143,6 +143,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		AD2CC3E92982CAA9008E8599 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				AD2CC3E72982C860008E8599 /* TaskRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		ADB0D194297C3F9C00A9AF78 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,10 +165,10 @@
 		ADB0D195297C3FA400A9AF78 /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				AD2CC3E92982CAA9008E8599 /* Repository */,
 				70B7AE5329769B4200698260 /* TaskViewController.swift */,
 				7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */,
 				70576B72297DD80E00511F08 /* TaskSearchController.swift */,
-				AD2CC3E72982C860008E8599 /* TaskRepository.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";

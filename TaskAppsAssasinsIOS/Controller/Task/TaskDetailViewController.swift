@@ -9,7 +9,7 @@ import UIKit
 
 class TaskDetailViewController: UIViewController {
 
-    var task: Task?
+    var task: TaskEntity?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,7 +16,7 @@ extension TaskViewController {
             // reload collection of views
             
             print("Task had been saved")
-            noteTableView.reloadData()
+            taskTableView.reloadData()
         } catch {
             print("Error saving task \(error.localizedDescription)")
         }
@@ -91,6 +91,6 @@ extension TaskViewController {
             print("Error loading notes \(error.localizedDescription)")
         }
         
-        print Array<SubTaskEntity>()
+        return Array<SubTaskEntity>()
     }
 }
