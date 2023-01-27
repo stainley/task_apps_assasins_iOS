@@ -89,21 +89,13 @@ extension TaskViewController {
     func saveTask(task: Task, oldTaskEntity: TaskEntity? = nil) {
         
         // Title must be required.
-        if task.title.isEmpty {
-            guard let oldTask = oldTaskEntity else { return }
-            if oldTask.title!.isEmpty {
-                return
-            }
+        if task.title == "" || task.title.isEmpty || (oldTaskEntity != nil && oldTaskEntity?.title == nil) {
             return
         }
         
-        if task.subTasks.count > 0 {
-            //guard let oldTaskEntity = oldTaskEntity else { return }
-            // UPDATE NOT SAVE
-            if let oldTask = oldTaskEntity {
-                updateTask(updatedTask: task, oldTask: oldTask)
-                return
-            }
+        if let oldTask = oldTaskEntity {
+            updateTask(updatedTask: task, oldTask: oldTask)
+            return
         }
         
         let newTask = TaskEntity(context: context)
