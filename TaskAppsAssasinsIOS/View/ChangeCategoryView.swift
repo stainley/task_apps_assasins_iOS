@@ -2,16 +2,20 @@
 //  ChangeCategoryView.swift
 //  TaskAppsAssasinsIOS
 //
-//  Created by Stainley A Lebron R on 2023-01-26.
+//  Created by Stainley A Lebron R on 2023-01-27.
 //
 
 import UIKit
 
 class ChangeCategoryView: UIViewController {
     
-    var subtaskDelegate: TaskDetailViewController!
-    let categories = ["Cat1", "Cat2", "Cat3"]
-
+    var taskViewControllerDelegate: TaskViewController!
+    var noteViewControllerDelegate: NoteViewController!
+    
+    var categories: [CategoryEntity] = []
+    var noteToChange: NoteEntity!
+    
+    
     //  lazy views
    lazy var titleLabel: UILabel = {
        let label = UILabel()
@@ -28,7 +32,7 @@ class ChangeCategoryView: UIViewController {
     
     private lazy var categoryButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Add Sub Task", for: .normal)
+        button.setTitle("Select Category", for: .normal)
         button.backgroundColor = UIColor.tintColor
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -39,22 +43,6 @@ class ChangeCategoryView: UIViewController {
     }()
     
     
-    private lazy var first = UIAction(title: "first", image: UIImage(systemName: "pencil.circle"), attributes: [], state: .off) { action in
-            print("first")
-    }
-    
-    private lazy var second = UIAction(title: "second", image: UIImage(systemName: "pencil.circle"), attributes: [.destructive], state: .on) { action in
-          print("second")
-    }
-    
-    private lazy var camera = UIAction(title: "Camera", image: UIImage(systemName: "camera")){ _ in
-         print("camera tapped")
-    }
-    
-     private lazy var photo = UIAction(title: "Photo", image: UIImage(systemName: "photo.on.rectangle.angled")){ _ in
-         print("photo tapped")
-     }
-    
     //private lazy var elements: [UIAction] = [first, second]
     private lazy var elements: [UIAction] = categoryOptions()
     private lazy var menu = UIMenu(title: "Category", children: elements)
@@ -64,9 +52,14 @@ class ChangeCategoryView: UIViewController {
         var actions: [UIAction] = []
         // fetch from the database categories
         for category in categories {
-            let action = UIAction(title: category, image: UIImage(systemName: "pencil.circle"), handler: { (action) in
+            let action = UIAction(title: category.name ?? "", image: UIImage(systemName: "pencil.circle"), handler: { (action) in
                 print(category)
-                self.optionLabel.text = category
+                self.optionLabel.text = category.name
+                
+                let delegate = self.noteViewControllerDelegate
+                self.noteViewControllerDelegate.changeNoteCategory(noteEntity: self.noteToChange, for: category)
+
+                self.noteViewControllerDelegate.noteTableView.reloadData()
             })
             actions.append(action)
         }
@@ -74,7 +67,7 @@ class ChangeCategoryView: UIViewController {
         return actions
     }
     
-    lazy var createSubTaskButton: UIButton = {
+    lazy var changeCategoryButton: UIButton = {
        let button = UIButton()
         button.setTitle("Accept", for: .normal)
         button.backgroundColor = UIColor.tintColor
@@ -86,7 +79,7 @@ class ChangeCategoryView: UIViewController {
        
    lazy var contentStackView: UIStackView = {
        let spacer = UIView()
-       let stackView = UIStackView(arrangedSubviews: [titleLabel, categoryButton, optionLabel  ,spacer, createSubTaskButton])
+       let stackView = UIStackView(arrangedSubviews: [titleLabel, categoryButton, optionLabel  ,spacer, changeCategoryButton])
        stackView.axis = .vertical
        stackView.spacing = 12.0
        return stackView
@@ -126,49 +119,42 @@ class ChangeCategoryView: UIViewController {
        
        categoryButton.menu = menu
        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
-       //menu = menu.replacingChildren([first, second, deferredMenu])
 
        navigationItem.rightBarButtonItem?.menu = menu
 
        // tap gesture on dimmed view to dismiss
        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleCloseAction))
        dimmedView.addGestureRecognizer(tapGesture)
-       //setupPanGesture()
        
-       //createSubTaskButton.addTarget(self, action: #selector(createSubTask), for: .touchDown)
-       //categoryButton.addTarget(self, action: #selector(categoryButtonTapped), for: .touchDown)
-       
+       changeCategoryButton.addTarget(self, action: #selector(changeCategory), for: .touchDown)
    }
 
     
     @objc func categoryButtonTapped(_ sender: Any) {
-        /*
-        categoryDropDown.forEach{ (btn) in
-            UIView.animate(withDuration: 0.7, animations: loadViewIfNeeded) {_ in
-                btn.layer.borderColor = UIColor.lightGray.cgColor
-                btn.layer.borderWidth = 0.25
-                btn.isHidden = !btn.isHidden
-                btn.alpha = btn.alpha == 0 ? 1 : 0
-                btn.layoutIfNeeded()
-            }
-        }*/
+        
+        handleCloseAction()
+    }
+    
+    @objc func changeCategory() {
+        noteViewControllerDelegate.noteTableView.reloadData()
+
         handleCloseAction()
     }
     
        
-       @objc func handleCloseAction() {
-           animateDismissView()
-       }
-       
-       override func viewDidAppear(_ animated: Bool) {
-           super.viewDidAppear(animated)
-           animateShowDimmedView()
-           animatePresentContainer()
-       }
-       
-       func setupView() {
-           view.backgroundColor = .clear
-       }
+   @objc func handleCloseAction() {
+       animateDismissView()
+   }
+   
+   override func viewDidAppear(_ animated: Bool) {
+       super.viewDidAppear(animated)
+       animateShowDimmedView()
+       animatePresentContainer()
+   }
+   
+   func setupView() {
+       view.backgroundColor = .clear
+   }
        
     private func delayMenuImageLoading(with interval: TimeInterval, useDeferredMenu: Bool = false) {
         DispatchQueue.main.asyncAfter(deadline: .now() + interval) {
