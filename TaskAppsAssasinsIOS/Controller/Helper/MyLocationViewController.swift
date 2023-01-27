@@ -15,3 +15,12 @@ extension NoteDetailViewController: CLLocationManagerDelegate {
         coordinate = location.coordinate
     }
 }
+
+extension TaskDetailViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[0]
+        coordinate = location.coordinate
+    }
+}
+

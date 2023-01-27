@@ -27,4 +27,16 @@ extension NoteDetailViewController: UITableViewDelegate, UITableViewDataSource {
         return audioPlayerCell
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        // Delete audio by swipping
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            let audio = AudioEntity(context: self.context)
+            audio.audioPath = self.audioPath[indexPath.row]
+            self.deleteAudio(audioPath: self.audioPath[indexPath.row])
+            self.audioTableView.reloadData()
+       }
+    
+        return UISwipeActionsConfiguration(actions: [action])
+    }
 }
