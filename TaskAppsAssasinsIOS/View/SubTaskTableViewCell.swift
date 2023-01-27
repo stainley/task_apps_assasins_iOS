@@ -7,29 +7,37 @@
 
 import UIKit
 
+protocol SubTaskTableViewCellDelegate {
+    //func selectDate(subTaskEntity: SubTaskEntity)
+    func updateSubTaskStatus(index: Int, status: Bool)
+}
 
 class SubTaskTableViewCell: UITableViewCell {
 
     @IBOutlet weak var isCompleteButton: UIButton! {
         didSet{
-            //isCompleteButton.setImage(UIImage(named: "checkmark.square.fill"), for: .normal)
-            //isCompleteButton.setImage(UIImage(named: "checkmark.square"), for: .selected)
-            
-           // isCompleteButton.layer.cornerRadius = isCompleteButton.frame.height / 2
+            checkmarkImage?.image = UIImage(systemName: "square")
         }
     }
+    
+    @IBOutlet weak var checkmarkImage: UIImageView!
     @IBOutlet weak var subTaskTitleLabel: UILabel!
     @IBOutlet weak var datePickerButton: UIButton!
     
+    var delegate: SubTaskTableViewCellDelegate?
+    var cellIndex: Int?
+    
     @IBAction func checkbox(_ sender: UIButton){
-        sender.checkboxAnimation {
-            print("I'm done")
-            //here you can also track the Checked, UnChecked state with sender.isSelected
+        sender.checkboxAnimation { [self] in
             print(sender.isSelected)
             if sender.isSelected {
-                sender.setImage(UIImage(named: "checkmark.square"), for: .selected)
+                self.checkmarkImage?.image = UIImage(systemName: "checkmark.square")
             } else {
-                sender.setImage(UIImage(named: "checkmark.square.fill"), for: .normal)
+                self.checkmarkImage?.image = UIImage(systemName: "square")
+            }
+            
+            if let cellIndex = self.cellIndex {
+                self.delegate?.updateSubTaskStatus(index: cellIndex, status: sender.isSelected)
             }
         }
     }
@@ -44,7 +52,7 @@ class SubTaskTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        print("sadfasdf")
         // Configure the view for the selected state
     }
     
@@ -52,11 +60,6 @@ class SubTaskTableViewCell: UITableViewCell {
         //guard let subtask = subtask else { return }
         //delegate?.selectDate(subTaskEntity: subtask)
     }
-}
-
-
-protocol SubTaskTableViewCellDelegate {
-    func selectDate(subTaskEntity: SubTaskEntity)
 }
 
 extension UIButton {

@@ -17,25 +17,64 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = taskTableView.dequeueReusableCell(withIdentifier: "taskViewCell", for: indexPath) as! TaskNibTableViewCell
+        var totalSubtaskCompleted = 0
+        var isAllSubtaskCompleted = true
         
+        cell.taskCheckmarkImage.image = UIImage(systemName: "checkmark.square")
         cell.titleLabel.text = filteredTasks[indexPath.row].title
-        cell.creationDateLabel.text = "Creted at \(filteredTasks[indexPath.row].creationDate!)"
-    
-        // DUE DATE TASK is the last due date from subtask
-        let lastDate = getSubTaskDueDate(predicate: NSPredicate(format: "task_parent.title=%@", filteredTasks[indexPath.row].title!))
-        if lastDate != nil {
-            cell.dueDateLabel.text = "Due at \(lastDate!)"
+        
+        if let creation = filteredTasks[indexPath.row].creationDate {
+            cell.creationDateLabel?.text = "Created: \(creation.toString(dateFormat: "MMMM dd, yyyy 'on' h:mm:ss a"))"
         }
         
-        if tasks[indexPath.row].isCompleted == true {
-            cell.taskColorIndicatorView?.backgroundColor = .systemGreen
+        if let subtasks = filteredTasks[indexPath.row].subtasks {
+            for subtask in subtasks {
+                if (subtask as! SubTaskEntity).status == false {
+                    isAllSubtaskCompleted = false
+                    cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
+                }
+            }
         }
-        else {
-            cell.taskColorIndicatorView?.backgroundColor = .systemBlue
+        
+        // DUE DATE TASK is the last due date from subtask
+        //print("\(tasks[indexPath.row].title) \(tasks[indexPath.row].taskDueDate)")
+        
+        if let dueDate =  tasks[indexPath.row].taskDueDate {
+            if filteredTasks[indexPath.row].subtasks?.count == 0 {
+                cell.dueDateLabel.text = "Due: \(dueDate.toString(dateFormat: "MMMM dd, yyyy 'on' h:mm:ss a"))"
+            }
+            else {
+                let lastDate = getSubTaskDueDate(predicate: NSPredicate(format: "task_parent.title=%@", filteredTasks[indexPath.row].title!))
+                
+                if lastDate != nil {
+                    cell.dueDateLabel.text = "Due: \(lastDate!.toString(dateFormat: "MMMM dd, yyyy 'on' h:mm:ss a"))"
+                    
+                    if tasks[indexPath.row].isCompleted == true {
+                        cell.taskColorIndicatorView?.backgroundColor = .systemGreen
+                    }
+                    else {
+                        cell.taskColorIndicatorView?.backgroundColor = .systemBlue
+                        
+                        if (lastDate!.timeIntervalSinceNow.sign == .minus) {
+                            cell.taskColorIndicatorView?.backgroundColor = .systemRed
+                        }
+                    }
+                }
+            }
+        }
+        
+        if let subtasks = filteredTasks[indexPath.row].subtasks {
+            for subtask in subtasks {
+                if (subtask as! SubTaskEntity).status == true {
+                    totalSubtaskCompleted += 1
+                }
+            }
             
-            //TO BE REPLACE - Due date and current date comparison
-            if (indexPath.row == 2) {
-                cell.taskColorIndicatorView?.backgroundColor = .systemRed
+            if filteredTasks[indexPath.row].subtasks?.count == 0 {
+                cell.completedCounterLabel.text = ""
+            }
+            else {
+                cell.completedCounterLabel.text = "\(totalSubtaskCompleted)/\(filteredTasks[indexPath.row].subtasks?.count ?? 0)"
             }
         }
         

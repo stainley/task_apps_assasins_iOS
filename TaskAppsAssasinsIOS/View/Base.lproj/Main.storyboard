@@ -627,35 +627,6 @@
             </objects>
             <point key="canvasLocation" x="1012" y="436"/>
         </scene>
-        <!--Task Detail View Controller-->
-        <scene sceneID="8FK-fp-PQy">
-            <objects>
-                <viewController storyboardIdentifier="TaskDetailViewController" id="mr2-OP-gsH" customClass="TaskDetailViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="i08-wx-aBv">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Task Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWW-oo-5hT">
-                                <rect key="frame" x="174" y="120" width="128" height="31"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="8eg-Gt-6I4"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="8eg-Gt-6I4" firstAttribute="bottom" secondItem="lWW-oo-5hT" secondAttribute="bottom" constant="659" id="Kfd-ii-2Ja"/>
-                            <constraint firstItem="lWW-oo-5hT" firstAttribute="leading" secondItem="8eg-Gt-6I4" secondAttribute="leading" constant="174" id="SRg-Kp-EZT"/>
-                            <constraint firstItem="lWW-oo-5hT" firstAttribute="top" secondItem="8eg-Gt-6I4" secondAttribute="top" constant="73" id="kzp-ax-PHS"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="MtL-Ef-eP9"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jKy-Eg-SCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="206" y="1226"/>
-        </scene>
     </scenes>
     <resources>
         <image name="arrow.down" catalog="system" width="118" height="128"/>

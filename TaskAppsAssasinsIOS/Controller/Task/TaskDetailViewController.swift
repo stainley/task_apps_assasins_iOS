@@ -7,9 +7,10 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 import CoreLocation
 
-class TaskDetailViewController: UIViewController {
+class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudioRecorderDelegate  {
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate: TaskViewController?
@@ -21,10 +22,17 @@ class TaskDetailViewController: UIViewController {
     
     var subTasksEntity: [SubTaskEntity] = [SubTaskEntity]()
 
+    var pictures: [UIImage] = []
+    var newPictures: [UIImage] = []
+    
     @IBOutlet weak var taskDueDatePicker: UIDatePicker!
     @IBOutlet weak var completedTaskCounterLabel: UILabel!
-    @IBOutlet var catagoryCollection: [UIButton] = []
-    @IBOutlet weak var categoryButton: UIButton!
+    @IBOutlet weak var pictureCollectionView: UICollectionView!
+    @IBOutlet weak var recordAudioButton: UIBarButtonItem!
+    @IBOutlet weak var imageSectionLabel: UILabel!
+    @IBOutlet weak var audioTableView: UITableView!
+   // @IBOutlet var catagoryCollection: [UIButton] = []
+    //@IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var subTaskTableView: UITableView!
     
     @IBOutlet weak var titleTaskTxt: UITextField!
@@ -61,7 +69,22 @@ class TaskDetailViewController: UIViewController {
         categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
         */
         
+        pictureCollectionView.delegate = self
+        pictureCollectionView.dataSource = self
+        
+        let nib = UINib(nibName: "PictureCollectionViewCell", bundle: nil)
+        pictureCollectionView.register(nib, forCellWithReuseIdentifier: "pictureCell")
+        
+        //imageSectionLabel.isHidden = true
+       // pictureCollectionView.superview?.isHidden = true
       
+        if pictures.count > 0 {
+            pictureCollectionView.reloadData()
+            imageSectionLabel.isHidden = false
+            imageSectionLabel.isHidden = false
+            pictureCollectionView.superview?.isHidden = false
+        }
+        
         let subTaskTableViewCell = UINib(nibName: "SubTaskTableViewCell", bundle: nil)
         self.subTaskTableView.register(subTaskTableViewCell, forCellReuseIdentifier: "subTaskTableViewCell")
         
@@ -75,17 +98,17 @@ class TaskDetailViewController: UIViewController {
         
     }
     
-    @IBAction func categoryButtonTapped(_ sender: Any) {
-        catagoryCollection.forEach{ (btn) in
-            UIView.animate(withDuration: 0.7, animations: loadViewIfNeeded) {_ in
-                btn.layer.borderColor = UIColor.lightGray.cgColor
-                btn.layer.borderWidth = 0.25
-                btn.isHidden = !btn.isHidden
-                btn.alpha = btn.alpha == 0 ? 1 : 0
-                btn.layoutIfNeeded()
-            }
-        }
-    }
+//    @IBAction func categoryButtonTapped(_ sender: Any) {
+//        catagoryCollection.forEach{ (btn) in
+//            UIView.animate(withDuration: 0.7, animations: loadViewIfNeeded) {_ in
+//                btn.layer.borderColor = UIColor.lightGray.cgColor
+//                btn.layer.borderWidth = 0.25
+//                btn.isHidden = !btn.isHidden
+//                btn.alpha = btn.alpha == 0 ? 1 : 0
+//                btn.layoutIfNeeded()
+//            }
+//        }
+//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         
@@ -107,16 +130,28 @@ class TaskDetailViewController: UIViewController {
         self.present(subTaskVC, animated: false)
     }
     
-    @objc func categoryItemButtonTapped(sender: UIButton!) {
-
-        catagoryCollection.forEach{ (btn) in
-            btn.backgroundColor = .none
-        }
-        sender.backgroundColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
-        categorySelected = sender.titleLabel?.text ?? ""
-        categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
-        categoryButtonTapped(sender!)
+    @IBAction func takePhotoButton(_ sender: UIBarButtonItem) {
+        takePhotoOrUpload()
     }
+    
+    @IBAction func recordAudioButoon(_ sender: UIBarButtonItem) {
+        //recordTapped()
+    }
+
+    @objc func scrubleAction(_ sender: UISlider) {
+       // sender.maximumValue = Float(player!.duration)
+    }
+    
+//    @objc func categoryItemButtonTapped(sender: UIButton!) {
+//
+//        catagoryCollection.forEach{ (btn) in
+//            btn.backgroundColor = .none
+//        }
+//        sender.backgroundColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
+//        categorySelected = sender.titleLabel?.text ?? ""
+//        categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
+//        categoryButtonTapped(sender!)
+//    }
     
     // MARK: Add a new sub task
     func addSubTask(subTask: SubTask) {
