@@ -17,6 +17,7 @@ struct Task {
     var image: Data!
     var pictures: [Data] = []
     var audios: [String] = []
+    var subTasks: [SubTaskEntity] = []
     
     private (set) var latitude: Double?
     private (set) var longitude: Double?

@@ -74,25 +74,7 @@ extension TaskViewController {
         return Array<TaskEntity>()
     }
     
-    // Load all subtasks
-    func loadSubTasksByTask(predicate: NSPredicate? = nil) -> Array<SubTaskEntity> {
-        let request: NSFetchRequest<SubTaskEntity> = SubTaskEntity.fetchRequest()
-        let categoryPredicate = NSPredicate(format: "category_parent.name=%@", selectedCategory!.name!)
-        
-        if let additionalPredicate = predicate {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
-        } else {
-            request.predicate = categoryPredicate
-        }
-        
-        do {
-            return try context.fetch(request)
-        } catch {
-            print("Error loading notes \(error.localizedDescription)")
-        }
-        
-        return Array<SubTaskEntity>()
-    }
+    
     
     func fetchAllCategory() -> Array<CategoryEntity> {
         let request: NSFetchRequest<CategoryEntity> = CategoryEntity.fetchRequest()
@@ -107,10 +89,16 @@ extension TaskViewController {
     }
     
     // TODO: Elvin
-    func saveDBTask(task: Task, oldTaskEntity: TaskEntity? = nil) {
+    func saveTask(task: Task, oldTaskEntity: TaskEntity? = nil) {
+        
+        // Title must be required.
+        if task.title.isEmpty || ((oldTaskEntity?.title?.isEmpty) != nil) {
+            return
+        }
         
         if let oldTaskEntity = oldTaskEntity {
-            // UPDATE NO SAVE
+            
+            // UPDATE NOT SAVE
             updateTask(updatedTask: task, oldTask: oldTaskEntity)
             return
         }
@@ -122,7 +110,6 @@ extension TaskViewController {
         newTask.title = task.title
         newTask.taskDescription = task.description
         newTask.creationDate = Date()
-        
         // Save image to the Database
         for picture in task.pictures {
             let pictureEntity = PictureEntity(context: context)
@@ -146,9 +133,17 @@ extension TaskViewController {
             newTask.longitude = longitude
         }
         
+        
+        // TODO: save all subtask before the task
+        if task.subTasks.count > 0 {
+            addSubTask(parentTask: newTask, subTasks: task.subTasks)
+        }
+        
+        
         newTask.category_parent = selectedCategory
         saveTask()
         tasks = loadTasksByCategory()
+        
         filteredTasks = tasks
         taskTableView.reloadData()
     }

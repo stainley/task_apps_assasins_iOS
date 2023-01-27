@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomModalViewController: UIViewController {
+class SubTaskModalViewController: UIViewController {
     
     var subtaskDelegate: TaskDetailViewController!
     

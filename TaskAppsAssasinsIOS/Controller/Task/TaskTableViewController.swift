@@ -57,7 +57,10 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
         if let taskDetailViewController = self.storyboard!.instantiateViewController(withIdentifier: "taskDetailStoryboardID") as? TaskDetailViewController {
             taskDetailViewController.delegate = self
             taskDetailViewController.task = task
-            
+        
+            subTasks = loadSubTasksByTask(title: tasks[indexPath.row].title ?? "")
+            print(subTasks.count)
+            taskDetailViewController.subTasksEntity = subTasks
             //self.storyboard?.instantiateViewController(withIdentifier: "taskDetailStoryboardID")
             self.navigationController?.pushViewController(taskDetailViewController, animated: true)
             //self.show(taskDetailViewController, sender: self)

@@ -7,13 +7,15 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 class TaskDetailViewController: UIViewController {
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate: TaskViewController?
     var task: TaskEntity?
-    
+    var coordinate: CLLocationCoordinate2D?
+
     var categorySelected: String = ""
     var categories: [CategoryEntity] = [CategoryEntity]()
     var subTasksEntity: [SubTaskEntity] = [SubTaskEntity]()
@@ -68,6 +70,8 @@ class TaskDetailViewController: UIViewController {
             return
         }
         titleTaskTxt.text = title
+        
+        
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {
@@ -83,80 +87,20 @@ class TaskDetailViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        var isUpdating = false
         
         var newTask = Task(title: titleTaskTxt.text ?? "")
-        
-        self.delegate?.saveDBTask(task: newTask, oldTaskEntity: task)
+        // for new task pass the array of tasks
+        newTask.subTasks = subTasksEntity
+        self.delegate?.saveTask(task: newTask, oldTaskEntity: task)
     }
-  
     
     @IBAction func addSubtaskButtonTapped(_ sender: UIButton) {
-        /*
-        var textField = UITextField()
-        var dueDatePicker = UIDatePicker()
+     
+        let subTaskVC = SubTaskModalViewController()
         
-        let alert = UIAlertController(title: "New Subtask", message: "", preferredStyle: .alert)
-        
-        let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            
-            let subtaskTitle = self.subTasksEntity.map {$0.title?.lowercased()}
-            
-            let newSubTask = SubTaskEntity(context: self.context)
-            newSubTask.title = textField.text!
-            newSubTask.creationDate = Date()
-            newSubTask.dueDate = Date()
-            self.subTasksEntity.append(newSubTask)
-            //self.saveSubTask()
-            
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        cancelAction.setValue(UIColor.orange, forKey: "titleTextColor")
-        
-        alert.addAction(addAction)
-        alert.addAction(cancelAction)
-        alert.addTextField { (field) in
-            textField = field
-            textField.placeholder = "Subtask Name"
-        }
-        
-        present(alert, animated: true, completion: nil)
-         */
-        /*
-        let subtaskModalViewController = storyboard?.instantiateViewController(withIdentifier: "subtaskViewControllerID") as! SubTaskModalViewController
-        
-        
-        
-        subtaskModalViewController.modalPresentationStyle = .formSheet
-        subtaskModalViewController.preferredContentSize = .init(width: 500, height: 500)
-        present(subtaskModalViewController, animated: true)
-        
-        */
-        
-        /*
-        
-        let vc = SubTaskModalViewController()
-            vc.modalPresentationStyle = .popover
-            vc.preferredContentSize = .init(width: 500, height: 500)  // the size of popover
-            vc.popoverPresentationController?.sourceView = self.view    // the view of the popover
-            vc.popoverPresentationController?.sourceRect = CGRect(    // the place to display the popover
-                origin: CGPoint(
-                    x: self.view.bounds.midX,
-                    y: self.view.bounds.midY
-                ),
-                size: .zero
-            )
-            vc.popoverPresentationController?.permittedArrowDirections = [] // the direction of the arrow
-            //vc.popoverPresentationController?.delegate = self               // delegate
-            present(vc, animated: true)
-         */
-        
-        let cv = CustomModalViewController()
-        
-        cv.modalPresentationStyle = .overCurrentContext
-        cv.subtaskDelegate = self
-                // modal animation will be handled in VC itself
-        self.present(cv, animated: false)
+        subTaskVC.modalPresentationStyle = .overCurrentContext
+        subTaskVC.subtaskDelegate = self
+        self.present(subTaskVC, animated: false)
     }
     
     @objc func categoryItemButtonTapped(sender: UIButton!) {
@@ -171,9 +115,14 @@ class TaskDetailViewController: UIViewController {
     }
     
     func addSubTask(subTask: SubTask) {
-        print("INFO FROM REPO: \(subTask.dueDate)")
+      
+        let newSubTask = SubTaskEntity(context: context)
+        newSubTask.title = subTask.title
+        newSubTask.dueDate = subTask.dueDate
+        newSubTask.status = false
+        subTasksEntity.append(newSubTask)
+        subTaskTableView.reloadData()
     }
-    
 }
 
 
