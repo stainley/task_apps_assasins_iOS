@@ -34,7 +34,7 @@ class SubTaskModalViewController: UIViewController {
     
     lazy var createSubTaskButton: UIButton = {
        let button = UIButton()
-        button.setTitle("Add Task", for: .normal)
+        button.setTitle("Add Sub Task", for: .normal)
         button.backgroundColor = UIColor.tintColor
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
