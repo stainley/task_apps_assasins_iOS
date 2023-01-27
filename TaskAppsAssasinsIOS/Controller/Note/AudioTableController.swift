@@ -33,7 +33,7 @@ extension NoteDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
             let audio = AudioEntity(context: self.context)
             audio.audioPath = self.audioPath[indexPath.row]
-            self.deleteAudio(audioEntity: audio)
+            self.deleteAudio(audioPath: self.audioPath[indexPath.row])
             self.audioTableView.reloadData()
        }
     
