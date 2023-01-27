@@ -14,6 +14,7 @@ class TaskNibTableViewCell: UITableViewCell {
     @IBOutlet weak var creationDateLabel: UILabel!
     @IBOutlet weak var taskColorIndicatorView: UIView!
     @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var completedCounterLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

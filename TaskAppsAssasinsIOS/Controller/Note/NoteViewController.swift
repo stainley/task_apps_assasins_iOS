@@ -140,7 +140,7 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         if let creation = filteredNotes[indexPath.row].creationDate {
-            cell.creationDateLabel?.text = "\(creation.toString(dateFormat: "MMMM dd, yyyy 'on' h:mm a"))"
+            cell.creationDateLabel?.text = "Created: \(creation.toString(dateFormat: "MMMM dd, yyyy 'on' h:mm:ss a"))"
         }
         
         return cell
