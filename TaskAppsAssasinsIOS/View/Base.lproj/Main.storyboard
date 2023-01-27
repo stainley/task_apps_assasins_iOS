@@ -171,8 +171,7 @@
                                                 <rightBarButtonItems>
                                                     <barButtonItem systemItem="add" id="zoI-gH-edf">
                                                         <connections>
-                                                            <action selector="addNewTaskButton:" destination="20G-No-hh8" id="xop-Ck-eGL"/>
-                                                            <segue destination="6vy-jQ-Hgf" kind="show" id="rKh-J4-ZhI"/>
+                                                            <segue destination="6vy-jQ-Hgf" kind="show" identifier="taskDetailStoryboard" id="rKh-J4-ZhI"/>
                                                         </connections>
                                                     </barButtonItem>
                                                     <barButtonItem systemItem="search" id="MWk-mc-pyy">
@@ -232,6 +231,16 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="axc-K3-tuO">
                                         <rect key="frame" x="1" y="96" width="388" height="610"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskViewCell" id="0ut-jU-R2x">
+                                                <rect key="frame" x="0.0" y="50" width="388" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0ut-jU-R2x" id="cy4-V6-K0L">
+                                                    <rect key="frame" x="0.0" y="0.0" width="388" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="20G-No-hh8" id="KAV-zJ-esd"/>
                                             <outlet property="delegate" destination="20G-No-hh8" id="mEY-T8-KQl"/>

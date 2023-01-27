@@ -11,7 +11,9 @@ import CoreData
 class TaskDetailViewController: UIViewController {
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var delegate: TaskViewController?
     var task: TaskEntity?
+    
     var categorySelected: String = ""
     var categories: [CategoryEntity] = [CategoryEntity]()
     var subTasksEntity: [SubTaskEntity] = [SubTaskEntity]()
@@ -21,25 +23,28 @@ class TaskDetailViewController: UIViewController {
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var subTaskTableView: UITableView!
     
+    @IBOutlet weak var titleTaskTxt: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        categories  = self.fetchAllCategory()
+        /*
+        //categories  = self.fetchAllCategory()
         for category in categories {
             //let categoryItemButton = UIButton(frame: CGRect(x: 0, y: 0, width: categoryButton.frame.width, height: 40))
             //categoryItemButton.setTitle("\(category.name ?? "")", for: .normal)
             //categoryItemButton.setTitleColor(.black, for: .normal)
             //categoryItemButton.addTarget(self, action: #selector(categoryItemButtonTapped), for: .touchUpInside)
-            /*
+           
             if categorySelected == category.name {
                 categoryItemButton.backgroundColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
             }
             catagoryCollection.append(categoryItemButton)
             if let stackView = categoryButton.superview as? UIStackView{
                 stackView.addArrangedSubview(categoryItemButton)
-            }*/
+            }
         }
-        
+             */
         /*
         catagoryCollection.forEach{ (btn) in
             btn.isHidden = true
@@ -51,8 +56,18 @@ class TaskDetailViewController: UIViewController {
         categoryButton.contentHorizontalAlignment = .left
         categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
         */
+        
+      
         let subTaskTableViewCell = UINib(nibName: "SubTaskTableViewCell", bundle: nil)
-        subTaskTableView.register(subTaskTableViewCell, forCellReuseIdentifier: "SubTaskTableViewCell")
+        self.subTaskTableView.register(subTaskTableViewCell, forCellReuseIdentifier: "subTaskTableViewCell")
+        
+        subTaskTableView.dataSource = self
+        subTaskTableView.delegate = self
+
+        guard let title = task?.title else {
+            return
+        }
+        titleTaskTxt.text = title
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {
@@ -67,7 +82,17 @@ class TaskDetailViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        var isUpdating = false
+        
+        var newTask = Task(title: titleTaskTxt.text ?? "")
+        
+        self.delegate?.saveDBTask(task: newTask, oldTaskEntity: task)
+    }
+  
+    
     @IBAction func addSubtaskButtonTapped(_ sender: UIButton) {
+        /*
         var textField = UITextField()
         var dueDatePicker = UIDatePicker()
         
@@ -96,6 +121,42 @@ class TaskDetailViewController: UIViewController {
         }
         
         present(alert, animated: true, completion: nil)
+         */
+        /*
+        let subtaskModalViewController = storyboard?.instantiateViewController(withIdentifier: "subtaskViewControllerID") as! SubTaskModalViewController
+        
+        
+        
+        subtaskModalViewController.modalPresentationStyle = .formSheet
+        subtaskModalViewController.preferredContentSize = .init(width: 500, height: 500)
+        present(subtaskModalViewController, animated: true)
+        
+        */
+        
+        /*
+        
+        let vc = SubTaskModalViewController()
+            vc.modalPresentationStyle = .popover
+            vc.preferredContentSize = .init(width: 500, height: 500)  // the size of popover
+            vc.popoverPresentationController?.sourceView = self.view    // the view of the popover
+            vc.popoverPresentationController?.sourceRect = CGRect(    // the place to display the popover
+                origin: CGPoint(
+                    x: self.view.bounds.midX,
+                    y: self.view.bounds.midY
+                ),
+                size: .zero
+            )
+            vc.popoverPresentationController?.permittedArrowDirections = [] // the direction of the arrow
+            //vc.popoverPresentationController?.delegate = self               // delegate
+            present(vc, animated: true)
+         */
+        
+        let cv = CustomModalViewController()
+        
+        cv.modalPresentationStyle = .overCurrentContext
+        cv.subtaskDelegate = self
+                // modal animation will be handled in VC itself
+        self.present(cv, animated: false)
     }
     
     @objc func categoryItemButtonTapped(sender: UIButton!) {
@@ -109,87 +170,20 @@ class TaskDetailViewController: UIViewController {
         categoryButtonTapped(sender!)
     }
     
-    func fetchAllCategory() -> Array<CategoryEntity> {
-        let request: NSFetchRequest<CategoryEntity> = CategoryEntity.fetchRequest()
-        
-        do {
-            return try context.fetch(request)
-        } catch {
-            print("Error loading categories \(error.localizedDescription)")
-        }
-        
-        return Array<CategoryEntity>()
-    }
-
-}
-
-extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subTasksEntity.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = subTaskTableView.dequeueReusableCell(withIdentifier: "SubTaskTableViewCell", for: indexPath) as? SubTaskTableViewCell
-        
-        cell?.subtask = subTasksEntity[indexPath.row]
-        cell?.subTaskTitleLabel?.text = subTasksEntity[indexPath.row].title
-        cell?.datePickerButton?.setTitle(subTasksEntity[indexPath.row].dueDate?.toString(dateFormat: "MM/DD/YYY"), for: .normal)
-        cell?.delegate = self
-        return cell ?? UITableViewCell()    }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        let action = UIContextualAction(style: .destructive, title: "Delete") {
-            (action, view, completionHandler) in
-        }
-        
-        return UISwipeActionsConfiguration(actions: [action])
+    func addSubTask(subTask: SubTask) {
+        print("INFO FROM REPO: \(subTask.dueDate)")
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let subtask = self.subTasksEntity[indexPath.row]
-    }
 }
 
-extension TaskDetailViewController: SubTaskTableViewCellDelegate {
-    func selectDate(subTaskEntity: SubTaskEntity) {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .inline
-        datePicker.minimumDate = Date()
-        
-        let alert = UIAlertController(title: "Due Date", message: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: .actionSheet)
-        datePicker.frame = CGRect(x: 0, y: 40, width: alert.view.frame.width, height: 320)
-        alert.view.addSubview(datePicker)
 
-        let selectAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
-            subTaskEntity.dueDate = datePicker.date
-            if let position = self.subTasksEntity.firstIndex(where: { subtask in
-                return subtask.id == subTaskEntity.id
-            }){
-                self.subTasksEntity[position] = subTaskEntity
-                //self.saveSubTask()
-            }
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
-        alert.addAction(selectAction)
-        alert.addAction(cancelAction)
-
-        present(alert, animated: true)
-    }
-}
-
-extension Date
-{
-    func toString( dateFormat format  : String ) -> String
-    {
+extension Date {
+    func toString( dateFormat format  : String ) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         return dateFormatter.string(from: self as Date)
     }
-
 }
 
 

@@ -7,9 +7,6 @@
 
 import UIKit
 
-protocol SubTaskTableViewCellDelegate {
-    func selectDate(subTaskEntity: SubTaskEntity)
-}
 
 class SubTaskTableViewCell: UITableViewCell {
 
@@ -19,18 +16,25 @@ class SubTaskTableViewCell: UITableViewCell {
     
     var subtask: SubTaskEntity?
     
-    var delegate: SubTaskTableViewCellDelegate?
+    //var delegate: SubTaskTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
     
     @IBAction func datePickerButtonTapped(_ sender: Any) {
-        guard let subtask = subtask else { return }
-        delegate?.selectDate(subTaskEntity: subtask)
+        //guard let subtask = subtask else { return }
+        //delegate?.selectDate(subTaskEntity: subtask)
     }
+}
+
+
+protocol SubTaskTableViewCellDelegate {
+    func selectDate(subTaskEntity: SubTaskEntity)
 }
