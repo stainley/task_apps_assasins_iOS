@@ -610,14 +610,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EhW-aL-rP4">
-                                <rect key="frame" x="0.0" y="121" width="390" height="660"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EhW-aL-rP4">
+                                <rect key="frame" x="0.0" y="47" width="390" height="763"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Jhg-Io-yqt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Jhg-Io-yqt" firstAttribute="bottom" secondItem="EhW-aL-rP4" secondAttribute="bottom" id="9HB-uw-ZEL"/>
+                            <constraint firstItem="EhW-aL-rP4" firstAttribute="top" secondItem="Jhg-Io-yqt" secondAttribute="top" id="Ufd-jE-gMs"/>
+                            <constraint firstItem="EhW-aL-rP4" firstAttribute="trailing" secondItem="Jhg-Io-yqt" secondAttribute="trailing" id="Vxa-ee-ECN"/>
+                            <constraint firstItem="EhW-aL-rP4" firstAttribute="leading" secondItem="Jhg-Io-yqt" secondAttribute="leading" id="sbM-4Q-uxh"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="map" destination="EhW-aL-rP4" id="MMN-9r-4Mf"/>
