@@ -50,6 +50,8 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     var placeholderLabel : UILabel!
     
+    var doubleTapGesture: UITapGestureRecognizer!
+    
     @IBAction func takePhotoButton(_ sender: UIBarButtonItem) {
         takePhotoOrUpload()
     }
@@ -96,6 +98,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         
         imageSectionLabel.isHidden = true
         pictureCollectionView.superview?.isHidden = true
+        setUpDoubleTap()
         
         /// PREPARE FOR RECORDING AUDIO
         loadRecordingFuntionality()
