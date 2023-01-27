@@ -33,6 +33,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     var note: NoteEntity?
     var pictureEntity: PictureEntity?
+    var pictureEntities: [PictureEntity] = []
     
     //var imageNote: UIImage?
     var pictures: [UIImage] = []
