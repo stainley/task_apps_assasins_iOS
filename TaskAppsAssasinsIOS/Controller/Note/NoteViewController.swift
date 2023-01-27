@@ -178,7 +178,10 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
 
         let edit = UIContextualAction(style: .normal, title: "Edit", handler: {(action, view, completionHandler) in
             // TODO: Implement Change Category
-
+            let switchCategoryVC = ChangeCategoryView()
+            
+            self.present(switchCategoryVC, animated: false)
+            
             completionHandler(true)
         })
         edit.backgroundColor = UIColor.systemBlue
