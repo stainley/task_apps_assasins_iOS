@@ -72,5 +72,10 @@ extension NoteViewController {
         }
         return Array<NoteEntity>()
     }
+    
+    func deleteAudio(audioEntity: AudioEntity) {
+        print(audioEntity.audioPath!)
+        context.delete(audioEntity)
+    }
 }
 
