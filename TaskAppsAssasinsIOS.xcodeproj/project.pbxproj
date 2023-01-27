@@ -33,6 +33,7 @@
 		AD843BD9298348700065E120 /* SubTaskModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD843BD8298348700065E120 /* SubTaskModalViewController.swift */; };
 		AD843BDB29835B4A0065E120 /* SubTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD843BDA29835B4A0065E120 /* SubTask.swift */; };
 		AD843BDD29836AA10065E120 /* SubTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD843BDC29836AA10065E120 /* SubTaskRepository.swift */; };
+		AD9CA25129849A2B00DDC921 /* TaskAudioRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9CA25029849A2B00DDC921 /* TaskAudioRecord.swift */; };
 		ADB0D193297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D191297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld */; };
 		ADB0D198297C40FE00A9AF78 /* CategoryVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D197297C40FE00A9AF78 /* CategoryVCDao.swift */; };
 		ADB0D19A297C569200A9AF78 /* CategorySearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D199297C569200A9AF78 /* CategorySearchController.swift */; };
@@ -88,6 +89,7 @@
 		AD843BD8298348700065E120 /* SubTaskModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskModalViewController.swift; sourceTree = "<group>"; };
 		AD843BDA29835B4A0065E120 /* SubTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTask.swift; sourceTree = "<group>"; };
 		AD843BDC29836AA10065E120 /* SubTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskRepository.swift; sourceTree = "<group>"; };
+		AD9CA25029849A2B00DDC921 /* TaskAudioRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAudioRecord.swift; sourceTree = "<group>"; };
 		ADB0D192297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskNoteDatabase.xcdatamodel; sourceTree = "<group>"; };
 		ADB0D197297C40FE00A9AF78 /* CategoryVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVCDao.swift; sourceTree = "<group>"; };
 		ADB0D199297C569200A9AF78 /* CategorySearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySearchController.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */,
 				ADEC1DC2298041B000471AF9 /* MyLocationViewController.swift */,
 				ADC531292984062E008B7912 /* KeyboardHelper.swift */,
+				AD9CA25029849A2B00DDC921 /* TaskAudioRecord.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				ADEC1DC729804D3100471AF9 /* TaskAnnotation.swift in Sources */,
 				70CB35C02970585A005612E0 /* CategoryCell.swift in Sources */,
 				ADC5312A2984062E008B7912 /* KeyboardHelper.swift in Sources */,
+				AD9CA25129849A2B00DDC921 /* TaskAudioRecord.swift in Sources */,
 				70B7AE5429769B4200698260 /* TaskViewController.swift in Sources */,
 				F0D3026D29720940005DC42D /* NoteDetailViewControler.swift in Sources */,
 				ADEC1DC3298041B000471AF9 /* MyLocationViewController.swift in Sources */,
