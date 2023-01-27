@@ -5,8 +5,8 @@
 //  Created by Aswin Sasikanth Kanduri on 2023-01-26.
 //
 
-import Foundation
 import CoreData
+import UIKit
 
 extension NoteDetailViewController {
     
@@ -25,5 +25,9 @@ extension NoteDetailViewController {
         catch {
             
         }
+    }
+    
+    func deleteImage(data: Data) {
+        //
     }
 }
