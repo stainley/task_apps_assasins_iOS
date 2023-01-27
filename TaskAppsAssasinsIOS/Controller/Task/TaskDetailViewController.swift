@@ -18,6 +18,7 @@ class TaskDetailViewController: UIViewController {
 
     var categorySelected: String = ""
     var categories: [CategoryEntity] = [CategoryEntity]()
+    
     var subTasksEntity: [SubTaskEntity] = [SubTaskEntity]()
 
     @IBOutlet weak var completedTaskCounterLabel: UILabel!
@@ -71,7 +72,6 @@ class TaskDetailViewController: UIViewController {
         }
         titleTaskTxt.text = title
         
-        
     }
     
     @IBAction func categoryButtonTapped(_ sender: Any) {
@@ -91,9 +91,11 @@ class TaskDetailViewController: UIViewController {
         var newTask = Task(title: titleTaskTxt.text ?? "")
         // for new task pass the array of tasks
         newTask.subTasks = subTasksEntity
+
         self.delegate?.saveTask(task: newTask, oldTaskEntity: task)
     }
     
+    // Add SubTasks
     @IBAction func addSubtaskButtonTapped(_ sender: UIButton) {
      
         let subTaskVC = SubTaskModalViewController()
@@ -114,6 +116,7 @@ class TaskDetailViewController: UIViewController {
         categoryButtonTapped(sender!)
     }
     
+    // MARK: Add a new sub task
     func addSubTask(subTask: SubTask) {
       
         let newSubTask = SubTaskEntity(context: context)
