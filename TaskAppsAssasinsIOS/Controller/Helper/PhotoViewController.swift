@@ -61,8 +61,11 @@ extension NoteDetailViewController: UIImagePickerControllerDelegate {
         
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             // Add image
-        
+            
             pictures.append(selectedImage)
+            newPictures.append(selectedImage)
+            imageSectionLabel.isHidden = false
+            pictureCollectionView.superview?.isHidden = false
             pictureCollectionView.reloadData()
         }
         dismiss(animated: true, completion: nil)
