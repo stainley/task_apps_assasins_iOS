@@ -27,7 +27,7 @@ extension NoteDetailViewController {
         }
     }
     
-    func deleteImage(data: Data) {
-        //
+    func deleteImage(pictureEntity: PictureEntity) {
+        context.delete(pictureEntity)
     }
 }

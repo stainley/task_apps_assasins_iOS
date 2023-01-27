@@ -108,6 +108,7 @@ class NoteViewController: UIViewController {
         
         if let destination = segue.destination as? NoteDetailViewController {
             destination.delegate = self
+          
             loadImagesByNote()
             loadAudiosByNote()
         }
@@ -119,7 +120,7 @@ class NoteViewController: UIViewController {
         let cellNib = UINib(nibName: "NoteNibTableViewCell", bundle: Bundle.main)
         noteTableView.register(cellNib, forCellReuseIdentifier: "NoteNibTableViewCell")
         filteredNotes = notes
-        
+        picturesEntity = loadImagesByNote()
         sortNameButton.layer.cornerRadius = 4
         sortDateButton.layer.cornerRadius = 4
     }
@@ -192,6 +193,7 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         let note = self.filteredNotes[indexPath.row]
         
         if let noteDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteDetailViewController") as? NoteDetailViewController {
+            //noteDetailViewController.pictureEntities = picturesEntity
             noteDetailViewController.note = note
             noteDetailViewController.delegate = self
             
@@ -199,8 +201,11 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
                 return
             }
             let byParent  =  NSPredicate(format: "note_parent.title == %@", noteTitle)
-            loadImagesByNote(predicate: byParent)
+            noteDetailViewController.pictureEntities = loadImagesByNote(predicate: byParent)
             loadAudiosByNote(predicate: byParent)
+            
+            print(picturesEntity.count)
+       
             
             for pic in picturesEntity {
                 noteDetailViewController.pictures.append(UIImage(data: pic.picture!)!)
