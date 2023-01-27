@@ -308,7 +308,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEq-vL-khm">
-                                                        <rect key="frame" x="63.666666666666664" y="0.0" width="90.666666666666714" height="21"/>
+                                                        <rect key="frame" x="63.666666666666664" y="0.0" width="90.666666666666686" height="21"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="arrow.down" catalog="system" title="Name"/>
                                                         <connections>
@@ -407,6 +407,8 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="noteTableView" destination="F6P-ie-yaJ" id="n2a-Zk-KC1"/>
+                        <outlet property="sortDateButton" destination="mwu-ja-9BJ" id="8bE-2R-zts"/>
+                        <outlet property="sortNameButton" destination="SEq-vL-khm" id="J6L-aX-hgp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iTX-Lc-dzu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
