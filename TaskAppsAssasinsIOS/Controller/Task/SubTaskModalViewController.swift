@@ -89,7 +89,7 @@ class SubTaskModalViewController: UIViewController {
        createSubTaskButton.addTarget(self, action: #selector(createSubTask), for: .touchDown)
    }
     
-    // Add new subtask to the arraylist
+    //MARK: Add new subtask to the arraylist
     @objc func createSubTask() {
         dueDatePicker.datePickerMode = .time
                 

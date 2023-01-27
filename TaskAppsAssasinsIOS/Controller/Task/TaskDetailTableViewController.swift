@@ -15,7 +15,7 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = subTaskTableView.dequeueReusableCell(withIdentifier: "subTaskTableViewCell", for: indexPath) as! SubTaskTableViewCell
-        /*
+       /*
         if cell.isCompleteButton.isSelected {
             cell.isCompleteButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
         } else {

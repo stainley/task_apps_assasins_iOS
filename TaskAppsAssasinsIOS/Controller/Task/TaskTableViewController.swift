@@ -19,9 +19,15 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = taskTableView.dequeueReusableCell(withIdentifier: "taskViewCell", for: indexPath) as! TaskNibTableViewCell
         
         cell.titleLabel.text = filteredTasks[indexPath.row].title
-        cell.creationDateLabel.text = "\(filteredTasks[indexPath.row].creationDate!)"
-        
-        print(tasks[indexPath.row].creationDate!)
+        cell.creationDateLabel.text = "Creted at \(filteredTasks[indexPath.row].creationDate!)"
+    
+        // DUE DATE TASK is the last due date from subtask
+        //cell.dueDateLabel.text = "\(filteredTasks[indexPath.row].dueDate)"
+        let lastDate = getSubTaskDueDate(predicate: NSPredicate(format: "task_parent.title=%@", filteredTasks[indexPath.row].title!))
+        if lastDate != nil {
+            cell.dueDateLabel.text = "Due at \(lastDate!)"
+        }
+       
         
         if tasks[indexPath.row].isCompleted == true {
             cell.taskColorIndicatorView?.backgroundColor = .systemGreen
