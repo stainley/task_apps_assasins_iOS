@@ -26,7 +26,7 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
         cell.isCompleteButton.isSelected = subTasksEntity[indexPath.row].status
         cell.subtask = subTasksEntity[indexPath.row]
         cell.subTaskTitleLabel?.text = subTasksEntity[indexPath.row].title
-        cell.datePickerButton?.setTitle(subTasksEntity[indexPath.row].dueDate?.toString(dateFormat: "MM/DD/YYY"), for: .normal)
+        cell.datePickerButton?.setTitle(subTasksEntity[indexPath.row].dueDate?.toString(dateFormat: "MM/DD/YYY hh:mm:ss"), for: .normal)
         //cell?.delegate = self
         return cell
     }
@@ -35,6 +35,19 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         let action = UIContextualAction(style: .destructive, title: "Delete") {
             (action, view, completionHandler) in
+            
+            //Remove contact from DB
+        
+            self.delegate?.deleteSubTask(subTaskEntity: self.subTasksEntity[indexPath.row])
+            //self.saveTask()
+            self.delegate?.saveTask()
+   
+            self.subTasksEntity.remove(at: indexPath.row)
+            
+            self.subTaskTableView.deleteRows(at: [indexPath], with: .fade)
+            self.subTaskTableView.endUpdates()
+            
+            self.subTaskTableView.reloadData()
         }
         
         return UISwipeActionsConfiguration(actions: [action])
