@@ -32,7 +32,12 @@ extension TaskViewController {
             newSubTask.task_parent = parentTask
             saveSubTask()
         }
-     
+    }
+    
+    func updateSubTask(parentTask: TaskEntity, newSubTasks: [SubTaskEntity], oldSubTasks: [SubTaskEntity]) {
+        
+        
+        
     }
     
     // MARK: Delete task from Database
