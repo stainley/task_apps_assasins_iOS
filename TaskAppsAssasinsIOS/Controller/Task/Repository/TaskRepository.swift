@@ -98,10 +98,12 @@ extension TaskViewController {
         }
         
         if task.subTasks.count > 0 {
-            guard let oldTaskEntity = oldTaskEntity else { return }
+            //guard let oldTaskEntity = oldTaskEntity else { return }
             // UPDATE NOT SAVE
-            updateTask(updatedTask: task, oldTask: oldTaskEntity)
-            return
+            if let oldTask = oldTaskEntity {
+                updateTask(updatedTask: task, oldTask: oldTask)
+                return
+            }
         }
         
         let newTask = TaskEntity(context: context)
