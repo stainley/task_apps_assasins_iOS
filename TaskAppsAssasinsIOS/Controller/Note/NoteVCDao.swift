@@ -74,7 +74,6 @@ extension NoteViewController {
         return Array<NoteEntity>()
     }
     
-    
     func changeNoteCategory(noteEntity: NoteEntity, for categoryEntity: CategoryEntity) {
         
         noteEntity.category_parent = categoryEntity
