@@ -16,6 +16,7 @@ class TaskViewController: UIViewController {
     
     var tasks: [TaskEntity] = []
     var filteredTasks: [TaskEntity] = []
+    var subTasks: [SubTaskEntity] = []
     var taskReferenceCell: TaskNibTableViewCell!
     var passingData: String?
     
@@ -46,10 +47,7 @@ class TaskViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = false
         taskTableView.reloadData()
     }
-    
   
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
