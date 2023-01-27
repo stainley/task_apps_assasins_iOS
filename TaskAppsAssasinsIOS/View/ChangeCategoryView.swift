@@ -15,7 +15,6 @@ class ChangeCategoryView: UIViewController {
     var categories: [CategoryEntity] = []
     var noteToChange: NoteEntity!
     
-    
     //  lazy views
    lazy var titleLabel: UILabel = {
        let label = UILabel()
@@ -42,7 +41,6 @@ class ChangeCategoryView: UIViewController {
         return button
     }()
     
-    
     //private lazy var elements: [UIAction] = [first, second]
     private lazy var elements: [UIAction] = categoryOptions()
     private lazy var menu = UIMenu(title: "Category", children: elements)
@@ -56,7 +54,6 @@ class ChangeCategoryView: UIViewController {
 
                 self.optionLabel.text = "Note changed to \(category.name!)"
                 
-                let delegate = self.noteViewControllerDelegate
                 self.noteViewControllerDelegate.changeNoteCategory(noteEntity: self.noteToChange, for: category)
 
                 self.noteViewControllerDelegate.noteTableView.reloadData()
@@ -129,7 +126,6 @@ class ChangeCategoryView: UIViewController {
        
        changeCategoryButton.addTarget(self, action: #selector(changeCategory), for: .touchDown)
    }
-
     
     @objc func categoryButtonTapped(_ sender: Any) {
         
