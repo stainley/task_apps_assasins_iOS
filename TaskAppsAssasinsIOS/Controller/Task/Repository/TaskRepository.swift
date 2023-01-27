@@ -52,8 +52,7 @@ extension TaskViewController {
             print("An error had ocurred: \(error.localizedDescription)")
         }
     }
-    
-    
+
     // Load all tasks by category
     func loadTasksByCategory(predicate: NSPredicate? = nil) -> Array<TaskEntity> {
         let request: NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest()
@@ -74,23 +73,123 @@ extension TaskViewController {
         return Array<TaskEntity>()
     }
     
-    // Load all subtasks
-    func loadSubTasksByTask(predicate: NSPredicate? = nil) -> Array<SubTaskEntity> {
-        let request: NSFetchRequest<SubTaskEntity> = SubTaskEntity.fetchRequest()
-        let categoryPredicate = NSPredicate(format: "category_parent.name=%@", selectedCategory!.name!)
-        
-        if let additionalPredicate = predicate {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
-        } else {
-            request.predicate = categoryPredicate
-        }
+    func fetchAllCategory() -> Array<CategoryEntity> {
+        let request: NSFetchRequest<CategoryEntity> = CategoryEntity.fetchRequest()
         
         do {
             return try context.fetch(request)
         } catch {
-            print("Error loading notes \(error.localizedDescription)")
+            print("Error loading categories \(error.localizedDescription)")
         }
         
-        return Array<SubTaskEntity>()
+        return Array<CategoryEntity>()
+    }
+    
+    // TODO: Elvin
+    func saveTask(task: Task, oldTaskEntity: TaskEntity? = nil) {
+        
+        // Title must be required.
+        if task.title.isEmpty {
+            guard let oldTask = oldTaskEntity else { return }
+            if oldTask.title!.isEmpty {
+                return
+            }
+            return
+        }
+        
+        if task.subTasks.count > 0 {
+            //guard let oldTaskEntity = oldTaskEntity else { return }
+            // UPDATE NOT SAVE
+            if let oldTask = oldTaskEntity {
+                updateTask(updatedTask: task, oldTask: oldTask)
+                return
+            }
+        }
+        
+        let newTask = TaskEntity(context: context)
+        newTask.title = task.title
+        newTask.taskDescription = task.description
+        newTask.creationDate = Date()
+        newTask.taskDueDate = task.dueDate
+
+        // TODO: Save image to the Database
+        for picture in task.pictures {
+            let pictureEntity = PictureEntity(context: context)
+
+            pictureEntity.picture = picture
+            pictureEntity.task_parent = newTask
+            newTask.addToPictures(pictureEntity)
+        }
+        
+        // TODO: Save audio into the Database
+        for audio in task.audios {
+            let audioEntity = AudioEntity(context: context)
+            audioEntity.audioPath = audio
+            audioEntity.task_parent = newTask
+            newTask.addToAudios(audioEntity)
+        }
+        
+        // TODO: Save coordinate to the database
+        if let latitude = task.latitude, let longitude = task.longitude {
+            newTask.longitude = latitude
+            newTask.longitude = longitude
+        }
+        
+        // TODO: save all subtask before the task
+        if task.subTasks.count > 0 {
+            addSubTask(parentTask: newTask, subTasks: task.subTasks)
+        }
+        
+        newTask.category_parent = selectedCategory
+        saveTask()
+        tasks = loadTasksByCategory()
+        
+        filteredTasks = tasks
+        taskTableView.reloadData()
+    }
+    
+    func updateTask(updatedTask: Task, oldTask: TaskEntity) {
+        oldTask.title = updatedTask.title
+        
+        if let dateCompleted = updatedTask.dateCompleted, let isCompleted = updatedTask.isComplete {
+            oldTask.dateCompleted = dateCompleted as Date
+            oldTask.isCompleted = isCompleted
+        }
+        
+        if updatedTask.subTasks.count > 0 {
+           
+            updateSubTask(parentTask: oldTask, newSubTasks:  updatedTask.subTasks)
+            print("Subtask Updated")
+        }
+        
+        saveTask()
+        taskTableView.reloadData()
+    }
+    
+    // GET LAST DUE DATE FROM AN ARRAY OF CHILD TASK
+    func getSubTaskDueDate(predicate: NSPredicate?) -> Date? {
+        let request: NSFetchRequest<SubTaskEntity> = SubTaskEntity.fetchRequest()
+        var subtasksEntities: [SubTaskEntity] = []
+        request.predicate = predicate
+        do {
+            try subtasksEntities = context.fetch(request)
+            
+            let dueDateInfo = subtasksEntities.map({ $0.dueDate})
+            
+            if dueDateInfo.count > 1 {
+                
+                let lastDate = dueDateInfo.sorted(by: { (date1, date2) -> Bool in
+                    if let date1 = date1, let date2 = date2 {
+                        return date1 > date2
+                    }
+                    return false
+                })[0]
+                print(lastDate!)
+                return lastDate
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        return nil
     }
 }

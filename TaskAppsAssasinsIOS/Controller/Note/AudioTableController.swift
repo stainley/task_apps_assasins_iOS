@@ -27,4 +27,34 @@ extension NoteDetailViewController: UITableViewDelegate, UITableViewDataSource {
         return audioPlayerCell
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        let deleteAction = UIContextualAction(style: .destructive, title: nil, handler: {(action, view, completionHandler) in
+            let alertController = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: .actionSheet)
+
+
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+            alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+                tableView.beginUpdates()
+
+                self.deleteAudio(audioPath: self.audioPath[indexPath.row])
+
+                self.audioPath.remove(at: indexPath.row)
+
+                self.audioTableView.deleteRows(at: [indexPath], with: .fade)
+                self.audioTableView.endUpdates()
+
+                self.audioTableView.reloadData()
+            }))
+            self.present(alertController, animated: true)
+            completionHandler(true)
+        })
+
+        deleteAction.image = UIImage(systemName: "trash")
+
+        let  preventSwipe = UISwipeActionsConfiguration(actions: [deleteAction])
+        preventSwipe.performsFirstActionWithFullSwipe = false
+        return preventSwipe
+    }
 }

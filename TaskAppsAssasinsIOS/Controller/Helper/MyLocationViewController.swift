@@ -15,3 +15,4 @@ extension NoteDetailViewController: CLLocationManagerDelegate {
         coordinate = location.coordinate
     }
 }
+

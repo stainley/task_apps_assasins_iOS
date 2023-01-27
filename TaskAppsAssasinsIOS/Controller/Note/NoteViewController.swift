@@ -31,9 +31,8 @@ class NoteViewController: UIViewController {
         }
     }
     
-    var isNameAsc: Bool = false
-    var isCreateDate: Bool = false
-    
+    var isNameAsc: Bool = true
+    var isCreateDate: Bool = true
     
     @IBAction func addNewNoteButton(_ sender: UIBarButtonItem) {
         
@@ -102,47 +101,6 @@ class NoteViewController: UIViewController {
         filteredNotes = assortDateDesc
         noteTableView.reloadData()
     }
-
-    /**
-     * Save note into the database
-     * @param: note Note
-     */
-    func saveNote(note: Note) {
-        let newNote = NoteEntity(context: context)
-        newNote.title = note.title
-        newNote.noteDescription = note.noteDescription!
-        newNote.creationDate = Date()
-        
-        // Save image to the Database
-        for picture in note.pictures {
-            let pictureEntity = PictureEntity(context: context)
-
-            pictureEntity.picture = picture
-            pictureEntity.note_parent = newNote
-            newNote.addToPictures(pictureEntity)
-        }
-        
-        // Save audio into the Database
-        for audio in note.audios {
-            let audioEntity = AudioEntity(context: context)
-            audioEntity.audioPath = audio
-            audioEntity.note_parent = newNote
-            newNote.addToAudios(audioEntity)
-        }
-        
-        
-        // Save coordinate to the database
-        if let latitude = note.latitude, let longitude = note.longitude {
-            newNote.longitude = latitude
-            newNote.longitude = longitude
-        }
-        
-        newNote.category_parent = selectedCategory
-        saveNote()
-        notes = loadNotesByCategory()
-        filteredNotes = notes
-        noteTableView.reloadData()
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -150,6 +108,7 @@ class NoteViewController: UIViewController {
         
         if let destination = segue.destination as? NoteDetailViewController {
             destination.delegate = self
+          
             loadImagesByNote()
             loadAudiosByNote()
         }
@@ -160,8 +119,10 @@ class NoteViewController: UIViewController {
         title = selectedCategory?.title
         let cellNib = UINib(nibName: "NoteNibTableViewCell", bundle: Bundle.main)
         noteTableView.register(cellNib, forCellReuseIdentifier: "NoteNibTableViewCell")
-        self.navigationController?.navigationBar.prefersLargeTitles = false
         filteredNotes = notes
+        picturesEntity = loadImagesByNote()
+        sortNameButton.layer.cornerRadius = 4
+        sortDateButton.layer.cornerRadius = 4
     }
 }
 
@@ -186,31 +147,65 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        // Delete note by swipping
-        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-            self.deleteNote(noteEntity: self.filteredNotes[indexPath.row])
 
-            self.notes = self.loadNotesByCategory()
-            self.filteredNotes = self.notes
-            self.noteTableView.reloadData()
-        }
-        
-        return UISwipeActionsConfiguration(actions: [action])
+        let deleteAction = UIContextualAction(style: .destructive, title: nil, handler: {(action, view, completionHandler) in
+            let alertController = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: .actionSheet)
+
+
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+            alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+                tableView.beginUpdates()
+
+                self.deleteNote(noteEntity: self.filteredNotes[indexPath.row])
+                self.saveNote()
+
+                self.filteredNotes.remove(at: indexPath.row)
+                self.notes.remove(at: indexPath.row)
+
+                self.noteTableView.deleteRows(at: [indexPath], with: .fade)
+                self.noteTableView.endUpdates()
+
+                self.notes = self.loadNotesByCategory()
+                self.filteredNotes = self.notes
+                self.noteTableView.reloadData()
+            }))
+            self.present(alertController, animated: true)
+            completionHandler(true)
+        })
+
+        deleteAction.image = UIImage(systemName: "trash")
+
+        let edit = UIContextualAction(style: .normal, title: "Edit", handler: {(action, view, completionHandler) in
+            // TODO: Implement Change Category
+
+            completionHandler(true)
+        })
+        edit.backgroundColor = UIColor.systemBlue
+        edit.image = UIImage(systemName: "square.and.pencil")
+
+        let  preventSwipe = UISwipeActionsConfiguration(actions: [deleteAction, edit])
+        preventSwipe.performsFirstActionWithFullSwipe = false
+        return preventSwipe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let note = self.filteredNotes[indexPath.row]
         
         if let noteDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteDetailViewController") as? NoteDetailViewController {
+            //noteDetailViewController.pictureEntities = picturesEntity
             noteDetailViewController.note = note
+            noteDetailViewController.delegate = self
             
             guard let noteTitle = note.title else {
                 return
             }
             let byParent  =  NSPredicate(format: "note_parent.title == %@", noteTitle)
-            loadImagesByNote(predicate: byParent)
+            noteDetailViewController.pictureEntities = loadImagesByNote(predicate: byParent)
             loadAudiosByNote(predicate: byParent)
+            
+            print(picturesEntity.count)
+       
             
             for pic in picturesEntity {
                 noteDetailViewController.pictures.append(UIImage(data: pic.picture!)!)

@@ -9,32 +9,28 @@ import UIKit
 
 struct Task {
     
-    private (set) var title: String
-    let description: String?
-    let creationDate: NSDate
-    let dueDate: NSDate
-    let dateCompleted: NSDate?
+    let title: String
+    var description: String?
+    var dueDate: Date?
+    var dateCompleted: NSDate?
     var isComplete: Bool?
     var image: Data!
     var pictures: [Data] = []
     var audios: [String] = []
+    var subTasks: [SubTaskEntity] = []
     
     private (set) var latitude: Double?
     private (set) var longitude: Double?
     
     
-    init(title: String, description: String, creationDate: NSDate, dueDate: NSDate, dateCompleted: NSDate, pictures: [UIImage?], audios: [String?], isComplete: Bool) {
-        self.title = title
+    init(title: String, description: String? = nil, isComplete: Bool = false) {
         self.description = description
-        self.creationDate = creationDate
-        self.dueDate = dueDate
-        self.dateCompleted = dateCompleted
         self.isComplete = isComplete
+        self.title = title
     }
     
     mutating func setCoordinate(latitude: Double?, longitude: Double?) {
         self.latitude = latitude
         self.longitude = longitude
     }
-    
 }

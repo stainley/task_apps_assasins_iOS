@@ -11,9 +11,9 @@ class TaskNibTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var creationDateLabel: UILabel!
     @IBOutlet weak var taskColorIndicatorView: UIView!
+    @IBOutlet weak var dueDateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
