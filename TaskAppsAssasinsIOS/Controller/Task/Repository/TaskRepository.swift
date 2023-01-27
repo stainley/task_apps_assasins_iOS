@@ -100,21 +100,20 @@ extension TaskViewController {
             return
         }
         
-        if let oldTaskEntity = oldTaskEntity {
-            
+        if task.subTasks.count > 0 {
+            guard let oldTaskEntity = oldTaskEntity else { return }
             // UPDATE NOT SAVE
             updateTask(updatedTask: task, oldTask: oldTaskEntity)
             return
         }
         
         let newTask = TaskEntity(context: context)
-        if task.title == "" {
-            return
-        }
+     
         newTask.title = task.title
         newTask.taskDescription = task.description
         newTask.creationDate = Date()
         // Save image to the Database
+        
         for picture in task.pictures {
             let pictureEntity = PictureEntity(context: context)
 
@@ -167,8 +166,8 @@ extension TaskViewController {
         
         if updatedTask.subTasks.count > 0 {
             print("SUBTASK TO BE UPDATED")
-            
-            //updateSubTask(parentTask: oldTask, newSubTasks: <#T##[SubTaskEntity]#>, oldSubTasks: <#T##[SubTaskEntity]#>)
+           
+            updateSubTask(parentTask: oldTask, newSubTasks:  updatedTask.subTasks)
             
         }
         

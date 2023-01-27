@@ -31,7 +31,6 @@ class SubTaskTableViewCell: UITableViewCell {
             } else {
                 sender.setImage(UIImage(named: "checkmark.square.fill"), for: .normal)
             }
-            
         }
     }
     

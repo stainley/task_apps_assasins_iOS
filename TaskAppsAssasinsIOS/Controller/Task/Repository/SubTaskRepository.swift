@@ -34,9 +34,12 @@ extension TaskViewController {
         }
     }
     
-    func updateSubTask(parentTask: TaskEntity, newSubTasks: [SubTaskEntity], oldSubTasks: [SubTaskEntity]) {
+    func updateSubTask(parentTask: TaskEntity, newSubTasks: [SubTaskEntity]) {
         
-        
+        for sbTask in newSubTasks {
+            sbTask.task_parent = parentTask
+            saveSubTask()
+        }
         
     }
     
