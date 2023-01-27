@@ -92,7 +92,7 @@ extension TaskViewController {
     func saveTask(task: Task, oldTaskEntity: TaskEntity? = nil) {
         
         // Title must be required.
-        if task.title.isEmpty || ((oldTaskEntity?.title?.isEmpty) != nil) {
+        if task.title.isEmpty || (oldTaskEntity != nil && oldTaskEntity?.title == nil) {
             return
         }
         
