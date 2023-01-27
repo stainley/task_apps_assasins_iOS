@@ -28,7 +28,7 @@ extension NoteViewController {
         context.delete(noteEntity)
     }
     
-    func loadImagesByNote(predicate: NSPredicate? = nil) {
+    func loadImagesByNote(predicate: NSPredicate? = nil) -> [PictureEntity] {
         let request: NSFetchRequest<PictureEntity> = PictureEntity.fetchRequest()
        // let notePredicate = NSPredicate(format: "note_parent.title=%@", selectedCategory!.name!)
 
@@ -39,6 +39,7 @@ extension NoteViewController {
         } catch {
             print("An error had ocurred: \(error.localizedDescription)")
         }
+        return picturesEntity
     }
     
     // TODO: Elvin
@@ -94,7 +95,7 @@ extension NoteViewController {
         // Save image to the Database
         for picture in note.pictures {
             let pictureEntity = PictureEntity(context: context)
-
+            pictureEntity.pictureId = UUID.init().uuidString
             pictureEntity.picture = picture
             pictureEntity.note_parent = newNote
             newNote.addToPictures(pictureEntity)

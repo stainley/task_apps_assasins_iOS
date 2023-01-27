@@ -176,6 +176,13 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		AD5FE17E29843A8C00A104DA /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		ADB0D194297C3F9C00A9AF78 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +211,7 @@
 		ADB0D196297C3FAB00A9AF78 /* Note */ = {
 			isa = PBXGroup;
 			children = (
+				AD5FE17E29843A8C00A104DA /* Repository */,
 				70F2B1842975302D00239EAC /* NoteNibTableViewCell.swift */,
 				70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */,
 				F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */,

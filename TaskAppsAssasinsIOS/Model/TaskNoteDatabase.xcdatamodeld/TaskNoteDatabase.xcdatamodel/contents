@@ -23,6 +23,7 @@
     </entity>
     <entity name="PictureEntity" representedClassName="PictureEntity" syncable="YES" codeGenerationType="class">
         <attribute name="picture" optional="YES" attributeType="Binary"/>
+        <attribute name="pictureId" optional="YES" attributeType="String"/>
         <relationship name="note_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteEntity" inverseName="pictures" inverseEntity="NoteEntity"/>
         <relationship name="task_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="pictures" inverseEntity="TaskEntity"/>
     </entity>
