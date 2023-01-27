@@ -73,7 +73,7 @@ extension NoteViewController {
         return Array<NoteEntity>()
     }
 
-    func saveNote(note: Note, oldNoteEntity: NoteEntity? = nil) {
+    func saveNote(note: Note, oldNoteEntity: NoteEntity? = nil, newPictures: [UIImage], newAudioPath: [String]) {
         // Title must be required.
         if note.title == "" || note.title.isEmpty || (oldNoteEntity != nil && oldNoteEntity?.title == nil) {
             return
@@ -82,7 +82,7 @@ extension NoteViewController {
         if let oldNoteEntity = oldNoteEntity {
             
             // UPDATE NOT SAVE
-            updateNote(updatedNote: note, oldNote: oldNoteEntity)
+            updateNote(updatedNote: note, oldNote: oldNoteEntity, newPictures: newPictures, newAudioPath: newAudioPath)
             return
         }
         
@@ -122,21 +122,21 @@ extension NoteViewController {
         noteTableView.reloadData()
     }
     
-    func updateNote(updatedNote: Note, oldNote: NoteEntity) {
+    func updateNote(updatedNote: Note, oldNote: NoteEntity, newPictures: [UIImage], newAudioPath: [String]) {
         oldNote.title = updatedNote.title
         oldNote.noteDescription = updatedNote.noteDescription
-        
+
         // Save image to the Database
-        for picture in updatedNote.pictures {
+        for picture in newPictures {
             let pictureEntity = PictureEntity(context: context)
 
-            pictureEntity.picture = picture
+            pictureEntity.picture = picture.pngData()!
             pictureEntity.note_parent = oldNote
             oldNote.addToPictures(pictureEntity)
         }
         
         // Save audio into the Database
-        for audio in updatedNote.audios {
+        for audio in newAudioPath {
             let audioEntity = AudioEntity(context: context)
             audioEntity.audioPath = audio
             audioEntity.note_parent = oldNote

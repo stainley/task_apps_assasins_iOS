@@ -36,9 +36,11 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     //var imageNote: UIImage?
     var pictures: [UIImage] = []
+    var newPictures: [UIImage] = []
     //var audios: [AVAudioRecorder] = []
     
     var audioPath: [String] = []
+    var newAudioPath: [String] = []
     var soundURL: String?
     
     var locationManager: CLLocationManager = CLLocationManager()
@@ -171,7 +173,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
             newNote.setCoordinate(latitude: coordinate?.latitude, longitude: coordinate?.longitude)
         }
         
-        self.delegate?.saveNote(note: newNote, oldNoteEntity: note)
+        self.delegate?.saveNote(note: newNote, oldNoteEntity: note, newPictures: newPictures, newAudioPath: newAudioPath)
     }
     
     @objc func updateScrubber() {

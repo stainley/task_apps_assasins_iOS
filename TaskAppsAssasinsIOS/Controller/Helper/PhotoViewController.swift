@@ -63,6 +63,7 @@ extension NoteDetailViewController: UIImagePickerControllerDelegate {
             // Add image
             
             pictures.append(selectedImage)
+            newPictures.append(selectedImage)
             imageSectionLabel.isHidden = false
             pictureCollectionView.superview?.isHidden = false
             pictureCollectionView.reloadData()
