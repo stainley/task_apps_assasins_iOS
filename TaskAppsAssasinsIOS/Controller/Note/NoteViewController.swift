@@ -10,7 +10,8 @@ import UIKit
 class NoteViewController: UIViewController {
 
     @IBOutlet weak var noteTableView: UITableView!
-  
+    @IBOutlet weak var sortNameButton: UIButton!
+    @IBOutlet weak var sortDateButton: UIButton!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var notes = [NoteEntity]()
@@ -22,6 +23,7 @@ class NoteViewController: UIViewController {
     var noteReferenceCell: NoteNibTableViewCell!
     
     var pictures: [UIImage]?
+    var iconName: String = ""
     
     var selectedCategory: CategoryEntity? {
         didSet {
@@ -31,6 +33,7 @@ class NoteViewController: UIViewController {
     
     var isNameAsc: Bool = false
     var isCreateDate: Bool = false
+    
     
     @IBAction func addNewNoteButton(_ sender: UIBarButtonItem) {
         
@@ -47,45 +50,54 @@ class NoteViewController: UIViewController {
         searchController.searchBar.delegate = self
         present(searchController, animated: true, completion: nil)
     }
-            
+    
     @IBAction func sortNameButton(_ sender: UIButton){
         isNameAsc.toggle()
         if isNameAsc {
             sortByNameAsc()
+            iconName = "arrow.down"
         }else {
             sortByNameDesc()
+            iconName = "arrow.up"
+        }
+        if let sortImage = UIImage(systemName:iconName) {
+            sortNameButton.setImage(sortImage, for: .normal)
         }
     }
     @IBAction func sortDateButton(_ sender: UIButton){
         isCreateDate.toggle()
         if isCreateDate {
             sortByCreateDateAsc()
+            iconName = "arrow.down"
         }else {
             sortByCreateDateDesc()
+            iconName = "arrow.up"
+        }
+        if let sortImage = UIImage(systemName:iconName) {
+            sortDateButton.setImage(sortImage, for: .normal)
         }
     }
+    //Sorting Name and Date functions
     func sortByNameAsc(){
-        var assortNameAsc = filteredNotes.sorted{ $0.title! < $1.title! }
+        let assortNameAsc = filteredNotes.sorted{ $0.title! < $1.title! }
         filteredNotes = []
         filteredNotes = assortNameAsc
         noteTableView.reloadData()
     }
     func sortByNameDesc(){
-        var assortNameAsc = filteredNotes.sorted{ $0.title! > $1.title! }
+        let assortNameAsc = filteredNotes.sorted{ $0.title! > $1.title! }
         filteredNotes = []
         filteredNotes = assortNameAsc
         noteTableView.reloadData()
     }
-    //we have to fix/update the creationDate data type
     func sortByCreateDateAsc(){
-        var assortDateAsc = filteredNotes.sorted{ $0.creationDate! < $1.creationDate! }
-        
+        let assortDateAsc = filteredNotes.sorted{ $0.creationDate! < $1.creationDate! }
         filteredNotes = []
         filteredNotes = assortDateAsc
         noteTableView.reloadData()
     }
     func sortByCreateDateDesc(){
-        var assortDateDesc = filteredNotes.sorted{ $0.creationDate! > $1.creationDate! }
+        let assortDateDesc = filteredNotes.sorted{ $0.creationDate! > $1.creationDate! }
         filteredNotes = []
         filteredNotes = assortDateDesc
         noteTableView.reloadData()
