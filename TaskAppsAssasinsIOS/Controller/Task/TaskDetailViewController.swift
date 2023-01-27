@@ -21,6 +21,7 @@ class TaskDetailViewController: UIViewController {
     
     var subTasksEntity: [SubTaskEntity] = [SubTaskEntity]()
 
+    @IBOutlet weak var taskDueDatePicker: UIDatePicker!
     @IBOutlet weak var completedTaskCounterLabel: UILabel!
     @IBOutlet var catagoryCollection: [UIButton] = []
     @IBOutlet weak var categoryButton: UIButton!
@@ -90,6 +91,7 @@ class TaskDetailViewController: UIViewController {
         
         var newTask = Task(title: titleTaskTxt.text ?? "")
         // for new task pass the array of tasks
+        newTask.dueDate = taskDueDatePicker.date
         newTask.subTasks = subTasksEntity
 
         self.delegate?.saveTask(task: newTask, oldTaskEntity: task)
