@@ -92,7 +92,11 @@ extension TaskViewController {
     func saveTask(task: Task, oldTaskEntity: TaskEntity? = nil) {
         
         // Title must be required.
-        if task.title.isEmpty || (oldTaskEntity != nil && oldTaskEntity?.title == nil) {
+        if task.title.isEmpty {
+            guard let oldTask = oldTaskEntity else { return }
+            if oldTask.title!.isEmpty {
+                return
+            }
             return
         }
         
@@ -155,6 +159,21 @@ extension TaskViewController {
             oldTask.dateCompleted = dateCompleted as Date
             oldTask.isCompleted = isCompleted
         }
+        
+        // TODO: save all subtask before the task
+        /*if task.subTasks.count > 0 {
+            addSubTask(parentTask: newTask, subTasks: task.subTasks)
+         }*/
+        
+        if updatedTask.subTasks.count > 0 {
+            print("SUBTASK TO BE UPDATED")
+            
+            //updateSubTask(parentTask: oldTask, newSubTasks: <#T##[SubTaskEntity]#>, oldSubTasks: <#T##[SubTaskEntity]#>)
+            
+        }
+        
+      
+        
         saveTask()
         taskTableView.reloadData()
     }
