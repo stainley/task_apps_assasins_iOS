@@ -53,13 +53,14 @@ class ChangeCategoryView: UIViewController {
         // fetch from the database categories
         for category in categories {
             let action = UIAction(title: category.name ?? "", image: UIImage(systemName: "pencil.circle"), handler: { (action) in
-                print(category)
-                self.optionLabel.text = category.name
+
+                self.optionLabel.text = "Note changed to \(category.name!)"
                 
                 let delegate = self.noteViewControllerDelegate
                 self.noteViewControllerDelegate.changeNoteCategory(noteEntity: self.noteToChange, for: category)
 
                 self.noteViewControllerDelegate.noteTableView.reloadData()
+                
             })
             actions.append(action)
         }
@@ -69,7 +70,7 @@ class ChangeCategoryView: UIViewController {
     
     lazy var changeCategoryButton: UIButton = {
        let button = UIButton()
-        button.setTitle("Accept", for: .normal)
+        button.setTitle("Close", for: .normal)
         button.backgroundColor = UIColor.tintColor
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
