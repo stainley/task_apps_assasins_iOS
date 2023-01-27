@@ -49,45 +49,40 @@
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="208.66666666666666"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="YqH-Du-x7n">
-                                                <rect key="frame" x="0.0" y="0.0" width="350" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5W-pS-qxk">
-                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="40"/>
-                                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="150-hK-j8I"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Select Category">
-                                                            <color key="baseForegroundColor" systemColor="labelColor"/>
-                                                        </buttonConfiguration>
-                                                    </button>
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" toolTip="Task Due Date" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5p7-A7-m7G">
+                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="50"/>
+                                                        <date key="minimumDate" timeIntervalSinceReferenceDate="662727600">
+                                                            <!--2022-01-01 11:00:00 +0000-->
+                                                        </date>
+                                                    </datePicker>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bK7-tO-5KC">
-                                                <rect key="frame" x="0.0" y="50.000000000000007" width="350" height="68.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="60" width="350" height="58.666666666666657"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZEN-dB-CTY">
-                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="68.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="58.666666666666664"/>
                                                         <subviews>
                                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="3Bt-qk-hk4">
-                                                                <rect key="frame" x="-2" y="0.0" width="354" height="30.333333333333332"/>
+                                                                <rect key="frame" x="-2" y="0.0" width="354" height="20.333333333333332"/>
                                                             </slider>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NGq-El-Fc0">
-                                                                <rect key="frame" x="0.0" y="34.333333333333343" width="350" height="34.333333333333343"/>
+                                                                <rect key="frame" x="0.0" y="24.333333333333346" width="350" height="34.333333333333343"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o6H-su-0tF">
                                                                         <rect key="frame" x="0.0" y="0.0" width="106.66666666666667" height="34.333333333333336"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="backward" catalog="system" title=" "/>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOe-sZ-vgG">
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOe-sZ-vgG">
                                                                         <rect key="frame" x="121.66666666666666" y="0.0" width="106.66666666666666" height="34.333333333333336"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="play" catalog="system" title=" "/>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrP-NQ-Y7l">
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrP-NQ-Y7l">
                                                                         <rect key="frame" x="243.33333333333329" y="0.0" width="106.66666666666666" height="34.333333333333336"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="forward" catalog="system" title=" "/>
@@ -184,6 +179,7 @@
                     </view>
                     <connections>
                         <outlet property="subTaskTableView" destination="nTI-BA-o3C" id="zdk-fD-8Ez"/>
+                        <outlet property="taskDueDatePicker" destination="5p7-A7-m7G" id="tR5-Nh-mAc"/>
                         <outlet property="titleTaskTxt" destination="850-Nq-1ze" id="fyh-E2-LYv"/>
                     </connections>
                 </viewController>
@@ -198,12 +194,6 @@
         <image name="forward" catalog="system" width="128" height="77"/>
         <image name="play" catalog="system" width="117" height="128"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
-        <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

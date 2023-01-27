@@ -11,7 +11,7 @@ struct Task {
     
     let title: String
     var description: String?
-    var dueDate: NSDate?
+    var dueDate: Date?
     var dateCompleted: NSDate?
     var isComplete: Bool?
     var image: Data!

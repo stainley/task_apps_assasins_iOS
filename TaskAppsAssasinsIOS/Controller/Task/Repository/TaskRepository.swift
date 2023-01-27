@@ -105,12 +105,12 @@ extension TaskViewController {
         }
         
         let newTask = TaskEntity(context: context)
-     
         newTask.title = task.title
         newTask.taskDescription = task.description
         newTask.creationDate = Date()
-        // Save image to the Database
-        
+        newTask.taskDueDate = task.dueDate
+
+        // TODO: Save image to the Database
         for picture in task.pictures {
             let pictureEntity = PictureEntity(context: context)
 
@@ -119,7 +119,7 @@ extension TaskViewController {
             newTask.addToPictures(pictureEntity)
         }
         
-        // Save audio into the Database
+        // TODO: Save audio into the Database
         for audio in task.audios {
             let audioEntity = AudioEntity(context: context)
             audioEntity.audioPath = audio
@@ -127,7 +127,7 @@ extension TaskViewController {
             newTask.addToAudios(audioEntity)
         }
         
-        // Save coordinate to the database
+        // TODO: Save coordinate to the database
         if let latitude = task.latitude, let longitude = task.longitude {
             newTask.longitude = latitude
             newTask.longitude = longitude
