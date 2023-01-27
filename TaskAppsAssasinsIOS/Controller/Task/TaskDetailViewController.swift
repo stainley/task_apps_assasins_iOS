@@ -63,10 +63,7 @@ class TaskDetailViewController: UIViewController {
         
         subTaskTableView.dataSource = self
         subTaskTableView.delegate = self
-        
-        print(subTaskTableView!)
-       print("pass this point")
-        
+
         guard let title = task?.title else {
             return
         }
@@ -95,6 +92,7 @@ class TaskDetailViewController: UIViewController {
   
     
     @IBAction func addSubtaskButtonTapped(_ sender: UIButton) {
+        /*
         var textField = UITextField()
         var dueDatePicker = UIDatePicker()
         
@@ -123,6 +121,42 @@ class TaskDetailViewController: UIViewController {
         }
         
         present(alert, animated: true, completion: nil)
+         */
+        /*
+        let subtaskModalViewController = storyboard?.instantiateViewController(withIdentifier: "subtaskViewControllerID") as! SubTaskModalViewController
+        
+        
+        
+        subtaskModalViewController.modalPresentationStyle = .formSheet
+        subtaskModalViewController.preferredContentSize = .init(width: 500, height: 500)
+        present(subtaskModalViewController, animated: true)
+        
+        */
+        
+        /*
+        
+        let vc = SubTaskModalViewController()
+            vc.modalPresentationStyle = .popover
+            vc.preferredContentSize = .init(width: 500, height: 500)  // the size of popover
+            vc.popoverPresentationController?.sourceView = self.view    // the view of the popover
+            vc.popoverPresentationController?.sourceRect = CGRect(    // the place to display the popover
+                origin: CGPoint(
+                    x: self.view.bounds.midX,
+                    y: self.view.bounds.midY
+                ),
+                size: .zero
+            )
+            vc.popoverPresentationController?.permittedArrowDirections = [] // the direction of the arrow
+            //vc.popoverPresentationController?.delegate = self               // delegate
+            present(vc, animated: true)
+         */
+        
+        let cv = CustomModalViewController()
+        
+        cv.modalPresentationStyle = .overCurrentContext
+        cv.subtaskDelegate = self
+                // modal animation will be handled in VC itself
+        self.present(cv, animated: false)
     }
     
     @objc func categoryItemButtonTapped(sender: UIButton!) {
@@ -134,6 +168,10 @@ class TaskDetailViewController: UIViewController {
         categorySelected = sender.titleLabel?.text ?? ""
         categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
         categoryButtonTapped(sender!)
+    }
+    
+    func addSubTask(subTask: SubTask) {
+        print("INFO FROM REPO: \(subTask.dueDate)")
     }
     
 }

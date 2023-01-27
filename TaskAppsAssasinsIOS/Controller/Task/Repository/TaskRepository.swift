@@ -140,13 +140,11 @@ extension TaskViewController {
             newTask.addToAudios(audioEntity)
         }
         
-        
         // Save coordinate to the database
         if let latitude = task.latitude, let longitude = task.longitude {
             newTask.longitude = latitude
             newTask.longitude = longitude
         }
-        
         
         newTask.category_parent = selectedCategory
         saveTask()
