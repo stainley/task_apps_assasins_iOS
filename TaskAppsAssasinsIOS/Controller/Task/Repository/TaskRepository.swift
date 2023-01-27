@@ -147,7 +147,7 @@ extension TaskViewController {
             oldTask.dateCompleted = dateCompleted as Date
             oldTask.isCompleted = isCompleted
         }
-        
+        oldTask.taskDueDate = updatedTask.dueDate
         if updatedTask.subTasks.count > 0 {
            
             updateSubTask(parentTask: oldTask, newSubTasks:  updatedTask.subTasks)
@@ -177,6 +177,10 @@ extension TaskViewController {
                     return false
                 })[0]
                 print(lastDate!)
+                return lastDate
+            }
+            else {
+                let lastDate = dueDateInfo[0]
                 return lastDate
             }
         } catch {

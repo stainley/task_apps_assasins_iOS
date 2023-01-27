@@ -35,8 +35,6 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         let action = UIContextualAction(style: .destructive, title: "Delete") {
             (action, view, completionHandler) in
-            
-            //Remove contact from DB
         
             self.delegate?.deleteSubTask(subTaskEntity: self.subTasksEntity[indexPath.row])
             //self.saveTask()
