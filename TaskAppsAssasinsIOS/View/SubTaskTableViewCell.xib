@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="460" height="108"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ioS-3j-6Ew">
-                                <rect key="frame" x="20" y="0.0" width="134.33333333333334" height="108"/>
+                                <rect key="frame" x="20" y="0.0" width="80.333333333333329" height="108"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wcl-WK-aaI">
                                         <rect key="frame" x="0.0" y="37" width="34" height="34"/>
@@ -33,11 +33,11 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain"/>
                                                 <connections>
-                                                    <action selector="checkbox:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jZz-X0-8So"/>
+                                                    <action selector="checkbox:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="g5n-pL-leh"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Fnd-qK-WDa">
-                                                <rect key="frame" x="0.0" y="1.6666666666666625" width="34" height="31.000000000000007"/>
+                                                <rect key="frame" x="0.0" y="-1.7763568394002505e-15" width="34" height="34.000000000000014"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -50,14 +50,14 @@
                                             <constraint firstAttribute="trailing" secondItem="Fnd-qK-WDa" secondAttribute="trailing" id="v2r-E9-2KG"/>
                                         </constraints>
                                     </view>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xHo-aG-em0">
-                                        <rect key="frame" x="39" y="38.666666666666664" width="51" height="30.999999999999993"/>
+                                    <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xHo-aG-em0">
+                                        <rect key="frame" x="36.666666666666664" y="38.666666666666664" width="2" height="30.999999999999993"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" none="YES"/>
                                         </accessibility>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5IW-c8-Sne">
-                                        <rect key="frame" x="93" y="44" width="41.333333333333343" height="20.333333333333329"/>
+                                        <rect key="frame" x="39" y="44" width="41.333333333333343" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -96,8 +96,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="checkmarkImage" destination="Fnd-qK-WDa" id="teg-hw-eV5"/>
                 <outlet property="datePickerButton" destination="wrz-Dz-pZ5" id="5ie-3e-U5E"/>
-                <outlet property="isCompleteButton" destination="P3j-R2-Wwr" id="iDG-km-L5G"/>
+                <outlet property="isCompleteButton" destination="P3j-R2-Wwr" id="ron-oc-8tB"/>
                 <outlet property="subTaskTitleLabel" destination="5IW-c8-Sne" id="uXb-Sx-Aaq"/>
             </connections>
             <point key="canvasLocation" x="137.40458015267174" y="-188.73239436619718"/>

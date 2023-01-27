@@ -59,8 +59,8 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="lfw-ov-gBh">
                                                         <rect key="frame" x="0.0" y="5" width="404" height="25"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fB5-iw-WBD">
-                                                                <rect key="frame" x="0.0" y="0.99999999999999822" width="25" height="23.666666666666664"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fB5-iw-WBD">
+                                                                <rect key="frame" x="0.0" y="1.6666666666666643" width="25" height="22.000000000000007"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="25" id="0Nb-WL-aYO"/>
                                                                     <constraint firstAttribute="width" constant="25" id="L3c-qv-0Se"/>
@@ -181,6 +181,7 @@
                 <outlet property="completedCounterLabel" destination="7r1-8O-Xgc" id="IW7-lJ-Hmr"/>
                 <outlet property="creationDateLabel" destination="ho6-N7-t7k" id="dEH-G3-P00"/>
                 <outlet property="dueDateLabel" destination="CIS-LW-66v" id="Lzb-p3-Y65"/>
+                <outlet property="taskCheckmarkImage" destination="fB5-iw-WBD" id="hRv-t1-Zgw"/>
                 <outlet property="taskColorIndicatorView" destination="7BN-y2-GMw" id="pct-D4-YV7"/>
                 <outlet property="titleLabel" destination="VL5-UP-FlN" id="Z6k-Ik-5pC"/>
             </connections>
@@ -189,7 +190,7 @@
     </objects>
     <resources>
         <image name="calendar" catalog="system" width="128" height="107"/>
-        <image name="circle" catalog="system" width="128" height="123"/>
+        <image name="square" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
