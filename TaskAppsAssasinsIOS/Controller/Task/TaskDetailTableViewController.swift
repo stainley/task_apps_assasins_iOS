@@ -15,19 +15,20 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = subTaskTableView.dequeueReusableCell(withIdentifier: "subTaskTableViewCell", for: indexPath) as! SubTaskTableViewCell
-       /*
-        if cell.isCompleteButton.isSelected {
-            cell.isCompleteButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
+       
+        if subTasksEntity[indexPath.row].status {
+            cell.checkmarkImage?.image = UIImage(systemName: "checkmark.square")
         } else {
-            cell.isCompleteButton.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
+            cell.checkmarkImage?.image = UIImage(systemName: "square")
         }
-        */
-        //cell.isCompleteButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
+        
         cell.isCompleteButton.isSelected = subTasksEntity[indexPath.row].status
         cell.subtask = subTasksEntity[indexPath.row]
         cell.subTaskTitleLabel?.text = subTasksEntity[indexPath.row].title
         cell.datePickerButton?.setTitle(subTasksEntity[indexPath.row].dueDate?.toString(dateFormat: "MM/DD/YYY hh:mm:ss"), for: .normal)
-        //cell?.delegate = self
+        
+        cell.cellIndex = indexPath.row
+        cell.delegate = self
         return cell
     }
     
@@ -54,8 +55,14 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let subtask = self.subTasksEntity[indexPath.row]
         
-        
     }
     
 
+}
+
+extension TaskDetailViewController: SubTaskTableViewCellDelegate {
+    func updateSubTaskStatus(index: Int, status: Bool) {
+        self.subTasksEntity[index].status = status
+        self.delegate?.saveTask()
+    }
 }

@@ -18,13 +18,24 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = taskTableView.dequeueReusableCell(withIdentifier: "taskViewCell", for: indexPath) as! TaskNibTableViewCell
         var totalSubtaskCompleted = 0
+        var isAllSubtaskCompleted = true
         
+        cell.taskCheckmarkImage.image = UIImage(systemName: "checkmark.square")
         cell.titleLabel.text = filteredTasks[indexPath.row].title
         
         if let creation = filteredTasks[indexPath.row].creationDate {
             cell.creationDateLabel?.text = "Created: \(creation.toString(dateFormat: "MMMM dd, yyyy 'on' h:mm:ss a"))"
         }
-    
+        
+        if let subtasks = filteredTasks[indexPath.row].subtasks {
+            for subtask in subtasks {
+                if (subtask as! SubTaskEntity).status == false {
+                    isAllSubtaskCompleted = false
+                    cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
+                }
+            }
+        }
+        
         // DUE DATE TASK is the last due date from subtask
         //print("\(tasks[indexPath.row].title) \(tasks[indexPath.row].taskDueDate)")
         
