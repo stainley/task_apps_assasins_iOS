@@ -148,6 +148,8 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
+        var noteCell = tableView.dequeueReusableCell(withIdentifier: "NoteNibTableViewCell", for: indexPath) as! NoteNibTableViewCell
+        
         let deleteAction = UIContextualAction(style: .destructive, title: nil, handler: {(action, view, completionHandler) in
             let alertController = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: .actionSheet)
 
@@ -179,6 +181,10 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         let edit = UIContextualAction(style: .normal, title: "Edit", handler: {(action, view, completionHandler) in
             // TODO: Implement Change Category
             let switchCategoryVC = ChangeCategoryView()
+            switchCategoryVC.noteViewControllerDelegate = self
+            switchCategoryVC.categories = self.fetchAllCategory()
+            switchCategoryVC.noteToChange = self.filteredNotes[indexPath.row]
+
             
             self.present(switchCategoryVC, animated: false)
             

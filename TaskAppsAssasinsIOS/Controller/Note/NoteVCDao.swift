@@ -73,6 +73,13 @@ extension NoteViewController {
         }
         return Array<NoteEntity>()
     }
+    
+    
+    func changeNoteCategory(noteEntity: NoteEntity, for categoryEntity: CategoryEntity) {
+        
+        noteEntity.category_parent = categoryEntity
+        saveNote()
+    }
 
     func saveNote(note: Note, oldNoteEntity: NoteEntity? = nil, newPictures: [UIImage], newAudioPath: [String]) {
         // Title must be required.
@@ -150,5 +157,16 @@ extension NoteViewController {
         noteTableView.reloadData()
     }
     
+    func fetchAllCategory() -> Array<CategoryEntity> {
+        let request: NSFetchRequest<CategoryEntity> = CategoryEntity.fetchRequest()
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error loading categories \(error.localizedDescription)")
+        }
+        
+        return Array<CategoryEntity>()
+    }
 }
 
