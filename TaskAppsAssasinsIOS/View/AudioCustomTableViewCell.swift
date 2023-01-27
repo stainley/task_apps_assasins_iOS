@@ -14,6 +14,8 @@ class AudioCustomTableViewCell: UITableViewCell {
     
     @IBOutlet weak var scrubber: UISlider!
     
+    var audioIsPlaying: Bool = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,8 +29,19 @@ class AudioCustomTableViewCell: UITableViewCell {
     
     // TODO: change icon from stop to play
     @IBAction func playPauseAudioButton(_ sender: UIButton) {
-        var changeIcon: Bool = false
-        changeIcon.toggle()
+        audioIsPlaying.toggle()
+        var iconName: String = "play.circle.fill"
+        
+        if (audioIsPlaying == true) {
+            iconName = "pause.circle.fill"
+        }
+        else{
+            iconName = "play.circle.fill"
+        }
+        
+        if let image = UIImage(systemName:iconName) {
+            audioPlayButton.setImage(image, for: .normal)
+        }
     }
     
 }
