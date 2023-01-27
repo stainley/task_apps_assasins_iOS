@@ -111,26 +111,8 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="DLd-6F-KJR">
                                                         <rect key="frame" x="0.0" y="90" width="404" height="25"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPT-4e-ynf">
-                                                                <rect key="frame" x="0.0" y="0.0" width="202" height="25"/>
-                                                                <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nRh-6T-aQq">
-                                                                        <rect key="frame" x="0.0" y="1.6666666666666643" width="25" height="22.000000000000004"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="25" id="ZYM-bZ-2zL"/>
-                                                                            <constraint firstAttribute="width" constant="25" id="ff4-C5-ux1"/>
-                                                                        </constraints>
-                                                                    </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due: 01/01/2023 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xc-92-UGf">
-                                                                        <rect key="frame" x="25" y="0.0" width="177" height="25"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                            </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLU-kd-gll">
-                                                                <rect key="frame" x="202" y="0.0" width="202" height="25"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="404" height="25"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NBf-HQ-qqq">
                                                                         <rect key="frame" x="0.0" y="1.6666666666666643" width="25" height="22.000000000000004"/>
@@ -139,8 +121,8 @@
                                                                             <constraint firstAttribute="height" constant="25" id="z1e-aa-tEF"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due: 01/01/2023 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIS-LW-66v">
-                                                                        <rect key="frame" x="25" y="0.0" width="177" height="25"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due: 01/01/2023 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIS-LW-66v" userLabel="Due: 01/01/2023">
+                                                                        <rect key="frame" x="25" y="0.0" width="379" height="25"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -190,6 +172,7 @@
             <connections>
                 <outlet property="cardView" destination="J5x-dl-jPt" id="04Z-EY-oij"/>
                 <outlet property="creationDateLabel" destination="ho6-N7-t7k" id="dEH-G3-P00"/>
+                <outlet property="dueDateLabel" destination="CIS-LW-66v" id="Lzb-p3-Y65"/>
                 <outlet property="taskColorIndicatorView" destination="7BN-y2-GMw" id="pct-D4-YV7"/>
                 <outlet property="titleLabel" destination="VL5-UP-FlN" id="Z6k-Ik-5pC"/>
             </connections>

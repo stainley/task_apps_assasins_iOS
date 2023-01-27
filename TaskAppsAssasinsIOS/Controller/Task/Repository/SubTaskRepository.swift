@@ -22,8 +22,7 @@ extension TaskViewController {
     
     // Save all subtasks
     func addSubTask(parentTask: TaskEntity, subTasks: [SubTaskEntity]) {
-      
-        
+              
         for subTask in subTasks {
             let newSubTask = SubTaskEntity(context: context)
             newSubTask.title = subTask.title
@@ -40,7 +39,6 @@ extension TaskViewController {
             sbTask.task_parent = parentTask
             saveSubTask()
         }
-        
     }
     
     // MARK: Delete task from Database
@@ -68,5 +66,5 @@ extension TaskViewController {
         
         return Array<SubTaskEntity>()
     }
-    
+   
 }

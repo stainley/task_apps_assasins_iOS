@@ -52,8 +52,7 @@ extension TaskViewController {
             print("An error had ocurred: \(error.localizedDescription)")
         }
     }
-    
-    
+
     // Load all tasks by category
     func loadTasksByCategory(predicate: NSPredicate? = nil) -> Array<TaskEntity> {
         let request: NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest()
@@ -73,8 +72,6 @@ extension TaskViewController {
         }
         return Array<TaskEntity>()
     }
-    
-    
     
     func fetchAllCategory() -> Array<CategoryEntity> {
         let request: NSFetchRequest<CategoryEntity> = CategoryEntity.fetchRequest()
@@ -136,12 +133,10 @@ extension TaskViewController {
             newTask.longitude = longitude
         }
         
-        
         // TODO: save all subtask before the task
         if task.subTasks.count > 0 {
             addSubTask(parentTask: newTask, subTasks: task.subTasks)
         }
-        
         
         newTask.category_parent = selectedCategory
         saveTask()
@@ -159,22 +154,40 @@ extension TaskViewController {
             oldTask.isCompleted = isCompleted
         }
         
-        // TODO: save all subtask before the task
-        /*if task.subTasks.count > 0 {
-            addSubTask(parentTask: newTask, subTasks: task.subTasks)
-         }*/
-        
         if updatedTask.subTasks.count > 0 {
-            print("SUBTASK TO BE UPDATED")
            
             updateSubTask(parentTask: oldTask, newSubTasks:  updatedTask.subTasks)
-            
+            print("Subtask Updated")
         }
-        
-      
         
         saveTask()
         taskTableView.reloadData()
     }
     
+    // GET LAST DUE DATE FROM AN ARRAY OF CHILD TASK
+    func getSubTaskDueDate(predicate: NSPredicate?) -> Date? {
+        let request: NSFetchRequest<SubTaskEntity> = SubTaskEntity.fetchRequest()
+        var subtasksEntities: [SubTaskEntity] = []
+        request.predicate = predicate
+        do {
+            try subtasksEntities = context.fetch(request)
+            
+            let dueDateInfo = subtasksEntities.map({ $0.dueDate})
+            
+            if dueDateInfo.count > 1 {
+                
+                let lastDate = dueDateInfo.sorted(by: { (date1, date2) -> Bool in
+                    if let date1 = date1, let date2 = date2 {
+                        return date1 > date2
+                    }
+                    return false
+                })[0]
+                print(lastDate!)
+                return lastDate
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        return nil
+    }
 }
