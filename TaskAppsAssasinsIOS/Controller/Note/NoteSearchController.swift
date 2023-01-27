@@ -20,7 +20,7 @@ extension NoteViewController: UISearchBarDelegate {
         } else {
             for note in notes {
                
-                if ((note.title?.lowercased().contains(searchText.lowercased())) != nil) {
+                if note.title!.lowercased().contains(searchText.lowercased()) {
                     filteredNotes.append(note)
                     view.isUserInteractionEnabled = false
                 }
