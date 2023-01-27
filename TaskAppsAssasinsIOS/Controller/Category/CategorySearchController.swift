@@ -24,7 +24,6 @@ extension CategoryViewController: UISearchBarDelegate {
                 if cateroyName.lowercased().contains(searchText.lowercased()) {
                     
                     filteredCategories.append(category)
-                    view.isUserInteractionEnabled = false
                 }
             }
         }

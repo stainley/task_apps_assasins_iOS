@@ -18,7 +18,10 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     static var categorySelected: IndexPath?
-        
+    // TODO: Aswin - Change toggle delete button icon
+    var categoryCell: CategoryCell!
+    
+    
     // MARK: Create new category
     @IBAction func createNewCategoryButton(_ sender: UIBarButtonItem) {
         var textField = UITextField()
@@ -74,11 +77,10 @@ class CategoryViewController: UIViewController {
     @IBAction func deleteCategory(_ sender: UIButton) {
         
         let index: Int = sender.layer.value(forKey: "index") as! Int
-        print("DELETED \(index)")
         deleteCategory(category: filteredCategories[index])
         saveCategory()
         categoriesEntity.remove(at: index)
-        //filteredCategories.remove(at: index)
+
         filteredCategories = categoriesEntity
         categoryCollectionView.reloadData()
         sender.isHidden = true
@@ -86,15 +88,9 @@ class CategoryViewController: UIViewController {
         
     }
     
-    // TODO: Implement reset category when return to this View
-    @IBAction func unwindToCategory(_ unwindSegue: UIStoryboardSegue) {
-        // let sourceViewController = unwindSegue.source
-        // Use data from the view controller which initiated the unwind segue
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
  
@@ -116,10 +112,12 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
-
+        categoryCell = cell
+        cell.deleteCategoryButton.isHidden = true
+        cell.deleteCategoryButton.isEnabled = false
         cell.categoryLabel.text = filteredCategories[indexPath.row].name
         cell.deleteCategoryButton.layer.setValue(indexPath.row, forKey: "index")
-                
+
         return cell
     }
   
@@ -129,15 +127,15 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+
         if let noteTaskTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "NoteTaskTabBarController") as? NoteTaskTabBarController {
-            noteTaskTabBarController.categorySelected = filteredCategories[indexPath.row].name
+
+            noteTaskTabBarController.categorySelected = filteredCategories[indexPath.row]
+            noteTaskTabBarController.delegateCategory = self
             self.navigationController?.pushViewController(noteTaskTabBarController, animated: true)
         }
-
     }
     
-    //MARK: Long Press category card
     @objc func handleLongPress(gesture: UILongPressGestureRecognizer!) {
         if gesture.state != .ended {
             return
@@ -145,14 +143,22 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         
         let point = gesture.location(in: self.categoryCollectionView)
         if let indexPath = self.categoryCollectionView.indexPathForItem(at: point) {
-            CategoryViewController.categorySelected = indexPath
-            // get the cell at indexPath
+ 
             let cell = self.categoryCollectionView.cellForItem(at: indexPath) as! CategoryCell
-            // SHOW DELETE ICON
-            cell.deleteCategoryButton.isEnabled = true
-            cell.deleteCategoryButton.isHidden = false
+            toggleDeleteButton(cell)
         } else {
             print("Couldn't find index path")
         }
     }
+    
+    //TODO: ASWIN RESET VALUE
+    fileprivate func toggleDeleteButton(_ cell: CategoryCell) {
+        // SHOW DELETE ICON
+        cell.deleteCategoryButton.isEnabled.toggle()
+        cell.deleteCategoryButton.isHidden.toggle()
+    }
+}
+
+protocol DeleteButtonDelegate {
+    func onDeleteButton(for button: CategoryCell)
 }

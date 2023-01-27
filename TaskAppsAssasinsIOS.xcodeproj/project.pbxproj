@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D9347462983644A007F7487 /* NoteDetailVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9347452983644A007F7487 /* NoteDetailVCDao.swift */; };
 		7005E73B29769DFF00410B83 /* TaskNibTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */; };
 		7005E73C29769DFF00410B83 /* TaskNibTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */; };
 		7005E73E2976A0C000410B83 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */; };
+		700E8056298463D10097FD4D /* TaskPictureViewCustomCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700E8055298463D10097FD4D /* TaskPictureViewCustomCollection.swift */; };
 		70576B73297DD80E00511F08 /* TaskSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70576B72297DD80E00511F08 /* TaskSearchController.swift */; };
 		70B7AE50297697E100698260 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7AE4F297697E100698260 /* NoteViewController.swift */; };
 		70B7AE5229769A3E00698260 /* NoteTaskTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */; };
@@ -18,13 +20,25 @@
 		70F2B1862975302D00239EAC /* NoteNibTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F2B1842975302D00239EAC /* NoteNibTableViewCell.swift */; };
 		70F2B1872975302D00239EAC /* NoteNibTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70F2B1852975302D00239EAC /* NoteNibTableViewCell.xib */; };
 		728FFBC629761AC0006748FD /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728FFBC529761AC0006748FD /* Task.swift */; };
+		AD2CC3E82982C860008E8599 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2CC3E72982C860008E8599 /* TaskRepository.swift */; };
+		AD2CC3ED2982D656008E8599 /* TaskStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2CC3EC2982D656008E8599 /* TaskStoryboard.storyboard */; };
+		AD2CC3F02982DB0C008E8599 /* SubTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2CC3EE2982DB0C008E8599 /* SubTaskTableViewCell.swift */; };
+		AD2CC3F12982DB0C008E8599 /* SubTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2CC3EF2982DB0C008E8599 /* SubTaskTableViewCell.xib */; };
+		AD2CC3F32982EC86008E8599 /* TaskDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2CC3F22982EC86008E8599 /* TaskDetailTableViewController.swift */; };
+		AD2CC3F52982EF96008E8599 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2CC3F42982EF96008E8599 /* TaskTableViewController.swift */; };
+		AD5FE18029844AB000A104DA /* ChangeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FE17F29844AB000A104DA /* ChangeCategoryView.swift */; };
+		AD68C9652981E2E8001CEA9B /* AudioTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68C9642981E2E8001CEA9B /* AudioTableController.swift */; };
 		AD7B431829747A1C008D1164 /* CategoryCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7B431729747A1C008D1164 /* CategoryCustomView.swift */; };
 		AD7B431A29749C52008D1164 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7B431929749C52008D1164 /* CustomImageView.swift */; };
+		AD843BD9298348700065E120 /* SubTaskModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD843BD8298348700065E120 /* SubTaskModalViewController.swift */; };
+		AD843BDB29835B4A0065E120 /* SubTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD843BDA29835B4A0065E120 /* SubTask.swift */; };
+		AD843BDD29836AA10065E120 /* SubTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD843BDC29836AA10065E120 /* SubTaskRepository.swift */; };
 		ADB0D193297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D191297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld */; };
 		ADB0D198297C40FE00A9AF78 /* CategoryVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D197297C40FE00A9AF78 /* CategoryVCDao.swift */; };
 		ADB0D19A297C569200A9AF78 /* CategorySearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D199297C569200A9AF78 /* CategorySearchController.swift */; };
 		ADB0D1A0297DA1A600A9AF78 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D19F297DA1A600A9AF78 /* Category.swift */; };
 		ADB0D1A2297DB0A800A9AF78 /* NoteSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D1A1297DB0A800A9AF78 /* NoteSearchController.swift */; };
+		ADC5312A2984062E008B7912 /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC531292984062E008B7912 /* KeyboardHelper.swift */; };
 		ADCDD667296F752300B30328 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD666296F752300B30328 /* AppDelegate.swift */; };
 		ADCDD669296F752300B30328 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD668296F752300B30328 /* SceneDelegate.swift */; };
 		ADCDD66B296F752300B30328 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD66A296F752300B30328 /* CategoryViewController.swift */; };
@@ -32,14 +46,27 @@
 		ADCDD670296F752400B30328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADCDD66F296F752400B30328 /* Assets.xcassets */; };
 		ADCDD673296F752400B30328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADCDD671296F752400B30328 /* LaunchScreen.storyboard */; };
 		ADCDD67C2970D2A400B30328 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCDD67B2970D2A400B30328 /* Note.swift */; };
+		ADEC1DBB2980218F00471AF9 /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DB92980218F00471AF9 /* PictureCollectionViewCell.swift */; };
+		ADEC1DBC2980218F00471AF9 /* PictureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEC1DBA2980218F00471AF9 /* PictureCollectionViewCell.xib */; };
+		ADEC1DBE298023D400471AF9 /* PictureViewCustomCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DBD298023D400471AF9 /* PictureViewCustomCollection.swift */; };
+		ADEC1DC1298040E700471AF9 /* MapTaskNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC0298040E700471AF9 /* MapTaskNoteViewController.swift */; };
+		ADEC1DC3298041B000471AF9 /* MyLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC2298041B000471AF9 /* MyLocationViewController.swift */; };
+		ADEC1DC529804D2400471AF9 /* NoteAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC429804D2400471AF9 /* NoteAnnotation.swift */; };
+		ADEC1DC729804D3100471AF9 /* TaskAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC629804D3100471AF9 /* TaskAnnotation.swift */; };
+		ADEC1DC929807CD800471AF9 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DC829807CD800471AF9 /* AudioViewController.swift */; };
+		ADEC1DD02980876600471AF9 /* AudioCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DCE2980876600471AF9 /* AudioCustomTableViewCell.swift */; };
+		ADEC1DD12980876600471AF9 /* AudioCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEC1DCF2980876600471AF9 /* AudioCustomTableViewCell.xib */; };
+		ADF2F2FC297DF24700B78D81 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */; };
 		F0D06978297DD4A6008D15CD /* NoteVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D06977297DD4A6008D15CD /* NoteVCDao.swift */; };
 		F0D3026D29720940005DC42D /* NoteDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D9347452983644A007F7487 /* NoteDetailVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailVCDao.swift; sourceTree = "<group>"; };
 		7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNibTableViewCell.swift; sourceTree = "<group>"; };
 		7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskNibTableViewCell.xib; sourceTree = "<group>"; };
 		7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		700E8055298463D10097FD4D /* TaskPictureViewCustomCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPictureViewCustomCollection.swift; sourceTree = "<group>"; };
 		70576B72297DD80E00511F08 /* TaskSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSearchController.swift; sourceTree = "<group>"; };
 		70B7AE4F297697E100698260 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTaskTabBarController.swift; sourceTree = "<group>"; };
@@ -48,13 +75,25 @@
 		70F2B1842975302D00239EAC /* NoteNibTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteNibTableViewCell.swift; sourceTree = "<group>"; };
 		70F2B1852975302D00239EAC /* NoteNibTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NoteNibTableViewCell.xib; path = ../NoteNibTableViewCell.xib; sourceTree = "<group>"; };
 		728FFBC529761AC0006748FD /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		AD2CC3E72982C860008E8599 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
+		AD2CC3EC2982D656008E8599 /* TaskStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaskStoryboard.storyboard; sourceTree = "<group>"; };
+		AD2CC3EE2982DB0C008E8599 /* SubTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskTableViewCell.swift; sourceTree = "<group>"; };
+		AD2CC3EF2982DB0C008E8599 /* SubTaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubTaskTableViewCell.xib; sourceTree = "<group>"; };
+		AD2CC3F22982EC86008E8599 /* TaskDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailTableViewController.swift; sourceTree = "<group>"; };
+		AD2CC3F42982EF96008E8599 /* TaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
+		AD5FE17F29844AB000A104DA /* ChangeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCategoryView.swift; sourceTree = "<group>"; };
+		AD68C9642981E2E8001CEA9B /* AudioTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTableController.swift; sourceTree = "<group>"; };
 		AD7B431729747A1C008D1164 /* CategoryCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCustomView.swift; sourceTree = "<group>"; };
 		AD7B431929749C52008D1164 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		AD843BD8298348700065E120 /* SubTaskModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskModalViewController.swift; sourceTree = "<group>"; };
+		AD843BDA29835B4A0065E120 /* SubTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTask.swift; sourceTree = "<group>"; };
+		AD843BDC29836AA10065E120 /* SubTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskRepository.swift; sourceTree = "<group>"; };
 		ADB0D192297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskNoteDatabase.xcdatamodel; sourceTree = "<group>"; };
 		ADB0D197297C40FE00A9AF78 /* CategoryVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVCDao.swift; sourceTree = "<group>"; };
 		ADB0D199297C569200A9AF78 /* CategorySearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySearchController.swift; sourceTree = "<group>"; };
 		ADB0D19F297DA1A600A9AF78 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		ADB0D1A1297DB0A800A9AF78 /* NoteSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSearchController.swift; sourceTree = "<group>"; };
+		ADC531292984062E008B7912 /* KeyboardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
 		ADCDD663296F752300B30328 /* TaskAppsAssasinsIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskAppsAssasinsIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADCDD666296F752300B30328 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADCDD668296F752300B30328 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +103,17 @@
 		ADCDD672296F752400B30328 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADCDD674296F752400B30328 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADCDD67B2970D2A400B30328 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		ADEC1DB92980218F00471AF9 /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
+		ADEC1DBA2980218F00471AF9 /* PictureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureCollectionViewCell.xib; sourceTree = "<group>"; };
+		ADEC1DBD298023D400471AF9 /* PictureViewCustomCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewCustomCollection.swift; sourceTree = "<group>"; };
+		ADEC1DC0298040E700471AF9 /* MapTaskNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTaskNoteViewController.swift; sourceTree = "<group>"; };
+		ADEC1DC2298041B000471AF9 /* MyLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationViewController.swift; sourceTree = "<group>"; };
+		ADEC1DC429804D2400471AF9 /* NoteAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAnnotation.swift; sourceTree = "<group>"; };
+		ADEC1DC629804D3100471AF9 /* TaskAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAnnotation.swift; sourceTree = "<group>"; };
+		ADEC1DC829807CD800471AF9 /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		ADEC1DCE2980876600471AF9 /* AudioCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCustomTableViewCell.swift; sourceTree = "<group>"; };
+		ADEC1DCF2980876600471AF9 /* AudioCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioCustomTableViewCell.xib; sourceTree = "<group>"; };
+		ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		F0D06977297DD4A6008D15CD /* NoteVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteVCDao.swift; sourceTree = "<group>"; };
 		F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailViewControler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +136,7 @@
 				ADCDD67B2970D2A400B30328 /* Note.swift */,
 				728FFBC529761AC0006748FD /* Task.swift */,
 				ADB0D19F297DA1A600A9AF78 /* Category.swift */,
+				AD843BDA29835B4A0065E120 /* SubTask.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -97,6 +148,14 @@
 				AD7B431729747A1C008D1164 /* CategoryCustomView.swift */,
 				AD7B431929749C52008D1164 /* CustomImageView.swift */,
 				70F2B1852975302D00239EAC /* NoteNibTableViewCell.xib */,
+				ADEC1DB92980218F00471AF9 /* PictureCollectionViewCell.swift */,
+				ADEC1DBA2980218F00471AF9 /* PictureCollectionViewCell.xib */,
+				ADEC1DCE2980876600471AF9 /* AudioCustomTableViewCell.swift */,
+				ADEC1DCF2980876600471AF9 /* AudioCustomTableViewCell.xib */,
+				AD2CC3EC2982D656008E8599 /* TaskStoryboard.storyboard */,
+				AD2CC3EE2982DB0C008E8599 /* SubTaskTableViewCell.swift */,
+				AD2CC3EF2982DB0C008E8599 /* SubTaskTableViewCell.xib */,
+				AD5FE17F29844AB000A104DA /* ChangeCategoryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -104,11 +163,29 @@
 		70CB3572296FE6FB005612E0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ADEC1DBF298040CD00471AF9 /* Map */,
+				ADF2F2FA297DF22200B78D81 /* Helper */,
 				ADB0D196297C3FAB00A9AF78 /* Note */,
 				ADB0D195297C3FA400A9AF78 /* Task */,
 				ADB0D194297C3F9C00A9AF78 /* Category */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		AD2CC3E92982CAA9008E8599 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				AD2CC3E72982C860008E8599 /* TaskRepository.swift */,
+				AD843BDC29836AA10065E120 /* SubTaskRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		AD5FE17E29843A8C00A104DA /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		ADB0D194297C3F9C00A9AF78 /* Category */ = {
@@ -125,9 +202,14 @@
 		ADB0D195297C3FA400A9AF78 /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				AD2CC3E92982CAA9008E8599 /* Repository */,
 				70B7AE5329769B4200698260 /* TaskViewController.swift */,
 				7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */,
 				70576B72297DD80E00511F08 /* TaskSearchController.swift */,
+				AD2CC3F22982EC86008E8599 /* TaskDetailTableViewController.swift */,
+				AD2CC3F42982EF96008E8599 /* TaskTableViewController.swift */,
+				AD843BD8298348700065E120 /* SubTaskModalViewController.swift */,
+				700E8055298463D10097FD4D /* TaskPictureViewCustomCollection.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -135,12 +217,16 @@
 		ADB0D196297C3FAB00A9AF78 /* Note */ = {
 			isa = PBXGroup;
 			children = (
+				AD5FE17E29843A8C00A104DA /* Repository */,
 				70F2B1842975302D00239EAC /* NoteNibTableViewCell.swift */,
 				70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */,
 				F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */,
 				70B7AE4F297697E100698260 /* NoteViewController.swift */,
 				ADB0D1A1297DB0A800A9AF78 /* NoteSearchController.swift */,
 				F0D06977297DD4A6008D15CD /* NoteVCDao.swift */,
+				ADEC1DBD298023D400471AF9 /* PictureViewCustomCollection.swift */,
+				AD68C9642981E2E8001CEA9B /* AudioTableController.swift */,
+				3D9347452983644A007F7487 /* NoteDetailVCDao.swift */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -176,6 +262,27 @@
 				7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */,
 			);
 			path = TaskAppsAssasinsIOS;
+			sourceTree = "<group>";
+		};
+		ADEC1DBF298040CD00471AF9 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				ADEC1DC0298040E700471AF9 /* MapTaskNoteViewController.swift */,
+				ADEC1DC429804D2400471AF9 /* NoteAnnotation.swift */,
+				ADEC1DC629804D3100471AF9 /* TaskAnnotation.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		ADF2F2FA297DF22200B78D81 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				ADEC1DC829807CD800471AF9 /* AudioViewController.swift */,
+				ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */,
+				ADEC1DC2298041B000471AF9 /* MyLocationViewController.swift */,
+				ADC531292984062E008B7912 /* KeyboardHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,7 +347,11 @@
 				ADCDD673296F752400B30328 /* LaunchScreen.storyboard in Resources */,
 				ADCDD670296F752400B30328 /* Assets.xcassets in Resources */,
 				ADCDD66E296F752300B30328 /* Main.storyboard in Resources */,
+				AD2CC3ED2982D656008E8599 /* TaskStoryboard.storyboard in Resources */,
+				ADEC1DD12980876600471AF9 /* AudioCustomTableViewCell.xib in Resources */,
+				AD2CC3F12982DB0C008E8599 /* SubTaskTableViewCell.xib in Resources */,
 				70F2B1872975302D00239EAC /* NoteNibTableViewCell.xib in Resources */,
+				ADEC1DBC2980218F00471AF9 /* PictureCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,26 +364,47 @@
 			files = (
 				70576B73297DD80E00511F08 /* TaskSearchController.swift in Sources */,
 				7005E73B29769DFF00410B83 /* TaskNibTableViewCell.swift in Sources */,
+				ADF2F2FC297DF24700B78D81 /* PhotoViewController.swift in Sources */,
 				ADB0D1A2297DB0A800A9AF78 /* NoteSearchController.swift in Sources */,
 				70B7AE50297697E100698260 /* NoteViewController.swift in Sources */,
+				AD843BD9298348700065E120 /* SubTaskModalViewController.swift in Sources */,
+				AD2CC3F32982EC86008E8599 /* TaskDetailTableViewController.swift in Sources */,
+				AD2CC3F52982EF96008E8599 /* TaskTableViewController.swift in Sources */,
 				ADB0D1A0297DA1A600A9AF78 /* Category.swift in Sources */,
 				ADCDD66B296F752300B30328 /* CategoryViewController.swift in Sources */,
 				ADB0D193297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld in Sources */,
 				ADB0D198297C40FE00A9AF78 /* CategoryVCDao.swift in Sources */,
+				AD843BDD29836AA10065E120 /* SubTaskRepository.swift in Sources */,
+				ADEC1DBE298023D400471AF9 /* PictureViewCustomCollection.swift in Sources */,
+				ADEC1DC529804D2400471AF9 /* NoteAnnotation.swift in Sources */,
+				ADEC1DC1298040E700471AF9 /* MapTaskNoteViewController.swift in Sources */,
+				AD5FE18029844AB000A104DA /* ChangeCategoryView.swift in Sources */,
+				AD68C9652981E2E8001CEA9B /* AudioTableController.swift in Sources */,
+				3D9347462983644A007F7487 /* NoteDetailVCDao.swift in Sources */,
 				AD7B431A29749C52008D1164 /* CustomImageView.swift in Sources */,
+				700E8056298463D10097FD4D /* TaskPictureViewCustomCollection.swift in Sources */,
 				ADCDD667296F752300B30328 /* AppDelegate.swift in Sources */,
+				AD2CC3E82982C860008E8599 /* TaskRepository.swift in Sources */,
 				ADCDD669296F752300B30328 /* SceneDelegate.swift in Sources */,
+				AD843BDB29835B4A0065E120 /* SubTask.swift in Sources */,
+				ADEC1DC729804D3100471AF9 /* TaskAnnotation.swift in Sources */,
 				70CB35C02970585A005612E0 /* CategoryCell.swift in Sources */,
+				ADC5312A2984062E008B7912 /* KeyboardHelper.swift in Sources */,
 				70B7AE5429769B4200698260 /* TaskViewController.swift in Sources */,
 				F0D3026D29720940005DC42D /* NoteDetailViewControler.swift in Sources */,
+				ADEC1DC3298041B000471AF9 /* MyLocationViewController.swift in Sources */,
 				ADB0D19A297C569200A9AF78 /* CategorySearchController.swift in Sources */,
 				70B7AE5229769A3E00698260 /* NoteTaskTabBarController.swift in Sources */,
 				7005E73E2976A0C000410B83 /* TaskDetailViewController.swift in Sources */,
 				ADCDD67C2970D2A400B30328 /* Note.swift in Sources */,
 				F0D06978297DD4A6008D15CD /* NoteVCDao.swift in Sources */,
+				ADEC1DD02980876600471AF9 /* AudioCustomTableViewCell.swift in Sources */,
 				AD7B431829747A1C008D1164 /* CategoryCustomView.swift in Sources */,
+				ADEC1DBB2980218F00471AF9 /* PictureCollectionViewCell.swift in Sources */,
 				728FFBC629761AC0006748FD /* Task.swift in Sources */,
+				AD2CC3F02982DB0C008E8599 /* SubTaskTableViewCell.swift in Sources */,
 				70F2B1862975302D00239EAC /* NoteNibTableViewCell.swift in Sources */,
+				ADEC1DC929807CD800471AF9 /* AudioViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +559,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,7 +588,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

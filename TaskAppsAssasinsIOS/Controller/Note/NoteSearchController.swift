@@ -20,14 +20,13 @@ extension NoteViewController: UISearchBarDelegate {
         } else {
             for note in notes {
                
-                if note.title.lowercased().contains(searchText.lowercased()) {
+                if note.title!.lowercased().contains(searchText.lowercased()) {
                     filteredNotes.append(note)
                     view.isUserInteractionEnabled = false
                 }
             }
         }
         noteTableView.reloadData()
-        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

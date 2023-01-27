@@ -9,7 +9,8 @@ import UIKit
 
 class NoteTaskTabBarController: UITabBarController {
 
-    var categorySelected: String!
+    var categorySelected: CategoryEntity!
+    var delegateCategory: CategoryViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +20,20 @@ class NoteTaskTabBarController: UITabBarController {
         guard let categoryTitle = categorySelected else {
             return
         }
-        self.title = categoryTitle
+        self.title = categoryTitle.title
         
         let vc = viewControllers?[Category.note.rawValue] as! NoteViewController
-        vc.passingData = self.categorySelected
+        vc.selectedCategory = self.categorySelected
     }
     
     override func viewWillAppear(_ animated: Bool) {
        
+    }
+    
+    // TODO: Aswin - Change toggle delete button icon
+    override func viewWillDisappear(_ animated: Bool) {
+        delegateCategory?.categoryCell?.deleteCategoryButton.isHidden = true
+        delegateCategory?.categoryCell?.deleteCategoryButton.isEnabled = false
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -46,11 +53,11 @@ class NoteTaskTabBarController: UITabBarController {
         switch category {
             case .note:
             let vc = viewControllers?[category.rawValue] as! NoteViewController
-                vc.passingData = self.categorySelected
+                vc.selectedCategory = self.categorySelected
             
             case .task:
                 let vc = viewControllers?[category.rawValue] as!  TaskViewController
-                vc.passingData = self.categorySelected
+                vc.selectedCategory = self.categorySelected
         }
     }
 
