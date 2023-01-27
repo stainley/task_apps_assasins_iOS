@@ -10,7 +10,9 @@ import UIKit
 class TaskViewController: UIViewController {
 
     @IBOutlet weak var taskTableView: UITableView!
-
+    @IBOutlet weak var sortNameButton: UIButton!
+    @IBOutlet weak var sortDateButton: UIButton!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     
@@ -30,6 +32,62 @@ class TaskViewController: UIViewController {
         }
     }
     
+    var isNameAsc: Bool = true
+    var isCreateDate: Bool = true
+    var iconName: String = ""
+    
+    @IBAction func sortNameButton(_ sender: UIButton){
+        isNameAsc.toggle()
+        if isNameAsc {
+            sortByNameAsc()
+            iconName = "arrow.down"
+        }else {
+            sortByNameDesc()
+            iconName = "arrow.up"
+        }
+        if let sortImage = UIImage(systemName:iconName) {
+            sortNameButton.setImage(sortImage, for: .normal)
+        }
+    }
+    @IBAction func sortDateButton(_ sender: UIButton){
+        isCreateDate.toggle()
+        if isCreateDate {
+            sortByCreateDateAsc()
+            iconName = "arrow.down"
+        }else {
+            sortByCreateDateDesc()
+            iconName = "arrow.up"
+        }
+        if let sortImage = UIImage(systemName:iconName) {
+            sortDateButton.setImage(sortImage, for: .normal)
+        }
+    }
+    //Sorting Name and Date functions
+    func sortByNameAsc(){
+        let assortNameAsc = filteredTasks.sorted{ $0.title! < $1.title! }
+        filteredTasks = []
+        filteredTasks = assortNameAsc
+        taskTableView.reloadData()
+    }
+    func sortByNameDesc(){
+        let assortNameAsc = filteredTasks.sorted{ $0.title! > $1.title! }
+        filteredTasks = []
+        filteredTasks = assortNameAsc
+        taskTableView.reloadData()
+    }
+    func sortByCreateDateAsc(){
+        let assortDateAsc = filteredTasks.sorted{ $0.creationDate! < $1.creationDate! }
+        filteredTasks = []
+        filteredTasks = assortDateAsc
+        taskTableView.reloadData()
+    }
+    func sortByCreateDateDesc(){
+        let assortDateDesc = filteredTasks.sorted{ $0.creationDate! > $1.creationDate! }
+        filteredTasks = []
+        filteredTasks = assortDateDesc
+        taskTableView.reloadData()
+    }
+    
     @IBAction func taskFilterButton(_ sender: UIBarButtonItem) {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
@@ -46,6 +104,9 @@ class TaskViewController: UIViewController {
         filteredTasks = tasks
         self.navigationController?.navigationBar.prefersLargeTitles = false
         taskTableView.reloadData()
+        
+        sortNameButton.layer.cornerRadius = 4
+        sortDateButton.layer.cornerRadius = 4
     }
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

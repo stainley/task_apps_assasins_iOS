@@ -17,13 +17,13 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     @IBOutlet weak var pictureCollectionView: UICollectionView!
     @IBOutlet weak var recordAudioButton: UIBarButtonItem!
     @IBOutlet var noteTextField: UITextView!
-    
+    @IBOutlet weak var imageSectionLabel: UILabel!
     @IBOutlet weak var audioTableView: UITableView!
     
     weak var scrubber: UISlider!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    weak var delegate: NoteViewController?
+    var delegate: NoteViewController?
     
     // timer to update my scrubber
     var timer = Timer()
@@ -92,11 +92,8 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         let nibAudioTable = UINib(nibName: "AudioCustomTableViewCell", bundle: nil)
         audioTableView.register(nibAudioTable, forCellReuseIdentifier: "audioPlayerCell")
         
-        /*
-        catagoryCollection.forEach{ (btn) in
-            btn.isHidden = true
-            btn.alpha = 0
-        }*/
+        imageSectionLabel.isHidden = true
+        pictureCollectionView.superview?.isHidden = true
         
         /// PREPARE FOR RECORDING AUDIO
         loadRecordingFuntionality()
@@ -106,6 +103,9 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
       
         if pictures.count > 0 {
             pictureCollectionView.reloadData()
+            imageSectionLabel.isHidden = false
+            imageSectionLabel.isHidden = false
+            pictureCollectionView.superview?.isHidden = false
         }
         
         if audioPath.count > 0 {
@@ -153,27 +153,25 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     // Send to NoteViewController and persist into Core Data
     override func viewWillDisappear(_ animated: Bool) {
        
-        var note = Note(title: titleTextField.text ?? "", description: noteTextField.text)
+        var newNote = Note(title: titleTextField.text ?? "", description: noteTextField.text)
         
         if pictures.count > 0 {
             for imageData in pictures {
-                note.pictures.append(imageData.pngData()!)
+                newNote.pictures.append(imageData.pngData()!)
             }
         }
         
         if audioPath.count > 0 {
             for audioData in audioPath {
-                note.audios.append(audioData)
+                newNote.audios.append(audioData)
             }
         }
         
         if coordinate != nil {
-            note.setCoordinate(latitude: coordinate?.latitude, longitude: coordinate?.longitude)
+            newNote.setCoordinate(latitude: coordinate?.latitude, longitude: coordinate?.longitude)
         }
         
-        if titleTextField.text != "" {
-            delegate?.saveNote(note: note)
-        }
+        self.delegate?.saveNote(note: newNote, oldNoteEntity: note)
     }
     
     @objc func updateScrubber() {

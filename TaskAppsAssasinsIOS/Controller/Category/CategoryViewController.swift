@@ -90,7 +90,7 @@ class CategoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
  

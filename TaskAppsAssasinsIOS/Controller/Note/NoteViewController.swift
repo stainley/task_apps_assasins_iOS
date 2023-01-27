@@ -31,9 +31,8 @@ class NoteViewController: UIViewController {
         }
     }
     
-    var isNameAsc: Bool = false
-    var isCreateDate: Bool = false
-    
+    var isNameAsc: Bool = true
+    var isCreateDate: Bool = true
     
     @IBAction func addNewNoteButton(_ sender: UIBarButtonItem) {
         
@@ -102,47 +101,6 @@ class NoteViewController: UIViewController {
         filteredNotes = assortDateDesc
         noteTableView.reloadData()
     }
-
-    /**
-     * Save note into the database
-     * @param: note Note
-     */
-    func saveNote(note: Note) {
-        let newNote = NoteEntity(context: context)
-        newNote.title = note.title
-        newNote.noteDescription = note.noteDescription!
-        newNote.creationDate = Date()
-        
-        // Save image to the Database
-        for picture in note.pictures {
-            let pictureEntity = PictureEntity(context: context)
-
-            pictureEntity.picture = picture
-            pictureEntity.note_parent = newNote
-            newNote.addToPictures(pictureEntity)
-        }
-        
-        // Save audio into the Database
-        for audio in note.audios {
-            let audioEntity = AudioEntity(context: context)
-            audioEntity.audioPath = audio
-            audioEntity.note_parent = newNote
-            newNote.addToAudios(audioEntity)
-        }
-        
-        
-        // Save coordinate to the database
-        if let latitude = note.latitude, let longitude = note.longitude {
-            newNote.longitude = latitude
-            newNote.longitude = longitude
-        }
-        
-        newNote.category_parent = selectedCategory
-        saveNote()
-        notes = loadNotesByCategory()
-        filteredNotes = notes
-        noteTableView.reloadData()
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -160,8 +118,10 @@ class NoteViewController: UIViewController {
         title = selectedCategory?.title
         let cellNib = UINib(nibName: "NoteNibTableViewCell", bundle: Bundle.main)
         noteTableView.register(cellNib, forCellReuseIdentifier: "NoteNibTableViewCell")
-        self.navigationController?.navigationBar.prefersLargeTitles = false
         filteredNotes = notes
+        
+        sortNameButton.layer.cornerRadius = 4
+        sortDateButton.layer.cornerRadius = 4
     }
 }
 
@@ -204,6 +164,7 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let noteDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteDetailViewController") as? NoteDetailViewController {
             noteDetailViewController.note = note
+            noteDetailViewController.delegate = self
             
             guard let noteTitle = note.title else {
                 return
