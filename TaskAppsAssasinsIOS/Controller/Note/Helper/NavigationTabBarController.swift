@@ -20,7 +20,7 @@ class NoteTaskTabBarController: UITabBarController {
         guard let categoryTitle = categorySelected else {
             return
         }
-        self.title = categoryTitle.title
+        self.title = categoryTitle.name
         
         let vc = viewControllers?[Category.note.rawValue] as! NoteViewController
         vc.selectedCategory = self.categorySelected
@@ -28,12 +28,6 @@ class NoteTaskTabBarController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
        
-    }
-    
-    // TODO: Aswin - Change toggle delete button icon
-    override func viewWillDisappear(_ animated: Bool) {
-        delegateCategory?.categoryCell?.deleteCategoryButton.isHidden = true
-        delegateCategory?.categoryCell?.deleteCategoryButton.isEnabled = false
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

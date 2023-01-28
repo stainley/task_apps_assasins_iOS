@@ -54,7 +54,6 @@ extension NoteViewController {
         }
     }
     
-    
     func loadNotesByCategory(predicate: NSPredicate? = nil) -> Array<NoteEntity> {
         let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
         let categoryPredicate = NSPredicate(format: "category_parent.name=%@", selectedCategory!.name!)
@@ -78,6 +77,8 @@ extension NoteViewController {
         
         noteEntity.category_parent = categoryEntity
         saveNote()
+        filteredNotes = loadNotesByCategory()
+        noteTableView.reloadData()
     }
 
     func saveNote(note: Note, oldNoteEntity: NoteEntity? = nil, newPictures: [UIImage], newAudioPath: [String]) {
