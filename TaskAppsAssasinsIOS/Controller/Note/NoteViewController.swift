@@ -185,7 +185,7 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
             switchCategoryVC.categories = self.fetchAllCategory()
             switchCategoryVC.noteToChange = self.filteredNotes[indexPath.row]
 
-            
+            switchCategoryVC.modalPresentationStyle = .overFullScreen
             self.present(switchCategoryVC, animated: false)
             
             completionHandler(true)
