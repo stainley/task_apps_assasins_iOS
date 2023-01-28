@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D9347462983644A007F7487 /* NoteDetailVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9347452983644A007F7487 /* NoteDetailVCDao.swift */; };
+		3D9347462983644A007F7487 /* NoteDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9347452983644A007F7487 /* NoteDetailRepository.swift */; };
 		7005E73B29769DFF00410B83 /* TaskNibTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */; };
 		7005E73C29769DFF00410B83 /* TaskNibTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */; };
 		7005E73E2976A0C000410B83 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */; };
@@ -34,8 +34,9 @@
 		AD843BDB29835B4A0065E120 /* SubTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD843BDA29835B4A0065E120 /* SubTask.swift */; };
 		AD843BDD29836AA10065E120 /* SubTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD843BDC29836AA10065E120 /* SubTaskRepository.swift */; };
 		AD9CA25129849A2B00DDC921 /* TaskAudioRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9CA25029849A2B00DDC921 /* TaskAudioRecord.swift */; };
+		AD9E2AFD2984E36300E57632 /* NoteStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9E2AFC2984E36300E57632 /* NoteStoryboard.storyboard */; };
 		ADB0D193297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D191297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld */; };
-		ADB0D198297C40FE00A9AF78 /* CategoryVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D197297C40FE00A9AF78 /* CategoryVCDao.swift */; };
+		ADB0D198297C40FE00A9AF78 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D197297C40FE00A9AF78 /* CategoryRepository.swift */; };
 		ADB0D19A297C569200A9AF78 /* CategorySearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D199297C569200A9AF78 /* CategorySearchController.swift */; };
 		ADB0D1A0297DA1A600A9AF78 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D19F297DA1A600A9AF78 /* Category.swift */; };
 		ADB0D1A2297DB0A800A9AF78 /* NoteSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D1A1297DB0A800A9AF78 /* NoteSearchController.swift */; };
@@ -58,12 +59,12 @@
 		ADEC1DD02980876600471AF9 /* AudioCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEC1DCE2980876600471AF9 /* AudioCustomTableViewCell.swift */; };
 		ADEC1DD12980876600471AF9 /* AudioCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEC1DCF2980876600471AF9 /* AudioCustomTableViewCell.xib */; };
 		ADF2F2FC297DF24700B78D81 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */; };
-		F0D06978297DD4A6008D15CD /* NoteVCDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D06977297DD4A6008D15CD /* NoteVCDao.swift */; };
+		F0D06978297DD4A6008D15CD /* NoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D06977297DD4A6008D15CD /* NoteRepository.swift */; };
 		F0D3026D29720940005DC42D /* NoteDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D9347452983644A007F7487 /* NoteDetailVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailVCDao.swift; sourceTree = "<group>"; };
+		3D9347452983644A007F7487 /* NoteDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailRepository.swift; sourceTree = "<group>"; };
 		7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNibTableViewCell.swift; sourceTree = "<group>"; };
 		7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskNibTableViewCell.xib; sourceTree = "<group>"; };
 		7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
@@ -90,8 +91,9 @@
 		AD843BDA29835B4A0065E120 /* SubTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTask.swift; sourceTree = "<group>"; };
 		AD843BDC29836AA10065E120 /* SubTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskRepository.swift; sourceTree = "<group>"; };
 		AD9CA25029849A2B00DDC921 /* TaskAudioRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAudioRecord.swift; sourceTree = "<group>"; };
+		AD9E2AFC2984E36300E57632 /* NoteStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoteStoryboard.storyboard; sourceTree = "<group>"; };
 		ADB0D192297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskNoteDatabase.xcdatamodel; sourceTree = "<group>"; };
-		ADB0D197297C40FE00A9AF78 /* CategoryVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVCDao.swift; sourceTree = "<group>"; };
+		ADB0D197297C40FE00A9AF78 /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
 		ADB0D199297C569200A9AF78 /* CategorySearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySearchController.swift; sourceTree = "<group>"; };
 		ADB0D19F297DA1A600A9AF78 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		ADB0D1A1297DB0A800A9AF78 /* NoteSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSearchController.swift; sourceTree = "<group>"; };
@@ -116,7 +118,7 @@
 		ADEC1DCE2980876600471AF9 /* AudioCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCustomTableViewCell.swift; sourceTree = "<group>"; };
 		ADEC1DCF2980876600471AF9 /* AudioCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioCustomTableViewCell.xib; sourceTree = "<group>"; };
 		ADF2F2FB297DF24700B78D81 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
-		F0D06977297DD4A6008D15CD /* NoteVCDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteVCDao.swift; sourceTree = "<group>"; };
+		F0D06977297DD4A6008D15CD /* NoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRepository.swift; sourceTree = "<group>"; };
 		F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailViewControler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,8 +148,9 @@
 		70CB3571296FE6F6005612E0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AD9CA25B2984DFD800DDC921 /* Task */,
+				AD9CA25A2984DFD000DDC921 /* Category */,
 				ADCDD66C296F752300B30328 /* Main.storyboard */,
-				AD7B431729747A1C008D1164 /* CategoryCustomView.swift */,
 				AD7B431929749C52008D1164 /* CustomImageView.swift */,
 				70F2B1852975302D00239EAC /* NoteNibTableViewCell.xib */,
 				ADEC1DB92980218F00471AF9 /* PictureCollectionViewCell.swift */,
@@ -155,9 +158,8 @@
 				ADEC1DCE2980876600471AF9 /* AudioCustomTableViewCell.swift */,
 				ADEC1DCF2980876600471AF9 /* AudioCustomTableViewCell.xib */,
 				AD2CC3EC2982D656008E8599 /* TaskStoryboard.storyboard */,
-				AD2CC3EE2982DB0C008E8599 /* SubTaskTableViewCell.swift */,
 				AD2CC3EF2982DB0C008E8599 /* SubTaskTableViewCell.xib */,
-				AD5FE17F29844AB000A104DA /* ChangeCategoryView.swift */,
+				AD9E2AFC2984E36300E57632 /* NoteStoryboard.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -183,19 +185,98 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		AD5FE17E29843A8C00A104DA /* Repository */ = {
+		AD9CA2522984DE3700DDC921 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				AD9CA2542984DE8600DDC921 /* Table */,
+				AD843BD8298348700065E120 /* SubTaskModalViewController.swift */,
+				7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		AD9CA2532984DE6000DDC921 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				AD2CC3F42982EF96008E8599 /* TaskTableViewController.swift */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		AD9CA2542984DE8600DDC921 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				AD2CC3EE2982DB0C008E8599 /* SubTaskTableViewCell.swift */,
+				AD2CC3F22982EC86008E8599 /* TaskDetailTableViewController.swift */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		AD9CA2552984DEC300DDC921 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				ADB0D197297C40FE00A9AF78 /* CategoryRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		AD9CA2562984DEFD00DDC921 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				3D9347452983644A007F7487 /* NoteDetailRepository.swift */,
+				F0D06977297DD4A6008D15CD /* NoteRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		AD9CA2572984DF1F00DDC921 /* Table */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Repository;
+			path = Table;
+			sourceTree = "<group>";
+		};
+		AD9CA2582984DF3100DDC921 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		AD9CA2592984DF7300DDC921 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				ADEC1DBD298023D400471AF9 /* PictureViewCustomCollection.swift */,
+				AD68C9642981E2E8001CEA9B /* AudioTableController.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		AD9CA25A2984DFD000DDC921 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				AD7B431729747A1C008D1164 /* CategoryCustomView.swift */,
+				AD5FE17F29844AB000A104DA /* ChangeCategoryView.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		AD9CA25B2984DFD800DDC921 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */,
+				7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */,
+			);
+			path = Task;
 			sourceTree = "<group>";
 		};
 		ADB0D194297C3F9C00A9AF78 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				AD9CA2552984DEC300DDC921 /* Repository */,
 				ADCDD66A296F752300B30328 /* CategoryViewController.swift */,
 				70CB35BF2970585A005612E0 /* CategoryCell.swift */,
-				ADB0D197297C40FE00A9AF78 /* CategoryVCDao.swift */,
 				ADB0D199297C569200A9AF78 /* CategorySearchController.swift */,
 			);
 			path = Category;
@@ -204,13 +285,11 @@
 		ADB0D195297C3FA400A9AF78 /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				AD9CA2532984DE6000DDC921 /* Table */,
+				AD9CA2522984DE3700DDC921 /* Detail */,
 				AD2CC3E92982CAA9008E8599 /* Repository */,
 				70B7AE5329769B4200698260 /* TaskViewController.swift */,
-				7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */,
 				70576B72297DD80E00511F08 /* TaskSearchController.swift */,
-				AD2CC3F22982EC86008E8599 /* TaskDetailTableViewController.swift */,
-				AD2CC3F42982EF96008E8599 /* TaskTableViewController.swift */,
-				AD843BD8298348700065E120 /* SubTaskModalViewController.swift */,
 				700E8055298463D10097FD4D /* TaskPictureViewCustomCollection.swift */,
 			);
 			path = Task;
@@ -219,16 +298,14 @@
 		ADB0D196297C3FAB00A9AF78 /* Note */ = {
 			isa = PBXGroup;
 			children = (
-				AD5FE17E29843A8C00A104DA /* Repository */,
+				AD9CA2592984DF7300DDC921 /* Helper */,
+				AD9CA2582984DF3100DDC921 /* Detail */,
+				AD9CA2572984DF1F00DDC921 /* Table */,
+				AD9CA2562984DEFD00DDC921 /* Repository */,
 				70F2B1842975302D00239EAC /* NoteNibTableViewCell.swift */,
 				70B7AE5129769A3E00698260 /* NoteTaskTabBarController.swift */,
-				F0D3026C29720940005DC42D /* NoteDetailViewControler.swift */,
 				70B7AE4F297697E100698260 /* NoteViewController.swift */,
 				ADB0D1A1297DB0A800A9AF78 /* NoteSearchController.swift */,
-				F0D06977297DD4A6008D15CD /* NoteVCDao.swift */,
-				ADEC1DBD298023D400471AF9 /* PictureViewCustomCollection.swift */,
-				AD68C9642981E2E8001CEA9B /* AudioTableController.swift */,
-				3D9347452983644A007F7487 /* NoteDetailVCDao.swift */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -260,8 +337,6 @@
 				ADCDD66F296F752400B30328 /* Assets.xcassets */,
 				ADCDD671296F752400B30328 /* LaunchScreen.storyboard */,
 				ADCDD674296F752400B30328 /* Info.plist */,
-				7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */,
-				7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */,
 			);
 			path = TaskAppsAssasinsIOS;
 			sourceTree = "<group>";
@@ -349,6 +424,7 @@
 				7005E73C29769DFF00410B83 /* TaskNibTableViewCell.xib in Resources */,
 				ADCDD673296F752400B30328 /* LaunchScreen.storyboard in Resources */,
 				ADCDD670296F752400B30328 /* Assets.xcassets in Resources */,
+				AD9E2AFD2984E36300E57632 /* NoteStoryboard.storyboard in Resources */,
 				ADCDD66E296F752300B30328 /* Main.storyboard in Resources */,
 				AD2CC3ED2982D656008E8599 /* TaskStoryboard.storyboard in Resources */,
 				ADEC1DD12980876600471AF9 /* AudioCustomTableViewCell.xib in Resources */,
@@ -376,14 +452,14 @@
 				ADB0D1A0297DA1A600A9AF78 /* Category.swift in Sources */,
 				ADCDD66B296F752300B30328 /* CategoryViewController.swift in Sources */,
 				ADB0D193297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld in Sources */,
-				ADB0D198297C40FE00A9AF78 /* CategoryVCDao.swift in Sources */,
+				ADB0D198297C40FE00A9AF78 /* CategoryRepository.swift in Sources */,
 				AD843BDD29836AA10065E120 /* SubTaskRepository.swift in Sources */,
 				ADEC1DBE298023D400471AF9 /* PictureViewCustomCollection.swift in Sources */,
 				ADEC1DC529804D2400471AF9 /* NoteAnnotation.swift in Sources */,
 				ADEC1DC1298040E700471AF9 /* MapTaskNoteViewController.swift in Sources */,
 				AD5FE18029844AB000A104DA /* ChangeCategoryView.swift in Sources */,
 				AD68C9652981E2E8001CEA9B /* AudioTableController.swift in Sources */,
-				3D9347462983644A007F7487 /* NoteDetailVCDao.swift in Sources */,
+				3D9347462983644A007F7487 /* NoteDetailRepository.swift in Sources */,
 				AD7B431A29749C52008D1164 /* CustomImageView.swift in Sources */,
 				700E8056298463D10097FD4D /* TaskPictureViewCustomCollection.swift in Sources */,
 				ADCDD667296F752300B30328 /* AppDelegate.swift in Sources */,
@@ -401,7 +477,7 @@
 				70B7AE5229769A3E00698260 /* NoteTaskTabBarController.swift in Sources */,
 				7005E73E2976A0C000410B83 /* TaskDetailViewController.swift in Sources */,
 				ADCDD67C2970D2A400B30328 /* Note.swift in Sources */,
-				F0D06978297DD4A6008D15CD /* NoteVCDao.swift in Sources */,
+				F0D06978297DD4A6008D15CD /* NoteRepository.swift in Sources */,
 				ADEC1DD02980876600471AF9 /* AudioCustomTableViewCell.swift in Sources */,
 				AD7B431829747A1C008D1164 /* CategoryCustomView.swift in Sources */,
 				ADEC1DBB2980218F00471AF9 /* PictureCollectionViewCell.swift in Sources */,
