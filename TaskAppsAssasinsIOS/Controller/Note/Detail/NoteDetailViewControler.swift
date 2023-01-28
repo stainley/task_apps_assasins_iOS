@@ -61,9 +61,8 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     @IBAction func showNoteInMapButton(_ sender: UIBarButtonItem) {
         
         let mapViewController = storyboard?.instantiateViewController(withIdentifier: "mapStorryboardID") as! MapTaskNoteViewController
-        mapViewController.modalPresentationStyle = .fullScreen
         mapViewController.coordinate = coordinate
-        present(mapViewController, animated: true)
+        show(mapViewController, sender: nil)
         
     }
     
@@ -104,6 +103,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         
         /// PREPARE FOR RECORDING AUDIO
         loadRecordingFuntionality()
+        
         if let scrubber = scrubber {
             scrubber.minimumValue = 0
         }

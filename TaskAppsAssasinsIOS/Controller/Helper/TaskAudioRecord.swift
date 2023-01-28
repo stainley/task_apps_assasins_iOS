@@ -1,17 +1,17 @@
 //
-//  AudioViewController.swift
+//  TaskAudioRecord.swift
 //  TaskAppsAssasinsIOS
 //
-//  Created by Stainley A Lebron R on 2023-01-22.
+//  Created by Stainley A Lebron R on 2023-01-27.
 //
 
 import AVFoundation
 import UIKit
 
-// TODO: Jay
-extension NoteDetailViewController {
-
-    func finishRecording(success: Bool) {
+/*
+extension TaskDetailViewController {
+    func finishRecording(success: Bool)
+    {
         audioRecorder?.stop()
         audioRecorder = nil
         recordAudioButton.image = UIImage(systemName: "mic")
@@ -137,6 +137,5 @@ extension NoteDetailViewController {
             finishRecording(success: true)
         }
     }
-
-
 }
+*/

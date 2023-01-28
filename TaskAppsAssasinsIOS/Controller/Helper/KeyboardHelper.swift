@@ -11,9 +11,10 @@ import UIKit
 extension NoteDetailViewController {
     
     func initialSetup() {
+        /*
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
+        */
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
@@ -21,12 +22,13 @@ extension NoteDetailViewController {
         self.view.endEditing(true)
     }
     
+    /*
     @objc private func keyboardWillShow(notification: NSNotification) {
         // Move the view only when the usernameTextField or the passwordTextField are being edited
-        /*if firstNameText.isEditing || lastNameText.isEditing || phoneNumberText.isEditing || emailText.isEditing {
-           moveViewWithKeyboard(notification: notification, viewBottomConstraint: self.loginButtonBottomConstraint, keyboardWillShow: true)
-        }*/
-    }
+        if titleTextField.isEditing || noteTextField.isEditing {
+           moveViewWithKeyboard(notification: notification, viewBottomConstraint: self., keyboardWillShow: true)
+        }
+    }*/
     
     @objc private func keyboardWillHide(notification: NSNotification) {
         // moveViewWithKeyboard(notification: notification, viewBottomConstraint: self.loginButtonBottomConstraint, keyboardWillShow: false)

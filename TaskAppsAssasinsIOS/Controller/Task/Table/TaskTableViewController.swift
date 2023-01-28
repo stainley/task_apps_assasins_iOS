@@ -28,11 +28,16 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if let subtasks = filteredTasks[indexPath.row].subtasks {
-            for subtask in subtasks {
-                if (subtask as! SubTaskEntity).status == false {
-                    isAllSubtaskCompleted = false
-                    cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
+            if (subtasks.count > 0) {
+                for subtask in subtasks {
+                    if (subtask as! SubTaskEntity).status == false {
+                        isAllSubtaskCompleted = false
+                        cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
+                    }
                 }
+            }
+            else {
+                cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
             }
         }
         
@@ -83,41 +88,49 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let deleteAction = UIContextualAction(style: .destructive, title: nil, handler: {(action, view, completionHandler) in
-            let alertController = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: .actionSheet)
-           
-                     
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            
-            alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-                tableView.beginUpdates()
-                //Remove contact from DB
-                self.deleteTask(taskEntity: self.filteredTasks[indexPath.row])
-                self.saveTask()
-                
-                self.filteredTasks.remove(at: indexPath.row)
-                self.tasks.remove(at: indexPath.row)
-            
-                self.taskTableView.deleteRows(at: [indexPath], with: .fade)
-                self.taskTableView.endUpdates()
-                
-                self.taskTableView.reloadData()
-            }))
-            self.present(alertController, animated: true)
-            completionHandler(true)
-        })
-              
-        deleteAction.image = UIImage(systemName: "trash")
+        var totalSubtaskCompleted = 0
+        var actions: [UIContextualAction] = [UIContextualAction]()
         
-        let edit = UIContextualAction(style: .normal, title: "Edit", handler: {(action, view, completionHandler) in
-            // TODO: Implement Change Category
+        if let subtasks = filteredTasks[indexPath.row].subtasks {
+            for subtask in subtasks {
+                if (subtask as! SubTaskEntity).status == true {
+                    totalSubtaskCompleted += 1
+                }
+            }
             
-            completionHandler(true)
-        })
-        edit.backgroundColor = UIColor.systemBlue
-        edit.image = UIImage(systemName: "square.and.pencil")
+            if totalSubtaskCompleted == filteredTasks[indexPath.row].subtasks?.count {
+                let deleteAction = UIContextualAction(style: .destructive, title: nil, handler: {(action, view, completionHandler) in
+                    let alertController = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: .actionSheet)
+                   
+                             
+                    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                    
+                    alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
+                        tableView.beginUpdates()
+                        //Remove contact from DB
+                        
+                        self.deleteTask(taskEntity: self.filteredTasks[indexPath.row])
+                        self.saveTask()
+                        
+                        self.filteredTasks.remove(at: indexPath.row)
+                        self.tasks.remove(at: indexPath.row)
+                    
+                        self.taskTableView.deleteRows(at: [indexPath], with: .fade)
+                        self.taskTableView.endUpdates()
+                        
+                        self.taskTableView.reloadData()
+                       
+                    }))
+                    self.present(alertController, animated: true)
+                    completionHandler(true)
+                })
+                      
+                deleteAction.image = UIImage(systemName: "trash")
+                actions.append(deleteAction)
+            }
+        }
         
-        let  preventSwipe = UISwipeActionsConfiguration(actions: [deleteAction, edit])
+        let  preventSwipe = UISwipeActionsConfiguration(actions: actions)
         preventSwipe.performsFirstActionWithFullSwipe = false
         return preventSwipe
     }
@@ -134,5 +147,22 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
             
             self.navigationController?.pushViewController(taskDetailViewController, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        let changeCategoryMenu = ChangeCategoryMenu()
+        changeCategoryMenu.taskViewControllerDelegate = self
+        changeCategoryMenu.categories = self.fetchAllCategory()
+        changeCategoryMenu.taskToChange = self.filteredTasks[indexPath.row]
+        
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider:  { _ -> UIMenu? in
+            
+            let menu = UIMenu(title: "Chance Category", image: UIImage(systemName: "pencil.circle") ,children: changeCategoryMenu.categoryOptions())
+            return menu
+        })
+        return config
+        
+        
     }
 }
