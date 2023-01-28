@@ -123,11 +123,7 @@ class NoteViewController: UIViewController {
         picturesEntity = loadImagesByNote()
         sortNameButton.layer.cornerRadius = 4
         sortDateButton.layer.cornerRadius = 4
-        
-        
-        
-        var longPressGes = UILongPressGestureRecognizer(target: self, action: #selector(invokeCategoryMenu))
-        noteTableView.addGestureRecognizer(longPressGes)
+    
     }
 }
 
@@ -151,42 +147,9 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
-    
-    @objc func invokeCategoryMenu(gesture: UIGestureRecognizer) {
-        if gesture.state == .began {
-            let touchPoint = gesture.location(in: noteTableView)
-            if let indexPath = noteTableView.indexPathForRow(at: touchPoint) {
-                print("LONG PRESS INSIDE CELL \(indexPath.row)")
-                
-                
-                // TODO: Implement Change Category
-                /*
-                let changeCategoryMenu = ChangeCategoryMenu()
-                changeCategoryMenu.noteViewControllerDelegate = self
-                changeCategoryMenu.categories = self.fetchAllCategory()
-                changeCategoryMenu.noteToChange = self.filteredNotes[indexPath.row]
-                */
-                //present(changeCategoryMenu, animated: true)
-                /*
-                let switchCategoryVC = ChangeCategoryView()
-                switchCategoryVC.noteViewControllerDelegate = self
-                switchCategoryVC.categories = self.fetchAllCategory()
-                switchCategoryVC.noteToChange = self.filteredNotes[indexPath.row]
-
-                switchCategoryVC.modalPresentationStyle = .overFullScreen
-                self.present(switchCategoryVC, animated: false)
-                 */
-            }
-        }
-    }
-    
-
-    
+  
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
-        //var noteCell = tableView.dequeueReusableCell(withIdentifier: "NoteNibTableViewCell", for: indexPath) as! NoteNibTableViewCell
-        
         let deleteAction = UIContextualAction(style: .destructive, title: nil, handler: {(action, view, completionHandler) in
             let alertController = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: .actionSheet)
 
@@ -215,15 +178,7 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
 
         deleteAction.image = UIImage(systemName: "trash")
 
-        let edit = UIContextualAction(style: .normal, title: "Edit", handler: {(action, view, completionHandler) in
-            
-            
-            completionHandler(true)
-        })
-        edit.backgroundColor = UIColor.systemBlue
-        edit.image = UIImage(systemName: "square.and.pencil")
-
-        let  preventSwipe = UISwipeActionsConfiguration(actions: [deleteAction, edit])
+        let  preventSwipe = UISwipeActionsConfiguration(actions: [deleteAction])
         preventSwipe.performsFirstActionWithFullSwipe = false
         return preventSwipe
     }
@@ -232,7 +187,7 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         let note = self.filteredNotes[indexPath.row]
         
         if let noteDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteDetailViewController") as? NoteDetailViewController {
-            //noteDetailViewController.pictureEntities = picturesEntity
+
             noteDetailViewController.note = note
             noteDetailViewController.delegate = self
             

@@ -130,15 +130,6 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         
-        let edit = UIContextualAction(style: .normal, title: "Edit", handler: {(action, view, completionHandler) in
-            // TODO: Implement Change Category
-            
-            completionHandler(true)
-        })
-        edit.backgroundColor = UIColor.systemBlue
-        edit.image = UIImage(systemName: "square.and.pencil")
-        actions.append(edit)
-        
         let  preventSwipe = UISwipeActionsConfiguration(actions: actions)
         preventSwipe.performsFirstActionWithFullSwipe = false
         return preventSwipe
@@ -156,5 +147,22 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
             
             self.navigationController?.pushViewController(taskDetailViewController, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        let changeCategoryMenu = ChangeCategoryMenu()
+        changeCategoryMenu.taskViewControllerDelegate = self
+        changeCategoryMenu.categories = self.fetchAllCategory()
+        changeCategoryMenu.taskToChange = self.filteredTasks[indexPath.row]
+        
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider:  { _ -> UIMenu? in
+            
+            let menu = UIMenu(title: "Chance Category", image: UIImage(systemName: "pencil.circle") ,children: changeCategoryMenu.categoryOptions())
+            return menu
+        })
+        return config
+        
+        
     }
 }
