@@ -28,11 +28,16 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if let subtasks = filteredTasks[indexPath.row].subtasks {
-            for subtask in subtasks {
-                if (subtask as! SubTaskEntity).status == false {
-                    isAllSubtaskCompleted = false
-                    cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
+            if (subtasks.count > 0) {
+                for subtask in subtasks {
+                    if (subtask as! SubTaskEntity).status == false {
+                        isAllSubtaskCompleted = false
+                        cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
+                    }
                 }
+            }
+            else {
+                cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
             }
         }
         
