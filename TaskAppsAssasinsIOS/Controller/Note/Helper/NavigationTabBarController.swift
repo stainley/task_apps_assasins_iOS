@@ -21,7 +21,6 @@ class NoteTaskTabBarController: UITabBarController {
             return
         }
         self.title = categoryTitle.name
-        print(title)
         
         let vc = viewControllers?[Category.note.rawValue] as! NoteViewController
         vc.selectedCategory = self.categorySelected
