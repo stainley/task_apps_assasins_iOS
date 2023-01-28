@@ -48,8 +48,13 @@ class ChangeCategoryView: UIViewController {
     
     func categoryOptions(handler: AnyObject? = nil) -> [UIAction] {
         var actions: [UIAction] = []
-        // fetch from the database categories
+        
         for category in categories {
+            // remove actual category from menu
+            if category.name == noteViewControllerDelegate.selectedCategory!.name {
+                continue
+            }
+            
             let action = UIAction(title: category.name ?? "", image: UIImage(systemName: "pencil.circle"), handler: { (action) in
 
                 self.optionLabel.text = "Note changed to \(category.name!)"
