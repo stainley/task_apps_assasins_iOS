@@ -263,6 +263,8 @@
 		AD9CA25B2984DFD800DDC921 /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */,
+				7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -340,8 +342,6 @@
 				ADCDD66F296F752400B30328 /* Assets.xcassets */,
 				ADCDD671296F752400B30328 /* LaunchScreen.storyboard */,
 				ADCDD674296F752400B30328 /* Info.plist */,
-				7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */,
-				7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */,
 			);
 			path = TaskAppsAssasinsIOS;
 			sourceTree = "<group>";
