@@ -28,11 +28,16 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if let subtasks = filteredTasks[indexPath.row].subtasks {
-            for subtask in subtasks {
-                if (subtask as! SubTaskEntity).status == false {
-                    isAllSubtaskCompleted = false
-                    cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
+            if (subtasks.count > 0) {
+                for subtask in subtasks {
+                    if (subtask as! SubTaskEntity).status == false {
+                        isAllSubtaskCompleted = false
+                        cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
+                    }
                 }
+            }
+            else {
+                cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
             }
         }
         
@@ -104,23 +109,16 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
                         tableView.beginUpdates()
                         //Remove contact from DB
                         
-                        if let subtasks = self.filteredTasks[indexPath.row].subtasks {
-                            for subtask in subtasks {
-                                if (subtask as! SubTaskEntity).status == false {
-                                    
-                                    self.deleteTask(taskEntity: self.filteredTasks[indexPath.row])
-                                    self.saveTask()
-                                    
-                                    self.filteredTasks.remove(at: indexPath.row)
-                                    self.tasks.remove(at: indexPath.row)
-                                
-                                    self.taskTableView.deleteRows(at: [indexPath], with: .fade)
-                                    self.taskTableView.endUpdates()
-                                    
-                                    self.taskTableView.reloadData()
-                                }
-                            }
-                        }
+                        self.deleteTask(taskEntity: self.filteredTasks[indexPath.row])
+                        self.saveTask()
+                        
+                        self.filteredTasks.remove(at: indexPath.row)
+                        self.tasks.remove(at: indexPath.row)
+                    
+                        self.taskTableView.deleteRows(at: [indexPath], with: .fade)
+                        self.taskTableView.endUpdates()
+                        
+                        self.taskTableView.reloadData()
                        
                     }))
                     self.present(alertController, animated: true)
