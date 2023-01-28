@@ -600,7 +600,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RfS-Mv-pCw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="50.769230769230766" y="-97.393364928909946"/>
+            <point key="canvasLocation" x="372" y="-118"/>
         </scene>
         <!--Map-->
         <scene sceneID="gik-NM-Ub3">
