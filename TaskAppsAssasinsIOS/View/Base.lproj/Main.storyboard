@@ -4,11 +4,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -471,172 +469,16 @@
             </objects>
             <point key="canvasLocation" x="-2383" y="331"/>
         </scene>
-        <!--Note Detail View Controller-->
-        <scene sceneID="ynE-zH-FBM">
-            <objects>
-                <viewController id="Qj5-0p-n9h" customClass="NoteDetailViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JYh-66-NOq">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ied-aY-44U">
-                                <rect key="frame" x="10" y="57" width="374" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zLP-aq-fix">
-                                <rect key="frame" x="10" y="101" width="370" height="225"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="225" id="XyR-eu-PY7"/>
-                                </constraints>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Images" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWs-e1-614">
-                                <rect key="frame" x="10" y="336" width="370" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                <color key="textColor" name="AccentColor"/>
-                                <color key="highlightedColor" name="AccentColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qK-Pv-LcU">
-                                <rect key="frame" x="10" y="358" width="370" height="116"/>
-                                <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1wB-p7-A3f">
-                                        <rect key="frame" x="1" y="0.0" width="368" height="116"/>
-                                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="116" id="Tzn-8F-q3n"/>
-                                        </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="q5c-4O-k8g">
-                                            <size key="itemSize" width="100" height="100"/>
-                                            <size key="estimatedItemSize" width="100" height="100"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="acq-Ur-70k" customClass="PictureCollectionViewCell" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
-                                                <rect key="frame" x="5" y="8" width="100" height="100"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ZDp-UX-FHp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </collectionViewCellContentView>
-                                            </collectionViewCell>
-                                        </cells>
-                                    </collectionView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="1wB-p7-A3f" firstAttribute="top" secondItem="6qK-Pv-LcU" secondAttribute="top" id="OHG-AR-mTg"/>
-                                    <constraint firstItem="1wB-p7-A3f" firstAttribute="leading" secondItem="6qK-Pv-LcU" secondAttribute="leading" constant="1" id="cO3-Tm-ElC"/>
-                                    <constraint firstAttribute="bottom" secondItem="1wB-p7-A3f" secondAttribute="bottom" id="eEx-b2-ax9"/>
-                                    <constraint firstAttribute="trailing" secondItem="1wB-p7-A3f" secondAttribute="trailing" constant="1" id="s8A-ab-crR"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="V54-yG-tJr">
-                                <rect key="frame" x="0.0" y="474" width="390" height="276"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="audioPlayerCell" id="hSL-bm-FYS" customClass="AudioCustomTableViewCell" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hSL-bm-FYS" id="PcE-9Z-A7h">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qpa-Td-ns2">
-                                <rect key="frame" x="0.0" y="756" width="390" height="44"/>
-                                <items>
-                                    <barButtonItem title="mic" image="mic" catalog="system" id="wOY-dK-q11"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Afp-lw-n9l"/>
-                                    <barButtonItem title="map" image="map" catalog="system" id="fGM-ML-WRe"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="eW1-f0-AOx"/>
-                                    <barButtonItem systemItem="camera" id="RpT-X1-rwe"/>
-                                </items>
-                            </toolbar>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="0zN-Bc-sNy"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="zLP-aq-fix" firstAttribute="top" secondItem="Ied-aY-44U" secondAttribute="bottom" constant="10" id="7w2-wj-fId"/>
-                            <constraint firstItem="V54-yG-tJr" firstAttribute="top" secondItem="6qK-Pv-LcU" secondAttribute="bottom" id="91v-mS-pzM"/>
-                            <constraint firstItem="Ied-aY-44U" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" constant="10" id="CL1-PH-VKN"/>
-                            <constraint firstItem="zLP-aq-fix" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" constant="10" id="ECb-Mp-rqU"/>
-                            <constraint firstItem="MWs-e1-614" firstAttribute="top" secondItem="zLP-aq-fix" secondAttribute="bottom" constant="10" id="GBo-iv-eVd"/>
-                            <constraint firstItem="Ied-aY-44U" firstAttribute="top" secondItem="0zN-Bc-sNy" secondAttribute="top" constant="10" id="HWd-MA-F2V"/>
-                            <constraint firstItem="6qK-Pv-LcU" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" constant="10" id="Hoh-YA-KU5"/>
-                            <constraint firstAttribute="trailing" secondItem="V54-yG-tJr" secondAttribute="trailing" id="P4u-ra-zjj"/>
-                            <constraint firstItem="Ied-aY-44U" firstAttribute="trailing" secondItem="JYh-66-NOq" secondAttribute="trailingMargin" constant="10" id="PDo-xb-UoL"/>
-                            <constraint firstItem="Qpa-Td-ns2" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" id="T48-S0-5Jp"/>
-                            <constraint firstItem="Qpa-Td-ns2" firstAttribute="top" secondItem="V54-yG-tJr" secondAttribute="bottom" constant="6" id="TjD-kB-nqd"/>
-                            <constraint firstItem="6qK-Pv-LcU" firstAttribute="top" secondItem="MWs-e1-614" secondAttribute="bottom" constant="1" id="VWn-pA-ito"/>
-                            <constraint firstItem="0zN-Bc-sNy" firstAttribute="trailing" secondItem="zLP-aq-fix" secondAttribute="trailing" constant="10" id="ZcL-d2-r07"/>
-                            <constraint firstItem="V54-yG-tJr" firstAttribute="leading" secondItem="JYh-66-NOq" secondAttribute="leading" id="aye-mm-QlK"/>
-                            <constraint firstItem="Qpa-Td-ns2" firstAttribute="trailing" secondItem="0zN-Bc-sNy" secondAttribute="trailing" id="dOI-dA-M8U"/>
-                            <constraint firstItem="V54-yG-tJr" firstAttribute="top" secondItem="6qK-Pv-LcU" secondAttribute="bottom" id="e2N-eQ-8vk"/>
-                            <constraint firstItem="zLP-aq-fix" firstAttribute="top" secondItem="Ied-aY-44U" secondAttribute="bottom" constant="10" id="gAC-p1-Iuf"/>
-                            <constraint firstItem="MWs-e1-614" firstAttribute="leading" secondItem="0zN-Bc-sNy" secondAttribute="leading" constant="10" id="i7w-9s-b86"/>
-                            <constraint firstItem="0zN-Bc-sNy" firstAttribute="bottom" secondItem="Qpa-Td-ns2" secondAttribute="bottom" constant="10" id="iWQ-hl-mKy"/>
-                            <constraint firstItem="0zN-Bc-sNy" firstAttribute="trailing" secondItem="6qK-Pv-LcU" secondAttribute="trailing" constant="10" id="lSM-YT-8up"/>
-                            <constraint firstItem="0zN-Bc-sNy" firstAttribute="trailing" secondItem="MWs-e1-614" secondAttribute="trailing" constant="10" id="xf7-Vw-CSY"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RfS-Mv-pCw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="365" y="-127"/>
-        </scene>
-        <!--Map-->
-        <scene sceneID="gik-NM-Ub3">
-            <objects>
-                <viewController storyboardIdentifier="mapStorryboardID" title="Map" id="BOr-FZ-IbQ" customClass="MapTaskNoteViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="06y-iB-gvC">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EhW-aL-rP4">
-                                <rect key="frame" x="0.0" y="47" width="390" height="763"/>
-                                <standardMapConfiguration key="preferredConfiguration"/>
-                            </mapView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Jhg-Io-yqt"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Jhg-Io-yqt" firstAttribute="bottom" secondItem="EhW-aL-rP4" secondAttribute="bottom" id="9HB-uw-ZEL"/>
-                            <constraint firstItem="EhW-aL-rP4" firstAttribute="top" secondItem="Jhg-Io-yqt" secondAttribute="top" id="Ufd-jE-gMs"/>
-                            <constraint firstItem="EhW-aL-rP4" firstAttribute="trailing" secondItem="Jhg-Io-yqt" secondAttribute="trailing" id="Vxa-ee-ECN"/>
-                            <constraint firstItem="EhW-aL-rP4" firstAttribute="leading" secondItem="Jhg-Io-yqt" secondAttribute="leading" id="sbM-4Q-uxh"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="map" destination="EhW-aL-rP4" id="MMN-9r-4Mf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rRg-FE-2SY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1183" y="-118"/>
-        </scene>
     </scenes>
     <resources>
         <image name="arrow.down" catalog="system" width="118" height="128"/>
         <image name="folder" width="508" height="411"/>
-        <image name="map" catalog="system" width="128" height="112"/>
-        <image name="mic" catalog="system" width="110" height="128"/>
         <image name="note_icon" width="32" height="32"/>
         <image name="task_icon" width="32" height="32"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
