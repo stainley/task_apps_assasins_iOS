@@ -44,18 +44,13 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bz-O2-y8l">
-                                                            <rect key="frame" x="100" y="58" width="52" height="44"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="filled" image="trash" catalog="system">
-                                                                <color key="baseBackgroundColor" systemColor="systemRedColor"/>
-                                                            </buttonConfiguration>
-                                                            <connections>
-                                                                <action selector="deleteCategory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o42-8q-G7c"/>
-                                                            </connections>
-                                                        </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfM-BL-QgS">
-                                                            <rect key="frame" x="20" y="108" width="60" height="22"/>
+                                                            <rect key="frame" x="5" y="91" width="147" height="49"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="147" id="Hro-v1-gQ2"/>
+                                                                <constraint firstAttribute="width" secondItem="vfM-BL-QgS" secondAttribute="height" multiplier="3:1" id="NjA-0L-oEW"/>
+                                                                <constraint firstAttribute="height" constant="49" id="U2F-bF-urf"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -65,19 +60,13 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" systemColor="tintColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="0Bz-O2-y8l" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="t8a-Na-2l6" secondAttribute="leading" symbolic="YES" id="3kM-Eo-lek"/>
-                                                    <constraint firstAttribute="bottomMargin" secondItem="vfM-BL-QgS" secondAttribute="bottom" constant="22" id="Auc-FD-5Yx"/>
-                                                    <constraint firstItem="0Bz-O2-y8l" firstAttribute="top" secondItem="t8a-Na-2l6" secondAttribute="topMargin" constant="50" id="DTr-J4-2PT"/>
-                                                    <constraint firstAttribute="bottomMargin" secondItem="0Bz-O2-y8l" secondAttribute="bottom" constant="50" id="Hme-Sh-7bn"/>
-                                                    <constraint firstItem="vfM-BL-QgS" firstAttribute="leading" secondItem="t8a-Na-2l6" secondAttribute="leadingMargin" constant="8" id="IeB-ky-eHH"/>
-                                                    <constraint firstItem="0Bz-O2-y8l" firstAttribute="trailing" secondItem="t8a-Na-2l6" secondAttribute="trailingMargin" constant="2" id="hA8-KZ-qDb"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vfM-BL-QgS" secondAttribute="trailing" symbolic="YES" id="qDY-0Z-ylI"/>
-                                                    <constraint firstItem="vfM-BL-QgS" firstAttribute="top" secondItem="t8a-Na-2l6" secondAttribute="topMargin" constant="100" id="vcH-Mk-6g9"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vfM-BL-QgS" secondAttribute="trailing" constant="6" id="NTs-4w-x3y"/>
+                                                    <constraint firstAttribute="bottom" secondItem="vfM-BL-QgS" secondAttribute="bottom" symbolic="YES" id="PIJ-jP-cGX"/>
+                                                    <constraint firstItem="vfM-BL-QgS" firstAttribute="leading" secondItem="t8a-Na-2l6" secondAttribute="leading" constant="6" id="Yfe-mZ-66u"/>
                                                 </constraints>
                                                 <size key="customSize" width="160" height="160"/>
                                                 <connections>
                                                     <outlet property="categoryLabel" destination="vfM-BL-QgS" id="PBH-Wo-Z3R"/>
-                                                    <outlet property="deleteCategoryButton" destination="0Bz-O2-y8l" id="HpD-1W-8Dw"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -475,7 +464,6 @@
         <image name="folder" width="508" height="411"/>
         <image name="note_icon" width="32" height="32"/>
         <image name="task_icon" width="32" height="32"/>
-        <image name="trash" catalog="system" width="117" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -484,9 +472,6 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

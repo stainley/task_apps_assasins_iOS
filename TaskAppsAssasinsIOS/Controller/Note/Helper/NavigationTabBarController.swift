@@ -30,12 +30,6 @@ class NoteTaskTabBarController: UITabBarController {
        
     }
     
-    // TODO: Aswin - Change toggle delete button icon
-    override func viewWillDisappear(_ animated: Bool) {
-        delegateCategory?.categoryCell?.deleteCategoryButton.isHidden = true
-        delegateCategory?.categoryCell?.deleteCategoryButton.isEnabled = false
-    }
-    
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         var category = Category.note
         

@@ -18,11 +18,8 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     static var categorySelected: IndexPath?
-    // TODO: Aswin - Change toggle delete button icon
     var categoryCell: CategoryCell!
-    
-    
-    // MARK: Create new category
+        
     @IBAction func createNewCategoryButton(_ sender: UIBarButtonItem) {
         var textField = UITextField()
         
@@ -73,32 +70,13 @@ class CategoryViewController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-        
-    @IBAction func deleteCategory(_ sender: UIButton) {
-        /*
-        let index: Int = sender.layer.value(forKey: "index") as! Int
-        deleteCategory(category: filteredCategories[index])
-        saveCategory()
-        categoriesEntity.remove(at: index)
-
-        filteredCategories = categoriesEntity
-        categoryCollectionView.reloadData()
-        sender.isHidden = true
-        sender.isEnabled = false
-        */
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = false
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
- 
-        //let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gesture: )))
-        //longPress.minimumPressDuration = 0.5
-        //longPress.delaysTouchesBegan = true
-        //self.categoryCollectionView.addGestureRecognizer(longPress)
-        
+
         categoriesEntity  = self.fetchAllCategory();
         filteredCategories = categoriesEntity
     }
@@ -113,10 +91,8 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
         categoryCell = cell
-        cell.deleteCategoryButton.isHidden = true
-        cell.deleteCategoryButton.isEnabled = false
+
         cell.categoryLabel.text = filteredCategories[indexPath.row].name
-        cell.deleteCategoryButton.layer.setValue(indexPath.row, forKey: "index")
 
         return cell
     }
@@ -142,17 +118,44 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"),handler: {_ in
             self.deleteCategory(category: self.filteredCategories[indexPath.row])
             self.saveCategory()
-            //self.categoriesEntity.remove(at: indexPaths[0].row])
             self.categoriesEntity.remove(at: indexPath.row)
             self.filteredCategories = self.categoriesEntity
             self.categoryCollectionView.reloadData()
         })
         
         let editAction = UIAction(title: "Update", image: UIImage(systemName: "pencil"),handler: {_ in
+            let alert = UIAlertController(title: "Edit name", message: "Please give a new name", preferredStyle: .alert)
+            var textField = UITextField()
+
+            let addAction = UIAlertAction(title: "Update", style: .default) { (action) in
+                let categoryNames = self.categoriesEntity.map {$0.name?.lowercased()}
+                
+                guard !categoryNames.contains(textField.text?.lowercased()) else {
+                    self.showAlert()
+                    return
+                }
+                
+                let oldCategory = CategoryEntity(context: self.context)
+                oldCategory.name = textField.text!
+                oldCategory.updatedDate = Date()
+                
+                self.categoriesEntity[indexPath.row].name = oldCategory.name
+                self.updateCategory(category: oldCategory)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            // change the color of the cancel button action
+            cancelAction.setValue(UIColor.orange, forKey: "titleTextColor")
+            
+            alert.addAction(addAction)
+            alert.addAction(cancelAction)
+            alert.addTextField { (field) in
+                textField = field
+                textField.placeholder = "Category Name"
+            }
+            
+            self.present(alert, animated: true, completion: nil)
             
         })
-        
-        
         
         let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider:  { _ -> UIMenu? in
             
@@ -161,30 +164,4 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         })
         return config
     }
-    
-    
-    @objc func handleLongPress(gesture: UILongPressGestureRecognizer!) {
-        if gesture.state != .ended {
-            return
-        }
-        
-        let point = gesture.location(in: self.categoryCollectionView)
-        if let indexPath = self.categoryCollectionView.indexPathForItem(at: point) {
- 
-            let cell = self.categoryCollectionView.cellForItem(at: indexPath) as! CategoryCell
-            toggleDeleteButton(cell)
-        } else {
-            print("Couldn't find index path")
-        }
-    }
-    
-    fileprivate func toggleDeleteButton(_ cell: CategoryCell) {
-        // SHOW DELETE ICON
-        cell.deleteCategoryButton.isEnabled.toggle()
-        cell.deleteCategoryButton.isHidden.toggle()
-    }
-}
-
-protocol DeleteButtonDelegate {
-    func onDeleteButton(for button: CategoryCell)
 }
