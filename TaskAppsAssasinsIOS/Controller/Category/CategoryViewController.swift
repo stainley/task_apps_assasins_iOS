@@ -75,7 +75,7 @@ class CategoryViewController: UIViewController {
     }
         
     @IBAction func deleteCategory(_ sender: UIButton) {
-        
+        /*
         let index: Int = sender.layer.value(forKey: "index") as! Int
         deleteCategory(category: filteredCategories[index])
         saveCategory()
@@ -85,7 +85,7 @@ class CategoryViewController: UIViewController {
         categoryCollectionView.reloadData()
         sender.isHidden = true
         sender.isEnabled = false
-        
+        */
     }
     
     override func viewDidLoad() {
@@ -94,10 +94,10 @@ class CategoryViewController: UIViewController {
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
  
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gesture: )))
-        longPress.minimumPressDuration = 0.5
-        longPress.delaysTouchesBegan = true
-        self.categoryCollectionView.addGestureRecognizer(longPress)
+        //let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gesture: )))
+        //longPress.minimumPressDuration = 0.5
+        //longPress.delaysTouchesBegan = true
+        //self.categoryCollectionView.addGestureRecognizer(longPress)
         
         categoriesEntity  = self.fetchAllCategory();
         filteredCategories = categoriesEntity
@@ -136,6 +136,33 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         }
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"),handler: {_ in
+            self.deleteCategory(category: self.filteredCategories[indexPath.row])
+            self.saveCategory()
+            //self.categoriesEntity.remove(at: indexPaths[0].row])
+            self.categoriesEntity.remove(at: indexPath.row)
+            self.filteredCategories = self.categoriesEntity
+            self.categoryCollectionView.reloadData()
+        })
+        
+        let editAction = UIAction(title: "Update", image: UIImage(systemName: "pencil"),handler: {_ in
+            
+        })
+        
+        
+        
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider:  { _ -> UIMenu? in
+            
+            let menu = UIMenu(title: "Delete Category", image: UIImage(systemName: "trash") ,children: [editAction, deleteAction])
+            return menu
+        })
+        return config
+    }
+    
+    
     @objc func handleLongPress(gesture: UILongPressGestureRecognizer!) {
         if gesture.state != .ended {
             return
@@ -151,7 +178,6 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         }
     }
     
-    //TODO: ASWIN RESET VALUE
     fileprivate func toggleDeleteButton(_ cell: CategoryCell) {
         // SHOW DELETE ICON
         cell.deleteCategoryButton.isEnabled.toggle()
