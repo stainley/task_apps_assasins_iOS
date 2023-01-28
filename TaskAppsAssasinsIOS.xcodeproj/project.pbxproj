@@ -146,7 +146,6 @@
 		70CB3571296FE6F6005612E0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AD9CA25C2984DFE000DDC921 /* Note */,
 				AD9CA25B2984DFD800DDC921 /* Task */,
 				AD9CA25A2984DFD000DDC921 /* Category */,
 				ADCDD66C296F752300B30328 /* Main.storyboard */,
@@ -267,13 +266,6 @@
 				7005E73929769DFF00410B83 /* TaskNibTableViewCell.swift */,
 			);
 			path = Task;
-			sourceTree = "<group>";
-		};
-		AD9CA25C2984DFE000DDC921 /* Note */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Note;
 			sourceTree = "<group>";
 		};
 		ADB0D194297C3F9C00A9AF78 /* Category */ = {
