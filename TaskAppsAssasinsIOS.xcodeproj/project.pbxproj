@@ -34,6 +34,7 @@
 		AD843BDB29835B4A0065E120 /* SubTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD843BDA29835B4A0065E120 /* SubTask.swift */; };
 		AD843BDD29836AA10065E120 /* SubTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD843BDC29836AA10065E120 /* SubTaskRepository.swift */; };
 		AD9CA25129849A2B00DDC921 /* TaskAudioRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9CA25029849A2B00DDC921 /* TaskAudioRecord.swift */; };
+		AD9E2AFD2984E36300E57632 /* NoteStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9E2AFC2984E36300E57632 /* NoteStoryboard.storyboard */; };
 		ADB0D193297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D191297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodeld */; };
 		ADB0D198297C40FE00A9AF78 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D197297C40FE00A9AF78 /* CategoryRepository.swift */; };
 		ADB0D19A297C569200A9AF78 /* CategorySearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0D199297C569200A9AF78 /* CategorySearchController.swift */; };
@@ -90,6 +91,7 @@
 		AD843BDA29835B4A0065E120 /* SubTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTask.swift; sourceTree = "<group>"; };
 		AD843BDC29836AA10065E120 /* SubTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskRepository.swift; sourceTree = "<group>"; };
 		AD9CA25029849A2B00DDC921 /* TaskAudioRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAudioRecord.swift; sourceTree = "<group>"; };
+		AD9E2AFC2984E36300E57632 /* NoteStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoteStoryboard.storyboard; sourceTree = "<group>"; };
 		ADB0D192297C34CB00A9AF78 /* TaskNoteDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskNoteDatabase.xcdatamodel; sourceTree = "<group>"; };
 		ADB0D197297C40FE00A9AF78 /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
 		ADB0D199297C569200A9AF78 /* CategorySearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySearchController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				ADEC1DCF2980876600471AF9 /* AudioCustomTableViewCell.xib */,
 				AD2CC3EC2982D656008E8599 /* TaskStoryboard.storyboard */,
 				AD2CC3EF2982DB0C008E8599 /* SubTaskTableViewCell.xib */,
+				AD9E2AFC2984E36300E57632 /* NoteStoryboard.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				7005E73C29769DFF00410B83 /* TaskNibTableViewCell.xib in Resources */,
 				ADCDD673296F752400B30328 /* LaunchScreen.storyboard in Resources */,
 				ADCDD670296F752400B30328 /* Assets.xcassets in Resources */,
+				AD9E2AFD2984E36300E57632 /* NoteStoryboard.storyboard in Resources */,
 				ADCDD66E296F752300B30328 /* Main.storyboard in Resources */,
 				AD2CC3ED2982D656008E8599 /* TaskStoryboard.storyboard in Resources */,
 				ADEC1DD12980876600471AF9 /* AudioCustomTableViewCell.xib in Resources */,

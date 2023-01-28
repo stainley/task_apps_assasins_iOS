@@ -292,7 +292,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wvy-j9-e8d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-258" y="803"/>
+            <point key="canvasLocation" x="-143" y="803"/>
         </scene>
         <!--Note-->
         <scene sceneID="BGv-7A-UCV">
@@ -380,7 +380,7 @@
                                                     <barButtonItem systemItem="add" id="jS9-GW-fB3">
                                                         <connections>
                                                             <action selector="addNewNoteButton:" destination="S3Q-D4-rXV" id="ku2-ZR-zc1"/>
-                                                            <segue destination="Qj5-0p-n9h" kind="show" id="YTQ-e0-61f"/>
+                                                            <segue destination="XBC-Gd-DVU" kind="show" id="NhY-0g-FWq"/>
                                                         </connections>
                                                     </barButtonItem>
                                                     <barButtonItem systemItem="search" id="Y8P-4z-L3N">
@@ -441,6 +441,16 @@
             </objects>
             <point key="canvasLocation" x="-1020" y="47.630331753554501"/>
         </scene>
+        <!--NoteStoryboard-->
+        <scene sceneID="8Eh-GO-djy">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="NoteDetailViewController" storyboardName="NoteStoryboard" id="XBC-Gd-DVU" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Xa1-h7-k0u"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="acu-7u-d07" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-144" y="48"/>
+        </scene>
         <!--Note Task Tab Bar Controller-->
         <scene sceneID="fgQ-xT-xkW">
             <objects>
@@ -464,9 +474,9 @@
         <!--Note Detail View Controller-->
         <scene sceneID="ynE-zH-FBM">
             <objects>
-                <viewController storyboardIdentifier="NoteDetailViewController" id="Qj5-0p-n9h" customClass="NoteDetailViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Qj5-0p-n9h" customClass="NoteDetailViewController" customModule="TaskAppsAssasinsIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JYh-66-NOq">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ied-aY-44U">
@@ -527,7 +537,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="V54-yG-tJr">
-                                <rect key="frame" x="0.0" y="474" width="390" height="253"/>
+                                <rect key="frame" x="0.0" y="474" width="390" height="276"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="audioPlayerCell" id="hSL-bm-FYS" customClass="AudioCustomTableViewCell" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
@@ -541,25 +551,13 @@
                                 </prototypes>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qpa-Td-ns2">
-                                <rect key="frame" x="0.0" y="733" width="390" height="44"/>
+                                <rect key="frame" x="0.0" y="756" width="390" height="44"/>
                                 <items>
-                                    <barButtonItem title="mic" image="mic" catalog="system" id="wOY-dK-q11">
-                                        <connections>
-                                            <action selector="recordAudioButton:" destination="Qj5-0p-n9h" id="zCo-Ny-LRq"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="mic" image="mic" catalog="system" id="wOY-dK-q11"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Afp-lw-n9l"/>
-                                    <barButtonItem title="map" image="map" catalog="system" id="fGM-ML-WRe">
-                                        <connections>
-                                            <action selector="showNoteInMapButton:" destination="Qj5-0p-n9h" id="SIB-aG-KAF"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="map" image="map" catalog="system" id="fGM-ML-WRe"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="eW1-f0-AOx"/>
-                                    <barButtonItem systemItem="camera" id="RpT-X1-rwe">
-                                        <connections>
-                                            <action selector="takePhotoButton:" destination="Qj5-0p-n9h" id="7uR-ym-s7l"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem systemItem="camera" id="RpT-X1-rwe"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -589,18 +587,10 @@
                             <constraint firstItem="0zN-Bc-sNy" firstAttribute="trailing" secondItem="MWs-e1-614" secondAttribute="trailing" constant="10" id="xf7-Vw-CSY"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="audioTableView" destination="V54-yG-tJr" id="FDT-tO-a9I"/>
-                        <outlet property="imageSectionLabel" destination="MWs-e1-614" id="yPc-0j-9r2"/>
-                        <outlet property="noteTextField" destination="zLP-aq-fix" id="7d6-lE-8Vb"/>
-                        <outlet property="pictureCollectionView" destination="1wB-p7-A3f" id="lqM-uV-w9v"/>
-                        <outlet property="recordAudioButton" destination="wOY-dK-q11" id="afo-8X-bfd"/>
-                        <outlet property="titleTextField" destination="Ied-aY-44U" id="LnS-gx-hUh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RfS-Mv-pCw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="372" y="-118"/>
+            <point key="canvasLocation" x="365" y="-127"/>
         </scene>
         <!--Map-->
         <scene sceneID="gik-NM-Ub3">
