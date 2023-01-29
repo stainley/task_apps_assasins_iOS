@@ -21,6 +21,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     @IBOutlet weak var audioTableView: UITableView!
     
     var scrubber: [UISlider] = []
+    var audioPlayButton: [UIButton] = []
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate: NoteViewController?
@@ -36,7 +37,6 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     var pictures: [UIImage] = []
     var newPictures: [UIImage] = []
-    //var audios: [AVAudioRecorder] = []
     
     var audioPath: [String] = []
     var newAudioPath: [String] = []
@@ -76,6 +76,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         pictureCollectionView.delegate = self
         pictureCollectionView.dataSource = self
         locationManager.delegate = self
@@ -165,8 +166,8 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         scrubber[index].value = Float(player!.currentTime)
         
         if scrubber[index].value == scrubber[index].minimumValue {
-            //  isPlaying = false
-            //playBtn.image = UIImage(systemName: "play.fill")
+ 
+            audioPlayButton[index].setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
             print("show button play")
         }
         

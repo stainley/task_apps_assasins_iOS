@@ -23,6 +23,7 @@ extension NoteDetailViewController: UITableViewDelegate, UITableViewDataSource {
      
         play!.tag = indexPath.row
         play!.addTarget(self, action: #selector(playAudio(_ : )), for: .touchDown)
+        audioPlayButton.append(play!)
         scrubber.append(scrubble!)
         return audioPlayerCell
     }
