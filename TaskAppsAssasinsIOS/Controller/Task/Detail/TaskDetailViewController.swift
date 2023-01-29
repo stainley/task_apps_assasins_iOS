@@ -24,6 +24,11 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
 
     var pictures: [UIImage] = []
     var newPictures: [UIImage] = []
+    var doubleTapGesture: UITapGestureRecognizer!
+    
+    var audioPath: [String] = []
+    var newAudioPath: [String] = []
+    var soundURL: String?
     
     @IBOutlet weak var taskDueDatePicker: UIDatePicker!
     @IBOutlet weak var completedTaskCounterLabel: UILabel!
@@ -39,9 +44,13 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         
         pictureCollectionView.delegate = self
         pictureCollectionView.dataSource = self
+        imageSectionLabel.isHidden = true
+        pictureCollectionView.superview?.isHidden = true
+        setUpDoubleTap()
         
         let nib = UINib(nibName: "PictureCollectionViewCell", bundle: nil)
         pictureCollectionView.register(nib, forCellWithReuseIdentifier: "pictureCell")
+        
         if pictures.count > 0 {
             pictureCollectionView.reloadData()
             imageSectionLabel.isHidden = false
@@ -69,7 +78,19 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         newTask.dueDate = taskDueDatePicker.date
         newTask.subTasks = subTasksEntity
 
-        self.delegate?.saveTask(task: newTask, oldTaskEntity: task)
+        if pictures.count > 0 {
+            for imageData in pictures {
+                newTask.pictures.append(imageData.pngData()!)
+            }
+        }
+        
+        if audioPath.count > 0 {
+            for audioData in audioPath {
+                newTask.audios.append(audioData)
+            }
+        }
+        
+        self.delegate?.saveTask(task: newTask, oldTaskEntity: task, newPictures: newPictures, newAudioPath: newAudioPath)
     }
     
     // Add SubTasks

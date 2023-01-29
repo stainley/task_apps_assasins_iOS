@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 extension TaskViewController {
  
@@ -95,7 +96,7 @@ extension TaskViewController {
     
     
     // TODO: Elvin
-    func saveTask(task: Task, oldTaskEntity: TaskEntity? = nil) {
+    func saveTask(task: Task, oldTaskEntity: TaskEntity? = nil, newPictures: [UIImage], newAudioPath: [String]) {
         
         // Title must be required.
         if task.title == "" || task.title.isEmpty || (oldTaskEntity != nil && oldTaskEntity?.title == nil) {
@@ -103,7 +104,7 @@ extension TaskViewController {
         }
         
         if let oldTask = oldTaskEntity {
-            updateTask(updatedTask: task, oldTask: oldTask)
+            updateTask(updatedTask: task, oldTask: oldTask, newPictures: newPictures, newAudioPath: newAudioPath)
             return
         }
         
@@ -149,7 +150,7 @@ extension TaskViewController {
         taskTableView.reloadData()
     }
     
-    func updateTask(updatedTask: Task, oldTask: TaskEntity) {
+    func updateTask(updatedTask: Task, oldTask: TaskEntity, newPictures: [UIImage], newAudioPath: [String]) {
         oldTask.title = updatedTask.title
         
         if let dateCompleted = updatedTask.dateCompleted, let isCompleted = updatedTask.isComplete {

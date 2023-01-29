@@ -31,30 +31,30 @@ extension TaskDetailViewController: UICollectionViewDataSource, UICollectionView
 }
 
 extension TaskDetailViewController {
-//    func setUpDoubleTap() {
-//      doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(didDoubleTapCollectionView))
-//      doubleTapGesture.numberOfTapsRequired = 2
-//      pictureCollectionView.addGestureRecognizer(doubleTapGesture)
-//      doubleTapGesture.delaysTouchesBegan = true
-//    }
-//    
-//    @objc func didDoubleTapCollectionView() {
-//           let pointInCollectionView = doubleTapGesture.location(in: pictureCollectionView)
-//           if let selectedIndexPath = pictureCollectionView.indexPathForItem(at: pointInCollectionView) {
-//               let selectedCell = pictureCollectionView.cellForItem(at: selectedIndexPath)
-//               
-//               let alertController = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: .actionSheet)
-//               alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-//               alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
-//                   
-//                   //self.deleteImage(data: self.pictures[selectedIndexPath.row].pngData()!)
-//                   
-//                   self.pictureCollectionView.reloadData()
-//
-//               }))
-//               self.present(alertController, animated: true, completion: nil)
-// 
-//           }
-//       }
+    func setUpDoubleTap() {
+      doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(didDoubleTapCollectionView))
+      doubleTapGesture.numberOfTapsRequired = 2
+      pictureCollectionView.addGestureRecognizer(doubleTapGesture)
+      doubleTapGesture.delaysTouchesBegan = true
+    }
+    
+    @objc func didDoubleTapCollectionView() {
+           let pointInCollectionView = doubleTapGesture.location(in: pictureCollectionView)
+           if let selectedIndexPath = pictureCollectionView.indexPathForItem(at: pointInCollectionView) {
+               let selectedCell = pictureCollectionView.cellForItem(at: selectedIndexPath)
+               
+               let alertController = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: .actionSheet)
+               alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+               alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
+                   
+                   //self.deleteImage(data: self.pictures[selectedIndexPath.row].pngData()!)
+                   
+                   self.pictureCollectionView.reloadData()
+
+               }))
+               self.present(alertController, animated: true, completion: nil)
+ 
+           }
+       }
 }
 
