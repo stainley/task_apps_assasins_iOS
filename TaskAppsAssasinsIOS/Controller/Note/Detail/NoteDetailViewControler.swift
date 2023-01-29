@@ -36,10 +36,8 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     var pictureEntity: PictureEntity?
     var pictureEntities: [PictureEntity] = []
     
-    //var imageNote: UIImage?
     var pictures: [UIImage] = []
     var newPictures: [UIImage] = []
-    //var audios: [AVAudioRecorder] = []
     
     var audioPath: [String] = []
     var newAudioPath: [String] = []
@@ -171,11 +169,8 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         scrubber[index].value = Float(player!.currentTime)
         
         if scrubber[index].value == scrubber[index].minimumValue {
-            //  isPlaying = false
-            //playBtn.image = UIImage(systemName: "play.fill")
-            audioPlayButton[index].setImage(UIImage(systemName: "play.circle.fill"), for: .normal) 
-            //UIImage(systemName: "play.fill")
-            //UIImage(systemName: "play.fill")
+ 
+            audioPlayButton[index].setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
             print("show button play")
         }
         
