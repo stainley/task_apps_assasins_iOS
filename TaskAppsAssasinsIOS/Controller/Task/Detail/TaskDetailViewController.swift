@@ -28,6 +28,8 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     var newPictures: [UIImage] = []
     var doubleTapGesture: UITapGestureRecognizer!
     
+    var audioTimeLabel: [UILabel] = []
+
     var player: AVAudioPlayer?
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder?
@@ -92,6 +94,10 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         }
         titleTaskTxt.text = title
         
+        if subTasksEntity.count > 0 {
+            taskDueDatePicker.isEnabled = false
+            taskDueDatePicker.isHidden = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -112,7 +118,8 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
                 newTask.audios.append(audioData)
             }
         }
-        
+        taskDueDatePicker.isEnabled = true
+        taskDueDatePicker.isHidden = false
         self.delegate?.saveTask(task: newTask, oldTaskEntity: task, newPictures: newPictures, newAudioPath: newAudioPath)
     }
     
@@ -146,13 +153,19 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         newSubTask.dueDate = subTask.dueDate
         newSubTask.status = false
         subTasksEntity.append(newSubTask)
+        
+        taskDueDatePicker.isEnabled = false
+        taskDueDatePicker.isHidden = true
+        
         subTaskTableView.reloadData()
     }
     
     @objc func updateScrubber(sender: Timer) {
         let index = sender.userInfo as! Int
-        scrubber[index].value = Float(player!.currentTime)
-        
+        let audioTime = Float(player!.currentTime)
+        scrubber[index].value = audioTime
+
+        audioTimeLabel[index].text =  player!.currentTime.stringFromTimeInterval()
         if scrubber[index].value == scrubber[index].minimumValue {
  
             audioPlayButton[index].setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
