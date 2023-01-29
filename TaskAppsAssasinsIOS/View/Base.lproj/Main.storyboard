@@ -67,6 +67,7 @@
                                                 <size key="customSize" width="160" height="160"/>
                                                 <connections>
                                                     <outlet property="categoryLabel" destination="vfM-BL-QgS" id="PBH-Wo-Z3R"/>
+                                                    <outlet property="folderImageView" destination="3fI-Vy-0Lr" id="0eN-w9-LNs"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>

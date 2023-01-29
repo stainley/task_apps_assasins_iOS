@@ -16,17 +16,14 @@ class NoteTaskTabBarController: UITabBarController {
         super.viewDidLoad()
         
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 14)], for: .normal)
-        
+      
         guard let categoryTitle = categorySelected else {
             return
         }
         self.title = categoryTitle.name
         let vc = viewControllers?[Category.note.rawValue] as! NoteViewController
         vc.selectedCategory = self.categorySelected
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-       
+        
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -44,7 +41,8 @@ class NoteTaskTabBarController: UITabBarController {
     func selectTabItem(category: Category) {
         switch category {
             case .note:
-            let vc = viewControllers?[category.rawValue] as! NoteViewController
+                let vc = viewControllers?[category.rawValue] as! NoteViewController
+            
                 vc.selectedCategory = self.categorySelected
             
             case .task:
@@ -52,5 +50,6 @@ class NoteTaskTabBarController: UITabBarController {
                 vc.selectedCategory = self.categorySelected
         }
     }
+    
 
 }

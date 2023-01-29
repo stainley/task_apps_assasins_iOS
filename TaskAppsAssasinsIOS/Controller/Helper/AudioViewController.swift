@@ -22,6 +22,7 @@ extension NoteDetailViewController {
         }
     }
 
+
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
             finishRecording(success: false)
@@ -45,6 +46,7 @@ extension NoteDetailViewController {
         audioRecorder = nil
     }
     
+
     func startRecording() {
         
         let directoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in:
@@ -101,14 +103,19 @@ extension NoteDetailViewController {
                 let url = NSURL(fileURLWithPath: documentPath)
                 
                 try player = AVAudioPlayer(contentsOf: url as URL)
-                scrubber.maximumValue = Float(player!.duration)
+                scrubber[sender.tag].maximumValue = Float(player!.duration)
+                                
                 player?.volume = 1.0
                 player?.play()
                 timer.invalidate()
-                timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber), userInfo: nil, repeats: true)
+
+
+                timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber(sender: )), userInfo: sender.tag, repeats: true)
+                
+
             } catch {
                 print(error.localizedDescription)
-                timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber), userInfo: nil, repeats: true)
+                timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber(sender: )), userInfo: sender.tag, repeats: true)
             }
         }
     }

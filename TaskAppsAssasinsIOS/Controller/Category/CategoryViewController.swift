@@ -19,7 +19,8 @@ class CategoryViewController: UIViewController {
     
     static var categorySelected: IndexPath?
     var categoryCell: CategoryCell!
-        
+    
+    
     @IBAction func createNewCategoryButton(_ sender: UIBarButtonItem) {
         var textField = UITextField()
         
@@ -79,8 +80,9 @@ class CategoryViewController: UIViewController {
 
         categoriesEntity  = self.fetchAllCategory();
         filteredCategories = categoriesEntity
+        
     }
-  
+    
 }
 
 extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -90,13 +92,15 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
+        var config = UIBackgroundConfiguration.listPlainCell()
+        config.backgroundColor = .clear
+        
+        cell.backgroundConfiguration = config
         categoryCell = cell
-
+        //collectionView.backgroundColor = nil
         cell.categoryLabel.text = filteredCategories[indexPath.row].name
-
         return cell
     }
-  
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -135,7 +139,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
                     return
                 }
                 
-                let oldCategory = CategoryEntity(context: self.context)
+                let oldCategory = self.categoriesEntity[indexPath.row]
                 oldCategory.name = textField.text!
                 oldCategory.updatedDate = Date()
                 
@@ -164,4 +168,5 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         })
         return config
     }
+    
 }
