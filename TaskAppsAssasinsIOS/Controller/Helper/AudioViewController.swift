@@ -15,11 +15,6 @@ extension NoteDetailViewController {
         audioRecorder = nil
         recordAudioButton.image = UIImage(systemName: "mic")
 
-        if success {
-            //recordButton.setTitle("Tap to Re-record", for: .normal)
-        } else {
-            //recordButton.setTitle("Tap to record", for: .normal)
-        }
     }
 
 
@@ -104,7 +99,8 @@ extension NoteDetailViewController {
                 
                 try player = AVAudioPlayer(contentsOf: url as URL)
                 scrubber[sender.tag].maximumValue = Float(player!.duration)
-                                
+                
+                
                 player?.volume = 1.0
                 player?.play()
                 timer.invalidate()
