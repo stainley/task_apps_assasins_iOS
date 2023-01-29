@@ -140,6 +140,20 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
         
             subTasks = loadSubTasksByTask(title: tasks[indexPath.row].title ?? "")
             taskDetailViewController.subTasksEntity = subTasks
+            guard let taskTitle = task.title else {
+                return
+            }
+            let byParent  =  NSPredicate(format: "task_parent.title == %@", taskTitle)
+            taskDetailViewController.pictureEntities = loadImagesByTask(predicate: byParent)
+            
+            for pic in picturesEntity {
+                taskDetailViewController.pictures.append(UIImage(data: pic.picture!)!)
+            }
+            
+            loadAudiosByTask(predicate: byParent)
+            for audio in audiosEntity {
+                taskDetailViewController.audioPath.append(audio.audioPath!)
+            }
             
             self.navigationController?.pushViewController(taskDetailViewController, animated: true)
         }

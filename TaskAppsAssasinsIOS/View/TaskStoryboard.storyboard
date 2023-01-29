@@ -201,6 +201,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="audioTableView" destination="j0l-g1-dfz" id="6EH-1g-yPw"/>
                         <outlet property="imageSectionLabel" destination="eOh-0h-5yA" id="kA2-tV-QGv"/>
                         <outlet property="pictureCollectionView" destination="Lh8-Rl-0qJ" id="BZ3-8d-lUa"/>
                         <outlet property="recordAudioButton" destination="igu-by-2Cc" id="v4m-Wl-CP7"/>

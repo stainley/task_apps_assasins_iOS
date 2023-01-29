@@ -8,7 +8,6 @@
 import AVFoundation
 import UIKit
 
-/*
 extension TaskDetailViewController {
     func finishRecording(success: Bool)
     {
@@ -25,17 +24,15 @@ extension TaskDetailViewController {
             print("Tap to record, for: .normal")
         }
     }
-
+    
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
-            // Show in UI the audio recording has stopped
             finishRecording(success: false)
         }
         
         audioPath.append(soundURL!)
         newAudioPath.append(soundURL!)
         audioTableView.reloadData()
-        print("Audio was successfully recorded!")
     }
     
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
@@ -104,23 +101,24 @@ extension TaskDetailViewController {
         if audioRecorder == nil {
             do {
                 var documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-                
-                // pass the index of record to play
-                // get the absolute path and file name from the array (Database)
                 documentPath.append("/\(audioPath[sender.tag])")
 
                 let url = NSURL(fileURLWithPath: documentPath)
                 
                 try player = AVAudioPlayer(contentsOf: url as URL)
-                scrubber.maximumValue = Float(player!.duration)
+                scrubber[sender.tag].maximumValue = Float(player!.duration)
+                                
                 player?.volume = 1.0
                 player?.play()
                 timer.invalidate()
-                print("Audio is playing \(String(describing: player?.isPlaying))")
-                timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber), userInfo: nil, repeats: true)
+
+
+                timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber(sender: )), userInfo: sender.tag, repeats: true)
+                
+
             } catch {
                 print(error.localizedDescription)
-                timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber), userInfo: nil, repeats: true)
+                timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber(sender: )), userInfo: sender.tag, repeats: true)
             }
         }
     }
@@ -134,4 +132,4 @@ extension TaskDetailViewController {
         }
     }
 }
-*/
+
