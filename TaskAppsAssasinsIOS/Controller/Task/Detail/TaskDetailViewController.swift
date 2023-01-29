@@ -22,8 +22,21 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     var subTasksEntity: [SubTaskEntity] = [SubTaskEntity]()
 
+    var pictureEntity: PictureEntity?
+    var pictureEntities: [PictureEntity] = [PictureEntity]()
     var pictures: [UIImage] = []
     var newPictures: [UIImage] = []
+    var doubleTapGesture: UITapGestureRecognizer!
+    
+    var player: AVAudioPlayer?
+    var recordingSession: AVAudioSession!
+    var audioRecorder: AVAudioRecorder?
+    var timer = Timer()
+    var scrubber: [UISlider] = []
+    var audioPlayButton: [UIButton] = []
+    var audioPath: [String] = []
+    var newAudioPath: [String] = []
+    var soundURL: String?
     
     @IBOutlet weak var taskDueDatePicker: UIDatePicker!
     @IBOutlet weak var completedTaskCounterLabel: UILabel!
@@ -39,14 +52,32 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         
         pictureCollectionView.delegate = self
         pictureCollectionView.dataSource = self
+        imageSectionLabel.isHidden = true
+        pictureCollectionView.superview?.isHidden = true
+        setUpDoubleTap()
         
         let nib = UINib(nibName: "PictureCollectionViewCell", bundle: nil)
         pictureCollectionView.register(nib, forCellWithReuseIdentifier: "pictureCell")
+        
         if pictures.count > 0 {
             pictureCollectionView.reloadData()
             imageSectionLabel.isHidden = false
             imageSectionLabel.isHidden = false
             pictureCollectionView.superview?.isHidden = false
+        }
+        
+        audioTableView.delegate = self
+        audioTableView.dataSource = self
+        
+        let nibAudioTable = UINib(nibName: "AudioCustomTableViewCell", bundle: nil)
+        audioTableView.register(nibAudioTable, forCellReuseIdentifier: "audioPlayerCell")
+        
+        // PREPARE FOR RECORDING AUDIO
+        loadRecordingFuntionality()
+        
+        print("audioPathaa \(audioPath.count)")
+        if audioPath.count > 0 {
+            audioTableView.reloadData()
         }
         
         let subTaskTableViewCell = UINib(nibName: "SubTaskTableViewCell", bundle: nil)
@@ -69,7 +100,19 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         newTask.dueDate = taskDueDatePicker.date
         newTask.subTasks = subTasksEntity
 
-        self.delegate?.saveTask(task: newTask, oldTaskEntity: task)
+        if pictures.count > 0 {
+            for imageData in pictures {
+                newTask.pictures.append(imageData.pngData()!)
+            }
+        }
+        
+        if audioPath.count > 0 {
+            for audioData in audioPath {
+                newTask.audios.append(audioData)
+            }
+        }
+        
+        self.delegate?.saveTask(task: newTask, oldTaskEntity: task, newPictures: newPictures, newAudioPath: newAudioPath)
     }
     
     // Add SubTasks
@@ -87,7 +130,7 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     }
     
     @IBAction func recordAudioButoon(_ sender: UIBarButtonItem) {
-        //recordTapped()
+        recordTapped()
     }
 
     @objc func scrubleAction(_ sender: UISlider) {
@@ -103,6 +146,21 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         newSubTask.status = false
         subTasksEntity.append(newSubTask)
         subTaskTableView.reloadData()
+    }
+    
+    @objc func updateScrubber(sender: Timer) {
+        let index = sender.userInfo as! Int
+        scrubber[index].value = Float(player!.currentTime)
+        
+        if scrubber[index].value == scrubber[index].minimumValue {
+ 
+            audioPlayButton[index].setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
+            print("show button play")
+        }
+        
+        if scrubber[index].value == 0.0 {
+            timer.invalidate()
+        }
     }
 }
 

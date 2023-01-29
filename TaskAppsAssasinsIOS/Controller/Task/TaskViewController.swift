@@ -28,7 +28,6 @@ class TaskViewController: UIViewController {
     var selectedCategory: CategoryEntity? {
         didSet {
             tasks = loadTasksByCategory()
-            print(tasks.count)
         }
     }
     
@@ -102,6 +101,7 @@ class TaskViewController: UIViewController {
         taskTableView.register(cellNib, forCellReuseIdentifier: "taskViewCell")
         
         filteredTasks = tasks
+        picturesEntity = loadImagesByTask()
         self.navigationController?.navigationBar.prefersLargeTitles = false
         taskTableView.reloadData()
         

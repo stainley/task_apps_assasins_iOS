@@ -12,6 +12,7 @@
 		7005E73C29769DFF00410B83 /* TaskNibTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */; };
 		7005E73E2976A0C000410B83 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */; };
 		700E8056298463D10097FD4D /* TaskPictureViewCustomCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700E8055298463D10097FD4D /* TaskPictureViewCustomCollection.swift */; };
+		700E805E298636250097FD4D /* TaskDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700E805D298636250097FD4D /* TaskDetailRepository.swift */; };
 		70576B73297DD80E00511F08 /* TaskSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70576B72297DD80E00511F08 /* TaskSearchController.swift */; };
 		70B7AE50297697E100698260 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7AE4F297697E100698260 /* NoteViewController.swift */; };
 		70B7AE5229769A3E00698260 /* NavigationTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7AE5129769A3E00698260 /* NavigationTabBarController.swift */; };
@@ -69,6 +70,7 @@
 		7005E73A29769DFF00410B83 /* TaskNibTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskNibTableViewCell.xib; sourceTree = "<group>"; };
 		7005E73D2976A0C000410B83 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		700E8055298463D10097FD4D /* TaskPictureViewCustomCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPictureViewCustomCollection.swift; sourceTree = "<group>"; };
+		700E805D298636250097FD4D /* TaskDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailRepository.swift; sourceTree = "<group>"; };
 		70576B72297DD80E00511F08 /* TaskSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSearchController.swift; sourceTree = "<group>"; };
 		70B7AE4F297697E100698260 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		70B7AE5129769A3E00698260 /* NavigationTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTabBarController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		700E805829861D770097FD4D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				700E8055298463D10097FD4D /* TaskPictureViewCustomCollection.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		70CB3570296FE6ED005612E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +192,7 @@
 			children = (
 				AD2CC3E72982C860008E8599 /* TaskRepository.swift */,
 				AD843BDC29836AA10065E120 /* SubTaskRepository.swift */,
+				700E805D298636250097FD4D /* TaskDetailRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -286,12 +297,12 @@
 		ADB0D195297C3FA400A9AF78 /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				700E805829861D770097FD4D /* Helper */,
 				AD9CA2532984DE6000DDC921 /* Table */,
 				AD9CA2522984DE3700DDC921 /* Detail */,
 				AD2CC3E92982CAA9008E8599 /* Repository */,
 				70B7AE5329769B4200698260 /* TaskViewController.swift */,
 				70576B72297DD80E00511F08 /* TaskSearchController.swift */,
-				700E8055298463D10097FD4D /* TaskPictureViewCustomCollection.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -447,6 +458,7 @@
 				ADB0D1A2297DB0A800A9AF78 /* NoteSearchController.swift in Sources */,
 				70B7AE50297697E100698260 /* NoteViewController.swift in Sources */,
 				AD843BD9298348700065E120 /* SubTaskModalViewController.swift in Sources */,
+				700E805E298636250097FD4D /* TaskDetailRepository.swift in Sources */,
 				AD2CC3F32982EC86008E8599 /* TaskDetailTableViewController.swift in Sources */,
 				AD2CC3F52982EF96008E8599 /* TaskTableViewController.swift in Sources */,
 				ADB0D1A0297DA1A600A9AF78 /* Category.swift in Sources */,
