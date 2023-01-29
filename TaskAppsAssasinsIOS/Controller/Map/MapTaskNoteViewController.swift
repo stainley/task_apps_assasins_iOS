@@ -27,7 +27,6 @@ class MapTaskNoteViewController: UIViewController {
         
     }
     
-    
     func displayNoteLocaiton(title: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let latitudeDelta: CLLocationDegrees = 0.7
         let longitudeDelta: CLLocationDegrees = 0.7
@@ -63,13 +62,10 @@ extension MapTaskNoteViewController: MKMapViewDelegate {
     private func setupCustomAnnotationView(for annotation: NoteAnnotation, on mapView: MKMapView) -> MKAnnotationView {
 
         let flagAnnotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "custom")
-        //flagAnnotationView.glyphImage = UIImage(named: "notes")
         flagAnnotationView.canShowCallout = true
         flagAnnotationView.markerTintColor=UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0,alpha:0.5).withAlphaComponent(0)
-        // Provide the left image icon for the annotation.
         flagAnnotationView.image = UIImage(named: "notes")
         flagAnnotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        
         return flagAnnotationView
     }
 }

@@ -83,9 +83,7 @@ class SubTaskModalViewController: UIViewController {
        setupConstraints()
        // tap gesture on dimmed view to dismiss
        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleCloseAction))
-       dimmedView.addGestureRecognizer(tapGesture)
-       //setupPanGesture()
-       
+       dimmedView.addGestureRecognizer(tapGesture)       
        createSubTaskButton.addTarget(self, action: #selector(createSubTask), for: .touchDown)
    }
     

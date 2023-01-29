@@ -26,7 +26,6 @@ extension TaskDetailViewController {
         }
     }
 
-    // TODO: Elvin - When audio is completed save the path to the DB
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
             // Show in UI the audio recording has stopped
@@ -54,9 +53,6 @@ extension TaskDetailViewController {
         audioRecorder = nil
     }
     
-    // MARK: ---------------------------------------------------------------------------------------------------------
-    
-    // TODO: Aswin
     func startRecording() {
         
         let directoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in:
