@@ -21,14 +21,20 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
         if tableView == audioTableView {
             let audioPlayerCell = tableView.dequeueReusableCell(withIdentifier: "audioPlayerCell", for: indexPath) as! AudioCustomTableViewCell
         
+            // number of audio
+            audioPlayerCell.audioIndexLabel.text = "\(indexPath.row + 1)"
+            let audioTime = audioPlayerCell.audioLongLabel
+            
             let scrubble = audioPlayerCell.scrubber
             scrubble?.value = 0
             let play = audioPlayerCell.audioPlayButton
-         
+
             play!.tag = indexPath.row
             play!.addTarget(self, action: #selector(playAudio(_ : )), for: .touchDown)
             audioPlayButton.append(play!)
             scrubber.append(scrubble!)
+            
+            audioTimeLabel.append(audioTime!)
             return audioPlayerCell
         } else {
             let cell = subTaskTableView.dequeueReusableCell(withIdentifier: "subTaskTableViewCell", for: indexPath) as! SubTaskTableViewCell
@@ -62,6 +68,9 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
                     self.audioTableView.deleteRows(at: [indexPath], with: .fade)
                     self.audioTableView.endUpdates()
                     self.audioTableView.reloadData()
+                    
+                    self.taskDueDatePicker.isHidden = false
+                    self.taskDueDatePicker.isEnabled = true
                 }))
                 self.present(alertController, animated: true)
                 completionHandler(true)

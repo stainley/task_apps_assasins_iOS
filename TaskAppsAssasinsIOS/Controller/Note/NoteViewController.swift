@@ -108,10 +108,7 @@ class NoteViewController: UIViewController {
         
         if let destination = segue.destination as? NoteDetailViewController {
             destination.delegate = self
-
-          
             picturesEntity = loadImagesByNote()
-
             loadAudiosByNote()
         }
     }

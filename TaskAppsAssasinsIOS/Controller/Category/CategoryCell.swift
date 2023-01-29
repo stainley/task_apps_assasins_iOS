@@ -16,11 +16,7 @@ class CategoryCell: UICollectionViewCell {
         }
     }
     
-    @IBOutlet weak var folderImageView: UIImageView! {
-        didSet {
-      
-        }
-    }
+    @IBOutlet weak var folderImageView: UIImageView!
     
     override class func awakeFromNib() {
        

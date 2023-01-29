@@ -61,6 +61,8 @@ class CategoryViewController: UIViewController {
     @IBAction func searchCategoryButton(_ sender: UIBarButtonItem) {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
+        searchController.automaticallyShowsScopeBar = false
+        
         present(searchController, animated: true, completion: nil)
     }
         
@@ -78,14 +80,15 @@ class CategoryViewController: UIViewController {
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
 
+        
+        
         categoriesEntity  = self.fetchAllCategory();
         filteredCategories = categoriesEntity
-        
     }
     
 }
 
-extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredCategories.count
     }
@@ -109,7 +112,8 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         if let noteTaskTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "NoteTaskTabBarController") as? NoteTaskTabBarController {
-
+           
+            
             noteTaskTabBarController.categorySelected = filteredCategories[indexPath.row]
             noteTaskTabBarController.delegateCategory = self
             self.navigationController?.pushViewController(noteTaskTabBarController, animated: true)
@@ -168,5 +172,4 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         })
         return config
     }
-    
 }
