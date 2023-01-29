@@ -151,10 +151,59 @@
                                     <constraint firstAttribute="bottom" secondItem="lJi-35-XTu" secondAttribute="bottom" id="lHP-me-u37"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nTI-BA-o3C">
-                                <rect key="frame" x="0.0" y="520.33333333333337" width="393" height="281.66666666666663"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fx0-nv-K0J" customClass="CustomUIView" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="482" width="393" height="320"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nTI-BA-o3C">
+                                        <rect key="frame" x="0.0" y="61" width="393" height="259"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lae-0P-oi2">
+                                        <rect key="frame" x="357" y="11" width="28" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="28" id="Xzu-lX-fpR"/>
+                                            <constraint firstAttribute="height" constant="34" id="qcR-o7-cst"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="plus.app" catalog="system" title=" "/>
+                                        <connections>
+                                            <action selector="addSubtaskButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="1E6-rr-oUM"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub Task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XuP-iJ-0ji">
+                                        <rect key="frame" x="8" y="32" width="377" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                                <constraints>
+                                    <constraint firstItem="Lae-0P-oi2" firstAttribute="trailing" secondItem="fx0-nv-K0J" secondAttribute="trailingMargin" id="8Xy-8Q-fW2"/>
+                                    <constraint firstAttribute="trailing" secondItem="XuP-iJ-0ji" secondAttribute="trailing" constant="8" id="G48-1D-ceD"/>
+                                    <constraint firstAttribute="bottom" secondItem="nTI-BA-o3C" secondAttribute="bottom" id="Hbl-1c-7Pe"/>
+                                    <constraint firstAttribute="trailing" secondItem="nTI-BA-o3C" secondAttribute="trailing" id="Hl4-xr-9az"/>
+                                    <constraint firstItem="nTI-BA-o3C" firstAttribute="top" secondItem="Lae-0P-oi2" secondAttribute="bottom" constant="16" id="JRq-dY-Rdn"/>
+                                    <constraint firstItem="nTI-BA-o3C" firstAttribute="leading" secondItem="fx0-nv-K0J" secondAttribute="leading" id="KTE-eO-KDP"/>
+                                    <constraint firstItem="XuP-iJ-0ji" firstAttribute="leading" secondItem="fx0-nv-K0J" secondAttribute="leading" constant="8" id="MSs-eb-wcw"/>
+                                    <constraint firstItem="XuP-iJ-0ji" firstAttribute="top" secondItem="fx0-nv-K0J" secondAttribute="top" constant="32" id="tDe-5e-pku"/>
+                                    <constraint firstItem="Lae-0P-oi2" firstAttribute="top" secondItem="fx0-nv-K0J" secondAttribute="top" constant="11" id="vmA-lh-PHl"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="24"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" systemColor="systemGray4Color"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="systemGray4Color"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DSm-Jv-O8D">
                                 <rect key="frame" x="2" y="802" width="391" height="44"/>
                                 <constraints>
@@ -175,32 +224,21 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lae-0P-oi2">
-                                <rect key="frame" x="343" y="467" width="34" height="34.333333333333314"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="plus.app" catalog="system" title=" "/>
-                                <connections>
-                                    <action selector="addSubtaskButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="1E6-rr-oUM"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="fx0-nv-K0J" firstAttribute="bottom" secondItem="DSm-Jv-O8D" secondAttribute="top" id="160-ow-IHp"/>
                             <constraint firstItem="850-Nq-1ze" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="4Nq-9u-bJ4"/>
                             <constraint firstAttribute="bottomMargin" secondItem="DSm-Jv-O8D" secondAttribute="bottom" constant="-28" id="5Mm-FW-d22"/>
-                            <constraint firstItem="nTI-BA-o3C" firstAttribute="centerX" secondItem="8ed-bk-CfL" secondAttribute="centerX" id="61A-t1-yqB"/>
-                            <constraint firstItem="Lae-0P-oi2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="343" id="988-ZX-Cv7"/>
+                            <constraint firstItem="fx0-nv-K0J" firstAttribute="centerX" secondItem="8ed-bk-CfL" secondAttribute="centerX" id="8co-cW-UvG"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="850-Nq-1ze" secondAttribute="trailing" constant="10" id="FHP-nS-h4t"/>
                             <constraint firstItem="8ed-bk-CfL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="G3P-ah-z66"/>
-                            <constraint firstItem="nTI-BA-o3C" firstAttribute="trailing" secondItem="DSm-Jv-O8D" secondAttribute="trailing" id="Im9-dz-OUk"/>
-                            <constraint firstItem="Lae-0P-oi2" firstAttribute="top" secondItem="8ed-bk-CfL" secondAttribute="bottom" constant="8" symbolic="YES" id="JH6-hp-H6k"/>
+                            <constraint firstItem="fx0-nv-K0J" firstAttribute="top" secondItem="8ed-bk-CfL" secondAttribute="bottom" constant="23" id="Mgt-if-FpQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8ed-bk-CfL" secondAttribute="trailing" constant="10" id="NY3-Ts-vAO"/>
-                            <constraint firstItem="Lae-0P-oi2" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailingMargin" id="OGn-KL-97v"/>
+                            <constraint firstItem="fx0-nv-K0J" firstAttribute="trailing" secondItem="DSm-Jv-O8D" secondAttribute="trailing" id="Wmc-Ql-GoG"/>
                             <constraint firstItem="850-Nq-1ze" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="ddI-ha-nLz"/>
-                            <constraint firstItem="nTI-BA-o3C" firstAttribute="bottom" secondItem="DSm-Jv-O8D" secondAttribute="top" id="nKp-vi-Ljd"/>
                             <constraint firstItem="DSm-Jv-O8D" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="phB-kj-Usp"/>
-                            <constraint firstItem="nTI-BA-o3C" firstAttribute="top" secondItem="Lae-0P-oi2" secondAttribute="bottom" constant="19" id="sNE-gG-XXe"/>
                             <constraint firstItem="DSm-Jv-O8D" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="2" id="wX6-kE-Vvb"/>
                             <constraint firstItem="8ed-bk-CfL" firstAttribute="top" secondItem="850-Nq-1ze" secondAttribute="bottom" constant="10" id="yfq-rJ-VD9"/>
                         </constraints>
@@ -228,6 +266,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemMintColor">
             <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
