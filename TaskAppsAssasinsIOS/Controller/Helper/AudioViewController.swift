@@ -8,7 +8,6 @@
 import AVFoundation
 import UIKit
 
-// TODO: Jay
 extension NoteDetailViewController {
 
     func finishRecording(success: Bool) {
@@ -26,7 +25,6 @@ extension NoteDetailViewController {
         }
     }
 
-    // TODO: Elvin - When audio is completed save the path to the DB
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
             // Show in UI the audio recording has stopped
@@ -54,9 +52,6 @@ extension NoteDetailViewController {
         audioRecorder = nil
     }
     
-    // MARK: ---------------------------------------------------------------------------------------------------------
-    
-    // TODO: Aswin
     func startRecording() {
         
         let directoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in:
