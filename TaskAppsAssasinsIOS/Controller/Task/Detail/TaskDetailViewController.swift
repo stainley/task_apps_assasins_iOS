@@ -22,6 +22,8 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     var subTasksEntity: [SubTaskEntity] = [SubTaskEntity]()
 
+    var pictureEntity: PictureEntity?
+    var pictureEntities: [PictureEntity] = [PictureEntity]()
     var pictures: [UIImage] = []
     var newPictures: [UIImage] = []
     var doubleTapGesture: UITapGestureRecognizer!
@@ -51,6 +53,7 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         let nib = UINib(nibName: "PictureCollectionViewCell", bundle: nil)
         pictureCollectionView.register(nib, forCellWithReuseIdentifier: "pictureCell")
         
+        print("pictures22 \(pictures.count)")
         if pictures.count > 0 {
             pictureCollectionView.reloadData()
             imageSectionLabel.isHidden = false
@@ -77,7 +80,7 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         // for new task pass the array of tasks
         newTask.dueDate = taskDueDatePicker.date
         newTask.subTasks = subTasksEntity
-
+        print("pictures.count \(pictures.count)")
         if pictures.count > 0 {
             for imageData in pictures {
                 newTask.pictures.append(imageData.pngData()!)

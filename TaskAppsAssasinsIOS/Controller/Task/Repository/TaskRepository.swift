@@ -29,7 +29,7 @@ extension TaskViewController {
         context.delete(taskEntity)
     }
     
-    func loadImagesByTask(predicate: NSPredicate? = nil) {
+    func loadImagesByTask(predicate: NSPredicate? = nil) -> [PictureEntity] {
         let request: NSFetchRequest<PictureEntity> = PictureEntity.fetchRequest()
        // let notePredicate = NSPredicate(format: "note_parent.title=%@", selectedCategory!.name!)
 
@@ -40,6 +40,7 @@ extension TaskViewController {
         } catch {
             print("An error had ocurred: \(error.localizedDescription)")
         }
+        return picturesEntity
     }
     
     // TODO: Elvin
@@ -113,7 +114,7 @@ extension TaskViewController {
         newTask.taskDescription = task.description
         newTask.creationDate = Date()
         newTask.taskDueDate = task.dueDate
-
+        print("pictures11 \(task.pictures.count)")
         // TODO: Save image to the Database
         for picture in task.pictures {
             let pictureEntity = PictureEntity(context: context)
@@ -122,7 +123,7 @@ extension TaskViewController {
             pictureEntity.task_parent = newTask
             newTask.addToPictures(pictureEntity)
         }
-        
+        //print("pictures.count \(newTask.pictures.count)")
         // TODO: Save audio into the Database
         for audio in task.audios {
             let audioEntity = AudioEntity(context: context)

@@ -133,6 +133,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		700E805829861D770097FD4D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				700E8055298463D10097FD4D /* TaskPictureViewCustomCollection.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		70CB3570296FE6ED005612E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,12 +294,12 @@
 		ADB0D195297C3FA400A9AF78 /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				700E805829861D770097FD4D /* Helper */,
 				AD9CA2532984DE6000DDC921 /* Table */,
 				AD9CA2522984DE3700DDC921 /* Detail */,
 				AD2CC3E92982CAA9008E8599 /* Repository */,
 				70B7AE5329769B4200698260 /* TaskViewController.swift */,
 				70576B72297DD80E00511F08 /* TaskSearchController.swift */,
-				700E8055298463D10097FD4D /* TaskPictureViewCustomCollection.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";

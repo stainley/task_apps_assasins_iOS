@@ -13,6 +13,7 @@ extension TaskDetailViewController: UICollectionViewDataSource, UICollectionView
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("pictures.count \(pictures.count)")
         return pictures.count
     }
     
