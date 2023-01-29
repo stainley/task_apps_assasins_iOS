@@ -38,7 +38,6 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
             (action, view, completionHandler) in
         
             self.delegate?.deleteSubTask(subTaskEntity: self.subTasksEntity[indexPath.row])
-            //self.saveTask()
             self.delegate?.saveTask()
    
             self.subTasksEntity.remove(at: indexPath.row)
@@ -53,11 +52,7 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let subtask = self.subTasksEntity[indexPath.row]
-        
     }
-    
-
 }
 
 extension TaskDetailViewController: SubTaskTableViewCellDelegate {

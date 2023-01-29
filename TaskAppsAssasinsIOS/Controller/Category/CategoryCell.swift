@@ -13,7 +13,6 @@ class CategoryCell: UICollectionViewCell {
     
     @IBOutlet weak var deleteCategoryButton: UIButton! {
         didSet {
-            // TODO: Aswin - Change toggle delete button icon
             deleteCategoryButton.isEnabled.toggle()
             deleteCategoryButton.isHidden.toggle()
         }

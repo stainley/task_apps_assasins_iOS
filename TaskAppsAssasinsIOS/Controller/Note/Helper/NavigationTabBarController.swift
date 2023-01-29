@@ -21,7 +21,6 @@ class NoteTaskTabBarController: UITabBarController {
             return
         }
         self.title = categoryTitle.name
-        
         let vc = viewControllers?[Category.note.rawValue] as! NoteViewController
         vc.selectedCategory = self.categorySelected
     }
@@ -36,7 +35,6 @@ class NoteTaskTabBarController: UITabBarController {
         if item.title == "Note" {
             category = .note
             selectTabItem(category: category)
-
         } else {
             category = .task
             selectTabItem(category: category)
