@@ -85,6 +85,15 @@ extension TaskViewController {
         return Array<CategoryEntity>()
     }
     
+    func changeTaskCategory(taskEntity: TaskEntity, for categoryEntity: CategoryEntity) {
+        
+        taskEntity.category_parent = categoryEntity
+        saveTask()
+        filteredTasks = loadTasksByCategory()
+        taskTableView.reloadData()
+    }
+    
+    
     // TODO: Elvin
     func saveTask(task: Task, oldTaskEntity: TaskEntity? = nil) {
         

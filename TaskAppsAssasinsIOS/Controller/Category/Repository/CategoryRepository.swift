@@ -40,4 +40,11 @@ extension CategoryViewController {
         return Array<CategoryEntity>()
     }
     
+    // Update category
+    func updateCategory(category: CategoryEntity) {
+        saveCategory()
+        categoriesEntity = fetchAllCategory()
+        categoryCollectionView.reloadData()
+    }
+    
 }
