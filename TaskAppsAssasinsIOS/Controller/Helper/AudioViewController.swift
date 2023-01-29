@@ -8,7 +8,6 @@
 import AVFoundation
 import UIKit
 
-// TODO: Jay
 extension NoteDetailViewController {
 
     func finishRecording(success: Bool) {
@@ -26,7 +25,7 @@ extension NoteDetailViewController {
         }
     }
 
-    // TODO: Elvin - When audio is completed save the path to the DB
+    // MARK: - When audio is completed save the path to the DB
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
             // Show in UI the audio recording has stopped
@@ -54,9 +53,8 @@ extension NoteDetailViewController {
         audioRecorder = nil
     }
     
-    // MARK: ---------------------------------------------------------------------------------------------------------
+    // MARK: Recording
     
-    // TODO: Aswin
     func startRecording() {
         
         let directoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in:
@@ -116,15 +114,17 @@ extension NoteDetailViewController {
                 let url = NSURL(fileURLWithPath: documentPath)
                 
                 try player = AVAudioPlayer(contentsOf: url as URL)
-                scrubber.maximumValue = Float(player!.duration)
+                scrubber[sender.tag].maximumValue = Float(player!.duration)
+                                
                 player?.volume = 1.0
                 player?.play()
                 timer.invalidate()
-                print("Audio is playing \(String(describing: player?.isPlaying))")
-                timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber), userInfo: nil, repeats: true)
+
+                timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber(sender: )), userInfo: sender.tag, repeats: true)
+                
             } catch {
                 print(error.localizedDescription)
-                timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber), userInfo: nil, repeats: true)
+                timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber(sender: )), userInfo: sender.tag, repeats: true)
             }
         }
     }

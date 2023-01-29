@@ -18,12 +18,13 @@ extension NoteDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let audioPlayerCell = tableView.dequeueReusableCell(withIdentifier: "audioPlayerCell", for: indexPath) as! AudioCustomTableViewCell
     
         let scrubble = audioPlayerCell.scrubber
+        scrubble?.value = 0
         let play = audioPlayerCell.audioPlayButton
      
         play!.tag = indexPath.row
         // pass the index clicked through the tag of the button
         play!.addTarget(self, action: #selector(playAudio(_ : )), for: .touchDown)
-        scrubber = scrubble
+        scrubber.append(scrubble!)
         return audioPlayerCell
     }
     

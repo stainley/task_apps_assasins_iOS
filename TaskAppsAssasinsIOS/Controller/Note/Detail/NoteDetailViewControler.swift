@@ -20,7 +20,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     @IBOutlet weak var imageSectionLabel: UILabel!
     @IBOutlet weak var audioTableView: UITableView!
     
-    weak var scrubber: UISlider!
+    var scrubber: [UISlider] = []
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate: NoteViewController?
@@ -78,7 +78,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         pictureCollectionView.delegate = self
         pictureCollectionView.dataSource = self
         
@@ -104,9 +104,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         /// PREPARE FOR RECORDING AUDIO
         loadRecordingFuntionality()
         
-        if let scrubber = scrubber {
-            scrubber.minimumValue = 0
-        }
+
       
         if pictures.count > 0 {
             pictureCollectionView.reloadData()
@@ -142,20 +140,6 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         noteTextField.text = note.noteDescription
         placeholderLabel.text = ""
     }
-        
-    @IBAction func CatagaryDropDown(_ sender: Any) {
-        catagoryCollection.forEach{ (btn) in
-            UIView.animate(withDuration: 0.7, animations: loadViewIfNeeded) {_ in
-                btn.isHidden = !btn.isHidden
-                btn.alpha = btn.alpha == 0 ? 1 : 0
-                btn.layoutIfNeeded()
-            }
-        }
-    }
-        
-    @IBAction func Catagary(_ sender: Any) {
-        
-    }
      
     // Send to NoteViewController and persist into Core Data
     override func viewWillDisappear(_ animated: Bool) {
@@ -181,11 +165,18 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         self.delegate?.saveNote(note: newNote, oldNoteEntity: note, newPictures: newPictures, newAudioPath: newAudioPath)
     }
     
-    @objc func updateScrubber() {
-        scrubber.value = Float(player!.currentTime)
-        if scrubber.value == scrubber.minimumValue {
+    @objc func updateScrubber(sender: Timer) {
+        let index = sender.userInfo as! Int
+        scrubber[index].value = Float(player!.currentTime)
+        
+        if scrubber[index].value == scrubber[index].minimumValue {
             //  isPlaying = false
             //playBtn.image = UIImage(systemName: "play.fill")
+            print("show button play")
+        }
+        
+        if scrubber[index].value == 0.0 {
+            timer.invalidate()
         }
     }
 
