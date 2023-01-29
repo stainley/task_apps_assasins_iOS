@@ -10,7 +10,7 @@ import CoreData
 import AVFoundation
 import CoreLocation
 
-class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudioRecorderDelegate  {
+class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudioRecorderDelegate, UITextFieldDelegate  {
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate: TaskViewController?
@@ -55,6 +55,7 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         imageSectionLabel.isHidden = true
         pictureCollectionView.superview?.isHidden = true
         setUpDoubleTap()
+        titleTaskTxt.delegate = self
         
         let nib = UINib(nibName: "PictureCollectionViewCell", bundle: nil)
         pictureCollectionView.register(nib, forCellWithReuseIdentifier: "pictureCell")
@@ -161,6 +162,11 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         if scrubber[index].value == 0.0 {
             timer.invalidate()
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }
 
