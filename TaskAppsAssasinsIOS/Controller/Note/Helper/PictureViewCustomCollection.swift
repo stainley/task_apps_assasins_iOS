@@ -13,7 +13,6 @@ extension NoteDetailViewController: UICollectionViewDataSource, UICollectionView
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(pictures.count)
         return pictures.count
     }
     
@@ -25,7 +24,6 @@ extension NoteDetailViewController: UICollectionViewDataSource, UICollectionView
         return pictureCell
     }
     
-    // TODO: Remove picture (Aswin)
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
@@ -49,13 +47,8 @@ extension NoteDetailViewController {
                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
                    
-                   //self.deleteImage(data: self.pictures[selectedIndexPath.row].pngData()!)
                    let data = pictures[selectedIndexPath.row].pngData()
-                   
-                   print(pictureEntities.count)
-                   
                    deleteImage(pictureEntity: pictureEntities[selectedIndexPath.row])
-                   print(selectedIndexPath.row)
                    pictures.remove(at: selectedIndexPath.row)
                    self.pictureCollectionView.reloadData()
 

@@ -108,7 +108,6 @@ class NoteViewController: UIViewController {
         
         if let destination = segue.destination as? NoteDetailViewController {
             destination.delegate = self
-          
             picturesEntity = loadImagesByNote()
             loadAudiosByNote()
         }
@@ -152,22 +151,15 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
 
         let deleteAction = UIContextualAction(style: .destructive, title: nil, handler: {(action, view, completionHandler) in
             let alertController = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: .actionSheet)
-
-
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-
             alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
                 tableView.beginUpdates()
-
                 self.deleteNote(noteEntity: self.filteredNotes[indexPath.row])
                 self.saveNote()
-
                 self.filteredNotes.remove(at: indexPath.row)
                 self.notes.remove(at: indexPath.row)
-
                 self.noteTableView.deleteRows(at: [indexPath], with: .fade)
                 self.noteTableView.endUpdates()
-
                 self.notes = self.loadNotesByCategory()
                 self.filteredNotes = self.notes
                 self.noteTableView.reloadData()
@@ -187,28 +179,20 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         let note = self.filteredNotes[indexPath.row]
         
         if let noteDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteDetailViewController") as? NoteDetailViewController {
-
             noteDetailViewController.note = note
             noteDetailViewController.delegate = self
-            
             guard let noteTitle = note.title else {
                 return
             }
             let byParent  =  NSPredicate(format: "note_parent.title == %@", noteTitle)
             noteDetailViewController.pictureEntities = loadImagesByNote(predicate: byParent)
             loadAudiosByNote(predicate: byParent)
-            
-            print(picturesEntity.count)
-       
-            
             for pic in picturesEntity {
                 noteDetailViewController.pictures.append(UIImage(data: pic.picture!)!)
             }
-            
             for audio in audiosEntity {
                 noteDetailViewController.audioPath.append(audio.audioPath!)
             }
-            
             self.navigationController?.pushViewController(noteDetailViewController, animated: true)
         }
     }
