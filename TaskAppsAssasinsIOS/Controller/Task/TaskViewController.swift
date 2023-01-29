@@ -115,7 +115,7 @@ class TaskViewController: UIViewController {
         
         if let destination = segue.destination as? TaskDetailViewController {
             destination.delegate = self
-            loadImagesByTask()
+            //loadImagesByTask()
             loadAudiosByTask()
         }
     }

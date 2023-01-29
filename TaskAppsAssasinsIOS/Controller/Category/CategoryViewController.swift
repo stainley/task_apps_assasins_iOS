@@ -84,12 +84,11 @@ class CategoryViewController: UIViewController {
         
         categoriesEntity  = self.fetchAllCategory();
         filteredCategories = categoriesEntity
-        
     }
     
 }
 
-extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredCategories.count
     }
@@ -114,7 +113,6 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
 
         if let noteTaskTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "NoteTaskTabBarController") as? NoteTaskTabBarController {
            
-            navigationController?.searchDisplayController?.searchBar.isHidden = true
             
             noteTaskTabBarController.categorySelected = filteredCategories[indexPath.row]
             noteTaskTabBarController.delegateCategory = self
@@ -174,5 +172,4 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         })
         return config
     }
-    
 }
