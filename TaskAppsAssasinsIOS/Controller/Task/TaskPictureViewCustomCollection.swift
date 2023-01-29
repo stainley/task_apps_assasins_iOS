@@ -13,7 +13,6 @@ extension TaskDetailViewController: UICollectionViewDataSource, UICollectionView
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(pictures.count)
         return pictures.count
     }
     
@@ -25,7 +24,6 @@ extension TaskDetailViewController: UICollectionViewDataSource, UICollectionView
         return pictureCell
     }
     
-    // TODO: Remove picture (Aswin)
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }

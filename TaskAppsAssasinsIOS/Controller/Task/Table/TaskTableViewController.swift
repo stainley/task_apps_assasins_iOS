@@ -40,10 +40,7 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
             }
         }
-        
-        // DUE DATE TASK is the last due date from subtask
-        //print("\(tasks[indexPath.row].title) \(tasks[indexPath.row].taskDueDate)")
-        
+
         if let dueDate =  tasks[indexPath.row].taskDueDate {
             if filteredTasks[indexPath.row].subtasks?.count == 0 {
                 cell.dueDateLabel.text = "Due: \(dueDate.toString(dateFormat: "MMMM dd, yyyy 'on' h:mm:ss a"))"
@@ -104,7 +101,6 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
                    
                              
                     alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-                    
                     alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
                         tableView.beginUpdates()
                         //Remove contact from DB

@@ -31,10 +31,7 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     @IBOutlet weak var recordAudioButton: UIBarButtonItem!
     @IBOutlet weak var imageSectionLabel: UILabel!
     @IBOutlet weak var audioTableView: UITableView!
-   // @IBOutlet var catagoryCollection: [UIButton] = []
-    //@IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var subTaskTableView: UITableView!
-    
     @IBOutlet weak var titleTaskTxt: UITextField!
     
     override func viewDidLoad() {
@@ -45,10 +42,6 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         
         let nib = UINib(nibName: "PictureCollectionViewCell", bundle: nil)
         pictureCollectionView.register(nib, forCellWithReuseIdentifier: "pictureCell")
-        
-        //imageSectionLabel.isHidden = true
-       // pictureCollectionView.superview?.isHidden = true
-      
         if pictures.count > 0 {
             pictureCollectionView.reloadData()
             imageSectionLabel.isHidden = false
@@ -112,8 +105,6 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         subTaskTableView.reloadData()
     }
 }
-
-
 
 extension Date {
     func toString( dateFormat format  : String ) -> String {

@@ -26,7 +26,6 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate: NoteViewController?
     
-    // timer to update my scrubber
     var timer = Timer()
 
     var recordingSession: AVAudioSession!
@@ -77,10 +76,9 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+
         pictureCollectionView.delegate = self
         pictureCollectionView.dataSource = self
-        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -100,7 +98,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         pictureCollectionView.superview?.isHidden = true
         setUpDoubleTap()
         
-        /// PREPARE FOR RECORDING AUDIO
+        // PREPARE FOR RECORDING AUDIO
         loadRecordingFuntionality()
         
 
@@ -121,7 +119,6 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         noteTextField.layer.borderColor = UIColor.lightGray.cgColor
         noteTextField.contentInset = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         noteTextField.delegate = self
-  
         placeholderLabel = UILabel()
         placeholderLabel.text = "Enter some text for desciption..."
         placeholderLabel.font = .italicSystemFont(ofSize: (noteTextField.font?.pointSize)!)
