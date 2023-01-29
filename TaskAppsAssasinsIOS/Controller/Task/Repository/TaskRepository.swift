@@ -114,7 +114,7 @@ extension TaskViewController {
         newTask.taskDescription = task.description
         newTask.creationDate = Date()
         newTask.taskDueDate = task.dueDate
-        print("pictures11 \(task.pictures.count)")
+
         // TODO: Save image to the Database
         for picture in task.pictures {
             let pictureEntity = PictureEntity(context: context)
@@ -123,7 +123,7 @@ extension TaskViewController {
             pictureEntity.task_parent = newTask
             newTask.addToPictures(pictureEntity)
         }
-        //print("pictures.count \(newTask.pictures.count)")
+
         // TODO: Save audio into the Database
         for audio in task.audios {
             let audioEntity = AudioEntity(context: context)
@@ -158,6 +158,15 @@ extension TaskViewController {
             oldTask.dateCompleted = dateCompleted as Date
             oldTask.isCompleted = isCompleted
         }
+        
+        // Save image to the Database
+        for picture in newPictures {
+            let pictureEntity = PictureEntity(context: context)
+            pictureEntity.picture = picture.pngData()!
+            pictureEntity.task_parent = oldTask
+            oldTask.addToPictures(pictureEntity)
+        }
+        
         oldTask.taskDueDate = updatedTask.dueDate
         if updatedTask.subTasks.count > 0 {
            

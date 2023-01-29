@@ -28,7 +28,6 @@ class TaskViewController: UIViewController {
     var selectedCategory: CategoryEntity? {
         didSet {
             tasks = loadTasksByCategory()
-            print(tasks.count)
         }
     }
     
