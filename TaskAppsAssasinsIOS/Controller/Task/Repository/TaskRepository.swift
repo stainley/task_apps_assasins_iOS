@@ -42,8 +42,7 @@ extension TaskViewController {
         }
         return picturesEntity
     }
-    
-    // TODO: Elvin
+
     func loadAudiosByTask(predicate: NSPredicate? = nil) {
         let request: NSFetchRequest<AudioEntity> = AudioEntity.fetchRequest()
 
@@ -165,6 +164,14 @@ extension TaskViewController {
             pictureEntity.picture = picture.pngData()!
             pictureEntity.task_parent = oldTask
             oldTask.addToPictures(pictureEntity)
+        }
+        
+        // Save audio into the Database
+        for audio in newAudioPath {
+            let audioEntity = AudioEntity(context: context)
+            audioEntity.audioPath = audio
+            audioEntity.task_parent = oldTask
+            oldTask.addToAudios(audioEntity)
         }
         
         oldTask.taskDueDate = updatedTask.dueDate

@@ -150,6 +150,11 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
                 taskDetailViewController.pictures.append(UIImage(data: pic.picture!)!)
             }
             
+            loadAudiosByTask(predicate: byParent)
+            for audio in audiosEntity {
+                taskDetailViewController.audioPath.append(audio.audioPath!)
+            }
+            
             self.navigationController?.pushViewController(taskDetailViewController, animated: true)
         }
     }

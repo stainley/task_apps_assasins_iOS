@@ -28,6 +28,12 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     var newPictures: [UIImage] = []
     var doubleTapGesture: UITapGestureRecognizer!
     
+    var player: AVAudioPlayer?
+    var recordingSession: AVAudioSession!
+    var audioRecorder: AVAudioRecorder?
+    var timer = Timer()
+    var scrubber: [UISlider] = []
+    var audioPlayButton: [UIButton] = []
     var audioPath: [String] = []
     var newAudioPath: [String] = []
     var soundURL: String?
@@ -58,6 +64,20 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
             imageSectionLabel.isHidden = false
             imageSectionLabel.isHidden = false
             pictureCollectionView.superview?.isHidden = false
+        }
+        
+        audioTableView.delegate = self
+        audioTableView.dataSource = self
+        
+        let nibAudioTable = UINib(nibName: "AudioCustomTableViewCell", bundle: nil)
+        audioTableView.register(nibAudioTable, forCellReuseIdentifier: "audioPlayerCell")
+        
+        // PREPARE FOR RECORDING AUDIO
+        loadRecordingFuntionality()
+        
+        print("audioPathaa \(audioPath.count)")
+        if audioPath.count > 0 {
+            audioTableView.reloadData()
         }
         
         let subTaskTableViewCell = UINib(nibName: "SubTaskTableViewCell", bundle: nil)
@@ -110,7 +130,7 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     }
     
     @IBAction func recordAudioButoon(_ sender: UIBarButtonItem) {
-        //recordTapped()
+        recordTapped()
     }
 
     @objc func scrubleAction(_ sender: UISlider) {
@@ -126,6 +146,21 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         newSubTask.status = false
         subTasksEntity.append(newSubTask)
         subTaskTableView.reloadData()
+    }
+    
+    @objc func updateScrubber(sender: Timer) {
+        let index = sender.userInfo as! Int
+        scrubber[index].value = Float(player!.currentTime)
+        
+        if scrubber[index].value == scrubber[index].minimumValue {
+ 
+            audioPlayButton[index].setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
+            print("show button play")
+        }
+        
+        if scrubber[index].value == 0.0 {
+            timer.invalidate()
+        }
     }
 }
 
