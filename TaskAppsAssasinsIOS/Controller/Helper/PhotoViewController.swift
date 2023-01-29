@@ -35,7 +35,6 @@ extension NoteDetailViewController {
         
         photoSourceRequestController.addAction(cameraAction)
         photoSourceRequestController.addAction(photoLibraryAction)
-        
         present(photoSourceRequestController, animated: true)
         
     }
@@ -56,7 +55,6 @@ extension TaskDetailViewController {
         let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {(action) in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 let imagePicker = UIImagePickerController()
-                //imagePicker.delegate = self
                 imagePicker.allowsEditing = false
                 imagePicker.sourceType = .camera
                 self.present(imagePicker, animated: true)
@@ -67,18 +65,15 @@ extension TaskDetailViewController {
             
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 let imagePicker = UIImagePickerController()
-                //imagePicker.delegate = self
+                imagePicker.delegate = self
                 imagePicker.allowsEditing = false
                 imagePicker.sourceType = .photoLibrary
                 self.present(imagePicker, animated: true)
             }
         })
-        
         photoSourceRequestController.addAction(cameraAction)
         photoSourceRequestController.addAction(photoLibraryAction)
-        
         present(photoSourceRequestController, animated: true)
-        
     }
     
     func convertImageToData(myImagesArray: [UIImage]) -> [Data] {
@@ -94,14 +89,11 @@ extension NoteDetailViewController: UINavigationControllerDelegate {
     
 }
 
-
 extension NoteDetailViewController: UIImagePickerControllerDelegate {
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
-        
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            // Add image
-            
             pictures.append(selectedImage)
             newPictures.append(selectedImage)
             imageSectionLabel.isHidden = false
@@ -113,13 +105,12 @@ extension NoteDetailViewController: UIImagePickerControllerDelegate {
     }
 }
 
-extension TaskDetailViewController: UIImagePickerControllerDelegate {
+extension TaskDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
-        
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            // Add image
-            
+
             pictures.append(selectedImage)
             newPictures.append(selectedImage)
             imageSectionLabel.isHidden = false

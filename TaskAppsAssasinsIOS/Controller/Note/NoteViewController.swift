@@ -108,8 +108,10 @@ class NoteViewController: UIViewController {
         
         if let destination = segue.destination as? NoteDetailViewController {
             destination.delegate = self
+
           
-            loadImagesByNote()
+            picturesEntity = loadImagesByNote()
+
             loadAudiosByNote()
         }
     }
@@ -123,6 +125,7 @@ class NoteViewController: UIViewController {
         picturesEntity = loadImagesByNote()
         sortNameButton.layer.cornerRadius = 4
         sortDateButton.layer.cornerRadius = 4
+    
     }
 }
 
@@ -134,6 +137,7 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = noteTableView.dequeueReusableCell(withIdentifier: "NoteNibTableViewCell", for: indexPath) as! NoteNibTableViewCell
+        cell.accessoryType = .disclosureIndicator
 
         cell.titleLabel?.text = filteredNotes[indexPath.row].title
         cell.descriptionLabel?.text = filteredNotes[indexPath.row].noteDescription
@@ -145,29 +149,20 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
+  
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
-        var noteCell = tableView.dequeueReusableCell(withIdentifier: "NoteNibTableViewCell", for: indexPath) as! NoteNibTableViewCell
-        
         let deleteAction = UIContextualAction(style: .destructive, title: nil, handler: {(action, view, completionHandler) in
             let alertController = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: .actionSheet)
-
-
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-
             alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
                 tableView.beginUpdates()
-
                 self.deleteNote(noteEntity: self.filteredNotes[indexPath.row])
                 self.saveNote()
-
                 self.filteredNotes.remove(at: indexPath.row)
                 self.notes.remove(at: indexPath.row)
-
                 self.noteTableView.deleteRows(at: [indexPath], with: .fade)
                 self.noteTableView.endUpdates()
-
                 self.notes = self.loadNotesByCategory()
                 self.filteredNotes = self.notes
                 self.noteTableView.reloadData()
@@ -178,22 +173,7 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
 
         deleteAction.image = UIImage(systemName: "trash")
 
-        let edit = UIContextualAction(style: .normal, title: "Edit", handler: {(action, view, completionHandler) in
-            // TODO: Implement Change Category
-            let switchCategoryVC = ChangeCategoryView()
-            switchCategoryVC.noteViewControllerDelegate = self
-            switchCategoryVC.categories = self.fetchAllCategory()
-            switchCategoryVC.noteToChange = self.filteredNotes[indexPath.row]
-
-            
-            self.present(switchCategoryVC, animated: false)
-            
-            completionHandler(true)
-        })
-        edit.backgroundColor = UIColor.systemBlue
-        edit.image = UIImage(systemName: "square.and.pencil")
-
-        let  preventSwipe = UISwipeActionsConfiguration(actions: [deleteAction, edit])
+        let  preventSwipe = UISwipeActionsConfiguration(actions: [deleteAction])
         preventSwipe.performsFirstActionWithFullSwipe = false
         return preventSwipe
     }
@@ -202,30 +182,41 @@ extension NoteViewController: UITableViewDelegate, UITableViewDataSource {
         let note = self.filteredNotes[indexPath.row]
         
         if let noteDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "NoteDetailViewController") as? NoteDetailViewController {
-            //noteDetailViewController.pictureEntities = picturesEntity
             noteDetailViewController.note = note
             noteDetailViewController.delegate = self
-            
             guard let noteTitle = note.title else {
                 return
             }
             let byParent  =  NSPredicate(format: "note_parent.title == %@", noteTitle)
             noteDetailViewController.pictureEntities = loadImagesByNote(predicate: byParent)
             loadAudiosByNote(predicate: byParent)
-            
-            print(picturesEntity.count)
-       
-            
             for pic in picturesEntity {
                 noteDetailViewController.pictures.append(UIImage(data: pic.picture!)!)
             }
-            
             for audio in audiosEntity {
                 noteDetailViewController.audioPath.append(audio.audioPath!)
             }
-            
             self.navigationController?.pushViewController(noteDetailViewController, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        let changeCategoryMenu = ChangeCategoryMenu()
+        changeCategoryMenu.noteViewControllerDelegate = self
+        changeCategoryMenu.categories = self.fetchAllCategory()
+        changeCategoryMenu.noteToChange = self.filteredNotes[indexPath.row]
+        
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider:  { _ -> UIMenu? in
+            
+            let menu = UIMenu(title: "Chance Category", image: UIImage(systemName: "pencil.circle") ,children: changeCategoryMenu.categoryOptions())
+            return menu
+        })
+        return config
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        noteTableView.reloadData()
     }
 }
 

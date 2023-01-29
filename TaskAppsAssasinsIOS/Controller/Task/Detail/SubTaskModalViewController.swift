@@ -1,76 +1,40 @@
 //
-//  ChangeCategoryView.swift
+//  CustomModalViewController.swift
 //  TaskAppsAssasinsIOS
 //
-//  Created by Stainley A Lebron R on 2023-01-27.
+//  Created by Stainley A Lebron R on 2023-01-26.
 //
 
 import UIKit
 
-class ChangeCategoryView: UIViewController {
+class SubTaskModalViewController: UIViewController {
     
-    var taskViewControllerDelegate: TaskViewController!
-    var noteViewControllerDelegate: NoteViewController!
-    
-    var categories: [CategoryEntity] = []
-    var noteToChange: NoteEntity!
-    
+    var subtaskDelegate: TaskDetailViewController!
     
     //  lazy views
    lazy var titleLabel: UILabel = {
        let label = UILabel()
-       label.text = "Change Category"
+       label.text = "Sub Task"
        label.font = .boldSystemFont(ofSize: 20)
        return label
    }()
     
-    lazy var optionLabel: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 20)
-        return label
-    }()
-    
-    private lazy var categoryButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Select Category", for: .normal)
-        button.backgroundColor = UIColor.tintColor
-        button.setTitleColor(.white, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.bounds = CGRect(x: 8, y: 8, width: 300, height: 20)
-        button.showsMenuAsPrimaryAction = true
-        button.menu = menu
-        return button
+    lazy var subTaskNameText: UITextField = {
+        let editText = UITextField()
+        editText.placeholder = "Sub Task name"
+        editText.borderStyle = .roundedRect
+        return editText
     }()
     
     
-    //private lazy var elements: [UIAction] = [first, second]
-    private lazy var elements: [UIAction] = categoryOptions()
-    private lazy var menu = UIMenu(title: "Category", children: elements)
+    lazy var dueDatePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        return datePicker
+    }()
     
-    
-    func categoryOptions(handler: AnyObject? = nil) -> [UIAction] {
-        var actions: [UIAction] = []
-        // fetch from the database categories
-        for category in categories {
-            let action = UIAction(title: category.name ?? "", image: UIImage(systemName: "pencil.circle"), handler: { (action) in
-
-                self.optionLabel.text = "Note changed to \(category.name!)"
-                
-                let delegate = self.noteViewControllerDelegate
-                self.noteViewControllerDelegate.changeNoteCategory(noteEntity: self.noteToChange, for: category)
-
-                self.noteViewControllerDelegate.noteTableView.reloadData()
-                
-            })
-            actions.append(action)
-        }
-        
-        return actions
-    }
-    
-    lazy var changeCategoryButton: UIButton = {
+    lazy var createSubTaskButton: UIButton = {
        let button = UIButton()
-        button.setTitle("Close", for: .normal)
+        button.setTitle("Add Sub Task", for: .normal)
         button.backgroundColor = UIColor.tintColor
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +44,7 @@ class ChangeCategoryView: UIViewController {
        
    lazy var contentStackView: UIStackView = {
        let spacer = UIView()
-       let stackView = UIStackView(arrangedSubviews: [titleLabel, categoryButton, optionLabel  ,spacer, changeCategoryButton])
+       let stackView = UIStackView(arrangedSubviews: [titleLabel, subTaskNameText, dueDatePicker, spacer, createSubTaskButton])
        stackView.axis = .vertical
        stackView.spacing = 12.0
        return stackView
@@ -117,53 +81,35 @@ class ChangeCategoryView: UIViewController {
        super.viewDidLoad()
        setupView()
        setupConstraints()
-       
-       categoryButton.menu = menu
-       navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
-
-       navigationItem.rightBarButtonItem?.menu = menu
-
        // tap gesture on dimmed view to dismiss
        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleCloseAction))
-       dimmedView.addGestureRecognizer(tapGesture)
-       
-       changeCategoryButton.addTarget(self, action: #selector(changeCategory), for: .touchDown)
+       dimmedView.addGestureRecognizer(tapGesture)       
+       createSubTaskButton.addTarget(self, action: #selector(createSubTask), for: .touchDown)
    }
-
     
-    @objc func categoryButtonTapped(_ sender: Any) {
-        
+    //MARK: Add new subtask to the arraylist
+    @objc func createSubTask() {
+        dueDatePicker.datePickerMode = .time
+                
+        let subtask = SubTask(title: subTaskNameText.text!, dueDate: dueDatePicker.date)
+        subtaskDelegate.addSubTask(subTask: subtask)
         handleCloseAction()
     }
-    
-    @objc func changeCategory() {
-        noteViewControllerDelegate.noteTableView.reloadData()
-
-        handleCloseAction()
-    }
-    
        
-   @objc func handleCloseAction() {
-       animateDismissView()
-   }
-   
-   override func viewDidAppear(_ animated: Bool) {
-       super.viewDidAppear(animated)
-       animateShowDimmedView()
-       animatePresentContainer()
-   }
-   
-   func setupView() {
-       view.backgroundColor = .clear
-   }
+       @objc func handleCloseAction() {
+           animateDismissView()
+       }
        
-    private func delayMenuImageLoading(with interval: TimeInterval, useDeferredMenu: Bool = false) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + interval) {
-            self.navigationItem.rightBarButtonItem?.menu = self.menu
-            self.categoryButton.menu = self.menu
-        }
-    }
-    
+       override func viewDidAppear(_ animated: Bool) {
+           super.viewDidAppear(animated)
+           animateShowDimmedView()
+           animatePresentContainer()
+       }
+       
+       func setupView() {
+           view.backgroundColor = .clear
+       }
+       
    func setupConstraints() {
        // Add subviews
        view.addSubview(dimmedView)

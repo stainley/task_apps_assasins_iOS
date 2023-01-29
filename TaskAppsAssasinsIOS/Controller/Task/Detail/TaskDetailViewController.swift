@@ -31,53 +31,17 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     @IBOutlet weak var recordAudioButton: UIBarButtonItem!
     @IBOutlet weak var imageSectionLabel: UILabel!
     @IBOutlet weak var audioTableView: UITableView!
-   // @IBOutlet var catagoryCollection: [UIButton] = []
-    //@IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var subTaskTableView: UITableView!
-    
     @IBOutlet weak var titleTaskTxt: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /*
-        //categories  = self.fetchAllCategory()
-        for category in categories {
-            //let categoryItemButton = UIButton(frame: CGRect(x: 0, y: 0, width: categoryButton.frame.width, height: 40))
-            //categoryItemButton.setTitle("\(category.name ?? "")", for: .normal)
-            //categoryItemButton.setTitleColor(.black, for: .normal)
-            //categoryItemButton.addTarget(self, action: #selector(categoryItemButtonTapped), for: .touchUpInside)
-           
-            if categorySelected == category.name {
-                categoryItemButton.backgroundColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
-            }
-            catagoryCollection.append(categoryItemButton)
-            if let stackView = categoryButton.superview as? UIStackView{
-                stackView.addArrangedSubview(categoryItemButton)
-            }
-        }
-             */
-        /*
-        catagoryCollection.forEach{ (btn) in
-            btn.isHidden = true
-            btn.alpha = 0
-        }
-        
-        categoryButton.backgroundColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
-        categoryButton.layer.cornerRadius = 6
-        categoryButton.contentHorizontalAlignment = .left
-        categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
-        */
         
         pictureCollectionView.delegate = self
         pictureCollectionView.dataSource = self
         
         let nib = UINib(nibName: "PictureCollectionViewCell", bundle: nil)
         pictureCollectionView.register(nib, forCellWithReuseIdentifier: "pictureCell")
-        
-        //imageSectionLabel.isHidden = true
-       // pictureCollectionView.superview?.isHidden = true
-      
         if pictures.count > 0 {
             pictureCollectionView.reloadData()
             imageSectionLabel.isHidden = false
@@ -97,18 +61,6 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         titleTaskTxt.text = title
         
     }
-    
-//    @IBAction func categoryButtonTapped(_ sender: Any) {
-//        catagoryCollection.forEach{ (btn) in
-//            UIView.animate(withDuration: 0.7, animations: loadViewIfNeeded) {_ in
-//                btn.layer.borderColor = UIColor.lightGray.cgColor
-//                btn.layer.borderWidth = 0.25
-//                btn.isHidden = !btn.isHidden
-//                btn.alpha = btn.alpha == 0 ? 1 : 0
-//                btn.layoutIfNeeded()
-//            }
-//        }
-//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         
@@ -141,18 +93,7 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     @objc func scrubleAction(_ sender: UISlider) {
        // sender.maximumValue = Float(player!.duration)
     }
-    
-//    @objc func categoryItemButtonTapped(sender: UIButton!) {
-//
-//        catagoryCollection.forEach{ (btn) in
-//            btn.backgroundColor = .none
-//        }
-//        sender.backgroundColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
-//        categorySelected = sender.titleLabel?.text ?? ""
-//        categoryButton.setTitle("Category: \(categorySelected)", for: .normal)
-//        categoryButtonTapped(sender!)
-//    }
-    
+
     // MARK: Add a new sub task
     func addSubTask(subTask: SubTask) {
       
@@ -164,8 +105,6 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         subTaskTableView.reloadData()
     }
 }
-
-
 
 extension Date {
     func toString( dateFormat format  : String ) -> String {
