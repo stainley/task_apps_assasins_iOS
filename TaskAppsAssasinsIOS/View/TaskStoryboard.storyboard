@@ -21,12 +21,38 @@
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qu4-BE-zWj">
                                 <rect key="frame" x="10" y="57" width="370" height="34"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8Xg-S3-EkI">
-                                        <rect key="frame" x="0.0" y="1.6666666666666625" width="44" height="31.000000000000007"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XNr-Ij-seV">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="34"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8Xg-S3-EkI">
+                                                <rect key="frame" x="0.0" y="1.6666666666666625" width="44" height="31.000000000000007"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="wk0-bR-FqS"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2HK-0N-QPd">
+                                                <rect key="frame" x="0.0" y="0.0" width="44" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="RhU-cP-lMB"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" "/>
+                                                <connections>
+                                                    <action selector="taskCheckMarkButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="6hE-GU-Unv"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="wk0-bR-FqS"/>
+                                            <constraint firstItem="2HK-0N-QPd" firstAttribute="leading" secondItem="8Xg-S3-EkI" secondAttribute="leading" id="EgY-fe-JjH"/>
+                                            <constraint firstAttribute="bottom" secondItem="8Xg-S3-EkI" secondAttribute="bottom" id="FQc-dp-2iM"/>
+                                            <constraint firstItem="8Xg-S3-EkI" firstAttribute="top" secondItem="XNr-Ij-seV" secondAttribute="top" id="UHh-0E-c6o"/>
+                                            <constraint firstItem="2HK-0N-QPd" firstAttribute="bottom" secondItem="8Xg-S3-EkI" secondAttribute="bottom" id="VcW-ub-V9d"/>
+                                            <constraint firstItem="8Xg-S3-EkI" firstAttribute="leading" secondItem="XNr-Ij-seV" secondAttribute="leading" id="aZm-VV-Zr4"/>
+                                            <constraint firstItem="2HK-0N-QPd" firstAttribute="top" secondItem="8Xg-S3-EkI" secondAttribute="top" id="g0K-mM-2kE"/>
+                                            <constraint firstAttribute="width" constant="44" id="h8b-t1-vHf"/>
                                         </constraints>
-                                    </imageView>
+                                    </view>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="850-Nq-1ze">
                                         <rect key="frame" x="44" y="0.0" width="326" height="34"/>
                                         <constraints>
@@ -263,6 +289,8 @@
                         <outlet property="pictureCollectionView" destination="Lh8-Rl-0qJ" id="BZ3-8d-lUa"/>
                         <outlet property="recordAudioButton" destination="igu-by-2Cc" id="v4m-Wl-CP7"/>
                         <outlet property="subTaskTableView" destination="nTI-BA-o3C" id="zdk-fD-8Ez"/>
+                        <outlet property="taskCheckMarkButton" destination="2HK-0N-QPd" id="Ymb-2x-KPH"/>
+                        <outlet property="taskCheckMarkImage" destination="8Xg-S3-EkI" id="c5s-4h-fOE"/>
                         <outlet property="taskDueDatePicker" destination="5p7-A7-m7G" id="tR5-Nh-mAc"/>
                         <outlet property="titleTaskTxt" destination="850-Nq-1ze" id="fyh-E2-LYv"/>
                     </connections>

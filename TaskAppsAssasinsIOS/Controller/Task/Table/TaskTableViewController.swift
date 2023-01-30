@@ -20,7 +20,6 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
         var totalSubtaskCompleted = 0
         var isAllSubtaskCompleted = true
         
-        cell.taskCheckmarkImage.image = UIImage(systemName: "checkmark.square")
         cell.titleLabel.text = filteredTasks[indexPath.row].title
         
         if let creation = filteredTasks[indexPath.row].creationDate {
@@ -44,6 +43,17 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
         if let dueDate =  tasks[indexPath.row].taskDueDate {
             if filteredTasks[indexPath.row].subtasks?.count == 0 {
                 cell.dueDateLabel.text = "Due: \(dueDate.toString(dateFormat: "MMMM dd, yyyy 'on' h:mm:ss a"))"
+                
+                if tasks[indexPath.row].isCompleted == true {
+                    cell.taskColorIndicatorView?.backgroundColor = .systemGreen
+                }
+                else {
+                    cell.taskColorIndicatorView?.backgroundColor = .systemBlue
+                    
+                    if (dueDate.timeIntervalSinceNow.sign == .minus) {
+                        cell.taskColorIndicatorView?.backgroundColor = .systemRed
+                    }
+                }
             }
             else {
                 let lastDate = getSubTaskDueDate(predicate: NSPredicate(format: "task_parent.title=%@", filteredTasks[indexPath.row].title!))
@@ -78,6 +88,10 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
             else {
                 cell.completedCounterLabel.text = "\(totalSubtaskCompleted)/\(filteredTasks[indexPath.row].subtasks?.count ?? 0)"
             }
+        }
+        
+        if tasks[indexPath.row].isCompleted == true {
+            cell.taskCheckmarkImage.image = UIImage(systemName: "checkmark.square")
         }
         
         return cell
