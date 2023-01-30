@@ -19,9 +19,9 @@ extension TaskViewController: UISearchBarDelegate {
         } else {
             for task in tasks {
                
-                if ((task.title?.lowercased().contains(searchText.lowercased())) != nil) {
+                if task.title!.lowercased().contains(searchText.lowercased()) {
                     filteredTasks.append(task)
-                    view.isUserInteractionEnabled = false
+                    view.isUserInteractionEnabled = true
                 }
             }
         }

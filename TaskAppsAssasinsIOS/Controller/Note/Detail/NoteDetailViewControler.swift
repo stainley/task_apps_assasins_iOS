@@ -11,6 +11,8 @@ import CoreLocation
 
 class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudioRecorderDelegate {
     
+    @IBOutlet weak var audioGroupView: CustomUIView!
+    @IBOutlet weak var mapButton: UIBarButtonItem!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var catagory: UIButton!
     @IBOutlet var catagoryCollection: [UIButton]!
@@ -22,6 +24,7 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     var scrubber: [UISlider] = []
     var audioPlayButton: [UIButton] = []
+    var audioTimeLabel: [UILabel] = []
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate: NoteViewController?
@@ -98,6 +101,9 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         pictureCollectionView.superview?.isHidden = true
         setUpDoubleTap()
         
+        titleTextField.delegate = self
+        noteTextField.delegate = self
+        
         // PREPARE FOR RECORDING AUDIO
         loadRecordingFuntionality()
         
@@ -135,6 +141,21 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         titleTextField.text = note.title
         noteTextField.text = note.noteDescription
         placeholderLabel.text = ""
+     
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        mapButton.isEnabled = false
+        if note != nil {
+            mapButton.isEnabled = true
+        }
+        
+        if audioPath.count == 0 {
+            audioGroupView.isHidden = true
+        } else {
+            audioGroupView.isHidden = false
+        }
     }
      
     // Send to NoteViewController and persist into Core Data
@@ -163,7 +184,9 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     @objc func updateScrubber(sender: Timer) {
         let index = sender.userInfo as! Int
-        scrubber[index].value = Float(player!.currentTime)
+        let audioTime = Float(player!.currentTime)
+        scrubber[index].value = audioTime
+        audioTimeLabel[index].text =  player!.currentTime.stringFromTimeInterval()
         
         if scrubber[index].value == scrubber[index].minimumValue {
  
@@ -178,9 +201,30 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
 
 }
     
-extension NoteDetailViewController : UITextViewDelegate {
+extension NoteDetailViewController : UITextViewDelegate, UITextFieldDelegate {
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
     }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }
+
+extension TimeInterval{
+
+    func stringFromTimeInterval() -> String {
+
+            let time = NSInteger(self)
+
+            //let ms = Int((self.truncatingRemainder(dividingBy: 1)) * 1000)
+            let seconds = time % 60
+            let minutes = (time / 60) % 60
+
+            return String(format: "%0.2d:%0.2d",minutes,seconds)
+
+        }
+    }
 

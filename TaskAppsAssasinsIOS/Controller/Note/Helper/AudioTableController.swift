@@ -17,6 +17,10 @@ extension NoteDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let audioPlayerCell = tableView.dequeueReusableCell(withIdentifier: "audioPlayerCell", for: indexPath) as! AudioCustomTableViewCell
     
+        // number of audio
+        audioPlayerCell.audioIndexLabel.text = "\(indexPath.row + 1)"
+        let audioTime = audioPlayerCell.audioLongLabel
+        
         let scrubble = audioPlayerCell.scrubber
         scrubble?.value = 0
         let play = audioPlayerCell.audioPlayButton
@@ -25,6 +29,9 @@ extension NoteDetailViewController: UITableViewDelegate, UITableViewDataSource {
         play!.addTarget(self, action: #selector(playAudio(_ : )), for: .touchDown)
         audioPlayButton.append(play!)
         scrubber.append(scrubble!)
+        
+        audioTimeLabel.append(audioTime!)
+
         return audioPlayerCell
     }
     
@@ -36,8 +43,8 @@ extension NoteDetailViewController: UITableViewDelegate, UITableViewDataSource {
             alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
                 tableView.beginUpdates()
                 self.deleteAudio(audioPath: self.audioPath[indexPath.row])
-                self.audioPath.remove(at: indexPath.row)
                 self.audioTableView.deleteRows(at: [indexPath], with: .fade)
+                self.audioPath.remove(at: indexPath.row)
                 self.audioTableView.endUpdates()
                 self.audioTableView.reloadData()
             }))

@@ -15,11 +15,6 @@ extension NoteDetailViewController {
         audioRecorder = nil
         recordAudioButton.image = UIImage(systemName: "mic")
 
-        if success {
-            //recordButton.setTitle("Tap to Re-record", for: .normal)
-        } else {
-            //recordButton.setTitle("Tap to record", for: .normal)
-        }
     }
 
 
@@ -66,6 +61,7 @@ extension NoteDetailViewController {
             audioRecorder = try AVAudioRecorder(url: audioFileURL, settings: settings)
             audioRecorder?.delegate = self
             audioRecorder?.record()
+            audioGroupView.isHidden = false
             recordAudioButton.image = UIImage(systemName: "stop.circle.fill")
         } catch {
             finishRecording(success: false)
@@ -104,14 +100,14 @@ extension NoteDetailViewController {
                 
                 try player = AVAudioPlayer(contentsOf: url as URL)
                 scrubber[sender.tag].maximumValue = Float(player!.duration)
-                                
+                
+                
                 player?.volume = 1.0
                 player?.play()
                 timer.invalidate()
 
 
                 timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber(sender: )), userInfo: sender.tag, repeats: true)
-                
 
             } catch {
                 print(error.localizedDescription)

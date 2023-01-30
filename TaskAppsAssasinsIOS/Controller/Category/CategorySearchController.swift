@@ -48,6 +48,13 @@ extension CategoryViewController: UISearchBarDelegate {
         activityIndicator.stopAnimating()
     }
     
+    func showScopeBar(_ show: Bool) {
+      /*guard  searchController.searchBar.showsScopeBar != show else { return }
+      searchController.searchBar.setShowsScope(show, animated: true)
+      view.setNeedsLayout()
+       */
+    }
+        
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
         searchBar.text = nil

@@ -34,16 +34,6 @@ class NoteViewController: UIViewController {
     var isNameAsc: Bool = true
     var isCreateDate: Bool = true
     
-    @IBAction func addNewNoteButton(_ sender: UIBarButtonItem) {
-        
-    }
-    
-    @IBAction func unwindToNote(_ unwindSegue: UIStoryboardSegue) {
-        _ = unwindSegue.source
-        // Use data from the view controller which initiated the unwind segue
-        saveNote()
-    }
-    
     @IBAction func noteFilterButton(_ sender: UIBarButtonItem) {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
@@ -108,10 +98,7 @@ class NoteViewController: UIViewController {
         
         if let destination = segue.destination as? NoteDetailViewController {
             destination.delegate = self
-
-          
             picturesEntity = loadImagesByNote()
-
             loadAudiosByNote()
         }
     }

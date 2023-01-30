@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M1e-tZ-MUC">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -26,7 +25,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="16" id="lfo-mW-vyM">
                                             <size key="itemSize" width="160" height="160"/>
-                                            <size key="estimatedItemSize" width="160" height="160"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="24" minY="16" maxX="24" maxY="16"/>
@@ -44,8 +42,8 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfM-BL-QgS">
-                                                            <rect key="frame" x="5" y="91" width="147" height="49"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfM-BL-QgS">
+                                                            <rect key="frame" x="6" y="111" width="148" height="49"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="147" id="Hro-v1-gQ2"/>
                                                                 <constraint firstAttribute="width" secondItem="vfM-BL-QgS" secondAttribute="height" multiplier="3:1" id="NjA-0L-oEW"/>
@@ -170,7 +168,7 @@
                                         <rect key="frame" x="10" y="64" width="370" height="29"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Iqd-co-Jyd">
-                                                <rect key="frame" x="0.0" y="-5" width="376.66666666666669" height="30"/>
+                                                <rect key="frame" x="0.0" y="-5" width="377" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Sort By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBT-hA-Xgp">
                                                         <rect key="frame" x="0.0" y="0.0" width="63.666666666666664" height="30"/>
@@ -182,10 +180,10 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NwF-Sy-Bh9">
-                                                        <rect key="frame" x="73.666666666666671" y="0.0" width="146.33333333333331" height="30"/>
+                                                        <rect key="frame" x="73.666666666666671" y="0.0" width="146.66666666666663" height="30"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZ7-t5-JPk">
-                                                                <rect key="frame" x="0.0" y="0.0" width="146.33333333333334" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="146.66666666666666" height="30"/>
                                                                 <color key="backgroundColor" name="AccentColor"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Button"/>
@@ -205,7 +203,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSU-RR-uai">
-                                                        <rect key="frame" x="230" y="0.0" width="146.66666666666663" height="30"/>
+                                                        <rect key="frame" x="230.33333333333337" y="0.0" width="146.66666666666663" height="30"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
@@ -297,7 +295,7 @@
                                         <rect key="frame" x="10" y="65" width="370" height="30"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pbz-Hf-kdB">
-                                                <rect key="frame" x="0.0" y="0.0" width="376.66666666666669" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="377" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Sort By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyT-X2-LiY">
                                                         <rect key="frame" x="0.0" y="0.0" width="63.666666666666664" height="30"/>
@@ -309,10 +307,10 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P2M-h2-xer">
-                                                        <rect key="frame" x="73.666666666666671" y="0.0" width="146.33333333333331" height="30"/>
+                                                        <rect key="frame" x="73.666666666666671" y="0.0" width="146.66666666666663" height="30"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEq-vL-khm">
-                                                                <rect key="frame" x="0.0" y="0.0" width="146.33333333333334" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="146.66666666666666" height="30"/>
                                                                 <color key="backgroundColor" name="AccentColor"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Button"/>
@@ -331,7 +329,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mwu-ja-9BJ">
-                                                        <rect key="frame" x="230" y="0.0" width="146.66666666666663" height="30"/>
+                                                        <rect key="frame" x="230.33333333333337" y="0.0" width="146.66666666666663" height="30"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>

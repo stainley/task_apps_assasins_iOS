@@ -46,8 +46,9 @@ extension TaskDetailViewController {
                let alertController = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: .actionSheet)
                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
-                   
-                   //self.deleteImage(data: self.pictures[selectedIndexPath.row].pngData()!)
+                                      
+                   deleteImage(pictureEntity: pictureEntities[selectedIndexPath.row])
+                   pictures.remove(at: selectedIndexPath.row)
                    
                    self.pictureCollectionView.reloadData()
 
