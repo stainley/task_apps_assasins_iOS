@@ -103,7 +103,6 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
                     alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                     alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
                         tableView.beginUpdates()
-                        //Remove contact from DB
                         
                         self.deleteTask(taskEntity: self.filteredTasks[indexPath.row])
                         self.saveTask()

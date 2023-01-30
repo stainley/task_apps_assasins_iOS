@@ -11,6 +11,7 @@ import CoreLocation
 
 class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudioRecorderDelegate {
     
+    @IBOutlet weak var audioGroupView: CustomUIView!
     @IBOutlet weak var mapButton: UIBarButtonItem!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var catagory: UIButton!
@@ -148,6 +149,12 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         mapButton.isEnabled = false
         if note != nil {
             mapButton.isEnabled = true
+        }
+        
+        if audioPath.count == 0 {
+            audioGroupView.isHidden = true
+        } else {
+            audioGroupView.isHidden = false
         }
     }
      
