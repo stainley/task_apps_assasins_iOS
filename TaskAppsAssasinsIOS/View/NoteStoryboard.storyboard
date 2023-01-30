@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2ol-tj-Jzh">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -29,7 +30,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0YY-rX-Ajw" userLabel="Images View" customClass="CustomUIView" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0YY-rX-Ajw" userLabel="Images View" customClass="CustomUIView" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="374" width="390" height="108"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Images" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EX1-3H-TgV">
@@ -87,7 +88,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XFZ-kJ-gcs" userLabel="Audios View" customClass="CustomUIView" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XFZ-kJ-gcs" userLabel="Audios View" customClass="CustomUIView" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="498" width="390" height="286"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -179,6 +180,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="audioGroupView" destination="XFZ-kJ-gcs" id="vPv-Js-Cqb"/>
                         <outlet property="audioTableView" destination="9x9-nF-XVS" id="kzk-z9-yBm"/>
                         <outlet property="imageSectionLabel" destination="EX1-3H-TgV" id="W4g-ct-UFH"/>
                         <outlet property="mapButton" destination="1nd-Gx-blG" id="WPS-sp-7UR"/>
