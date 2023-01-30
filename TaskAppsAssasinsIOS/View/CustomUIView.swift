@@ -1,19 +1,24 @@
 //
-//  CategoryCustomView.swift
+//  CustomUIView.swift
 //  TaskAppsAssasinsIOS
 //
-//  Created by Stainley A Lebron R on 2023-01-15.
+//  Created by Stainley A Lebron R on 2023-01-29.
 //
 
 import UIKit
 
 @IBDesignable
-class CategoryCustomView : UIView {
+class CustomUIView: UIView {
+    
     
     @IBInspectable
     var cornerRadius: CGFloat = 0.0 {
         didSet {
+            layer.cornerCurve = .continuous
+            layer.masksToBounds = true
             layer.cornerRadius = cornerRadius
+            clipsToBounds = true
+            layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         }
     }
     
@@ -58,7 +63,5 @@ class CategoryCustomView : UIView {
             layer.borderColor = borderColor.cgColor
         }
     }
-    
-    
-    
 }
+

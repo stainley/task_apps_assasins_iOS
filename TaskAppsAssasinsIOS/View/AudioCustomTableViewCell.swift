@@ -14,8 +14,12 @@ class AudioCustomTableViewCell: UITableViewCell {
     
     @IBOutlet weak var scrubber: UISlider!
     
-    var audioIsPlaying: Bool = false
+    @IBOutlet weak var audioIndexLabel: UILabel!
     
+    @IBOutlet weak var audioLongLabel: UILabel!
+    
+    var audioIsPlaying: Bool = false
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

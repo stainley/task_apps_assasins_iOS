@@ -11,6 +11,7 @@ import CoreLocation
 
 class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudioRecorderDelegate {
     
+    @IBOutlet weak var mapButton: UIBarButtonItem!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var catagory: UIButton!
     @IBOutlet var catagoryCollection: [UIButton]!
@@ -20,12 +21,13 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     @IBOutlet weak var imageSectionLabel: UILabel!
     @IBOutlet weak var audioTableView: UITableView!
     
-    weak var scrubber: UISlider!
+    var scrubber: [UISlider] = []
+    var audioPlayButton: [UIButton] = []
+    var audioTimeLabel: [UILabel] = []
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate: NoteViewController?
     
-    // timer to update my scrubber
     var timer = Timer()
 
     var recordingSession: AVAudioSession!
@@ -35,10 +37,8 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     var pictureEntity: PictureEntity?
     var pictureEntities: [PictureEntity] = []
     
-    //var imageNote: UIImage?
     var pictures: [UIImage] = []
     var newPictures: [UIImage] = []
-    //var audios: [AVAudioRecorder] = []
     
     var audioPath: [String] = []
     var newAudioPath: [String] = []
@@ -78,10 +78,9 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         pictureCollectionView.delegate = self
         pictureCollectionView.dataSource = self
-        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -101,12 +100,13 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         pictureCollectionView.superview?.isHidden = true
         setUpDoubleTap()
         
-        /// PREPARE FOR RECORDING AUDIO
+        titleTextField.delegate = self
+        noteTextField.delegate = self
+        
+        // PREPARE FOR RECORDING AUDIO
         loadRecordingFuntionality()
         
-        if let scrubber = scrubber {
-            scrubber.minimumValue = 0
-        }
+
       
         if pictures.count > 0 {
             pictureCollectionView.reloadData()
@@ -124,7 +124,6 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         noteTextField.layer.borderColor = UIColor.lightGray.cgColor
         noteTextField.contentInset = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         noteTextField.delegate = self
-  
         placeholderLabel = UILabel()
         placeholderLabel.text = "Enter some text for desciption..."
         placeholderLabel.font = .italicSystemFont(ofSize: (noteTextField.font?.pointSize)!)
@@ -141,20 +140,15 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         titleTextField.text = note.title
         noteTextField.text = note.noteDescription
         placeholderLabel.text = ""
+     
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
-    @IBAction func CatagaryDropDown(_ sender: Any) {
-        catagoryCollection.forEach{ (btn) in
-            UIView.animate(withDuration: 0.7, animations: loadViewIfNeeded) {_ in
-                btn.isHidden = !btn.isHidden
-                btn.alpha = btn.alpha == 0 ? 1 : 0
-                btn.layoutIfNeeded()
-            }
+        mapButton.isEnabled = false
+        if note != nil {
+            mapButton.isEnabled = true
         }
-    }
-        
-    @IBAction func Catagary(_ sender: Any) {
-        
     }
      
     // Send to NoteViewController and persist into Core Data
@@ -181,19 +175,49 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         self.delegate?.saveNote(note: newNote, oldNoteEntity: note, newPictures: newPictures, newAudioPath: newAudioPath)
     }
     
-    @objc func updateScrubber() {
-        scrubber.value = Float(player!.currentTime)
-        if scrubber.value == scrubber.minimumValue {
-            //  isPlaying = false
-            //playBtn.image = UIImage(systemName: "play.fill")
+    @objc func updateScrubber(sender: Timer) {
+        let index = sender.userInfo as! Int
+        let audioTime = Float(player!.currentTime)
+        scrubber[index].value = audioTime
+        audioTimeLabel[index].text =  player!.currentTime.stringFromTimeInterval()
+        
+        if scrubber[index].value == scrubber[index].minimumValue {
+ 
+            audioPlayButton[index].setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
+            print("show button play")
+        }
+        
+        if scrubber[index].value == 0.0 {
+            timer.invalidate()
         }
     }
 
 }
     
-extension NoteDetailViewController : UITextViewDelegate {
+extension NoteDetailViewController : UITextViewDelegate, UITextFieldDelegate {
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
     }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }
+
+extension TimeInterval{
+
+    func stringFromTimeInterval() -> String {
+
+            let time = NSInteger(self)
+
+            //let ms = Int((self.truncatingRemainder(dividingBy: 1)) * 1000)
+            let seconds = time % 60
+            let minutes = (time / 60) % 60
+
+            return String(format: "%0.2d:%0.2d",minutes,seconds)
+
+        }
+    }
 

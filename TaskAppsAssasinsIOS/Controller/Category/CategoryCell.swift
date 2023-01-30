@@ -9,17 +9,17 @@ import UIKit
 
 class CategoryCell: UICollectionViewCell {
     
-    @IBOutlet weak var categoryLabel: UILabel!
-    
-    @IBOutlet weak var deleteCategoryButton: UIButton! {
+    @IBOutlet weak var categoryLabel: UILabel! {
         didSet {
-            // TODO: Aswin - Change toggle delete button icon
-            deleteCategoryButton.isEnabled.toggle()
-            deleteCategoryButton.isHidden.toggle()
+            categoryLabel.font = UIFont.preferredFont(forTextStyle: .body)
+            categoryLabel.adjustsFontForContentSizeCategory = true
         }
     }
-     
+    
+    @IBOutlet weak var folderImageView: UIImageView!
+    
     override class func awakeFromNib() {
        
-    }
+    }   
+   
 }

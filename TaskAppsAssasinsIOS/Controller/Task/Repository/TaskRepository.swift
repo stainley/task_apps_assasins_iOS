@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 extension TaskViewController {
  
@@ -28,7 +29,7 @@ extension TaskViewController {
         context.delete(taskEntity)
     }
     
-    func loadImagesByTask(predicate: NSPredicate? = nil) {
+    func loadImagesByTask(predicate: NSPredicate? = nil) -> [PictureEntity] {
         let request: NSFetchRequest<PictureEntity> = PictureEntity.fetchRequest()
        // let notePredicate = NSPredicate(format: "note_parent.title=%@", selectedCategory!.name!)
 
@@ -39,9 +40,9 @@ extension TaskViewController {
         } catch {
             print("An error had ocurred: \(error.localizedDescription)")
         }
+        return picturesEntity
     }
-    
-    // TODO: Elvin
+
     func loadAudiosByTask(predicate: NSPredicate? = nil) {
         let request: NSFetchRequest<AudioEntity> = AudioEntity.fetchRequest()
 
@@ -95,7 +96,7 @@ extension TaskViewController {
     
     
     // TODO: Elvin
-    func saveTask(task: Task, oldTaskEntity: TaskEntity? = nil) {
+    func saveTask(task: Task, oldTaskEntity: TaskEntity? = nil, newPictures: [UIImage], newAudioPath: [String]) {
         
         // Title must be required.
         if task.title == "" || task.title.isEmpty || (oldTaskEntity != nil && oldTaskEntity?.title == nil) {
@@ -103,7 +104,7 @@ extension TaskViewController {
         }
         
         if let oldTask = oldTaskEntity {
-            updateTask(updatedTask: task, oldTask: oldTask)
+            updateTask(updatedTask: task, oldTask: oldTask, newPictures: newPictures, newAudioPath: newAudioPath)
             return
         }
         
@@ -121,7 +122,7 @@ extension TaskViewController {
             pictureEntity.task_parent = newTask
             newTask.addToPictures(pictureEntity)
         }
-        
+
         // TODO: Save audio into the Database
         for audio in task.audios {
             let audioEntity = AudioEntity(context: context)
@@ -149,13 +150,30 @@ extension TaskViewController {
         taskTableView.reloadData()
     }
     
-    func updateTask(updatedTask: Task, oldTask: TaskEntity) {
+    func updateTask(updatedTask: Task, oldTask: TaskEntity, newPictures: [UIImage], newAudioPath: [String]) {
         oldTask.title = updatedTask.title
         
         if let dateCompleted = updatedTask.dateCompleted, let isCompleted = updatedTask.isComplete {
             oldTask.dateCompleted = dateCompleted as Date
             oldTask.isCompleted = isCompleted
         }
+        
+        // Save image to the Database
+        for picture in newPictures {
+            let pictureEntity = PictureEntity(context: context)
+            pictureEntity.picture = picture.pngData()!
+            pictureEntity.task_parent = oldTask
+            oldTask.addToPictures(pictureEntity)
+        }
+        
+        // Save audio into the Database
+        for audio in newAudioPath {
+            let audioEntity = AudioEntity(context: context)
+            audioEntity.audioPath = audio
+            audioEntity.task_parent = oldTask
+            oldTask.addToAudios(audioEntity)
+        }
+        
         oldTask.taskDueDate = updatedTask.dueDate
         if updatedTask.subTasks.count > 0 {
            

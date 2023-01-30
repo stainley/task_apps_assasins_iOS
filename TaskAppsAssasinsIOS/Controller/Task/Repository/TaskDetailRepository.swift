@@ -1,14 +1,14 @@
 //
-//  NoteDetailVCDao.swift
+//  TaskDetailRepository.swift
 //  TaskAppsAssasinsIOS
 //
-//  Created by Aswin Sasikanth Kanduri on 2023-01-26.
+//  Created by Ann Robles on 1/29/23.
 //
 
 import CoreData
 import UIKit
 
-extension NoteDetailViewController {
+extension TaskDetailViewController {
     
     func deleteAudio(audioPath: String) {
         var audiosEntity = [AudioEntity]()
@@ -33,3 +33,4 @@ extension NoteDetailViewController {
         context.delete(pictureEntity)
     }
 }
+

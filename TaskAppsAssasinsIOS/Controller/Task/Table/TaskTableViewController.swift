@@ -40,10 +40,7 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.taskCheckmarkImage?.image = UIImage(systemName: "square")
             }
         }
-        
-        // DUE DATE TASK is the last due date from subtask
-        //print("\(tasks[indexPath.row].title) \(tasks[indexPath.row].taskDueDate)")
-        
+
         if let dueDate =  tasks[indexPath.row].taskDueDate {
             if filteredTasks[indexPath.row].subtasks?.count == 0 {
                 cell.dueDateLabel.text = "Due: \(dueDate.toString(dateFormat: "MMMM dd, yyyy 'on' h:mm:ss a"))"
@@ -104,7 +101,6 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
                    
                              
                     alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-                    
                     alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
                         tableView.beginUpdates()
                         //Remove contact from DB
@@ -144,6 +140,20 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
         
             subTasks = loadSubTasksByTask(title: tasks[indexPath.row].title ?? "")
             taskDetailViewController.subTasksEntity = subTasks
+            guard let taskTitle = task.title else {
+                return
+            }
+            let byParent  =  NSPredicate(format: "task_parent.title == %@", taskTitle)
+            taskDetailViewController.pictureEntities = loadImagesByTask(predicate: byParent)
+            
+            for pic in picturesEntity {
+                taskDetailViewController.pictures.append(UIImage(data: pic.picture!)!)
+            }
+            
+            loadAudiosByTask(predicate: byParent)
+            for audio in audiosEntity {
+                taskDetailViewController.audioPath.append(audio.audioPath!)
+            }
             
             self.navigationController?.pushViewController(taskDetailViewController, animated: true)
         }

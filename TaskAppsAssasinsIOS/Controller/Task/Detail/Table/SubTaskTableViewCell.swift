@@ -8,7 +8,6 @@
 import UIKit
 
 protocol SubTaskTableViewCellDelegate {
-    //func selectDate(subTaskEntity: SubTaskEntity)
     func updateSubTaskStatus(index: Int, status: Bool)
 }
 
@@ -43,17 +42,13 @@ class SubTaskTableViewCell: UITableViewCell {
     }
     
     var subtask: SubTaskEntity?
-    
-    //var delegate: SubTaskTableViewCellDelegate?
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        print("sadfasdf")
-        // Configure the view for the selected state
     }
     
     @IBAction func datePickerButtonTapped(_ sender: Any) {

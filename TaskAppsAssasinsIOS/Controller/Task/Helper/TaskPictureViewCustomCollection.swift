@@ -1,15 +1,15 @@
 //
-//  PictureViewCustomCollection.swift
+//  TaskPictureViewCustomCollection.swift
 //  TaskAppsAssasinsIOS
 //
-//  Created by Stainley A Lebron R on 2023-01-24.
+//  Created by Ann Robles on 1/27/23.
 //
 
 import Foundation
 import UIKit
 
 
-extension NoteDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension TaskDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -30,7 +30,7 @@ extension NoteDetailViewController: UICollectionViewDataSource, UICollectionView
     
 }
 
-extension NoteDetailViewController {
+extension TaskDetailViewController {
     func setUpDoubleTap() {
       doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(didDoubleTapCollectionView))
       doubleTapGesture.numberOfTapsRequired = 2
@@ -41,15 +41,14 @@ extension NoteDetailViewController {
     @objc func didDoubleTapCollectionView() {
            let pointInCollectionView = doubleTapGesture.location(in: pictureCollectionView)
            if let selectedIndexPath = pictureCollectionView.indexPathForItem(at: pointInCollectionView) {
-               _ = pictureCollectionView.cellForItem(at: selectedIndexPath)
+               let selectedCell = pictureCollectionView.cellForItem(at: selectedIndexPath)
                
                let alertController = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: .actionSheet)
                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
                    
-                   _ = pictures[selectedIndexPath.row].pngData()
-                   deleteImage(pictureEntity: pictureEntities[selectedIndexPath.row])
-                   pictures.remove(at: selectedIndexPath.row)
+                   //self.deleteImage(data: self.pictures[selectedIndexPath.row].pngData()!)
+                   
                    self.pictureCollectionView.reloadData()
 
                }))
@@ -58,3 +57,4 @@ extension NoteDetailViewController {
            }
        }
 }
+

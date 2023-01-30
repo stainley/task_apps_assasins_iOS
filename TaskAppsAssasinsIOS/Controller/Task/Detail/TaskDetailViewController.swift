@@ -10,7 +10,7 @@ import CoreData
 import AVFoundation
 import CoreLocation
 
-class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudioRecorderDelegate  {
+class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudioRecorderDelegate, UITextFieldDelegate  {
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate: TaskViewController?
@@ -22,8 +22,23 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     var subTasksEntity: [SubTaskEntity] = [SubTaskEntity]()
 
+    var pictureEntity: PictureEntity?
+    var pictureEntities: [PictureEntity] = [PictureEntity]()
     var pictures: [UIImage] = []
     var newPictures: [UIImage] = []
+    var doubleTapGesture: UITapGestureRecognizer!
+    
+    var audioTimeLabel: [UILabel] = []
+
+    var player: AVAudioPlayer?
+    var recordingSession: AVAudioSession!
+    var audioRecorder: AVAudioRecorder?
+    var timer = Timer()
+    var scrubber: [UISlider] = []
+    var audioPlayButton: [UIButton] = []
+    var audioPath: [String] = []
+    var newAudioPath: [String] = []
+    var soundURL: String?
     
     @IBOutlet weak var taskDueDatePicker: UIDatePicker!
     @IBOutlet weak var completedTaskCounterLabel: UILabel!
@@ -31,10 +46,7 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     @IBOutlet weak var recordAudioButton: UIBarButtonItem!
     @IBOutlet weak var imageSectionLabel: UILabel!
     @IBOutlet weak var audioTableView: UITableView!
-   // @IBOutlet var catagoryCollection: [UIButton] = []
-    //@IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var subTaskTableView: UITableView!
-    
     @IBOutlet weak var titleTaskTxt: UITextField!
     
     override func viewDidLoad() {
@@ -42,18 +54,33 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         
         pictureCollectionView.delegate = self
         pictureCollectionView.dataSource = self
+        imageSectionLabel.isHidden = true
+        pictureCollectionView.superview?.isHidden = true
+        setUpDoubleTap()
+        titleTaskTxt.delegate = self
         
         let nib = UINib(nibName: "PictureCollectionViewCell", bundle: nil)
         pictureCollectionView.register(nib, forCellWithReuseIdentifier: "pictureCell")
         
-        //imageSectionLabel.isHidden = true
-       // pictureCollectionView.superview?.isHidden = true
-      
         if pictures.count > 0 {
             pictureCollectionView.reloadData()
             imageSectionLabel.isHidden = false
             imageSectionLabel.isHidden = false
             pictureCollectionView.superview?.isHidden = false
+        }
+        
+        audioTableView.delegate = self
+        audioTableView.dataSource = self
+        
+        let nibAudioTable = UINib(nibName: "AudioCustomTableViewCell", bundle: nil)
+        audioTableView.register(nibAudioTable, forCellReuseIdentifier: "audioPlayerCell")
+        
+        // PREPARE FOR RECORDING AUDIO
+        loadRecordingFuntionality()
+        
+        print("audioPathaa \(audioPath.count)")
+        if audioPath.count > 0 {
+            audioTableView.reloadData()
         }
         
         let subTaskTableViewCell = UINib(nibName: "SubTaskTableViewCell", bundle: nil)
@@ -67,6 +94,10 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         }
         titleTaskTxt.text = title
         
+        if subTasksEntity.count > 0 {
+            taskDueDatePicker.isEnabled = false
+            taskDueDatePicker.isHidden = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,7 +107,20 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         newTask.dueDate = taskDueDatePicker.date
         newTask.subTasks = subTasksEntity
 
-        self.delegate?.saveTask(task: newTask, oldTaskEntity: task)
+        if pictures.count > 0 {
+            for imageData in pictures {
+                newTask.pictures.append(imageData.pngData()!)
+            }
+        }
+        
+        if audioPath.count > 0 {
+            for audioData in audioPath {
+                newTask.audios.append(audioData)
+            }
+        }
+        taskDueDatePicker.isEnabled = true
+        taskDueDatePicker.isHidden = false
+        self.delegate?.saveTask(task: newTask, oldTaskEntity: task, newPictures: newPictures, newAudioPath: newAudioPath)
     }
     
     // Add SubTasks
@@ -94,7 +138,7 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     }
     
     @IBAction func recordAudioButoon(_ sender: UIBarButtonItem) {
-        //recordTapped()
+        recordTapped()
     }
 
     @objc func scrubleAction(_ sender: UISlider) {
@@ -109,11 +153,35 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         newSubTask.dueDate = subTask.dueDate
         newSubTask.status = false
         subTasksEntity.append(newSubTask)
+        
+        taskDueDatePicker.isEnabled = false
+        taskDueDatePicker.isHidden = true
+        
         subTaskTableView.reloadData()
     }
+    
+    @objc func updateScrubber(sender: Timer) {
+        let index = sender.userInfo as! Int
+        let audioTime = Float(player!.currentTime)
+        scrubber[index].value = audioTime
+
+        audioTimeLabel[index].text =  player!.currentTime.stringFromTimeInterval()
+        if scrubber[index].value == scrubber[index].minimumValue {
+ 
+            audioPlayButton[index].setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
+            print("show button play")
+        }
+        
+        if scrubber[index].value == 0.0 {
+            timer.invalidate()
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }
-
-
 
 extension Date {
     func toString( dateFormat format  : String ) -> String {

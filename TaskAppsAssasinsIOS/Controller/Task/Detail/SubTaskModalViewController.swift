@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SubTaskModalViewController: UIViewController {
+class SubTaskModalViewController: UIViewController, UITextFieldDelegate {
     
     var subtaskDelegate: TaskDetailViewController!
     
@@ -44,7 +44,7 @@ class SubTaskModalViewController: UIViewController {
        
    lazy var contentStackView: UIStackView = {
        let spacer = UIView()
-       let stackView = UIStackView(arrangedSubviews: [titleLabel, subTaskNameText, dueDatePicker, spacer, createSubTaskButton])
+       let stackView = UIStackView(arrangedSubviews: [titleLabel, subTaskNameText, dueDatePicker, spacer, createSubTaskButton, spacer])
        stackView.axis = .vertical
        stackView.spacing = 12.0
        return stackView
@@ -67,11 +67,11 @@ class SubTaskModalViewController: UIViewController {
    }()
        
    // Constants
-   let defaultHeight: CGFloat = 300
-   let dismissibleHeight: CGFloat = 200
+   let defaultHeight: CGFloat = 450
+   let dismissibleHeight: CGFloat = 300
    let maximumContainerHeight: CGFloat = UIScreen.main.bounds.height - 34
    // keep current new height, initial is default height
-   var currentContainerHeight: CGFloat = 300
+   var currentContainerHeight: CGFloat = 450
    
    // Dynamic container constraint
    var containerViewHeightConstraint: NSLayoutConstraint?
@@ -82,10 +82,10 @@ class SubTaskModalViewController: UIViewController {
        setupView()
        setupConstraints()
        // tap gesture on dimmed view to dismiss
+       //initialSetup()
+       subTaskNameText.delegate = self
        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleCloseAction))
-       dimmedView.addGestureRecognizer(tapGesture)
-       //setupPanGesture()
-       
+       dimmedView.addGestureRecognizer(tapGesture)       
        createSubTaskButton.addTarget(self, action: #selector(createSubTask), for: .touchDown)
    }
     
@@ -152,6 +152,11 @@ class SubTaskModalViewController: UIViewController {
        containerViewHeightConstraint?.isActive = true
        containerViewBottomConstraint?.isActive = true
    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 
    func animateContainerHeight(_ height: CGFloat) {
        UIView.animate(withDuration: 0.4) {
