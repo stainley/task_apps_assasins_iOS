@@ -20,7 +20,9 @@ extension NoteDetailViewController {
             request.predicate = predicate
             
             audiosEntity = try context.fetch(request)
-            context.delete(audiosEntity[0])
+            if audiosEntity.count > 0 {
+                context.delete(audiosEntity[0])
+            }
         }
         catch {
             

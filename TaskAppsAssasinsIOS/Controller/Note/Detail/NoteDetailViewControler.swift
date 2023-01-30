@@ -11,6 +11,7 @@ import CoreLocation
 
 class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudioRecorderDelegate {
     
+    @IBOutlet weak var mapButton: UIBarButtonItem!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var catagory: UIButton!
     @IBOutlet var catagoryCollection: [UIButton]!
@@ -139,6 +140,15 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         titleTextField.text = note.title
         noteTextField.text = note.noteDescription
         placeholderLabel.text = ""
+     
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        mapButton.isEnabled = false
+        if note != nil {
+            mapButton.isEnabled = true
+        }
     }
      
     // Send to NoteViewController and persist into Core Data
