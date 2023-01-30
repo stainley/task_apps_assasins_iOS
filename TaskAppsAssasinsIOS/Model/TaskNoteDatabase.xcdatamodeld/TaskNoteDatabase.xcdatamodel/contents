@@ -22,7 +22,7 @@
         <relationship name="pictures" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PictureEntity" inverseName="note_parent" inverseEntity="PictureEntity"/>
     </entity>
     <entity name="PictureEntity" representedClassName="PictureEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="picture" optional="YES" attributeType="Binary"/>
+        <attribute name="picture" optional="YES" attributeType="Binary" storedInTruthFile="YES"/>
         <attribute name="pictureId" optional="YES" attributeType="String"/>
         <relationship name="note_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteEntity" inverseName="pictures" inverseEntity="NoteEntity"/>
         <relationship name="task_parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="pictures" inverseEntity="TaskEntity"/>
