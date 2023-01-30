@@ -106,6 +106,10 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         if task?.isCompleted == true {
             taskCheckMarkImage.image = UIImage(systemName: "checkmark.square")
         }
+        
+        if task != nil {
+            taskDueDatePicker.date = (task?.taskDueDate)!
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -126,6 +130,7 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
                 newTask.audios.append(audioData)
             }
         }
+        
         taskDueDatePicker.isEnabled = true
         taskDueDatePicker.isHidden = false
         self.delegate?.saveTask(task: newTask, oldTaskEntity: task, newPictures: newPictures, newAudioPath: newAudioPath)
