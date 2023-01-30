@@ -109,7 +109,25 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension TaskDetailViewController: SubTaskTableViewCellDelegate {
     func updateSubTaskStatus(index: Int, status: Bool) {
+        var totalSubtaskCompleted = 0
+        
         self.subTasksEntity[index].status = status
+        
+        for subtask in self.subTasksEntity {
+            if (subtask ).status == true {
+                totalSubtaskCompleted += 1
+            }
+        }
+        
+        if totalSubtaskCompleted == self.subTasksEntity.count {
+            self.task?.isCompleted = true
+            taskCheckMarkImage.image = UIImage(systemName: "checkmark.square")
+        }
+        else {
+            self.task?.isCompleted = false
+            taskCheckMarkImage.image = UIImage(systemName: "square.fill")
+        }
+        
         self.delegate?.saveTask()
     }
 }
