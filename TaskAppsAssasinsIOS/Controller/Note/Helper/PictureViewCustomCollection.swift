@@ -47,7 +47,6 @@ extension NoteDetailViewController {
                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
                    
-                   _ = pictures[selectedIndexPath.row].pngData()
                    deleteImage(pictureEntity: pictureEntities[selectedIndexPath.row])
                    pictures.remove(at: selectedIndexPath.row)
                    self.pictureCollectionView.reloadData()
