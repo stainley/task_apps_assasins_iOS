@@ -18,14 +18,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="850-Nq-1ze">
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qu4-BE-zWj">
                                 <rect key="frame" x="10" y="57" width="370" height="34"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8Xg-S3-EkI">
+                                        <rect key="frame" x="0.0" y="1.6666666666666625" width="44" height="31.000000000000007"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="wk0-bR-FqS"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="850-Nq-1ze">
+                                        <rect key="frame" x="44" y="0.0" width="326" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="7Oo-jS-dfp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="7Oo-jS-dfp"/>
+                                    <constraint firstAttribute="trailing" secondItem="850-Nq-1ze" secondAttribute="trailing" id="dsG-bL-Qep"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-bk-CfL">
                                 <rect key="frame" x="10" y="101" width="370" height="346"/>
                                 <subviews>
@@ -229,18 +243,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="fx0-nv-K0J" firstAttribute="bottom" secondItem="DSm-Jv-O8D" secondAttribute="top" id="160-ow-IHp"/>
-                            <constraint firstItem="850-Nq-1ze" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="4Nq-9u-bJ4"/>
                             <constraint firstAttribute="bottomMargin" secondItem="DSm-Jv-O8D" secondAttribute="bottom" constant="-28" id="5Mm-FW-d22"/>
                             <constraint firstItem="fx0-nv-K0J" firstAttribute="centerX" secondItem="8ed-bk-CfL" secondAttribute="centerX" id="8co-cW-UvG"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="850-Nq-1ze" secondAttribute="trailing" constant="10" id="FHP-nS-h4t"/>
+                            <constraint firstItem="qu4-BE-zWj" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="BBG-RS-xJw"/>
                             <constraint firstItem="8ed-bk-CfL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="G3P-ah-z66"/>
+                            <constraint firstItem="8ed-bk-CfL" firstAttribute="top" secondItem="qu4-BE-zWj" secondAttribute="bottom" constant="10" id="I6z-aS-ZEp"/>
                             <constraint firstItem="fx0-nv-K0J" firstAttribute="top" secondItem="8ed-bk-CfL" secondAttribute="bottom" constant="23" id="Mgt-if-FpQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8ed-bk-CfL" secondAttribute="trailing" constant="10" id="NY3-Ts-vAO"/>
                             <constraint firstItem="fx0-nv-K0J" firstAttribute="trailing" secondItem="DSm-Jv-O8D" secondAttribute="trailing" id="Wmc-Ql-GoG"/>
-                            <constraint firstItem="850-Nq-1ze" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="ddI-ha-nLz"/>
+                            <constraint firstItem="qu4-BE-zWj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="XMQ-Da-5nm"/>
                             <constraint firstItem="DSm-Jv-O8D" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="phB-kj-Usp"/>
                             <constraint firstItem="DSm-Jv-O8D" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="2" id="wX6-kE-Vvb"/>
-                            <constraint firstItem="8ed-bk-CfL" firstAttribute="top" secondItem="850-Nq-1ze" secondAttribute="bottom" constant="10" id="yfq-rJ-VD9"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="qu4-BE-zWj" secondAttribute="trailing" constant="10" id="wt8-bQ-m2W"/>
                         </constraints>
                     </view>
                     <connections>
@@ -261,6 +275,7 @@
     <resources>
         <image name="mic" catalog="system" width="110" height="128"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
+        <image name="square" catalog="system" width="128" height="114"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
