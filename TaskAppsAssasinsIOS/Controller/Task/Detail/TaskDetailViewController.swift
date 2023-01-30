@@ -48,6 +48,8 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     @IBOutlet weak var audioTableView: UITableView!
     @IBOutlet weak var subTaskTableView: UITableView!
     @IBOutlet weak var titleTaskTxt: UITextField!
+    @IBOutlet weak var taskCheckMarkImage: UIImageView!
+    @IBOutlet weak var taskCheckMarkButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,6 +99,12 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         if subTasksEntity.count > 0 {
             taskDueDatePicker.isEnabled = false
             taskDueDatePicker.isHidden = true
+            taskCheckMarkButton.isEnabled = false
+            taskCheckMarkImage.image = UIImage(systemName: "square.fill")
+        }
+        
+        if task?.isCompleted == true {
+            taskCheckMarkImage.image = UIImage(systemName: "checkmark.square")
         }
     }
     
@@ -128,6 +136,9 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
      
         let subTaskVC = SubTaskModalViewController()
         
+        self.task?.isCompleted = false
+        taskCheckMarkImage.image = UIImage(systemName: "square.fill")
+        
         subTaskVC.modalPresentationStyle = .overCurrentContext
         subTaskVC.subtaskDelegate = self
         self.present(subTaskVC, animated: false)
@@ -141,6 +152,16 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
         recordTapped()
     }
 
+    @IBAction func taskCheckMarkButtonTapped(_ sender: UIButton) {
+        task?.isCompleted = !(task?.isCompleted ?? false)
+        if task?.isCompleted == true {
+            taskCheckMarkImage.image = UIImage(systemName: "checkmark.square")
+        }
+        else {
+            taskCheckMarkImage.image = UIImage(systemName: "square")
+        }
+    }
+    
     @objc func scrubleAction(_ sender: UISlider) {
        // sender.maximumValue = Float(player!.duration)
     }
