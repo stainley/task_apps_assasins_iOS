@@ -16,7 +16,7 @@ class MapTaskNoteViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        map.isZoomEnabled = false
+        map.isZoomEnabled = true
         map.showsUserLocation = true
         
         map.delegate = self

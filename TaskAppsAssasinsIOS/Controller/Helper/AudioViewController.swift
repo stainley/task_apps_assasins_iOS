@@ -61,6 +61,7 @@ extension NoteDetailViewController {
             audioRecorder = try AVAudioRecorder(url: audioFileURL, settings: settings)
             audioRecorder?.delegate = self
             audioRecorder?.record()
+            audioGroupView.isHidden = false
             recordAudioButton.image = UIImage(systemName: "stop.circle.fill")
         } catch {
             finishRecording(success: false)
