@@ -43,8 +43,8 @@ extension NoteDetailViewController: UITableViewDelegate, UITableViewDataSource {
             alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
                 tableView.beginUpdates()
                 self.deleteAudio(audioPath: self.audioPath[indexPath.row])
-                self.audioPath.remove(at: indexPath.row)
                 self.audioTableView.deleteRows(at: [indexPath], with: .fade)
+                self.audioPath.remove(at: indexPath.row)
                 self.audioTableView.endUpdates()
                 self.audioTableView.reloadData()
             }))

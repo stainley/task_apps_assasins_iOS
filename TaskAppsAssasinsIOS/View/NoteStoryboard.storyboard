@@ -87,11 +87,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFZ-kJ-gcs" userLabel="Audios View" customClass="CustomUIView" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="498" width="390" height="271"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XFZ-kJ-gcs" userLabel="Audios View" customClass="CustomUIView" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="498" width="390" height="286"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9x9-nF-XVS">
-                                        <rect key="frame" x="0.0" y="24" width="390" height="263"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9x9-nF-XVS">
+                                        <rect key="frame" x="0.0" y="24" width="390" height="262"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="audioPlayerCell" id="ySK-TW-pTt" customClass="AudioCustomTableViewCell" customModule="TaskAppsAssasinsIOS" customModuleProvider="target">
@@ -113,9 +115,6 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="9x9-nF-XVS" secondAttribute="bottom" id="KWA-UP-Y2R"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="24"/>
@@ -141,7 +140,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7vc-rW-tEd">
-                                <rect key="frame" x="0.0" y="785" width="390" height="49"/>
+                                <rect key="frame" x="0.0" y="784" width="390" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <barButtonItem title="mic" image="mic" catalog="system" id="20H-0d-RgN">
@@ -168,16 +167,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cPC-KL-5HI" firstAttribute="top" secondItem="2MV-w9-pSw" secondAttribute="bottom" constant="8" id="8c1-Mb-d0n"/>
-                            <constraint firstItem="0YY-rX-Ajw" firstAttribute="trailing" secondItem="XFZ-kJ-gcs" secondAttribute="trailing" id="9n7-sd-Bd8"/>
                             <constraint firstAttribute="bottom" secondItem="0YY-rX-Ajw" secondAttribute="bottom" constant="362" id="C9W-hS-vrl"/>
-                            <constraint firstItem="XFZ-kJ-gcs" firstAttribute="top" secondItem="0YY-rX-Ajw" secondAttribute="bottom" constant="16" id="Ekj-Jz-rZF"/>
                             <constraint firstItem="0YY-rX-Ajw" firstAttribute="top" secondItem="AfI-Vm-wpB" secondAttribute="top" constant="374" id="HLS-gn-wyO"/>
                             <constraint firstItem="0YY-rX-Ajw" firstAttribute="top" secondItem="cPC-KL-5HI" secondAttribute="bottom" constant="9" id="Res-Xj-mmh"/>
                             <constraint firstItem="bXJ-JB-mE9" firstAttribute="trailing" secondItem="cPC-KL-5HI" secondAttribute="trailing" constant="8" id="TcM-83-v7a"/>
                             <constraint firstItem="0YY-rX-Ajw" firstAttribute="centerX" secondItem="AfI-Vm-wpB" secondAttribute="centerX" id="dO0-ET-9kh"/>
                             <constraint firstItem="cPC-KL-5HI" firstAttribute="leading" secondItem="bXJ-JB-mE9" secondAttribute="leading" constant="11" id="gVT-13-bz9"/>
-                            <constraint firstItem="0YY-rX-Ajw" firstAttribute="leading" secondItem="XFZ-kJ-gcs" secondAttribute="leading" id="kuD-df-foN"/>
-                            <constraint firstAttribute="bottom" secondItem="XFZ-kJ-gcs" secondAttribute="bottom" constant="75" id="mWi-TA-9XV"/>
                             <constraint firstItem="cPC-KL-5HI" firstAttribute="trailing" secondItem="2MV-w9-pSw" secondAttribute="trailing" id="p43-EB-gtD"/>
                             <constraint firstItem="0YY-rX-Ajw" firstAttribute="leading" secondItem="bXJ-JB-mE9" secondAttribute="leading" id="ypw-TT-chi"/>
                             <constraint firstItem="0YY-rX-Ajw" firstAttribute="centerX" secondItem="2MV-w9-pSw" secondAttribute="centerX" id="yxT-S9-CfU"/>
@@ -186,6 +181,7 @@
                     <connections>
                         <outlet property="audioTableView" destination="9x9-nF-XVS" id="kzk-z9-yBm"/>
                         <outlet property="imageSectionLabel" destination="EX1-3H-TgV" id="W4g-ct-UFH"/>
+                        <outlet property="mapButton" destination="1nd-Gx-blG" id="WPS-sp-7UR"/>
                         <outlet property="noteTextField" destination="cPC-KL-5HI" id="aq7-9H-5Kk"/>
                         <outlet property="pictureCollectionView" destination="0tY-1t-1yW" id="uFJ-ZV-ACD"/>
                         <outlet property="recordAudioButton" destination="20H-0d-RgN" id="BfJ-d7-ul9"/>
