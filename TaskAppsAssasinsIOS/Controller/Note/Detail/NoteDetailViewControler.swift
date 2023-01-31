@@ -161,25 +161,32 @@ class NoteDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     // Send to NoteViewController and persist into Core Data
     override func viewWillDisappear(_ animated: Bool) {
        
-        var newNote = Note(title: titleTextField.text ?? "", description: noteTextField.text)
+ 
         
-        if pictures.count > 0 {
-            for imageData in pictures {
-                newNote.pictures.append(imageData.pngData()!)
+        let savingWorker = DispatchWorkItem {
+            var newNote = Note(title: self.titleTextField.text ?? "", description: self.noteTextField.text)
+            
+            if self.pictures.count > 0 {
+                for imageData in self.pictures {
+                    newNote.pictures.append(imageData.pngData()!)
+                }
             }
-        }
-        
-        if audioPath.count > 0 {
-            for audioData in audioPath {
-                newNote.audios.append(audioData)
+            
+            if self.audioPath.count > 0 {
+                for audioData in self.audioPath {
+                    newNote.audios.append(audioData)
+                }
             }
+            
+            if self.coordinate != nil {
+                newNote.setCoordinate(latitude: self.coordinate?.latitude, longitude: self.coordinate?.longitude)
+            }
+            
+            self.delegate?.saveNote(note: newNote, oldNoteEntity: self.note, newPictures: self.newPictures, newAudioPath: self.newAudioPath)
         }
-        
-        if coordinate != nil {
-            newNote.setCoordinate(latitude: coordinate?.latitude, longitude: coordinate?.longitude)
-        }
-        
-        self.delegate?.saveNote(note: newNote, oldNoteEntity: note, newPictures: newPictures, newAudioPath: newAudioPath)
+                
+        DispatchQueue.main.async(execute: savingWorker)
+
     }
     
     @objc func updateScrubber(sender: Timer) {
