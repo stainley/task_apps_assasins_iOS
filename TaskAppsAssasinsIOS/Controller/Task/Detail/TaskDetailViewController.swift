@@ -114,26 +114,30 @@ class TaskDetailViewController: UIViewController, AVAudioPlayerDelegate,  AVAudi
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        var newTask = Task(title: titleTaskTxt.text ?? "")
-        // for new task pass the array of tasks
-        newTask.dueDate = taskDueDatePicker.date
-        newTask.subTasks = subTasksEntity
+        let savingWorker = DispatchWorkItem {
+            var newTask = Task(title: self.titleTaskTxt.text ?? "")
+            // for new task pass the array of tasks
+            newTask.dueDate = self.taskDueDatePicker.date
+            newTask.subTasks = self.subTasksEntity
 
-        if pictures.count > 0 {
-            for imageData in pictures {
-                newTask.pictures.append(imageData.pngData()!)
+            if self.pictures.count > 0 {
+                for imageData in self.pictures {
+                    newTask.pictures.append(imageData.pngData()!)
+                }
             }
+            
+            if self.audioPath.count > 0 {
+                for audioData in self.audioPath {
+                    newTask.audios.append(audioData)
+                }
+            }
+            
+            self.taskDueDatePicker.isEnabled = true
+            self.taskDueDatePicker.isHidden = false
+            self.delegate?.saveTask(task: newTask, oldTaskEntity: self.task, newPictures: self.newPictures, newAudioPath: self.newAudioPath)
         }
         
-        if audioPath.count > 0 {
-            for audioData in audioPath {
-                newTask.audios.append(audioData)
-            }
-        }
-        
-        taskDueDatePicker.isEnabled = true
-        taskDueDatePicker.isHidden = false
-        self.delegate?.saveTask(task: newTask, oldTaskEntity: task, newPictures: newPictures, newAudioPath: newAudioPath)
+        DispatchQueue.main.async(execute: savingWorker)
     }
     
     // Add SubTasks
